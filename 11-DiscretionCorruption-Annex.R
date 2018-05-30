@@ -29,6 +29,7 @@ library(stargazer) # Version 5.2.1
 library(lfe)       # Version 2.6-2291
 library(RStata)    # Version 1.1.1
 library(Hmisc)     # Version 4.1.1
+library(rdrobust)  # Version 0.99.1
 
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
@@ -47,6 +48,7 @@ stata("11-DiscretionCorruption-Annex.do")
 # public works. Theses are the two procurement types in Law 8,666/93.
 so.data.tagged <- read_dta("sodata_tagged.dta")
 load("irregularities_cgu.Rda")
+load("so.data.Rda")
 
 # Here I bring in variables that contain expenditure infractions in order to
 # create classification counterfactuals to check whether the keywords criteria
@@ -92,10 +94,15 @@ appendix.data <-
     ) %>%
     select(contains("so."))
 
+# Add so.amount variable for DCdensity test in Appendix B
+appendix.data %<>%
+  left_join(so.data, by = c("so.id" = "so.id")) %>%
+  select(1:10, 25)
+
 rm(list = objects(pattern = "so.data|cgu|vector"))
 
 #------------------------------------------------------------------------------#
-################################### Analysis ###################################
+################################## Appendix A ##################################
 #------------------------------------------------------------------------------#
 #-----------------------#
 # All procurement types #
@@ -188,3 +195,51 @@ with(
     use = "complete.obs"
   )
 )
+
+#------------------------------------------------------------------------------#
+################################## Appendix B ##################################
+#------------------------------------------------------------------------------#
+# In appendix B, we run the McCrary (2008) tests to guarantee that there are no
+# manipulation issues around cutoffs in Law 8,666/93. In the lines below we sub-
+# set the data to calculate manipulation at each cutoff.
+purchases.cutoff1  <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >=    4000 & so.amount <=   12000 & so.works.bySOtext != 1)
+purchases.cutoff2  <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >=   40000 & so.amount <=  120000 & so.works.bySOtext != 1)
+purchases.cutoff3  <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >=  500000 & so.amount <=  750000 & so.works.bySOtext != 1)
+works.cutoff1 <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >=    7500 & so.amount <=   22000)
+works.cutoff2 <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >=   75000 & so.amount <=  225000)
+works.cutoff3 <-
+  select(appendix.data, c(1,6,9,11)) %>%
+  filter(so.amount >= 1200000 & so.amount <= 1800000)
+
+# Run t-tests on manipulation
+purchases.manipulation1 <- with(purchases.cutoff1,DCdensity(so.amount,    8000))
+purchases.manipulation2 <- with(purchases.cutoff2,DCdensity(so.amount,   80000))
+purchases.manipulation3 <- with(purchases.cutoff3,DCdensity(so.amount,  650000))
+works.manipulation1     <- with(works.cutoff1,    DCdensity(so.amount,   15000))
+works.manipulation2     <- with(works.cutoff2,    DCdensity(so.amount,  150000))
+works.manipulation3     <- with(works.cutoff3,    DCdensity(so.amount, 1500000))
+
+# Save plots
+with(purchases.cutoff1, DCdensity(so.amount,    8000))
+purchases.plot1 <- recordPlot()
+with(purchases.cutoff2, DCdensity(so.amount,   80000))
+purchases.plot2 <- recordPlot()
+with(purchases.cutoff3, DCdensity(so.amount,  650000))
+purchases.plot3 <- recordPlot()
+with(works.cutoff1,     DCdensity(so.amount,   15000))
+works.plot1     <- recordPlot()
+with(works.cutoff2,     DCdensity(so.amount,  150000))
+works.plot2     <- recordPlot()
+with(works.cutoff3,     DCdensity(so.amount, 1500000))
+works.plot3     <- recordPlot()
+
