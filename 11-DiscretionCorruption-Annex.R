@@ -29,7 +29,7 @@ library(stargazer) # Version 5.2.1
 library(lfe)       # Version 2.6-2291
 library(RStata)    # Version 1.1.1
 library(Hmisc)     # Version 4.1.1
-library(rdrobust)  # Version 0.99.1
+library(rdd)       # Version 0.99.1
 
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
@@ -64,7 +64,13 @@ irregularities.cgu %<>%
   select(-c(41:42))
 
 # Three vectors for the data transformation below
-procurement.vector  <- paste0("infraction.", c(4:10, 30:31))
+procurement.vect
+or  <- paste0("SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", purchases.manipulation1),
+    ")",
+    collapse = ""
+  )
 SOtext.vector       <- c("purchases", "works")
 transfertext.vector <- c("tpurchases", "tworks")
 
@@ -229,17 +235,106 @@ works.manipulation1     <- with(works.cutoff1,    DCdensity(so.amount,   15000))
 works.manipulation2     <- with(works.cutoff2,    DCdensity(so.amount,  150000))
 works.manipulation3     <- with(works.cutoff3,    DCdensity(so.amount, 1500000))
 
-# Save plots
+# Save cutoff plots
+# Plot 1
 with(purchases.cutoff1, DCdensity(so.amount,    8000))
-purchases.plot1 <- recordPlot()
-with(purchases.cutoff2, DCdensity(so.amount,   80000))
-purchases.plot2 <- recordPlot()
-with(purchases.cutoff3, DCdensity(so.amount,  650000))
-purchases.plot3 <- recordPlot()
-with(works.cutoff1,     DCdensity(so.amount,   15000))
-works.plot1     <- recordPlot()
-with(works.cutoff2,     DCdensity(so.amount,  150000))
-works.plot2     <- recordPlot()
-with(works.cutoff3,     DCdensity(so.amount, 1500000))
-works.plot3     <- recordPlot()
+abline(v = 8000)
+title(
+  main = "Purchases Cutoff 1",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", purchases.manipulation1),
+    "; n = ",
+    nrow(purchases.cutoff1),
+    ")",
+    collapse = ""
+  )
+)
 
+purchases.plot1 <- recordPlot()
+
+# Plot 2
+with(purchases.cutoff2, DCdensity(so.amount,   80000))
+abline(v = 80000)
+title(
+  main = "Purchases Cutoff 1",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", purchases.manipulation2),
+    "; n = ",
+    nrow(purchases.cutoff2),
+    ")",
+    collapse = ""
+  )
+)
+purchases.plot2 <- recordPlot()
+
+# Plot 3
+with(purchases.cutoff3, DCdensity(so.amount,  650000))
+abline(v = 650000)
+title(
+  main = "Purchases Cutoff 3",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", purchases.manipulation3),
+    "; n = ",
+    nrow(purchases.cutoff3),
+    ")",
+    collapse = ""
+  )
+)
+purchases.plot3 <- recordPlot()
+
+# Plot 4
+with(works.cutoff1,     DCdensity(so.amount,   15000))
+abline(v = 15000)
+title(
+  main = "Works Cutoff 1",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", works.manipulation1),
+    "; n = ",
+    nrow(works.cutoff1),
+    ")",
+    collapse = ""
+  )
+)
+works.plot1     <- recordPlot()
+
+# Plot 5
+with(works.cutoff2,     DCdensity(so.amount,  150000))
+abline(v = 150000)
+title(
+  main = "Works Cutoff 2",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", works.manipulation2),
+    "; n = ",
+    nrow(works.cutoff2),
+    ")",
+    collapse = ""
+  )
+)
+works.plot2     <- recordPlot()
+
+# Plot 6
+with(works.cutoff3,     DCdensity(so.amount, 1500000))
+abline(v = 1500000)
+title(
+  main = "Works Cutoff 3",
+  xlab = paste0(
+    "SO Amount \n ",
+    "(p-value: ",
+    sprintf("%0.3f", works.manipulation3),
+    "; n = ",
+    nrow(works.cutoff3),
+    ")",
+    collapse = ""
+  )
+)
+works.plot3     <- recordPlot()

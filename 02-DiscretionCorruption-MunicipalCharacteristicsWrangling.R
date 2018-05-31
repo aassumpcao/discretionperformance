@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------#
+
 # (TITLE TO BE DETERMINED)
 # Municipal Characteristics Data wrangling script
 # Prepared by:
