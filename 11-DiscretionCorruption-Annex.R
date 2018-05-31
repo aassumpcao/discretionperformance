@@ -30,6 +30,7 @@ library(lfe)       # Version 2.6-2291
 library(RStata)    # Version 1.1.1
 library(Hmisc)     # Version 4.1.1
 library(rdd)       # Version 0.99.1
+library(papaja)    # Version 0.1.0.9709
 
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
