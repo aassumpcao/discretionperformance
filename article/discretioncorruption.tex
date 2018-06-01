@@ -179,17 +179,26 @@ Here are two sample references: Abadie, Diamond, \& Hainmueller (2015).
 \section*{References}\label{references}}
 \addcontentsline{toc}{section}{References}
 
-\newpage
-
-\hypertarget{appendix}{%
-\section*{Appendix}\label{appendix}}
-\addcontentsline{toc}{section}{Appendix}
-
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-AbadieComparativePoliticsSynthetic2015}{}%
 Abadie, A., Diamond, A., \& Hainmueller, J. (2015). Comparative Politics
 and the Synthetic Control Method. \emph{American Journal of Political
 Science}, \emph{59}, 495--510.
+
+---
+output: 
+  pdf_document:
+    keep_tex    : true
+    fig_caption : true
+    latex_engine: pdflatex
+
+# bibliography: /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Library/library.bib
+# csl         : apa.csl
+---
+# Appendix A: Service Order Classification
+Service orders issued by CGU investigated different uses of public resources in addition to procurement, e.g. for officials compensation, for school activities, or for community monitoring of public policies. The discretion measure advanced here, however, is exclusive to procurement expenditures made under Law 8,666/93, thus we need to isolate service orders which investigated procurement processes from the rest. Since there is no such direct reporting in CGU reports, we implement a service order classification system based on the information retrieval and natural-language processing literatures.
+
+We use each service order's description to identify if it is procurement-related. In these descriptions, CGU auditors report the purpose of their investigation, e.g. they are looking into painkiller purchases, whether the municipality has used the funds within designated goals, or if school teachers were hired for the implementation of a school program.
 
 \end{document}
 

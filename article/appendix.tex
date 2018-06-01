@@ -1,0 +1,132 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{}
+    \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+
+\hypertarget{appendix-a-service-order-classification}{%
+\section{Appendix A: Service Order
+Classification}\label{appendix-a-service-order-classification}}
+
+Service orders issued by CGU investigated different uses of public
+resources in addition to procurement, e.g.~for officials compensation,
+for school activities, or for community monitoring of public policies.
+The discretion measure advanced here, however, is exclusive to
+procurement expenditures made under Law 8,666/93, thus we need to
+isolate service orders which investigated procurement processes from the
+rest. Since there is no such direct reporting in CGU reports, we
+implement a service order classification system based on the information
+retrieval and natural-language processing literatures.
+
+We use each service order's description to identify if it is
+procurement-related. In these descriptions, CGU auditors report the
+purpose of their investigation, e.g.~whether they are looking into
+painkiller purchases, whether the municipality has used the funds within
+designated goals, or whether primary school teachers were hired for the
+implementation of a school program. Using these textual descriptions as
+bag-of-words models, we implement a method similar to that of Hopkins \&
+King (2009): we stem and combine unigrams to form search patterns that
+identify a service order as procurement-related. There are two broad
+types of procurement in Law 8,666/93; (i) ordinary procurement of goods
+and services, which we call \emph{purchases}; (ii) and procurement of
+goods and services used for public works, which we call \emph{works}.
+There are different search patterns for each type.
+
+An example is useful for understanding our classification process.
+Unigram ``aquisição'' (\emph{acquisition} in English) is stemmed to
+``aquisi'' to form a search pattern for purchase-type procurement;
+unigrams ``adequação'' and ``habitacional'' are stemmed and combined to
+form ``adequa(.)*habitac'' search pattern for works-type procurement --
+it picks up both variations from the main keywords as well as coding
+mistakes due to, for instance, multiple whitespace between the two
+unigrams or when coding Portuguese special characters (adequação
+\emph{vs} adequacao).
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-HopkinsMethodAutomatedNonparametric2009}{}%
+Hopkins, D., \& King, G. (2009). A Method of Automated Nonparametric
+Content Analysis for Social Science. \emph{American Journal of Political
+Science}, \emph{54}(1), 229--247.
+\url{https://doi.org/10.1111/j.1540-5907.2009.00428.x}
+
+
+\end{document}
