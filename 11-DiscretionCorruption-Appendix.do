@@ -24,7 +24,7 @@ set more off
 ********************************************************************************
 global folder = "/Users/aassumpcao/OneDrive - University of North Carolina " ///
   + "at Chapel Hill/Documents/Research/2012 Discretion and Corruption/" ///
-  + "discretioncorruption"
+  + "discretioncorruption"	
 
 cd "$folder/"
 

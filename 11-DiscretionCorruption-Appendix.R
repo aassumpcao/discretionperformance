@@ -19,18 +19,20 @@ rm(list=ls())
 #------------------------------------------------------------------------------#
 ################################### Packages ###################################
 #------------------------------------------------------------------------------#
-library(tidyverse) # Version 1.2.1
-library(haven)     # Version 1.1.1
-library(lubridate) # Version 1.7.4
-library(readxl)    # Version 1.1.0
-library(psych)     # Version 1.8.4
-library(magrittr)  # Version 1.5
-library(stargazer) # Version 5.2.1
-library(lfe)       # Version 2.6-2291
-library(RStata)    # Version 1.1.1
-library(Hmisc)     # Version 4.1.1
-library(rdd)       # Version 0.99.1
-library(papaja)    # Version 0.1.0.9709
+library(tidyverse)   # Version 1.2.1
+library(haven)       # Version 1.1.1
+library(lubridate)   # Version 1.7.4
+library(readxl)      # Version 1.1.0
+library(psych)       # Version 1.8.4
+library(magrittr)    # Version 1.5
+library(stargazer)   # Version 5.2.1
+library(lfe)         # Version 2.6-2291
+library(RStata)      # Version 1.1.1
+library(Hmisc)       # Version 4.1.1
+library(rdd)         # Version 0.99.1
+library(papaja)      # Version 0.1.0.9709
+library(VennDiagram) # Version 1.6.203
+loadfonts()
 
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
@@ -111,6 +113,26 @@ rm(list = objects(pattern = "so.data|cgu|vector"))
 #------------------------------------------------------------------------------#
 ################################## Appendix A ##################################
 #------------------------------------------------------------------------------#
+#--------------#
+# Venn Diagram #
+#--------------#
+area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
+area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
+area3 <- nrow(subset(appendix.data,
+            so.purchases.bySOtext == 1 & so.works.bySOtext     == 1
+     )
+)
+draw.pairwise.venn(
+  area1      = area1,
+  area2      = area2,
+  cross.area = area3,
+  category   = c("Purchases \n Service Orders", "Works \n Service Orders"),
+  cat.pos    = c(0,0),
+  fill       = c("white", "grey")
+)
+png("venn.png", asp = 2)
+dev.off()
+
 #-----------------------#
 # All procurement types #
 #-----------------------#

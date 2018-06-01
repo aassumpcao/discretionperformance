@@ -5,6 +5,8 @@ output:
     fig_caption : true
     latex_engine: pdflatex
 
+fig_caption : yes
+
 bibliography: /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Library/library.bib
 csl         : apa.csl
 ---
@@ -15,8 +17,12 @@ We use each service order's description to identify if it is procurement-related
 
 An example is useful for understanding our classification process. Unigram "aquisição" (*acquisition* in English) is stemmed to "aquisi" to form a search pattern for purchase-type procurement; unigrams "adequação" and "habitacional" are stemmed and combined to form "adequa(.)\*habitac" search pattern for works-type procurement -- it picks up variations in main keywords as well as coding mistakes due to, for instance, multiple whitespace between the two unigrams or when coding Portuguese special characters ("adequação" vs "adequacao").
 
+The final list contains 19 *n*-grams for identification of purchases and 17 *n*-grams for works.[^1] When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. Public works procurements are a subset of all public procurements in Brazilian municipalities.
 
+## Figure 1
+![fig1|50%](venn.png)
 
+[^1]: One of these keywords in the works search pattern is an "exclusion keyword," which removes service orders that contain the "exclusion keyword" in their description from the sample found by the other 17 *n*-grams.
 
 
 
