@@ -133,16 +133,40 @@ to both groups, we include the service order only in the works group but
 not in the purchases group. Public works procurements are a subset of
 all public procurements in Brazilian municipalities.
 
-\hypertarget{figure-1}{%
-\subsection{Figure 1}\label{figure-1}}
+\textbf{Figure 1: Service Order Mapping} \emph{insert figure one here}
 
-\begin{figure}
-\centering
-\includegraphics{venn.png}
-\caption{fig1\textbar{}50\%}
-\end{figure}
+As Grimmer \& Stewart (2013) rightly point out, no text analysis
+algorithm is perfect and only relying on keyword matches could
+potentially lead to misclassification of service orders. Let us suppose
+that one description reads ``expenditures made in accordance with
+primary education program.'' Using unigram ``expenditure'' would yield a
+match for this service order but in fact auditors might be looking at
+bonus payments for high-performing teachers. These resources could also
+be directed for remodeling schools, in which case we would not know that
+this service order should be marked to the works group.
+
+We address these classification issues in three ways: (i) using six
+criteria of match quality discussed in Assumpcao (2018); (ii) comparing
+the same search patterns on another textual description for a subset of
+service orders; (iii) finally, comparing the results from the textual
+classification against that of procurement-related violations reported
+by CGU auditors. The three tests are discussed below.
+
+\hypertarget{match-quality-measures}{%
+\subsection*{Match Quality Measures}\label{match-quality-measures}}
+\addcontentsline{toc}{subsection}{Match Quality Measures}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-AssumpcaotextfindDataDrivenText2018}{}%
+Assumpcao, A. (2018). \emph{Textfind: A Data-Driven Text Analysis Tool
+for Stata}.
+
+\leavevmode\hypertarget{ref-GrimmerTextDataPromise2013a}{}%
+Grimmer, J., \& Stewart, B. M. (2013). Text as Data: The Promise and
+Pitfalls of Automatic Content Analysis Methods for Political Texts.
+\emph{Political Analysis}, \emph{21}(3), 267--297.
+\url{https://doi.org/10.1093/pan/mps028}
+
 \leavevmode\hypertarget{ref-HopkinsMethodAutomatedNonparametric2009}{}%
 Hopkins, D., \& King, G. (2009). A Method of Automated Nonparametric
 Content Analysis for Social Science. \emph{American Journal of Political
