@@ -42,13 +42,13 @@ The first test on match quality is the means comparison test presented in @Assum
 
 *\- insert table 2: Purchases Search Results here \-*
 
+The terms are sorted by the number of service orders they identify (column 1). Column 6 displays *p*-values for means tests across samples, where each mean is the sum of observations found by *any* of the search items before, and inclusive of, any particular row over the total number of observations.^[This is also known as an alternative search where all search conditions are connected by an "or" statement.] The means test thus compares whether the sample identified by any row is significantly different from the the sample identified by all rows before. For instance, the evidence presented in row four is that the inclusion of search item "ve[íi]culo" significantly improves the identification of a purchases sample beyond just the previous three terms.
+
 **Table 3: Works Search Results**
 
 *\- insert table 3: Works Search Results here \-*
 
-The terms are sorted by the number of service orders they identify (column one). Column six displays *p*-values for means tests across samples. It compares whether the sample identified in any row, whose search pattern takes in all terms up to, and inclusive of, that row, is significantly different from the the sample identified by all search terms up to the row before. Row two, for instance 
-
-
+A
 
 ## Textual Descriptions {#quality2}
 
