@@ -27,6 +27,7 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -45,7 +46,7 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{5}
 % Redefines (sub)paragraphs to behave more like sections
 \ifx\paragraph\undefined\else
 \let\oldparagraph\paragraph
@@ -81,11 +82,28 @@
     \predate{}\postdate{}
   
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 
-\hypertarget{appendix-a-service-order-classification}{%
-\section{Appendix A: Service Order
-Classification}\label{appendix-a-service-order-classification}}
+\hypertarget{appendix-appendix}{%
+\appendix}
+
+
+\hypertarget{appendixA}{%
+\section{Appendix: Service Order Classification}\label{appendixA}}
 
 Service orders issued by CGU investigated different uses of public
 resources in addition to procurement, e.g.~for officials compensation,
@@ -133,7 +151,9 @@ to both groups, we include the service order only in the works group but
 not in the purchases group. Public works procurements are a subset of
 all public procurements in Brazilian municipalities.
 
-\textbf{Figure 1: Service Order Mapping} \emph{insert figure one here}
+
+
+\emph{-\/-insert figure one here-\/-}
 
 As Grimmer \& Stewart (2013) rightly point out, no text analysis
 algorithm is perfect and only relying on keyword matches could
@@ -145,16 +165,37 @@ bonus payments for high-performing teachers. These resources could also
 be directed for remodeling schools, in which case we would not know that
 this service order should be marked to the works group.
 
-We address these classification issues in three ways: (i) using six
-criteria of match quality discussed in Assumpcao (2018); (ii) comparing
-the same search patterns on another textual description for a subset of
-service orders; (iii) finally, comparing the results from the textual
-classification against that of procurement-related violations reported
-by CGU auditors. The three tests are discussed below.
+We address these classification issues in three ways: (i) using means
+comparison tests of match quality discussed in Assumpcao (2018); (ii)
+comparing the same search patterns on another textual description for a
+subset of service orders; (iii) finally, comparing the results from the
+textual classification against that of procurement-related violations
+reported by CGU auditors. The three tests are discussed below.
 
-\hypertarget{match-quality-measures}{%
-\subsection*{Match Quality Measures}\label{match-quality-measures}}
-\addcontentsline{toc}{subsection}{Match Quality Measures}
+\hypertarget{quality1}{%
+\subsection{Match Quality Measures}\label{quality1}}
+
+The first test on match quality is the means comparison test presented
+in Assumpcao (2018), whose reasoning is simple. By adding more
+procurement-related terms to the search pattern, we run the risk of
+misclassifying service orders as procurement when in fact they are not
+-- i.e.~the typical type I error. Ideally, we want to use as few
+\emph{n}-grams as possible while still identifying all possible
+procurement matches. What Assumpcao (2018) thus suggests is pairwise
+means comparison tests between the samples identified by \emph{n} v.
+\emph{n-1} keywords. This method translates into a check on whether the
+sample identified by one additional keyword is significantly better than
+the previous sample with one fewer terms.
+
+\hypertarget{quality2}{%
+\subsection{Textual Descriptions}\label{quality2}}
+
+A
+
+\hypertarget{quality3}{%
+\subsection{Procurement-related Violations}\label{quality3}}
+
+A
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-AssumpcaotextfindDataDrivenText2018}{}%
