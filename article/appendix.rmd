@@ -6,6 +6,7 @@ output:
     fig_caption   : true
     latex_engine  : pdflatex
     # number_section: true
+  # bookdown::word_document2:
 
 fig_caption : yes
 bibliography: /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Library/library.bib
@@ -19,15 +20,15 @@ We use each service order's description to identify if it is procurement-related
 
 An example is useful for understanding our classification process. Unigram "aquisição" (*acquisition* in English) is stemmed to "aquisi" to form a search pattern for purchase-type procurement; unigrams "adequação" and "habitacional" are stemmed and combined to form "adequa(.)\*habitac" search pattern for works-type procurement -- it picks up variations in main keywords as well as coding mistakes due to, for instance, multiple whitespace between the two unigrams or when coding Portuguese special characters ("adequação" vs "adequacao").
 
-(ref:tab1)
+**Figure 1: Service Order Mapping**
 
 *\- insert table 1: keywords here \-* 
 
 The final list contains 19 *n*-grams for identification of purchases and 17 *n*-grams for works.^[One of these keywords in the works search pattern is an "exclusion keyword," which removes service orders that contain the "exclusion keyword" in their description from the sample found by the other 17 *n*-grams.] When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. Public works procurements are a subset of all public procurements in Brazilian municipalities.
 
-(ref:fig1)
+**Table 1: Procurement Search Terms**
 
-*\- insert figure 1: Venn Diagram here \-* 
+*\- insert figure 1: Venn Diagram here \-*
 <!-- ![fig1](venn.png){width=50%} -->
 
 As @GrimmerTextDataPromise2013a rightly point out, no text analysis algorithm is perfect and only relying on keyword matches could potentially lead to misclassification of service orders. Let us suppose that one description reads "expenditures made in accordance with primary education program." Using unigram "expenditure" would yield a match for this service order but in fact auditors might be looking at bonus payments for high-performing teachers. These resources could also be directed for remodeling schools, in which case we would not know that this service order should be marked to the works group.
@@ -35,15 +36,17 @@ As @GrimmerTextDataPromise2013a rightly point out, no text analysis algorithm is
 We address these classification issues in three ways: (i) using means comparison tests of match quality discussed in @AssumpcaotextfindDataDrivenText2018; (ii) comparing the same search patterns on another textual description for a subset of service orders; (iii) finally, comparing the results from the textual classification against that of procurement-related violations reported by CGU auditors. The three tests are discussed below.
 
 ## Match Quality Measures {#quality1}
-The first test on match quality is the means comparison test presented in @AssumpcaotextfindDataDrivenText2018, whose reasoning is simple. By adding more procurement-related terms to the search pattern, we run the risk of misclassifying service orders as procurement when in fact they are not -- i.e. the typical type I error. Ideally, we want to use as few *n*-grams as possible while still identifying all possible procurement matches. What @AssumpcaotextfindDataDrivenText2018 thus suggests is pairwise means comparison tests between the samples identified by *n* v. *n-1* keywords. This method translates into a check on whether the sample identified by one additional keyword is significantly better than the previous sample with one fewer item.
+The first test on match quality is the means comparison test presented in @AssumpcaotextfindDataDrivenText2018, whose reasoning is simple. By adding more procurement-related terms to the search pattern, we run the risk of misclassifying service orders as procurement when in fact they are not -- i.e. the typical type I error. Ideally, we want to use as few *n*-grams as possible while still identifying all possible procurement matches. What @AssumpcaotextfindDataDrivenText2018 thus suggests is pairwise means comparison tests between the samples identified by *n* v. *n* - 1 keywords. This method translates into a check on whether the sample identified by one additional keyword is significantly better than the previous sample with one fewer item.
 
-(ref:tab2)
+**Table 2: Purchases Search Results**
 
-*\- insert table 2: Purchases Search Patterns here \-*
+*\- insert table 2: Purchases Search Results here \-*
 
-(ref:tab3)
+**Table 3: Works Search Results**
 
-*\- insert table 3: Works Search Patterns here \-*
+*\- insert table 3: Works Search Results here \-*
+
+The terms are sorted by the number of service orders they identify (column one). Column six displays *p*-values for means tests across samples. It compares whether the sample identified in any row, whose search pattern takes in all terms up to, and inclusive of, that row, is significantly different from the the sample identified by all search terms up to the row before. Row two, for instance 
 
 
 
@@ -54,14 +57,6 @@ A
 ## Procurement-related Violations {#quality3}
 
 A
-
-(ref:fig1) Figure 1: Service Order Mapping
-
-(ref:tab1) Table 1: Procurement Search Terms
-
-(ref:tab2) Table 2: Purchases Search Results
-
-(ref:tab3) Table 3: Works Search Results
 
 
 
