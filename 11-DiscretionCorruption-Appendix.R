@@ -68,13 +68,7 @@ irregularities.cgu %<>%
   select(-c(41:42))
 
 # Three vectors for the data transformation below
-procurement.vect
-or  <- paste0("SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", purchases.manipulation1),
-    ")",
-    collapse = ""
-  )
+procurement.vector  <- paste0("infraction.", c(4:10, 30:31))
 SOtext.vector       <- c("purchases", "works")
 transfertext.vector <- c("tpurchases", "tworks")
 

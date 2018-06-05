@@ -69,9 +69,13 @@ This is a particularly important point for the classification method proposed he
 
 ## Procurement Violations {#quality3}
 
-The last test of match quality compares the results of the classification algorithm against actual procurement violations reported by CGU auditors. Although section \@ref(quality2) supports external validity by comparing the results from searching in different textual descriptions, we can go one step further and actually look into service orders for which there were procurement violations and check whether they have also been identified as procurement-related.
+Though section \@ref(quality2) supports external validity by showing that the service order classification is consistent across textual descriptions, we run the last robustness check here using procurement violations reported by CGU auditors.
 
+The findings reported by CGU are coded into 35 infractions of the use of public resources. Nine of these infractions pertain to violations of procurement Law 8,666/93. Thus, we know with certainty that service orders for which there are procurement violations are in fact procurement-related and should be classified as purchases, works, or both.
 
+**Table A.5: Classification by Violation Code**
+
+*\- insert table 5 here \-* (use procurement table, not split up by purchases or works)
 
 
 
