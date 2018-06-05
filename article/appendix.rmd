@@ -20,25 +20,25 @@ We use each service order's description to identify if it is procurement-related
 
 An example is useful for understanding our classification process. Unigram "aquisição" (*acquisition* in English) is stemmed to "aquisi" to form a search pattern for the *purchases*-type procurement; unigrams "adequação" and "habitacional" are stemmed and combined to form "adequa(.)\*habitac"^[All seach patterns are regular expressions.] search pattern for *works*-type procurement. The bigram picks up variations in main keywords as well as coding mistakes due to, for instance, multiple whitespace between the two unigrams or due to coding Portuguese special characters ("adequação" vs "adequacao").
 
-**Figure 1: Service Order Mapping**
+**Table A.1: Procurement Search Terms**
 
-*\- insert table 1: keywords here \-* 
+*\- insert figure 1: keywords here \-* 
 
-The final list contains 19 *n*-grams for identification of purchases and 17 *n*-grams for works.^[One of these keywords in the works search pattern is an "exclusion keyword," which removes service orders that contain the "exclusion keyword" in their description from the sample found by the other 17 *n*-grams.] When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. Public works procurements are a subset of all public procurements in Brazilian municipalities.
+The final list contains 19 *n*-grams for identification of purchases and 17 *n*-grams for works.^[One of these keywords in the works search pattern is an "exclusion keyword," which removes service orders that contain the "exclusion keyword" in their description from the sample found by the other 17 *n*-grams.] When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. Public works procurements are a subset of all public procurements in Brazilian municipalities. The search patterns here identify a total of 9,593 procurement-related service orders.
 
-**Table 1: Procurement Search Terms**
+**Figure A.1: Service Order Mapping**
 
 *\- insert figure 1: Venn Diagram here \-*
 <!-- ![fig1](venn.png){width=50%} -->
 
 As @GrimmerTextDataPromise2013a rightly point out, no text analysis algorithm is perfect and only relying on keyword matches could potentially lead to misclassification of service orders. Let us suppose that one description reads "expenditures made in accordance with primary education program." Using unigram "expenditure" would yield a match for this service order to the purchases group, but in fact auditors might be looking at bonus payments for high-performing teachers. These resources could also be directed for school construction. In the first case, the service order should not be have been included in any group because it does not carry any procurement component. In the second case, it should have also been marked as public works.
 
-We address these classification issues in three ways: (i) using means comparison tests of match quality discussed in @AssumpcaotextfindDataDrivenText2018; (ii) comparing the performance of the same search patterns on another textual description for a subset of service orders; (iii) finally, comparing the results from the textual classification algorithm to that of procurement-related violations reported by CGU auditors. We discuss these three tests in turns in the following sections.
+We address these classification issues in three ways: (i) using means comparison tests of match quality discussed in @AssumpcaotextfindDataDrivenText2018; (ii) comparing the performance of the same search patterns on another textual description for a subset of service orders; (iii) finally, comparing the results from the textual classification algorithm to that of procurement violations reported by CGU auditors. We discuss these three tests in turns in the following sections.
 
 ## Match Quality Measures {#quality1}
 The first test on match quality is the means comparison test presented in @AssumpcaotextfindDataDrivenText2018, whose reasoning is simple. Increasing the number of procurement-related terms in the search pattern is not necessarily good practice as we increase the chance of misclassifying service orders as procurement when in fact they are not; words can take on different meanings depending on their contexts, so the more search terms we use the more likely type I error is. Ideally, we would want to use as few *n*-grams as possible while still identifying all possible procurement matches. In order to do this, what @AssumpcaotextfindDataDrivenText2018 thus suggests is pairwise means comparison tests between the samples identified by *n* v. *n* - 1 keywords. This method translates into a check on whether the sample identified by one additional keyword is significantly better than the previous sample with one fewer term. The program developed by @AssumpcaotextfindDataDrivenText2018 does this for us and we report the results in the tables below:
 
-**Table 2: Purchases Search Results**
+**Table A.2: Purchases Search Results**
 
 *\- insert table 2: Purchases Search Results here \-*
 
@@ -48,20 +48,28 @@ The search terms are sorted in descending order by the number of service orders 
 
 *\- insert table 3: Works Search Results here \-*
 
-The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample ("saneamento" and "conclus[ãa]o"). Despite having positive individual finds reported in column 1, table A.3, the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.^[The search without these terms (available upon request) yields 2679 service orders, just three short of the total in table A.3. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \@ref(quality2).]
+The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample ("saneamento" and "conclus[ãa]o"). Despite having positive individual finds reported in column 1, table A.3, the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.^[The search without these terms (available upon request) yields 2,679 service orders, just three short of the total in table A.3. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \@ref(quality2).]
 
 Means tests are important to map out the relationship between search items, both within and across groups, but they do not tell us anything about the relationship between search items and their latent procurement groups. In other words, the search terms might be picking up groups that are internally consistent but that do not map onto the procurement types in Law 8,666/93. We discuss these issues in sections \@ref(quality2) and \@ref(quality3).
 
 ## Textual Descriptions {#quality2}
 
-CGU service orders can best be described as investigations on the use of public resources transferred from the federal government to Brazilian municipalities. There are six transfer types and each service order investigates only one type at a time. Since the procurement categories set out in Law 8,666/93 apply to all public procurements at all government levels, transfer types are irrelevant for constructing our discretion measure; however, one transfer type in particular, federal grants (*convênios* in Portuguese), provide an important counterfactual to test whether our classification algorithm correctly maps onto latent purchases and works groups in the procurement legislation.
+CGU service orders can best be described as investigations on the use of public resources transferred from the federal government to Brazilian municipalities. There are six transfer types and each service order investigates only one type at a time. Since the procurement categories set out in Law 8,666/93 apply to all public procurements at all government levels, transfer types are irrelevant for constructing our discretion measure. Nonetheless, one type of these transfers helps test our classification algorithm.
+
+Federal grants (*convênios* in Portuguese) are narrow transfer agreements signed by the federal government, its agencies, states and municipalities for the delivery of governmental programs. They are voluntary, time-limited transfers implementing policies at the local level, such as vaccinations and the construction of community health clinics. The most important feature of these grants, however, is that each of them also has an individual textual description of its purpose, e.g. a tractor purchase for a rural community in a given municipality. Thus, for a subset of service orders that are investigations of the use of these federal grants by Brazilian municipalities, we have two different textual descriptions of resource use: CGU's, from their audit report, and the federal government's, available online at the Transparency Portal.^[http://www.portaltransparencia.gov.br/]
+
+**Table A.4: Classification by Textual Descriptions**
+
+*\- insert table 4 here \-* (merge purchases and works into one table)
+
+There is a total of 3,868 service orders for which we have descriptions both from CGU and from the federal government. In table A.4, we report the results of the search algorithm both in the service order (row-wise) and the transfer (column-wise) descriptions. We evaluate the performance of the search algorithm by checking whether it assigns the same service order to the same procurement group *regardless of the description in which it searches for the key terms*. In other words, the smaller the number of times that the algorithm assigns any service order to a different group when it switches to another textual description, the better.
+
+This is a particularly important point for the classification method proposed here. The means test conducted in section \@ref(quality1) provides internal consistency because it compares and checks whether more observations are matched when more search terms are included; the tabulation across descriptions here provides external consistency because it compares and checks if the classification algorithm is independent of search target (description). It resembles a false positive test because we can roughly calculate the percentage of misclassification of service orders. In panel A, the service order description search assigns 1,556 to the purchases group, out of which 83 were not simultaneously assigned to the same group in the grant description search, yielding a 5.3% false positive rate. In panel B, the service order search marks 2,053 observations to the works group, where 404 are not simultaneously marked when the search is performed in the grant description (a 19.7% false positive rate).^[The inverse misclassification rates are also reassuring: false positive are 8.9% and 14.0% for purchases and works respectively when we first classify observations using grant descriptions and then move on to service order descriptions.]
 
 
+## Procurement Violations {#quality3}
 
-
-## Procurement-related Violations {#quality3}
-
-A
+The last test of match quality compares the results of the classification algorithm against actual procurement violations reported by CGU auditors. Although section \@ref(quality2) supports external validity by comparing the results from searching in different textual descriptions, we can go one step further and actually look into service orders for which there were procurement violations and check whether they have also been identified as procurement-related.
 
 
 

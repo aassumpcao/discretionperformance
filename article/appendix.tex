@@ -140,9 +140,9 @@ coding mistakes due to, for instance, multiple whitespace between the
 two unigrams or due to coding Portuguese special characters
 (``adequação'' vs ``adequacao'').
 
-\textbf{Figure 1: Service Order Mapping}
+\textbf{Table A.1: Procurement Search Terms}
 
-\emph{- insert table 1: keywords here -}
+\emph{- insert figure 1: keywords here -}
 
 The final list contains 19 \emph{n}-grams for identification of
 purchases and 17 \emph{n}-grams for works.\footnote{One of these
@@ -155,9 +155,10 @@ works projects procure goods and services but not all public purchases
 are works-related, whenever the search patterns matches service orders
 to both groups, we include the service order only in the works group but
 not in the purchases group. Public works procurements are a subset of
-all public procurements in Brazilian municipalities.
+all public procurements in Brazilian municipalities. The search patterns
+here identify a total of 9,593 procurement-related service orders.
 
-\textbf{Table 1: Procurement Search Terms}
+\textbf{Figure A.1: Service Order Mapping}
 
 \emph{- insert figure 1: Venn Diagram here -}
 
@@ -201,7 +202,7 @@ is significantly better than the previous sample with one fewer term.
 The program developed by Assumpcao (2018) does this for us and we report
 the results in the tables below:
 
-\textbf{Table 2: Purchases Search Results}
+\textbf{Table A.2: Purchases Search Results}
 
 \emph{- insert table 2: Purchases Search Results here -}
 
@@ -251,10 +252,58 @@ municipalities. There are six transfer types and each service order
 investigates only one type at a time. Since the procurement categories
 set out in Law 8,666/93 apply to all public procurements at all
 government levels, transfer types are irrelevant for constructing our
-discretion measure; however, one transfer type in particular, federal
-grants (\emph{convênios} in Portuguese), provide an important
-counterfactual to test whether our textual classification correctly maps
-onto latent purchases and works groups in the procurement legislation.
+discretion measure. Nonetheless, one type of these transfers helps test
+our classification algorithm.
+
+Federal grants (\emph{convênios} in Portuguese) are narrow transfer
+agreements signed by the federal government, its agencies, states and
+municipalities for the delivery of governmental programs. They are
+voluntary, time-limited transfers implementing policies at the local
+level, such as vaccinations and the construction of community health
+clinics. The most important feature of these grants, however, is that
+each of them also has an individual textual description of its purpose,
+e.g.~a tractor purchase for a rural community in a given municipality.
+Thus, for a subset of service orders that are investigations of the use
+of these federal grants by Brazilian municipalities, we have two
+different textual descriptions of resource use: CGU's, from their audit
+report, and the federal government's, available online at the
+Transparency Portal.\footnote{\url{http://www.portaltransparencia.gov.br/}}
+
+\textbf{Table A.4: Classification by Textual Descriptions}
+
+\emph{- insert table 4 here -} (merge purchases and works into one
+table)
+
+There is a total of 3,868 service orders for which we have descriptions
+both from CGU and from the federal government. In table A.4, we report
+the results of the search algorithm both in the service order (row-wise)
+and the transfer (column-wise) descriptions. We evaluate the performance
+of the search algorithm by checking whether it assigns the same service
+order to the same procurement group \emph{regardless of the description
+in which it searches for the key terms}. In other words, the smaller the
+number of times that the algorithm assigns any service order to a
+different group when it switches to another textual description, the
+better.
+
+This is a particularly important point for the classification method
+proposed here. The means test conducted in section \ref{quality1}
+provides internal consistency because it compares and checks whether
+more observations are matched when more search terms are included; the
+tabulation across descriptions here provides external consistency
+because it compares and checks if the classification algorithm is
+independent of search target (description). It resembles a false
+positive test because we can roughly calculate the percentage of
+misclassification of service orders. In panel A, the service order
+description search assigns 1,556 to the purchases group, out of which 83
+were not simultaneously assigned to the same group in the grant
+description search, yielding a 5.3\% false positive rate. In panel B,
+the service order search marks 2,053 observations to the works group,
+where 404 are not simultaneously marked when the search is performed in
+the grant description (a 19.7\% false positive rate).\footnote{The
+  inverse misclassification risks are also reassuring: false positive
+  rates are 8.9\% and 14.0\% for purchases and works respectively when
+  we first classify observations using grant descriptions and then move
+  on to service order descriptions.}
 
 \hypertarget{quality3}{%
 \subsection{Procurement-related Violations}\label{quality3}}

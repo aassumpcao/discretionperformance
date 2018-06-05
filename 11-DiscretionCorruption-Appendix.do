@@ -1,4 +1,4 @@
-*------------------------------------------------------------------------------*
+  *------------------------------------------------------------------------------*
 * (TITLE TO BE DETERMINED)
 * Appendix on Textual Classification
 * Prepared by:
@@ -51,25 +51,33 @@ local works = ///
   `""conclus[ãa]o""'
 
 *** Run textfind for procurement both SO description
-textfind soDescription, key(`purchase') nocase or tag(purchases)
+textfind soDescription, key(`purchase') nocase or tag(purchases) notable
 
 *** Print matrix of results
 outtable using appendix_tab1, mat(key) replace ///
-  caption("Identification of Purchase Service Orders")
+  caption("Purchases Search Results: SO description")
 
 *** Run textfind for public works both on transfer description
 textfind transferDescription, key(`purchase') nocase or tag(tpurchases) notable
 
-*** Run textfind for procurement both SO description
-textfind soDescription, key(`works') but("psf") nocase or tag(works)
-
 *** Print matrix of results
 outtable using appendix_tab2, mat(key) replace ///
-  caption("Identification of Public Works Service Orders")
+  caption("Purchases Search Results: Grants description")
+
+*** Run textfind for procurement both SO description
+textfind soDescription, key(`works') but("psf") nocase or tag(works) notable
+
+*** Print matrix of results
+outtable using appendix_tab3, mat(key) replace ///
+  caption("Works Search Results: SO description")
 
 *** Run textfind for public works both on transfer description
 textfind transferDescription, key(`works') but("psf") nocase or tag(tworks) ///
   notable
+
+*** Print matrix of results
+outtable using appendix_tab4, mat(key) replace ///
+  caption("Works Search Results: Grants description")
 
 ********************************************************************************
 ******************************** Quality tests *********************************
@@ -97,10 +105,10 @@ replace tworks     = . if transferDescription == "."
 *** In the subgroup for which we have both transfer and SO descriptions, how
 *** many SOs have been identified by textfind?
 tab purchases tpurchases if works != 1
-latab purchases tpurchases if works != 1, tf(appendix_tab3) replace
+latab purchases tpurchases if works != 1, tf(appendix_tab5) replace
 
 tab works tworks
-latab purchases tpurchases if works != 1, tf(appendix_tab4) replace
+latab works tworks, tf(appendix_tab6) replace
 
 *** Save to file
 save soData_tagged, replace

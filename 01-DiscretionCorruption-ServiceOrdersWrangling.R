@@ -307,10 +307,10 @@ names(so.data)
 #--------------------------#
 # # 12. Define SO as public works or purchases and type based on Law 8,666/93
 # so.data.tagged <- read_dta("soData_tagged.dta")
-load("soData_tagged.Rdata")
+load("soData_tagged.Rda")
 
 so.data <- so.data.tagged %>%
-  select(soID, purchases, works) %>%
+  select(soID, contains("purchases"), contains("works")) %>%
   left_join(so.data, ., by = c("so.id" = "soID")) %>%
   mutate(
     so.type        = ifelse(

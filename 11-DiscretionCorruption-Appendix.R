@@ -49,9 +49,10 @@ stata("11-DiscretionCorruption-Annex.do")
 # In the do-file above, I defined the keywords that should be matched in order
 # for a service order to be classified as general procurement (purchases) or
 # public works. Theses are the two procurement types in Law 8,666/93.
-so.data.tagged <- read_dta("sodata_tagged.dta")
+# so.data.tagged <- read_dta("sodata_tagged.dta")
 load("irregularities_cgu.Rda")
 load("so.data.Rda")
+load("sodata_tagged.Rda")
 
 # Here I bring in variables that contain expenditure infractions in order to
 # create classification counterfactuals to check whether the keywords criteria
