@@ -24,7 +24,7 @@ set more off
 ********************************************************************************
 global folder = "/Users/aassumpcao/OneDrive - University of North Carolina " ///
   + "at Chapel Hill/Documents/Research/2012 Discretion and Corruption/" ///
-  + "discretioncorruption"	
+  + "discretioncorruption"
 
 cd "$folder/"
 
@@ -61,7 +61,7 @@ outtable using appendix_tab1, mat(key) replace ///
 textfind transferDescription, key(`purchase') nocase or tag(tpurchases) notable
 
 *** Run textfind for procurement both SO description
-textfind soDescription, key(`works') but("psf") nocase or tag(works) notable
+textfind soDescription, key(`works') but("psf") nocase or tag(works)
 
 *** Print matrix of results
 outtable using appendix_tab2, mat(key) replace ///

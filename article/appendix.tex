@@ -108,7 +108,7 @@
 Service orders issued by CGU investigated different uses of public
 resources in addition to procurement, e.g.~for officials compensation,
 for school activities, or for community monitoring of public policies.
-The discretion measure advanced here, however, is exclusive to
+The discretion measure proposed here, however, is exclusive to
 procurement expenditures made under Law 8,666/93, thus we need to
 isolate service orders which investigated procurement processes from the
 rest. Since there is no such direct reporting in CGU reports, we
@@ -124,19 +124,21 @@ implementation of a school program. Using these textual descriptions as
 bag-of-words models, we implement a method similar to that of Hopkins \&
 King (2009): we stem and combine unigrams to form search patterns that
 identify a service order as procurement-related. There are two broad
-types of procurement in Law 8,666/93; (i) ordinary procurement of goods
-and services, which we call \emph{purchases}; (ii) and procurement of
+types of procurement in Law 8,666/93: (i) ordinary procurement of goods
+and services, which we call \emph{purchases}; and (ii) procurement of
 goods and services used for public works, which we call \emph{works}.
 There are different search patterns for each type.
 
 An example is useful for understanding our classification process.
 Unigram ``aquisição'' (\emph{acquisition} in English) is stemmed to
-``aquisi'' to form a search pattern for purchase-type procurement;
-unigrams ``adequação'' and ``habitacional'' are stemmed and combined to
-form ``adequa(.)*habitac'' search pattern for works-type procurement --
-it picks up variations in main keywords as well as coding mistakes due
-to, for instance, multiple whitespace between the two unigrams or when
-coding Portuguese special characters (``adequação'' vs ``adequacao'').
+``aquisi'' to form a search pattern for the \emph{purchases}-type
+procurement; unigrams ``adequação'' and ``habitacional'' are stemmed and
+combined to form ``adequa(.)*habitac''\footnote{All seach patterns are
+  regular expressions.} search pattern for \emph{works}-type
+procurement. The bigram picks up variations in main keywords as well as
+coding mistakes due to, for instance, multiple whitespace between the
+two unigrams or due to coding Portuguese special characters
+(``adequação'' vs ``adequacao'').
 
 \textbf{Figure 1: Service Order Mapping}
 
@@ -164,58 +166,95 @@ algorithm is perfect and only relying on keyword matches could
 potentially lead to misclassification of service orders. Let us suppose
 that one description reads ``expenditures made in accordance with
 primary education program.'' Using unigram ``expenditure'' would yield a
-match for this service order but in fact auditors might be looking at
-bonus payments for high-performing teachers. These resources could also
-be directed for remodeling schools, in which case we would not know that
-this service order should be marked to the works group.
+match for this service order to the purchases group, but in fact
+auditors might be looking at bonus payments for high-performing
+teachers. These resources could also be directed for school
+construction. In the first case, the service order should not be have
+been included in any group because it does not carry any procurement
+component. In the second case, it should have also been marked as public
+works.
 
 We address these classification issues in three ways: (i) using means
 comparison tests of match quality discussed in Assumpcao (2018); (ii)
-comparing the same search patterns on another textual description for a
-subset of service orders; (iii) finally, comparing the results from the
-textual classification against that of procurement-related violations
-reported by CGU auditors. The three tests are discussed below.
+comparing the performance of the same search patterns on another textual
+description for a subset of service orders; (iii) finally, comparing the
+results from the textual classification algorithm to that of
+procurement-related violations reported by CGU auditors. We discuss
+these three tests in turns in the following sections.
 
 \hypertarget{quality1}{%
 \subsection{Match Quality Measures}\label{quality1}}
 
 The first test on match quality is the means comparison test presented
-in Assumpcao (2018), whose reasoning is simple. By adding more
-procurement-related terms to the search pattern, we run the risk of
-misclassifying service orders as procurement when in fact they are not
--- i.e.~the typical type I error. Ideally, we want to use as few
+in Assumpcao (2018), whose reasoning is simple. Increasing the number of
+procurement-related terms in the search pattern is not necessarily good
+practice as we increase the chance of misclassifying service orders as
+procurement when in fact they are not; words can take on different
+meanings depending on their contexts, so the more search terms we use
+the more likely type I error is. Ideally, we would want to use as few
 \emph{n}-grams as possible while still identifying all possible
-procurement matches. What Assumpcao (2018) thus suggests is pairwise
-means comparison tests between the samples identified by \emph{n} v.
-\emph{n} - 1 keywords. This method translates into a check on whether
-the sample identified by one additional keyword is significantly better
-than the previous sample with one fewer item.
+procurement matches. In order to do this, what Assumpcao (2018) thus
+suggests is pairwise means comparison tests between the samples
+identified by \emph{n} v. \emph{n} - 1 keywords. This method translates
+into a check on whether the sample identified by one additional keyword
+is significantly better than the previous sample with one fewer term.
+The program developed by Assumpcao (2018) does this for us and we report
+the results in the tables below:
 
 \textbf{Table 2: Purchases Search Results}
 
 \emph{- insert table 2: Purchases Search Results here -}
 
-\textbf{Table 3: Works Search Results}
+The search terms are sorted in descending order by the number of service
+orders they identify (column 1). Column 6 displays \emph{p}-values for
+means tests across samples, where each mean is the sum of observations
+found by \emph{any} of the search items before, and inclusive of, any
+particular row over the total number of observations.\footnote{This is
+  also known as an alternative search where all search conditions are
+  connected by an ``or'' statement.} The means test thus compares
+whether the sample identified by any row is significantly different from
+the the sample identified by all rows before. For instance, the evidence
+presented in row four of table 2 is that the inclusion of search item
+``ve{[}íi{]}culo'' significantly improves (at the 5\% level) the
+identification of the purchases sample when compared to the sample which
+only includes the previous three search words.
+
+\textbf{Table A.3: Works Search Results}
 
 \emph{- insert table 3: Works Search Results here -}
 
-The terms are sorted by the number of service orders they identify
-(column 1). Column 6 displays \emph{p}-values for means tests across
-samples, where each mean is the sum of observations found by \emph{any}
-of the search items before, and inclusive of, any particular row over
-the total number of observations.\footnote{This is also known as an
-  alternative search where all search conditions are connected by an
-  ``or'' statement.} The means test thus compares whether the sample
-identified by any row is significantly different from the the sample
-identified by all rows before. For instance, the evidence presented in
-row four is that the inclusion of search item ``ve{[}íi{]}culo''
-significantly improves the identification of a purchases sample beyond
-just the previous three terms.
+The works sample is a third of the size of the purchases group and two
+of its search items do not significantly identify a new sample
+(``saneamento'' and ``conclus{[}ãa{]}o''). Despite having positive
+individual finds reported in column 1, table A.3, the means test in
+column 6 suggests that these finds are not new service orders in
+addition to what had already been identified by the the previous search
+terms.\footnote{The search without these terms (available upon request)
+  yields 2679 service orders, just three short of the total in table
+  A.3. Nevertheless, we keep the two items in the search algorithm for
+  additional tests discussed in section \ref{quality2}.}
+
+Means tests are important to map out the relationship between search
+items, both within and across groups, but they do not tell us anything
+about the relationship between search items and their latent procurement
+groups. In other words, the search terms might be picking up groups that
+are internally consistent but that do not map onto the procurement types
+in Law 8,666/93. We discuss these issues in sections \ref{quality2} and
+\ref{quality3}.
 
 \hypertarget{quality2}{%
 \subsection{Textual Descriptions}\label{quality2}}
 
-A
+CGU service orders can best be described as investigations on the use of
+public resources transferred from the federal government to Brazilian
+municipalities. There are six transfer types and each service order
+investigates only one type at a time. Since the procurement categories
+set out in Law 8,666/93 apply to all public procurements at all
+government levels, transfer types are irrelevant for constructing our
+discretion measure; however, one transfer type in particular, federal
+grants (\emph{convênios} in Portuguese), provide an important
+counterfactual to test whether our textual classification correctly maps
+onto latent purchases and works groups in the procurement legislation.
 
 \hypertarget{quality3}{%
 \subsection{Procurement-related Violations}\label{quality3}}
