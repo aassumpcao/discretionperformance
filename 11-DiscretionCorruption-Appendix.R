@@ -58,7 +58,7 @@ load("sodata_tagged.Rda")
 # create classification counterfactuals to check whether the keywords criteria
 # works.
 irregularities.cgu %<>%
-  distinct(so.id, .keep_all = T) %>%
+  filter(!is.na(`Row Labels`)) %>%
   rename(so.id = `Row Labels`) %>%
   rename_at(vars(2:40), funs(paste("infraction.", ., sep = ""))) %>%
   mutate_at(
@@ -70,7 +70,7 @@ irregularities.cgu %<>%
 # Three vectors for the data transformation below
 procurement.vector  <- paste0("infraction.", c(4:10, 30:31))
 SOtext.vector       <- c("purchases", "works")
-transfertext.vector <- c("tpurchases", "tworks")
+granttext.vector <- c("tpurchases", "tworks")
 
 # Create the data for classification checks
 appendix.data <-
@@ -81,12 +81,12 @@ appendix.data <-
     mutate(
       so.procurement.bycode = ifelse(rowSums(.[,procurement.vector]) > 0, 1, 0),
       so.procurement.bySOtext = ifelse(rowSums(.[,SOtext.vector]) > 0, 1, 0),
-      so.procurement.bytransfertext = ifelse(rowSums(.[,transfertext.vector])>0,
+      so.procurement.bygranttext = ifelse(rowSums(.[,granttext.vector])>0,
                                              1, 0
                                       ),
       so.purchases.bycode         = so.procurement.bycode,
       so.purchases.bySOtext       = purchases,
-      so.purchases.bytransfertext = tpurchases,
+      so.purchases.bygranttext = tpurchases,
       so.works.bycode             = ifelse(
                                       so.procurement.bycode == 1 |
                                       infraction.19 == 1,
@@ -94,7 +94,7 @@ appendix.data <-
                                       0
                                     ),
       so.works.bySOtext           = works,
-      so.works.bytransfertext     = tworks
+      so.works.bygranttext     = tworks
     ) %>%
     select(contains("so."))
 
@@ -114,7 +114,7 @@ rm(list = objects(pattern = "so.data|cgu|vector"))
 area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
 area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
 area3 <- nrow(subset(appendix.data,
-            so.purchases.bySOtext == 1 & so.works.bySOtext     == 1
+            so.purchases.bySOtext == 1 & so.works.bySOtext== 1
      )
 )
 draw.pairwise.venn(
@@ -131,17 +131,17 @@ dev.off()
 #-----------------------#
 # All procurement types #
 #-----------------------#
-# 1. How does the classification differ when using transfer text?
+# 1. How does the classification differ when using grant text?
 with(
-  appendix.data, table(so.procurement.bySOtext, so.procurement.bytransfertext)
+  appendix.data, table(so.procurement.bySOtext, so.procurement.bygranttext)
 )
 
-# Correlation between SO flagged in SO text and Transfer text
+# Correlation between SO flagged in SO text and grant text
 with(
   appendix.data,
   cor(
     so.procurement.bySOtext,
-    so.procurement.bytransfertext,
+    so.procurement.bygranttext,
     use = "complete.obs"
   )
 )
@@ -166,15 +166,15 @@ with(
 #----------------#
 no.works <- appendix.data[appendix.data$so.works.bySOtext != 1,]
 
-# 1. How does the classification differ when using transfer text?
-with(no.works, table(so.purchases.bySOtext, so.purchases.bytransfertext))
+# 1. How does the classification differ when using grant text?
+with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
 
-# Correlation between SO flagged in SO text and Transfer text
+# Correlation between SO flagged in SO text and grant text
 with(
   no.works,
   cor(
     so.purchases.bySOtext,
-    so.purchases.bytransfertext,
+    so.purchases.bygranttext,
     use = "complete.obs"
   )
 )
@@ -195,14 +195,14 @@ with(
 #------------------#
 # Public woks type #
 #------------------#
-with(appendix.data, table(so.works.bySOtext, so.works.bytransfertext))
+with(appendix.data, table(so.works.bySOtext, so.works.bygranttext))
 
-# Correlation between SO flagged in SO text and Transfer text
+# Correlation between SO flagged in SO text and grant text
 with(
   appendix.data,
   cor(
     so.works.bySOtext,
-    so.works.bytransfertext,
+    so.works.bygranttext,
     use = "complete.obs"
   )
 )
