@@ -54,21 +54,21 @@ local works = ///
 textfind soDescription, key(`purchase') nocase or tag(purchases) notable
 
 *** Print matrix of results
-outtable using appendix_tab1, mat(key) replace ///
+outtable using appendix_tab2, mat(key) replace clabel("taba2") ///
   caption("Purchases Search Results: SO description")
 
 *** Run textfind for public works both on transfer description
 textfind transferDescription, key(`purchase') nocase or tag(tpurchases) notable
 
 *** Print matrix of results
-outtable using appendix_tab2, mat(key) replace ///
+outtable using appendix_tab3, mat(key) replace clabel("taba3") ///
   caption("Purchases Search Results: Grants description")
 
 *** Run textfind for procurement both SO description
 textfind soDescription, key(`works') but("psf") nocase or tag(works) notable
 
 *** Print matrix of results
-outtable using appendix_tab3, mat(key) replace ///
+outtable using appendix_tab4, mat(key) replace clabel("taba4") ///
   caption("Works Search Results: SO description")
 
 *** Run textfind for public works both on transfer description
@@ -76,7 +76,7 @@ textfind transferDescription, key(`works') but("psf") nocase or tag(tworks) ///
   notable
 
 *** Print matrix of results
-outtable using appendix_tab4, mat(key) replace ///
+outtable using appendix_tab5, mat(key) replace clabel("taba5") ///
   caption("Works Search Results: Grants description")
 
 ********************************************************************************

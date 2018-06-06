@@ -25,18 +25,22 @@ library(lubridate)   # Version 1.7.4
 library(readxl)      # Version 1.1.0
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
-library(stargazer)   # Version 5.2.1
-library(lfe)         # Version 2.6-2291
 library(RStata)      # Version 1.1.1
 library(Hmisc)       # Version 4.1.1
 library(rdd)         # Version 0.99.1
 library(papaja)      # Version 0.1.0.9709
 library(VennDiagram) # Version 1.6.203
-loadfonts()
+library(extrafont)   # Version 0.17
+library(tikzDevice)  # Version 0.11
+
+# Parameters for Latex font
+loadfonts(device = "postscript")
+
 
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
 #------------------------------------------------------------------------------#
+
 # Set options for running Stata from R
 options(
   "RStata.StataPath" = "/Applications/Stata/StataSE.app/Contents/MacOS/stata-se"
@@ -114,19 +118,31 @@ rm(list = objects(pattern = "so.data|cgu|vector"))
 area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
 area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
 area3 <- nrow(subset(appendix.data,
-            so.purchases.bySOtext == 1 & so.works.bySOtext== 1
-     )
-)
-draw.pairwise.venn(
-  area1      = area1,
-  area2      = area2,
-  cross.area = area3,
-  category   = c("Purchases \n Service Orders", "Works \n Service Orders"),
-  cat.pos    = c(0,0),
-  fill       = c("white", "grey")
-)
-png("venn.png", asp = 2)
+                     so.purchases.bySOtext == 1 & so.works.bySOtext== 1
+              )
+         )
+
+# Producing the graphical object
+venn.plot <-
+  draw.pairwise.venn(
+    area1      = area1,
+    area2      = area2,
+    cross.area = area3,
+    category   = c("Purchases \n Service Orders", "Works \n Service Orders"),
+    cat.pos    = c(180, 180),
+    cat.cex    = c(2, 2),
+    cat.default.pos = c("outer"),
+    cat.dist   = .05,
+    fontface   = 1,
+    cex        = c(3, 3, 3),
+    fill       = c("white", "grey")
+  )
+
+# Producing the graphical device
+png(paste0(getwd(),"/article/venn.png"))
+grid.draw(venn.plot)
 dev.off()
+
 
 #-----------------------#
 # All procurement types #
@@ -276,7 +292,7 @@ purchases.plot1 <- recordPlot()
 with(purchases.cutoff2, DCdensity(so.amount,   80000))
 abline(v = 80000)
 title(
-  main = "Purchases Cutoff 1",
+  main = "Purchases Cutoff 2",
   xlab = paste0(
     "SO Amount \n ",
     "(p-value: ",

@@ -81,6 +81,8 @@
     \date{}
     \predate{}\postdate{}
   
+\usepackage{float}
+\usepackage{tikz}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -109,13 +111,16 @@ Service orders issued by CGU investigated different uses of public
 resources in addition to procurement, e.g.~for officials compensation,
 for school activities, or for community monitoring of public policies.
 The discretion measure proposed here, however, is exclusive to
-procurement expenditures made under Law 8,666/93, thus we need to
-isolate service orders which investigated procurement processes from the
-rest. Since there is no such direct reporting in CGU reports, we
-implement a service order classification system based on the information
-retrieval and natural-language processing literatures.
+procurement expenditures made under Law 8,666/93. The ideal dataset for
+this study would contain explicit procurement information collected by
+CGU auditors, but unfortunately this is not the case. The reporting of
+procurement processes is implicit, via descriptions of investigations or
+findings of violations to Law 8,666/93. Thus, we isolate service orders
+which investigated procurement processes from the rest by implementing
+an classification system based on the information retrieval and
+natural-language processing literatures.
 
-We use each service order's description to identify if it is
+The system uses each service order's description to identify if it is
 procurement-related. In these descriptions, CGU auditors report the
 purpose of their investigation, e.g.~whether they are looking into
 painkiller purchases, whether the municipality has used the funds within
@@ -135,20 +140,20 @@ Unigram ``aquisição'' (\emph{acquisition} in English) is stemmed to
 procurement; unigrams ``adequação'' and ``habitacional'' are stemmed and
 combined to form ``adequa(.)*habitac''\footnote{All seach patterns are
   regular expressions.} search pattern for \emph{works}-type
-procurement. The bigram picks up variations in main keywords as well as
+procurement. This bigram picks up variations in main keywords as well as
 coding mistakes due to, for instance, multiple whitespace between the
 two unigrams or due to coding Portuguese special characters
 (``adequação'' vs. ``adequacao'').
 
 \textbf{Table A.1: Procurement Search Terms}
 
-\emph{- insert figure 1: keywords here -}
+\emph{- insert table 1: keywords here -}
 
 The final list contains 19 \emph{n}-grams for identification of
 purchases and 17 \emph{n}-grams for works.\footnote{One of these
   keywords in the works search pattern is an ``exclusion keyword,''
   which removes service orders that contain the ``exclusion keyword'' in
-  their description from the sample found by the other 17
+  their description from the sample identified by the other 16
   \emph{n}-grams.} When any of these words is found, we include the
 service order into the purchases or the works group. Since all public
 works projects procure goods and services but not all public purchases
@@ -156,11 +161,16 @@ are works-related, whenever the search patterns matches service orders
 to both groups, we include the service order only in the works group but
 not in the purchases group. Public works procurements are a subset of
 all public procurements in Brazilian municipalities. The search patterns
-here identify a total of 9,593 procurement-related service orders.
+here identify a total of 9593 procurement-related service orders.
 
-\textbf{Figure A.1: Service Order Mapping}
+\begin{figure}[htbp]
 
-\emph{- insert figure 1: Venn Diagram here -}
+{\centering \includegraphics[width=0.3\linewidth]{venn} 
+
+}
+
+\caption{Sets of Procurement Service Orders}\label{fig:venn}
+\end{figure}
 
 As Grimmer \& Stewart (2013) rightly point out, no text analysis
 algorithm is perfect and only relying on keyword matches could
@@ -175,7 +185,7 @@ been included in any group because it does not carry any procurement
 component. In the second case, it should have also been marked as public
 works.
 
-We address these classification issues in three ways: (i) using means
+We address these classification problems in three ways: (i) using means
 comparison tests of match quality discussed in Assumpcao (2018); (ii)
 comparing the performance of the same search patterns on another textual
 description for a subset of service orders; (iii) finally, comparing the
@@ -184,7 +194,7 @@ violations reported by CGU auditors. We discuss these three tests in
 turns in the following sections.
 
 \hypertarget{quality1}{%
-\subsection{Match Quality Measures}\label{quality1}}
+\subsection{Means Tests}\label{quality1}}
 
 The first test on match quality is the means comparison test presented
 in Assumpcao (2018), whose reasoning is simple. Increasing the number of
@@ -194,8 +204,8 @@ procurement when in fact they are not; words can take on different
 meanings depending on their contexts, so the more search terms we use
 the more likely type I error is. Ideally, we would want to use as few
 \emph{n}-grams as possible while still identifying all possible
-procurement matches. In order to do this, what Assumpcao (2018) thus
-suggests is pairwise means comparison tests between the samples
+procurement matches. In order to do this, what Assumpcao (2018) suggests
+is testing match quality by incrementally comparing sample means
 identified by \emph{n} vs. \emph{n} - 1 keywords. This method translates
 into a check on whether the sample identified by one additional keyword
 is significantly better than the previous sample with one fewer term.
@@ -213,12 +223,13 @@ found by \emph{any} of the search items before, and inclusive of, any
 particular row over the total number of observations.\footnote{This is
   also known as an alternative search where all search conditions are
   connected by an ``or'' statement.} The means test thus compares
-whether the sample identified by any row is significantly different from
-the the sample identified by all rows before. For instance, the evidence
-presented in row four of table 2 is that the inclusion of search item
-``ve{[}íi{]}culo'' significantly improves (at the 5\% level) the
-identification of the purchases sample when compared to the sample which
-only includes the previous three search words.
+whether the sample identified by all search terms up to any row is
+significantly different from the the sample identified by all rows
+before. For instance, the evidence presented in row four of table 2 is
+that the inclusion of search item ``ve{[}íi{]}culo'' significantly
+improves (at the 5\% level) the identification of the purchases sample
+when compared to the sample which only includes the previous three
+search words.
 
 \textbf{Table A.3: Works Search Results}
 
@@ -353,11 +364,35 @@ were not.
 
 Although no text analysis mechanism is perfect, the evidence presented
 here supports our choice of classification algorithm. The identification
-of procurement orders is internally consisntent (section \ref{quality1},
+of procurement orders is internally consistent (section \ref{quality1}),
 there are very few incorrect assignments of service orders to
 procurement (section \ref{quality2}), and the sample which was
 identified as procurement maps well onto the latent categories in the
 Brazilian procurement legislation (section \ref{quality3}).
+
+\hypertarget{appendixB}{%
+\section{Appendix: Service Amount Manipulation}\label{appendixB}}
+
+The identification strategy in this paper relies on the assumption that
+municipal officials do not (completely) manipulate public expenditure
+amounts in order to avoid stricter procurement rules. In other words,
+the public procurement processes carried out just below and above any
+discretion threshold, which is uniquely determined by procurement
+amount, are equal except for the rules set out in Law 8,666/93. We
+present below the McCrary (2008) test for manipulation of running
+variable for all six discretion cutoffs in the Brazilian procurement
+legislation.
+
+\emph{- Insert graphics -}
+
+These tests show that manipulation of procurement amount is not
+particularly problematic except for purchases cutoff three, which is
+thus excluded from the analysis.
+
+\hypertarget{appendixC}{%
+\section{Appendix: CEPESP Infraction Classification}\label{appendixC}}
+
+\emph{- insert table - }
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-AssumpcaotextfindDataDrivenText2018}{}%
@@ -375,6 +410,12 @@ Hopkins, D., \& King, G. (2009). A Method of Automated Nonparametric
 Content Analysis for Social Science. \emph{American Journal of Political
 Science}, \emph{54}(1), 229--247.
 \url{https://doi.org/10.1111/j.1540-5907.2009.00428.x}
+
+\leavevmode\hypertarget{ref-McCraryManipulationrunningvariable2008}{}%
+McCrary, J. (2008). Manipulation of the running variable in the
+regression discontinuity design: A density test. \emph{The Regression
+Discontinuity Design: Theory and Applications}, \emph{142}(2), 698--714.
+\url{https://doi.org/10.1016/j.jeconom.2007.05.005}
 
 
 \end{document}
