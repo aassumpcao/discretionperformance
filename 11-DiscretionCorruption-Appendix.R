@@ -33,10 +33,6 @@ library(VennDiagram) # Version 1.6.203
 library(extrafont)   # Version 0.17
 library(tikzDevice)  # Version 0.11
 
-# Parameters for Latex font
-loadfonts(device = "postscript")
-
-
 #------------------------------------------------------------------------------#
 ################################## Wrangling ###################################
 #------------------------------------------------------------------------------#
@@ -107,11 +103,16 @@ appendix.data %<>%
   left_join(so.data, by = c("so.id" = "so.id")) %>%
   select(1:10, 25)
 
+save(appendix.data, file = "appendix.data.Rda")
+
 rm(list = objects(pattern = "so.data|cgu|vector"))
 
 #------------------------------------------------------------------------------#
 ################################## Appendix A ##################################
 #------------------------------------------------------------------------------#
+## Inline chunk for number of observations in analysis
+format(nrow(so.data), big.mark = ",")
+
 #----------------------#
 # FIGURE: Venn Diagram #
 #----------------------#
@@ -138,10 +139,13 @@ venn.plot <-
     fill       = c("white", "grey")
   )
 
-# Producing the graphical device
+# Producing the graphical device for LaTeX
 png(paste0(getwd(),"/article/venn.png"))
 grid.draw(venn.plot)
 dev.off()
+
+# Command for markdown inclusion
+knitr::include_graphics("venn.png")
 
 #---------------------#
 # TABLE: Search Terms #
@@ -164,9 +168,14 @@ works.terms <- c("co(ns|sn)tru", "obra", "implant", "infra(.)*estrut", "amplia",
   "adutora|dessaliniz|reservat[óo]", "sanit[áa]ri[ao]", "poço", "aperfei[çc]oa",
   "saneamento", "res[íi]duo(.)*s[óo]lido", "conclus[ãa]o", "Total")
 
-
-procurement.results <-
-  read.delim(paste0(getwd(), "/tables/test.txt"), colClasses = "character") %>%
+#--------------------------#
+# TABLE: Purchases Results #
+#--------------------------#
+purchases.results <-
+  read.delim(
+    paste0(getwd(), "/article/appendix_tab2.txt"),
+    colClasses = "character"
+  ) %>%
   select(-X, -X.1) %>%
   transmute(
     `Total Finds`        = as.numeric(c1),
@@ -177,19 +186,67 @@ procurement.results <-
     `Means test p-value` = as.numeric(c6)
   )
 # rownames(procurement.results) <- works.terms
-knitr::kable(procurement.results, row.names = TRUE, align = "r", digits = 2, caption = "Purchases Search Results")
 
+# Command for inclusion in latex / markdown
+print(
+  xtable(purchases.results, label = "taba2", align = rep("r", 7),
+    digits = c(0, 0, rep(3, 5)), caption = "Purchases Search Results"),
+  file              = paste0(getwd(), "/article/appendix_tab2.tex"),
+  floating          = TRUE,
+  table.placement   = "!htbp",
+  caption.placement = "top",
+  NA.string         = ".",
+  print.results     = TRUE
+)
 
-works.results       <- read.delim(paste0(getwd(), "/tables/taba4.txt"))
+#----------------------#
+# TABLE: Works Results #
+#----------------------#
+works.results <-
+  read.delim(
+    paste0(getwd(), "/article/appendix_tab3.txt"),
+    colClasses = "character"
+  ) %>%
+  select(-X, -X.1) %>%
+  transmute(
+    `Total Finds`        = as.numeric(c1),
+    `Average Find`       = as.numeric(c2),
+    `Average Length`     = as.numeric(c3),
+    `Average Position`   = as.numeric(c4),
+    `Average TF-IDF`     = as.numeric(c5),
+    `Means test p-value` = as.numeric(c6)
+  )
+# rownames(procurement.results) <- works.terms
 
-
-
-xtable
-
+# Command for inclusion in latex / markdown
+print(
+  xtable(works.results, label = "taba3", align = rep("r", 7),
+    digits = c(0, 0, rep(3, 5)), caption = "Works Search Results"),
+  file              = paste0(getwd(), "/article/appendix_tab3.tex"),
+  floating          = TRUE,
+  table.placement   = "!htbp",
+  caption.placement = "top",
+  NA.string         = ".",
+  print.results     = TRUE
+)
 
 #-----------------------#
 # All procurement types #
 #-----------------------#
+## Inline number of SO that have descriptions both from SO text and Grant text
+nrow(
+  appendix.data %>%
+    filter(!is.na(so.procurement.bySOtext) & !is.na(so.procurement.bygranttext))
+)
+
+
+
+
+
+
+
+
+
 # 1. How does the classification differ when using grant text?
 with(
   appendix.data, table(so.procurement.bySOtext, so.procurement.bygranttext)

@@ -54,26 +54,26 @@ local works = ///
 textfind soDescription, key(`purchase') nocase or tag(purchases) notable
 
 *** Print matrix of results
-mat2txt, mat(key) saving("$folder/article/tables/taba2")
+mat2txt, mat(key) saving("$folder/article/tables/appendix_tab2")
 
 *** Run textfind for public works both on transfer description
 textfind transferDescription, key(`purchase') nocase or tag(tpurchases) notable
 
 *** Print matrix of results
-mat2txt, mat(key) saving("$folder/article/tables/taba3")
+mat2txt, mat(key) saving("$folder/article/tables/appendix_tab2_grants")
 
 *** Run textfind for procurement both SO description
 textfind soDescription, key(`works') but("psf") nocase or tag(works) notable
 
 *** Print matrix of results
-mat2txt, mat(key) saving("$folder/article/tables/taba4")
+mat2txt, mat(key) saving("$folder/article/tables/appendix_tab3")
 
 *** Run textfind for public works both on transfer description
 textfind transferDescription, key(`works') but("psf") nocase or tag(tworks) ///
   notable
 
 *** Print matrix of results
-mat2txt, mat(key) saving("$folder/article/tables/taba5")
+mat2txt, mat(key) saving("$folder/article/tables/appendix_tab3_grants")
 
 ********************************************************************************
 ******************************** Quality tests *********************************
