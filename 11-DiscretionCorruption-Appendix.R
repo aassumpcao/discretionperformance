@@ -112,9 +112,9 @@ rm(list = objects(pattern = "so.data|cgu|vector"))
 #------------------------------------------------------------------------------#
 ################################## Appendix A ##################################
 #------------------------------------------------------------------------------#
-#--------------#
-# Venn Diagram #
-#--------------#
+#----------------------#
+# FIGURE: Venn Diagram #
+#----------------------#
 area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
 area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
 area3 <- nrow(subset(appendix.data,
@@ -142,6 +142,49 @@ venn.plot <-
 png(paste0(getwd(),"/article/venn.png"))
 grid.draw(venn.plot)
 dev.off()
+
+#---------------------#
+# TABLE: Search Terms #
+#---------------------#
+# IN MARKDOWN ONLY #
+
+#-----------------------#
+# TABLE: Search Results #
+#-----------------------#
+# Load search terms
+purchases.terms <- c("aquisi", "execu", "equipame", "ve[íi]culo", "despesa",
+  "aplica[çc]", "medicamento(.)*peaf", "compra", "recurso(.)*financ",
+  "unidade(.)*m[óo]ve(.)*sa[úu]de", "pnate", "transporte(.)*escola",
+  "desenv(.)*ensino", "kit", "siafi", "implementa[çc]", "adquir", "pme(.)*2004",
+  "aparelhamento", "Total")
+
+works.terms <- c("co(ns|sn)tru", "obra", "implant", "infra(.)*estrut", "amplia",
+  "abasteci(.)*d(.)*[áa]gua", "reforma",
+  "(melhoria|adequa)+(.)*(f[íi]sica|escolar|habitac|sanit[áa]ria)+", "esgot",
+  "adutora|dessaliniz|reservat[óo]", "sanit[áa]ri[ao]", "poço", "aperfei[çc]oa",
+  "saneamento", "res[íi]duo(.)*s[óo]lido", "conclus[ãa]o", "Total")
+
+
+procurement.results <-
+  read.delim(paste0(getwd(), "/tables/test.txt"), colClasses = "character") %>%
+  select(-X, -X.1) %>%
+  transmute(
+    `Total Finds`        = as.numeric(c1),
+    `Average Find`       = as.numeric(c2),
+    `Average Length`     = as.numeric(c3),
+    `Average Position`   = as.numeric(c4),
+    `Average TF-IDF`     = as.numeric(c5),
+    `Means test p-value` = as.numeric(c6)
+  )
+# rownames(procurement.results) <- works.terms
+knitr::kable(procurement.results, row.names = TRUE, align = "r", digits = 2, caption = "Purchases Search Results")
+
+
+works.results       <- read.delim(paste0(getwd(), "/tables/taba4.txt"))
+
+
+
+xtable
 
 
 #-----------------------#

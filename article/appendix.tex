@@ -145,9 +145,47 @@ coding mistakes due to, for instance, multiple whitespace between the
 two unigrams or due to coding Portuguese special characters
 (``adequação'' vs. ``adequacao'').
 
-\textbf{Table A.1: Procurement Search Terms}
-
-\emph{- insert table 1: keywords here -}
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:taba1} Procurement Search Terms}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.13\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.81\columnwidth}\raggedright
+Search Terms\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.13\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.81\columnwidth}\raggedright
+Search Terms\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.13\columnwidth}\raggedright
+Purchases\strut
+\end{minipage} & \begin{minipage}[t]{0.81\columnwidth}\raggedright
+``aquisi'' ``execu'' ``equipame'' ``ve{[}íi{]}culo'' ``despesa''
+``aplica{[}çc{]}'' ``medicamento(.)*peaf'' ``compra''
+``recurso(.)*financ'' ``unidade(.)*m{[}óo{]}ve(.)*sa{[}úu{]}de''
+``pnate'' ``transporte(.)*escola'' ``desenv(.)*ensino'' ``kit''
+``siafi'' ``implementa{[}çc{]}'' ``adquir'' ``pme(.)*2004''
+``aparelhamento''\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright
+Works\strut
+\end{minipage} & \begin{minipage}[t]{0.81\columnwidth}\raggedright
+``co(ns\textbar{}sn)tru'' ``obra'' ``implant'' ``infra(.)*estrut''
+``amplia'' ``abasteci(.)*d(.)*{[}áa{]}gua'' ``reforma''
+``(melhoria\textbar{}adequa)+(.)*(f{[}íi{]}sica\textbar{}escolar\textbar{}habitac\textbar{}sanit{[}áa{]}ria)+''
+``esgot'' ``adutora\textbar{}dessaliniz\textbar{}reservat{[}óo{]}''
+``sanit{[}áa{]}ri{[}ao{]}'' ``poço'' ``aperfei{[}çc{]}oa''
+``saneamento'' ``res{[}íi{]}duo(.)*s{[}óo{]}lido''
+``conclus{[}ãa{]}o''\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 The final list contains 19 \emph{n}-grams for identification of
 purchases and 17 \emph{n}-grams for works.\footnote{One of these
@@ -161,7 +199,7 @@ are works-related, whenever the search patterns matches service orders
 to both groups, we include the service order only in the works group but
 not in the purchases group. Public works procurements are a subset of
 all public procurements in Brazilian municipalities. The search patterns
-here identify a total of 9593 procurement-related service orders.
+here identify a total of 9,593 procurement-related service orders.
 
 \begin{figure}[htbp]
 
@@ -212,9 +250,13 @@ is significantly better than the previous sample with one fewer term.
 The program developed by Assumpcao (2018) does this for us and we report
 the results in the tables below:
 
-\textbf{Table A.2: Purchases Search Results}
-
-\emph{- insert table 2: Purchases Search Results here -}
+\begin{longtable}[]{@{}c@{}}
+\caption{\label{tab:taba3} Purchases Search Results}\tabularnewline
+\toprule
+\endhead
+insert table here\tabularnewline
+\bottomrule
+\end{longtable}
 
 The search terms are sorted in descending order by the number of service
 orders they identify (column 1). Column 6 displays \emph{p}-values for
@@ -231,7 +273,7 @@ improves (at the 5\% level) the identification of the purchases sample
 when compared to the sample which only includes the previous three
 search words.
 
-\textbf{Table A.3: Works Search Results}
+Table: \label{tab:taba3} Works Search Results
 
 \emph{- insert table 3: Works Search Results here -}
 
