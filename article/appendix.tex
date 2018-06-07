@@ -268,11 +268,11 @@ particular row over the total number of observations.\footnote{This is
   connected by an ``or'' statement.} The means test thus compares
 whether the sample identified by all search terms up to any row is
 significantly different from the the sample identified by all rows
-before. For instance, the evidence presented in row four of table 2 is
-that the inclusion of search item ``ve{[}íi{]}culo'' significantly
-improves (at the 5\% level) the identification of the purchases sample
-when compared to the sample which only includes the previous three
-search words.
+before. For instance, the evidence presented in row four of table
+\ref{tab:taba2} is that the inclusion of search item ``ve{[}íi{]}culo''
+significantly improves (at the 5\% level) the identification of the
+purchases sample when compared to the sample which only includes the
+previous three search words.
 
 \begin{longtable}[]{@{}c@{}}
 \toprule
@@ -281,11 +281,13 @@ insert table 3 here\tabularnewline
 \bottomrule
 \end{longtable}
 
+\input{appendix_tab3.tex}
+
 The works sample is a third of the size of the purchases group and two
 of its search items do not significantly identify a new sample
 (``saneamento'' and ``conclus{[}ãa{]}o''). Despite having positive
-individual finds reported in column 1, table A.3, the means test in
-column 6 suggests that these finds are not new service orders in
+individual finds reported in column 1, table \ref{tab:taba3}, the means
+test in column 6 suggests that these finds are not new service orders in
 addition to what had already been identified by the the previous search
 terms.\footnote{The search without these terms (available upon request)
   yields 2,679 service orders, just three short of the total in table
@@ -326,21 +328,34 @@ different textual descriptions of resource use: CGU's, from their audit
 report, and the federal government's, available online at the
 Transparency Portal.\footnote{\url{http://www.portaltransparencia.gov.br/}}
 
-\textbf{Table A.4: Classification by Textual Descriptions}
+\% latex table generated in R 3.5.0 by xtable 1.8-2 package \% Thu Jun 7
+16:31:33 2018
 
-\emph{- insert table 4 here -} (merge purchases and works into one
-table)
+\begin{table}[!htbp]
+\centering
+\caption{Classification by Textual Description} 
+\begin{tabular}{rr}
+  \hline
+0 & 1 \\ 
+  \hline
+115 & 144 \\ 
+   83 & 1473 \\ 
+  1546 & 269 \\ 
+  404 & 1649 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 There is a total of 3,868 service orders for which we have descriptions
-both from CGU and from the federal government. In table A.4, we report
-the results of the search algorithm both in the service order (row-wise)
-and the transfer (column-wise) descriptions. We evaluate the performance
-of the search algorithm by checking whether it assigns the same service
-order to the same procurement group \emph{regardless of the description
-in which it searches for the key terms}. In other words, the smaller the
-number of times that the algorithm assigns any service order to a
-different group when it switches to another textual description, the
-better.
+both from CGU and from the federal government. In table \ref{tab:taba4},
+we report the results of the search algorithm both in the service order
+(row-wise) and the transfer (column-wise) descriptions. We evaluate the
+performance of the search algorithm by checking whether it assigns the
+same service order to the same procurement group \emph{regardless of the
+description in which it searches for the key terms}. In other words, the
+smaller the number of times that the algorithm assigns any service order
+to a different group when it switches to another textual description,
+the better.
 
 This is a particularly important point for the classification method
 proposed here. The means test conducted in section \ref{quality1}

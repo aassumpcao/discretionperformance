@@ -21,6 +21,7 @@ csl         : apa.csl
 # Packages
 library(tidyverse)
 library(magrittr)
+library(xtable)
 
 # Datasets
 load("/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/so.data.Rda")
@@ -60,23 +61,17 @@ We address these classification problems in three ways: (i) using means comparis
 ## Means Tests {#quality1}
 The first test on match quality is the means comparison test presented in @AssumpcaotextfindDataDrivenText2018, whose reasoning is simple. Increasing the number of procurement-related terms in the search pattern is not necessarily good practice as we increase the chance of misclassifying service orders as procurement when in fact they are not; words can take on different meanings depending on their contexts, so the more search terms we use the more likely type I error is. Ideally, we would want to use as few *n*-grams as possible while still identifying all possible procurement matches. In order to do this, what @AssumpcaotextfindDataDrivenText2018 suggests is testing match quality by incrementally comparing sample means identified by *n* vs. *n* - 1 keywords. This method translates into a check on whether the sample identified by one additional keyword is significantly better than the previous sample with one fewer term. The program developed by @AssumpcaotextfindDataDrivenText2018 does this for us and we report the results in the tables below:
 
-```{r taba2, echo = FALSE, results = "asis", warnings = FALSE, message = FALSE}
-```
-
 ---------------------
  insert table 2 here 
 ---------------------
 
-The search terms are sorted in descending order by the number of service orders they identify (column 1). Column 6 displays *p*-values for means tests across samples, where each mean is the sum of observations found by *any* of the search items before, and inclusive of, any particular row over the total number of observations.^[This is also known as an alternative search where all search conditions are connected by an "or" statement.] The means test thus compares whether the sample identified by all search terms up to any row is significantly different from the the sample identified by all rows before. For instance, the evidence presented in row four of table 2 is that the inclusion of search item "ve[íi]culo" significantly improves (at the 5% level) the identification of the purchases sample when compared to the sample which only includes the previous three search words.
-
-```{r taba3, echo = FALSE, results = "asis", warnings = FALSE, message = FALSE}
-```
+The search terms are sorted in descending order by the number of service orders they identify (column 1). Column 6 displays *p*-values for means tests across samples, where each mean is the sum of observations found by *any* of the search items before, and inclusive of, any particular row over the total number of observations.^[This is also known as an alternative search where all search conditions are connected by an "or" statement.] The means test thus compares whether the sample identified by all search terms up to any row is significantly different from the the sample identified by all rows before. For instance, the evidence presented in row four of table \@ref(tab:taba2) is that the inclusion of search item "ve[íi]culo" significantly improves (at the 5% level) the identification of the purchases sample when compared to the sample which only includes the previous three search words.
 
 ---------------------
  insert table 3 here 
 ---------------------
 
-The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample ("saneamento" and "conclus[ãa]o"). Despite having positive individual finds reported in column 1, table A.3, the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.^[The search without these terms (available upon request) yields 2,679 service orders, just three short of the total in table A.3. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \@ref(quality2).]
+The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample ("saneamento" and "conclus[ãa]o"). Despite having positive individual finds reported in column 1, table \@ref(tab:taba3), the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.^[The search without these terms (available upon request) yields 2,679 service orders, just three short of the total in table A.3. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \@ref(quality2).]
 
 Means tests are important to map out the relationship between search items, both within and across groups, but they do not tell us anything about the relationship between search items and their latent procurement groups. In other words, the search terms might be picking up groups that are internally consistent but that do not map onto the procurement types in Law 8,666/93. We discuss these issues in sections \@ref(quality2) and \@ref(quality3).
 
@@ -87,14 +82,35 @@ CGU service orders can best be described as investigations on the use of public 
 Federal grants (*convênios* in Portuguese) are narrow transfer agreements signed by the federal government, its agencies, states and municipalities for the delivery of governmental programs. They are voluntary, time-limited transfers implementing policies at the local level, such as vaccinations and the construction of community health clinics. The most important feature of these grants, however, is that each of them also has an individual textual description of its purpose, e.g. a tractor purchase for a rural community in a given municipality. Thus, for a subset of service orders that are investigations of the use of these federal grants by Brazilian municipalities, we have two different textual descriptions of resource use: CGU's, from their audit report, and the federal government's, available online at the Transparency Portal.^[http://www.portaltransparencia.gov.br/]
 
 ```{r taba4, echo = FALSE, results = "asis", warnings = FALSE, message = FALSE}
+# I want to join (merge) both purchases and works
+# First I create the new sample with no works
+no.works <- appendix.data[appendix.data$so.works.bySOtext != 1,]
 
+# Then I print both tables
+purchases.table <- 
+  with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
+works.table <- 
+  with(appendix.data, table(so.works.bySOtext, so.works.bygranttext))
+
+# Second, I merge them
+description.table <- rbind(purchases.table, names(purchases.table), works.table)
+
+# Finally, I print them
+print(
+  xtable(
+    description.table,
+    align = "rrr",
+    caption = "Classification by Textual Description"
+  ),
+  # file              = paste0(getwd(), "/article/appendix_tab4.tex"),
+  floating          = TRUE,
+  include.rownames  = FALSE,
+  table.placement   = "!htbp",
+  caption.placement = "top"
+)
 ```
 
-**Table A.4: Classification by Textual Descriptions**
-
-*\- insert table 4 here \-* (merge purchases and works into one table)
-
-There is a total of `r format(nrow(appendix.data %>% filter(!is.na(so.procurement.bySOtext) & !is.na(so.procurement.bygranttext))), big.mark = ",")` service orders for which we have descriptions both from CGU and from the federal government. In table A.4, we report the results of the search algorithm both in the service order (row-wise) and the transfer (column-wise) descriptions. We evaluate the performance of the search algorithm by checking whether it assigns the same service order to the same procurement group *regardless of the description in which it searches for the key terms*. In other words, the smaller the number of times that the algorithm assigns any service order to a different group when it switches to another textual description, the better.
+There is a total of `r format(nrow(appendix.data %>% filter(!is.na(so.procurement.bySOtext) & !is.na(so.procurement.bygranttext))), big.mark = ",")` service orders for which we have descriptions both from CGU and from the federal government. In table \@ref(tab:taba4), we report the results of the search algorithm both in the service order (row-wise) and the transfer (column-wise) descriptions. We evaluate the performance of the search algorithm by checking whether it assigns the same service order to the same procurement group *regardless of the description in which it searches for the key terms*. In other words, the smaller the number of times that the algorithm assigns any service order to a different group when it switches to another textual description, the better.
 
 This is a particularly important point for the classification method proposed here. The means test conducted in section \@ref(quality1) provides internal consistency because it compares and checks whether more observations are matched when more search terms are included; the tabulation across descriptions here provides external consistency because it compares and checks if the classification algorithm is independent of search target (description). It resembles a false positive (type I error) test because we can roughly calculate the percentage of misclassification of service orders. In panel A, the service order description search assigns 1,556 to the purchases group, out of which 83 were not simultaneously assigned to the same group in the grant description search, yielding a 5.3% false positive rate. In panel B, the service order search marks 2,053 observations to the works group, where 404 are not simultaneously marked when the search is performed in the grant description (a 19.7% type I error rate).^[The inverse misclassification rates are also reassuring: false positives are 8.9% and 14.0% for purchases and works respectively when we first classify observations using grant descriptions and then move on to service order descriptions.]
 

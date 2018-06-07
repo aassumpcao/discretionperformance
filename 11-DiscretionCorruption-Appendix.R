@@ -230,27 +230,68 @@ print(
   print.results     = TRUE
 )
 
-#-----------------------#
-# All procurement types #
-#-----------------------#
+#---------------------------------------------#
+# TABLE: SO description vs. Grant description #
+#---------------------------------------------#
 ## Inline number of SO that have descriptions both from SO text and Grant text
 nrow(
   appendix.data %>%
     filter(!is.na(so.procurement.bySOtext) & !is.na(so.procurement.bygranttext))
 )
 
+# I want to join (merge) both purchases and works
+# First I create the new sample with no works
+no.works <- appendix.data[appendix.data$so.works.bySOtext != 1,]
 
+# Then I print both tables
+purchases.table <-
+  with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
+works.table <-
+  with(appendix.data, table(so.works.bySOtext, so.works.bygranttext))
 
+# Second, I merge them
+description.table <- rbind(purchases.table, names(purchases.table), works.table)
 
-
-
-
-
-
-# 1. How does the classification differ when using grant text?
-with(
-  appendix.data, table(so.procurement.bySOtext, so.procurement.bygranttext)
+# Finally, I print them
+print(
+  xtable(
+    description.table,
+    align = "rrr",
+    label = "taba4",
+    caption = "Classification by Textual Description"
+  ),
+  # file              = paste0(getwd(), "/article/appendix_tab4.tex"),
+  floating          = TRUE,
+  include.rownames  = FALSE,
+  table.placement   = "!htbp",
+  caption.placement = "top"
 )
+
+
+
+
+
+
+
+
+print(
+  xtable(
+    table(
+      appendix.data$so.procurement.bySOtext,
+      appendix.data$so.procurement.bygranttext
+    ),
+    label = "taba4",
+    caption = "Classification by Textual Description"
+  ),
+  file              = paste0(getwd(), "/article/appendix_tab4.tex"),
+  floating          = TRUE,
+  table.placement   = "!htbp",
+  caption.placement = "top",
+  NA.string         = ".",
+  print.results     = TRUE
+)
+
+
 
 # Correlation between SO flagged in SO text and grant text
 with(
@@ -280,7 +321,7 @@ with(
 #----------------#
 # Purchases type #
 #----------------#
-no.works <- appendix.data[appendix.data$so.works.bySOtext != 1,]
+
 
 # 1. How does the classification differ when using grant text?
 with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
