@@ -13,7 +13,6 @@ header-includes:
   - \usepackage{tikz}
       
 fig_caption: yes
-multiline_tables: yes
 
 bibliography: /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Library/library.bib
 csl         : apa.csl
@@ -48,8 +47,7 @@ The final list contains 19 *n*-grams for identification of purchases and 17 *n*-
 
 ```{r venn, echo = FALSE,  dpi = 250, fig.cap = "Sets of Procurement Service Orders", fig.show = "asis", fig.align = "center", fig.pos = "htbp", out.width = "30%"} 
 knitr::include_graphics("venn.png")
-```
-
+                                                                                                                                                                                                                                                                                                                      
 As @GrimmerTextDataPromise2013a rightly point out, no text analysis algorithm is perfect and only relying on keyword matches could potentially lead to misclassification of service orders. Let us suppose that one description reads "expenditures made in accordance with primary education program." Using unigram "expenditure" would yield a match for this service order to the purchases group, but in fact auditors might be looking at bonus payments for high-performing teachers. These resources could also be directed for school construction. In the first case, the service order should not be have been included in any group because it does not carry any procurement component. In the second case, it should have also been marked as public works.
 
 We address these classification problems in three ways: (i) using means comparison tests of match quality discussed in @AssumpcaotextfindDataDrivenText2018; (ii) comparing the performance of the same search patterns on another textual description for a subset of service orders; (iii) finally, comparing the results from the textual classification algorithm to that of procurement violations reported by CGU auditors. We discuss these three tests in turns in the following sections.
@@ -63,20 +61,14 @@ Table: (\#tab:taba2) Purchases Search Results
  insert table here 
 -------------------
 
-```{r taba2, echo = FALSE}
-```
-
 The search terms are sorted in descending order by the number of service orders they identify (column 1). Column 6 displays *p*-values for means tests across samples, where each mean is the sum of observations found by *any* of the search items before, and inclusive of, any particular row over the total number of observations.^[This is also known as an alternative search where all search conditions are connected by an "or" statement.] The means test thus compares whether the sample identified by all search terms up to any row is significantly different from the the sample identified by all rows before. For instance, the evidence presented in row four of table 2 is that the inclusion of search item "ve[íi]culo" significantly improves (at the 5% level) the identification of the purchases sample when compared to the sample which only includes the previous three search words.
-
+<!-- 
 Table: (\#tab:taba3) Works Search Results
 
 -------------------
  insert table here 
 -------------------
-
-```{r taba3, echo = FALSE}
-```
-
+ -->
 The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample ("saneamento" and "conclus[ãa]o"). Despite having positive individual finds reported in column 1, table A.3, the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.^[The search without these terms (available upon request) yields 2,679 service orders, just three short of the total in table A.3. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \@ref(quality2).]
 
 Means tests are important to map out the relationship between search items, both within and across groups, but they do not tell us anything about the relationship between search items and their latent procurement groups. In other words, the search terms might be picking up groups that are internally consistent but that do not map onto the procurement types in Law 8,666/93. We discuss these issues in sections \@ref(quality2) and \@ref(quality3).

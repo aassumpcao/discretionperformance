@@ -79,10 +79,10 @@ mat2txt, mat(key) saving("$folder/article/tables/taba5")
 ******************************** Quality tests *********************************
 ********************************************************************************
 *** Code to produce tex tables below
-la var purchases  "Purchases SO (description 1)"
-la var tpurchases "Purchases SO (description 2)"
-la var works      "Works SO (description 1)"
-la var tworks     "Works SO (description 2)"
+la var purchases  "Purchases by SO description"
+la var tpurchases "Purchases by Grant description"
+la var works      "Works by SO description"
+la var tworks     "Works by Grant description"
 la de label       0 "No" 1 "Yes"
 la val *purchases *works label
 
@@ -97,14 +97,6 @@ gen wp2 = (works == 0 & tworks == 1 & transferDescription != ".")*/
 *** Correction for missing values
 replace tpurchases = . if transferDescription == "."
 replace tworks     = . if transferDescription == "."
-
-*** In the subgroup for which we have both transfer and SO descriptions, how
-*** many SOs have been identified by textfind?
-tab purchases tpurchases if works != 1
-latab purchases tpurchases if works != 1, tf(appendix_tab5) replace
-
-tab works tworks
-latab works tworks, tf(appendix_tab6) replace
 
 *** Save to file
 save soData_tagged, replace
