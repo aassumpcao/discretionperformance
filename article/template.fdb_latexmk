@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex template"] 1528404072 "template.aux" "template.bbl" "template" 1528404073
+["bibtex template"] 1528495898 "template.aux" "template.bbl" "template" 1528495898
   "Placeholder.bib" 0 -1 0 ""
   "my-style.bst" 0 -1 0 ""
   "template.aux" 1528404073 1721 b8952d6ea86e45ea80dd7024cb49f2d3 ""
   (generated)
-  "template.blg"
   "template.bbl"
-["pdflatex"] 1528404072 "template.tex" "template.pdf" "template" 1528404073
+  "template.blg"
+["pdflatex"] 1528404072 "template.tex" "template.pdf" "template" 1528495898
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -111,5 +111,5 @@
   (generated)
   "template.log"
   "template.aux"
-  "template.pdf"
   "template.out"
+  "template.pdf"
