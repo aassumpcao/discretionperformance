@@ -144,13 +144,13 @@ png(paste0(getwd(),"/article/venn.png"))
 grid.draw(venn.plot)
 dev.off()
 
-# Command for markdown inclusion
-knitr::include_graphics("venn.png")
+# # Command for markdown inclusion
+# knitr::include_graphics("venn.png")
 
 #---------------------#
 # TABLE: Search Terms #
 #---------------------#
-# IN MARKDOWN ONLY #
+# IN MARKDOWN / LATEX ONLY #
 
 #-----------------------#
 # TABLE: Search Results #
@@ -173,7 +173,7 @@ works.terms <- c("co(ns|sn)tru", "obra", "implant", "infra(.)*estrut", "amplia",
 #--------------------------#
 purchases.results <-
   read.delim(
-    paste0(getwd(), "/article/appendix_tab2.txt"),
+    paste0(getwd(), "/tables/appendix_tab2.txt"),
     colClasses = "character"
   ) %>%
   select(-X, -X.1) %>%
@@ -187,24 +187,24 @@ purchases.results <-
   )
 # rownames(procurement.results) <- works.terms
 
-# Command for inclusion in latex / markdown
-print(
-  xtable(purchases.results, label = "taba2", align = rep("r", 7),
-    digits = c(0, 0, rep(3, 5)), caption = "Purchases Search Results"),
-  file              = paste0(getwd(), "/article/appendix_tab2.tex"),
-  floating          = TRUE,
-  table.placement   = "!htbp",
-  caption.placement = "top",
-  NA.string         = ".",
-  print.results     = TRUE
-)
+# # Command for inclusion in latex / markdown
+# print(
+#   xtable(purchases.results, label = "purchasesresults", align = rep("r", 7),
+#     digits = c(0, 0, rep(3, 5)), caption = "Purchases Search Results"),
+#   file              = paste0(getwd(), "/tables/appendix_tab2.tex"),
+#   floating          = TRUE,
+#   table.placement   = "!htbp",
+#   caption.placement = "top",
+#   NA.string         = ".",
+#   print.results     = TRUE
+# )
 
 #----------------------#
 # TABLE: Works Results #
 #----------------------#
 works.results <-
   read.delim(
-    paste0(getwd(), "/article/appendix_tab3.txt"),
+    paste0(getwd(), "/tables/appendix_tab3.txt"),
     colClasses = "character"
   ) %>%
   select(-X, -X.1) %>%
@@ -218,17 +218,17 @@ works.results <-
   )
 # rownames(procurement.results) <- works.terms
 
-# Command for inclusion in latex / markdown
-print(
-  xtable(works.results, label = "taba3", align = rep("r", 7),
-    digits = c(0, 0, rep(3, 5)), caption = "Works Search Results"),
-  file              = paste0(getwd(), "/article/appendix_tab3.tex"),
-  floating          = TRUE,
-  table.placement   = "!htbp",
-  caption.placement = "top",
-  NA.string         = ".",
-  print.results     = TRUE
-)
+# # Command for inclusion in latex / markdown
+# print(
+#   xtable(works.results, label = "worksresults", align = rep("r", 7),
+#     digits = c(0, 0, rep(3, 5)), caption = "Works Search Results"),
+#   file              = paste0(getwd(), "/tables/appendix_tab3.tex"),
+#   floating          = TRUE,
+#   table.placement   = "!htbp",
+#   caption.placement = "top",
+#   NA.string         = ".",
+#   print.results     = TRUE
+# )
 
 #---------------------------------------------#
 # TABLE: SO description vs. Grant description #
@@ -239,143 +239,21 @@ nrow(
     filter(!is.na(so.procurement.bySOtext) & !is.na(so.procurement.bygranttext))
 )
 
-# I want to join (merge) both purchases and works
-# First I create the new sample with no works
-no.works <- appendix.data[appendix.data$so.works.bySOtext != 1,]
-
-# Then I print both tables
-purchases.table <-
-  with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
-works.table <-
-  with(appendix.data, table(so.works.bySOtext, so.works.bygranttext))
-
-# Second, I merge them
-description.table <- rbind(purchases.table, names(purchases.table), works.table)
-
-# Finally, I print them
-print(
-  xtable(
-    description.table,
-    align = "rrr",
-    label = "taba4",
-    caption = "Classification by Textual Description"
-  ),
-  # file              = paste0(getwd(), "/article/appendix_tab4.tex"),
-  floating          = TRUE,
-  include.rownames  = FALSE,
-  table.placement   = "!htbp",
-  caption.placement = "top"
-)
+# RE-WRITE TABLE 4
 
 
 
+#--------------------------------------------#
+# TABLE: SO description vs. Procurement Code #
+#--------------------------------------------#
+no.works <- appendix.data[appendix.data$so.works.bySOtext != 1, ]
 
+# RE-WRITE TABLE 5
 
+table(appendix.data$so.procurement.bySOtext, appendix.data$so.purchases.bycode)
 
+table(appendix.data$so.procurement.bySOtext, appendix.data$so.works.bycode)
 
-
-print(
-  xtable(
-    table(
-      appendix.data$so.procurement.bySOtext,
-      appendix.data$so.procurement.bygranttext
-    ),
-    label = "taba4",
-    caption = "Classification by Textual Description"
-  ),
-  file              = paste0(getwd(), "/article/appendix_tab4.tex"),
-  floating          = TRUE,
-  table.placement   = "!htbp",
-  caption.placement = "top",
-  NA.string         = ".",
-  print.results     = TRUE
-)
-
-
-
-# Correlation between SO flagged in SO text and grant text
-with(
-  appendix.data,
-  cor(
-    so.procurement.bySOtext,
-    so.procurement.bygranttext,
-    use = "complete.obs"
-  )
-)
-
-# 2. How does it change when comparing to procurement codes?
-with(
-  appendix.data, table(so.procurement.bySOtext, so.procurement.bycode)
-)
-
-# Correlation between SO flagged in SO text and containing procurement text
-with(
-  appendix.data,
-  cor(
-    so.procurement.bySOtext,
-    so.procurement.bycode,
-    use = "complete.obs"
-  )
-)
-
-#----------------#
-# Purchases type #
-#----------------#
-
-
-# 1. How does the classification differ when using grant text?
-with(no.works, table(so.purchases.bySOtext, so.purchases.bygranttext))
-
-# Correlation between SO flagged in SO text and grant text
-with(
-  no.works,
-  cor(
-    so.purchases.bySOtext,
-    so.purchases.bygranttext,
-    use = "complete.obs"
-  )
-)
-
-# 2. How does it change when comparing to procurement codes?
-with(no.works, table(so.purchases.bySOtext, so.purchases.bycode))
-
-# Correlation between SO flagged in SO text and containing procurement text
-with(
-  no.works,
-  cor(
-    so.purchases.bySOtext,
-    so.purchases.bycode,
-    use = "complete.obs"
-  )
-)
-
-#------------------#
-# Public woks type #
-#------------------#
-with(appendix.data, table(so.works.bySOtext, so.works.bygranttext))
-
-# Correlation between SO flagged in SO text and grant text
-with(
-  appendix.data,
-  cor(
-    so.works.bySOtext,
-    so.works.bygranttext,
-    use = "complete.obs"
-  )
-)
-
-# 2. How does it change when comparing to procurement codes?
-with(appendix.data, table(so.works.bySOtext, so.works.bycode))
-
-# Correlation between SO flagged in SO text and containing procurement text
-with(
-  appendix.data,
-  cor(
-    so.works.bySOtext,
-    so.works.bycode,
-    use = "complete.obs"
-  )
-)
 
 #------------------------------------------------------------------------------#
 ################################## Appendix B ##################################
@@ -412,6 +290,7 @@ works.manipulation3     <- with(works.cutoff3,    DCdensity(so.amount, 1500000))
 
 # Save cutoff plots
 # Plot 1
+png(filename = paste0(getwd(), "/article/purchasesmanipulation1.png"))
 with(purchases.cutoff1, DCdensity(so.amount,    8000))
 abline(v = 8000)
 title(
@@ -426,10 +305,10 @@ title(
     collapse = ""
   )
 )
-
-purchases.plot1 <- recordPlot()
+dev.off()
 
 # Plot 2
+png(filename = paste0(getwd(), "/article/purchasesmanipulation2.png"))
 with(purchases.cutoff2, DCdensity(so.amount,   80000))
 abline(v = 80000)
 title(
@@ -444,9 +323,10 @@ title(
     collapse = ""
   )
 )
-purchases.plot2 <- recordPlot()
+dev.off()
 
 # Plot 3
+png(filename = paste0(getwd(), "/article/purchasesmanipulation3.png"))
 with(purchases.cutoff3, DCdensity(so.amount,  650000))
 abline(v = 650000)
 title(
@@ -461,9 +341,10 @@ title(
     collapse = ""
   )
 )
-purchases.plot3 <- recordPlot()
+dev.off()
 
 # Plot 4
+png(filename = paste0(getwd(), "/article/worksmanipulation1.png"))
 with(works.cutoff1,     DCdensity(so.amount,   15000))
 abline(v = 15000)
 title(
@@ -478,9 +359,10 @@ title(
     collapse = ""
   )
 )
-works.plot1     <- recordPlot()
+dev.off()
 
 # Plot 5
+png(filename = paste0(getwd(), "/article/worksmanipulation2.png"))
 with(works.cutoff2,     DCdensity(so.amount,  150000))
 abline(v = 150000)
 title(
@@ -495,9 +377,10 @@ title(
     collapse = ""
   )
 )
-works.plot2     <- recordPlot()
+dev.off()
 
 # Plot 6
+png(filename = paste0(getwd(), "/article/worksmanipulation3.png"))
 with(works.cutoff3,     DCdensity(so.amount, 1500000))
 abline(v = 1500000)
 title(
@@ -512,4 +395,4 @@ title(
     collapse = ""
   )
 )
-works.plot3     <- recordPlot()
+dev.off()

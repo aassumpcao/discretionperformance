@@ -46,16 +46,16 @@
 \begin{document}
 
 \begin{titlepage}
-\title{Placeholder\thanks{abc}}
-\author{Hyunwoo Park\thanks{abc} \and John Smith\thanks{abc}}
+\title{Estimating the Effect of Discretionary Spending on Corruption: Evidence from Brazilian Municipalities\thanks{abc}}
+\author{Andre Assumpcao\thanks{Department of Public Policy, The University of North Carolina at Chapel Hill. Email: \href{mailto:aassumpcao@unc.edu}{aassumpcao@unc.edu}} \and Ciro Biderman\thanks{Center of Politics and Economics of the Public Sector, Getúlio Vargas Foundation. Email: \href{mailto:ciro.biderman@fgv.br}{ciro.biderman@fgv.br}} \and George Avelino\thanks{Center of Politics and Economics of the Public Sector, Getúlio Vargas Foundation. Email: \href{mailto:george.avelino@fgv.br}{george.avelino@fgv.br}}}
 \date{\today}
 \maketitle
 \begin{abstract}
 \noindent Placeholder\\
 \vspace{0in}\\
-\noindent\textbf{Keywords:} key1, key2, key3\\
+\noindent\textbf{Keywords:} corruption, procurement, discretion.\\
 \vspace{0in}\\
-\noindent\textbf{JEL Codes:} key1, key2, key3\\
+\noindent\textbf{JEL Codes:} D73, K10, H57, H72, O12, P48.\\
 
 \bigskip
 \end{abstract}
@@ -66,35 +66,37 @@
 
 \singlespacing
 
-
 \section{Introduction} \label{sec:introduction}
 
-\section{Literature Review} \label{sec:literature}
+\section{Background and Data} \label{sec:background}
 
-\section{Data} \label{sec:data}
+\subsection{Data} \label{sec:data}
+
+\subsection{Empirical Strategy} \label{sec:methodology}
 
 \section{Results} \label{sec:result}
 
-\section{Discussions} \label{sec:discussion}
+\subsection{Falsification Tests} \label{subsec:discussion}
 
 \section{Conclusion} \label{sec:conclusion}
 
+\subsection{Cost-benefit Analysis} \label{subsec:cba}
 
 
-\singlespacing
+\onehalfspacing
 \setlength\bibsep{0pt}
 \bibliographystyle{apalike}
 \bibliography{/Users/aassumpcao/library.bib}
 
 \clearpage
 
-\singlespacing
+% \singlespacing
 
-\section*{Tables} \label{sec:tab}
+% \section*{Tables} \label{sec:tab}
 
-\clearpage
+% \clearpage
 
-\section*{Figures} \label{sec:fig}
+% \section*{Figures} \label{sec:fig}
 
 %\begin{figure}[hp]
 %  \centering
@@ -118,7 +120,7 @@ An example is useful for understanding our classification process. Unigram ``aqu
 \begin{table}[htbp]
   \caption{\label{tab:searchterms} Procurement Search Terms}
   \centering
-
+  \small
   \begin{tabular}{l p{.85\textwidth}}
   \hline
 
@@ -137,10 +139,10 @@ An example is useful for understanding our classification process. Unigram ``aqu
 The final list contains 19 \emph{n}-grams for identification of purchases and 17 \emph{n}-grams for works.\footnote{One of these keywords in the works search pattern is an ``exclusion keyword,'' which removes service orders that contain the ``exclusion keyword'' in their description from the sample identified by the other 16 \emph{n}-grams.} When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. Public works procurements are a subset of all public procurements in Brazilian municipalities. The search patterns here identify a total of 9,593 procurement-related service orders.
 
 \begin{figure}[!htbp]
+\caption{\label{fig:venn} Sets of Procurement Service Orders}
 {\centering \includegraphics[width=0.3\linewidth]{venn}
 
 }
-\caption{\label{fig:venn} Sets of Procurement Service Orders}
 \end{figure}
 
 As \citet{GrimmerTextDataPromise2013a} rightly point out, no text analysis algorithm is perfect and only relying on keyword matches could potentially lead to misclassification of service orders. Let us suppose that one description reads ``expenditures made in accordance with primary education program.'' Using unigram ``expenditure'' would yield a match for this service order to the purchases group, but in fact auditors might be looking at bonus payments for high-performing teachers. These resources could also be directed for school construction. In the first case, the service order should not be have been included in any group because it does not carry any procurement component. In the second case, it should have also been marked as public works.
@@ -186,7 +188,7 @@ different textual descriptions of resource use: CGU's, from their audit
 report, and the federal government's, available online at the
 Transparency Portal.\footnote{\url{http://www.portaltransparencia.gov.br/}}
 
-\input{appendix_tab4a}
+\input{appendix_tab4}
 
 There is a total of 3,868 service orders for which we have descriptions both from CGU and from the federal government. In table \ref{tab:textualdescription}, we report the results of the search algorithm both in the service order (row-wise) and the transfer (column-wise) descriptions. We evaluate the performance of the search algorithm by checking whether it assigns the same service order to the same procurement group \emph{regardless of the description in which it searches for the key terms}. In other words, the smaller the number of times that the algorithm assigns any service order to a different group when it switches to another textual description, the better.
 
@@ -198,22 +200,30 @@ Though section \ref{subsec:quality2} supports external validity by showing that 
 
 The findings reported by auditors are coded into 35 infractions of the use of public resources, nine of which violations of procurement rules and one violation of public works rules. Thus, we know with certainty that service orders for which there are any of the nine procurement violations (ten if public works) are in fact procurement-related and should be classified either as purchases, works, or both. As opposed to section \ref{subsec:quality2}, this resembles a false negative (type II error) test on yet another subset of observations for which certain infractions were reported.\footnote{The reason why this is a type II error test, instead of type I, resides on the way the test samples are defined. In section \ref{subsec:quality2}, both sample assignments (by matching procurement keywords in the service order or grant description) can be the ``correct'' procurement sample against which the match on the alternative description might yield false positives. In this section, we know with certainty that the sample identified by procurement infractions is in fact the correctly identified sample, since there cannot exist a procurement violation where no procurement has occurred. It makes the unidentified observations false negatives because they should have been classified as procurement-related service orders. This sample is clearly underidentified, as there are many procurement-related service orders that simply followed Law 8,666/93 and thus carry no infraction, but still, within this subset of all CGU investigations, it provides us with a good conterfactual against which to test our classification mechanism.}
 
-\textbf{Table A.5: Classification by Violation Code}
+\input{appendix_tab5}
 
-The total number of service orders with at least one procurement infraction is 3,775 (4,146 if we include the public works infraction), which is the sum of column 2 in table \ref{tab:}, panels A and B. The false negative rate is 8.5\% and 9.9\%, respectively, for purchases-only and works procurements. This means that 319 and 344 service orders should have been classified as procurement by our textual search algorithm but were not.
+The total number of service orders with at least one procurement infraction is 3,775 (4,146 if we include the public works infraction), which is the sum of column 2 in table \ref{tab:textbycode}, panels A and B. The false negative rate is 8.5\% and 9.9\%, respectively, for purchases-only and works procurements. This means that 319 and 344 service orders should have been classified as procurement by our textual search algorithm but were not.
 
 Although no text analysis mechanism is perfect, the evidence presented here supports our choice of classification algorithm. The identification of procurement orders is internally consistent (section \ref{subsec:quality1}), there are very few incorrect assignments of service orders to procurement (section \ref{subsec:quality2}), and the sample which was identified as procurement maps well onto the latent categories in the Brazilian procurement legislation (section \ref{subsec:quality3}).
 
-\section{Service Amount Maniputation}\label{sec:appendixB}
+\section{CEPESP Infraction Classification}\label{sec:appendixB}
 
-The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any discretion threshold, which is uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of running variable for all six discretion cutoffs in the Brazilian procurement legislation.
+\section{Service Amount Maniputation}\label{sec:appendixC}
 
-\emph{- Insert graphics -}
+The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any discretion threshold, which is uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on corruption. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of running variable for all six discretion cutoffs in the Brazilian procurement legislation.
 
-These tests show that manipulation of procurement amount is not
-particularly problematic except for purchases cutoff three, which is
-thus excluded from the analysis.
+\begin{figure}[!htbp]
+  \caption{\label{fig:manipulationtests} Cutoff Manipulation Tests}
 
-\section{CEPESP Infraction Classification}\label{appendixC}
+  \centering
+
+  \begin{tabular}{cc}
+  \includegraphics[scale=.41]{purchasesmanipulation1} & \includegraphics[scale=.41]{worksmanipulation1} \\
+  \includegraphics[scale=.41]{purchasesmanipulation2} & \includegraphics[scale=.41]{worksmanipulation2} \\
+  \includegraphics[scale=.41]{purchasesmanipulation3} & \includegraphics[scale=.41]{worksmanipulation3} \\
+  \end{tabular}
+\end{figure}
+
+Except for purchases cutoff three, these tests show that there is no substantial manipulation of expenditure amount as there are no significant differences in the density of service orders around the procurement cutoffs defined in Law 8,666/93. As discussed in section \ref{sec:methodology}, we drop purchases cutoff three from the analysis and move ahead with the fuzzy RD as the main identification strategy.
 
 \end{document}
