@@ -77,6 +77,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -181,6 +183,18 @@ INPUT venn.png
 INPUT ./venn.png
 INPUT ./venn.png
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT appendix_tab2.tex
+INPUT appendix_tab2.tex
+INPUT appendix_tab3.tex
+INPUT appendix_tab3.tex
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt9.tfm
+INPUT appendix_tab4a.tex
+INPUT appendix_tab4a.tex
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT discretioncorruption.aux
 INPUT ./discretioncorruption.out
 INPUT ./discretioncorruption.out
@@ -197,3 +211,4 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb
