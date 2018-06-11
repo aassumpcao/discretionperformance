@@ -105,7 +105,7 @@ appendix.data %<>%
 
 save(appendix.data, file = "appendix.data.Rda")
 
-rm(list = objects(pattern = "so.data|cgu|vector"))
+rm(list = objects(pattern = "cgu|vector"))
 
 #------------------------------------------------------------------------------#
 ################################## Appendix A ##################################
