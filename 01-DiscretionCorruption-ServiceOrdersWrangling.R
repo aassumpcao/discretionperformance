@@ -189,16 +189,17 @@ so.data %<>%
 # Create infraction vectors
 corruption.vector    <- c("infraction.4", "infraction.5", "infraction.6",
                           "infraction.8", "infraction.9", "infraction.11",
-                          "infraction.12", "infraction.13", "infraction.31")
+                          "infraction.12", "infraction.13", "infraction.14",
+                          "infraction.30", "infraction.31")
 mismanagement.vector <- c("infraction.1", "infraction.2", "infraction.3",
-                          "infraction.7",  "infraction.10", "infraction.14",
-                          "infraction.15", "infraction.16", "infraction.17",
-                          "infraction.18", "infraction.19", "infraction.20",
-                          "infraction.21", "infraction.22", "infraction.23",
-                          "infraction.24", "infraction.25", "infraction.26",
-                          "infraction.27", "infraction.28", "infraction.29",
-                          "infraction.30", "infraction.32", "infraction.33",
-                          "infraction.34", "infraction.35", "infraction.36")
+                          "infraction.7",  "infraction.10", "infraction.15",
+                          "infraction.16", "infraction.17", "infraction.18",
+                          "infraction.19", "infraction.20", "infraction.21",
+                          "infraction.22", "infraction.23", "infraction.24",
+                          "infraction.25", "infraction.26", "infraction.27",
+                          "infraction.28", "infraction.29", "infraction.32",
+                          "infraction.33", "infraction.34", "infraction.35",
+                          "infraction.36")
 infraction.vector    <- c(corruption.vector, mismanagement.vector)
 
 # Create outcomes from infraction vectors

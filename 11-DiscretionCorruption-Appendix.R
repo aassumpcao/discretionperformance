@@ -261,24 +261,26 @@ table(appendix.data$so.procurement.bySOtext, appendix.data$so.works.bycode)
 # In appendix B, we run the McCrary (2008) tests to guarantee that there are no
 # manipulation issues around cutoffs in Law 8,666/93. In the lines below we sub-
 # set the data to calculate manipulation at each cutoff.
+manipulation.data <- filter(appendix.data, so.procurement.bySOtext == 1)
+
 purchases.cutoff1  <-
-  select(appendix.data, c(1,6,9,11)) %>%
+  select(manipulation.data, c(1,6,9,11)) %>%
   filter(so.amount >=    4000 & so.amount <=   12000 & so.works.bySOtext != 1)
 purchases.cutoff2  <-
-  select(appendix.data, c(1,6,9,11)) %>%
+  select(manipulation.data, c(1,6,9,11)) %>%
   filter(so.amount >=   40000 & so.amount <=  120000 & so.works.bySOtext != 1)
 purchases.cutoff3  <-
-  select(appendix.data, c(1,6,9,11)) %>%
+  select(manipulation.data, c(1,6,9,11)) %>%
   filter(so.amount >=  500000 & so.amount <=  750000 & so.works.bySOtext != 1)
 works.cutoff1 <-
-  select(appendix.data, c(1,6,9,11)) %>%
-  filter(so.amount >=    7500 & so.amount <=   22000)
+  select(manipulation.data, c(1,6,9,11)) %>%
+  filter(so.amount <=   30000 & so.purchases.bySOtext!=1)
 works.cutoff2 <-
-  select(appendix.data, c(1,6,9,11)) %>%
-  filter(so.amount >=   75000 & so.amount <=  225000)
+  select(manipulation.data, c(1,6,9,11)) %>%
+  filter(so.amount >=   75000 & so.amount <=  225000 & so.purchases.bySOtext!=1)
 works.cutoff3 <-
-  select(appendix.data, c(1,6,9,11)) %>%
-  filter(so.amount >= 1200000 & so.amount <= 1800000)
+  select(manipulation.data, c(1,6,9,11)) %>%
+  filter(so.amount >=  750000 & so.amount <= 2500000 & so.purchases.bySOtext!=1)
 
 # Run t-tests on manipulation
 purchases.manipulation1 <- with(purchases.cutoff1,DCdensity(so.amount,    8000))

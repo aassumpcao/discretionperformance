@@ -206,7 +206,82 @@ The total number of service orders with at least one procurement infraction is 3
 
 Although no text analysis mechanism is perfect, the evidence presented here supports our choice of classification algorithm. The identification of procurement orders is internally consistent (section \ref{subsec:quality1}), there are very few incorrect assignments of service orders to procurement (section \ref{subsec:quality2}), and the sample which was identified as procurement maps well onto the latent categories in the Brazilian procurement legislation (section \ref{subsec:quality3}).
 
-\section{CEPESP Infraction Classification}\label{sec:appendixB}
+\newpage
+
+\section{CEPESP Coding of Service Orders}\label{sec:appendixB}
+
+\begin{table}[!htbp]
+  \caption{\label{tab:codes} Infraction Classification}
+  \centering
+  \small
+  \begin{tabular}{r|l}
+  \hline
+
+  \hline
+  Code \# & Code Description \\
+  \hline
+  \multicolumn{2}{r}{Bottom-up Monitoring} \\
+  \hline
+   (01) & Citizen's committee has not been properly set up. \\
+   (02) & Committee does not monitor programs. \\
+   (03) & Committee has poor working conditions. \\
+  \hline
+  \multicolumn{2}{r}{Human Resources} \\
+  \hline
+   (24) & Officials did not meet their assigned workload. \\
+   (27) & Officials received insufficient training. \\
+   (28) & Officials were not properly hired. \\
+   (32) & Officials received incorrect wage or benefit payment. \\
+  \hline
+  \multicolumn{2}{r}{Infrastructure} \\
+  \hline
+   (20) & Physical infrastructure is inappropriate for program implementation. \\
+   (21) & Shortage of government goods/supplies. \\
+   (22) & Poor stock management of government goods. \\
+   (26) & Government goods/supplies were inadequately labeled. \\
+   (29) & Government goods/supplies were poorly preserved. \\
+  \hline
+  \multicolumn{2}{r}{Performance} \\
+  \hline
+   (17) & Municipality did not supplement program funding. \\
+   (18) & Program has not been entirely implemented or its goals were only partially met. \\
+   (19) & Public works have not followed construction rules. \\
+   (23) & Poor service provided to citizens. \\
+   (25) & Program documentation was wrong. \\
+   (33) & Idle funds were not transfered to savings/money market accounts. \\
+   (34) & Program participants did not receive their benefits. \\
+   (35) & Beneficiaries did not meet conditions for inclusion in program. \\
+   (36) & Poor beneficiary data management. \\
+  \hline
+  \multicolumn{2}{r}{Procurement} \\
+  \hline
+  *(04) & Public tender was not publicized. \\
+  *(05) & Tender winner used fake receipts to claim payments. \\
+  *(06) & Shell companies have participated in tender. \\
+   (07) & Tender documentation was wrong. \\
+  *(08) & Tender documentation was fake. \\
+  *(09) & Tender participant received special treatment. \\
+   (10) & Multiple (non-corruption) tender problems. \\
+  *(30) & Wrong tender rules were applied. \\
+  *(31) & Tender was incorrectly dismissed. \\
+  \hline
+  \multicolumn{2}{r}{Private Appropriation} \\
+  \hline
+  *(11) & Good/service was overpriced. \\
+  *(12) & Supplier presented fake receipts. \\
+  *(13) & Payments were unaccompanied by receipts. \\
+  *(14) & Payments made to parties unrelated to policy implementation. \\
+   (15) & Payments shifted to other government needs. \\
+  \hline
+  \multicolumn{2}{r}{Ungrouped} \\
+  \hline
+  (00, 98, 99) & No infractions were found. \\
+  \hline
+
+  \hline
+  \multicolumn{2}{l}{*Corruption infractions.}
+  \end{tabular}
+\end{table}
 
 \section{Service Amount Maniputation}\label{sec:appendixC}
 
@@ -224,6 +299,6 @@ The identification strategy in this paper relies on the assumption that municipa
   \end{tabular}
 \end{figure}
 
-Except for purchases cutoff three, these tests show that there is no substantial manipulation of expenditure amount as there are no significant differences in the density of service orders around the procurement cutoffs defined in Law 8,666/93. As discussed in section \ref{sec:methodology}, we drop purchases cutoff three from the analysis and move ahead with the fuzzy RD as the main identification strategy.
+The graphs in figure \ref{fig:manipulationtests} show there is no significant difference between service order density just below and above discretion cutoffs imposed by Law 8,666/93. As discussed in section \ref{sec:methodology}, however, we drop works cutoff three from the analysis due to the small number of observations and analyze purchases cutoff three and works cutoff one with caution.
 
 \end{document}
