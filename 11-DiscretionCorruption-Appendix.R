@@ -1,4 +1,7 @@
 #------------------------------------------------------------------------------#
+# Estimating the Effect of Discretionary Spending on Corruption:
+# Evidence from Brazilian Municipalities
+#
 # Appendix Script
 # Prepared by:
 # Andre Assumpcao

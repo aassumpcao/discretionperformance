@@ -1,4 +1,7 @@
 #------------------------------------------------------------------------------#
+# Estimating the Effect of Discretionary Spending on Corruption:
+# Evidence from Brazilian Municipalities
+#
 # Analysis Script
 # Prepared by:
 # Andre Assumpcao
@@ -25,12 +28,12 @@ library(lubridate)   # Version 1.7.4
 library(readxl)      # Version 1.1.0
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
-library(RStata)      # Version 1.1.1
 library(Hmisc)       # Version 4.1.1
 library(rdd)         # Version 0.99.1
-library(papaja)      # Version 0.1.0.9709
 library(extrafont)   # Version 0.17
 library(tikzDevice)  # Version 0.11
+library(stargazer)   # Version 5.2.2
+library(xtable)
 
 #------------------------------------------------------------------------------#
 ################################### Analysis ###################################
@@ -45,3 +48,27 @@ load("mun.election.Rda")
 # Table: Corruption Codes #
 #-------------------------#
 # IN MARKDOWN/LATEX ONLY
+
+#--------------------------#
+# Table: Procurement Types #
+#--------------------------#
+# IN MARKDOWN/LATEX ONLY
+
+#---------------------------#
+# Table: Audits by Ministry #
+#---------------------------#
+# Run following command then manually edit in latex.
+so.data %>%
+  group_by(ibge.id) %>%
+  dplyr::summarize(
+    education = max(education),
+    health    = max(health)
+  ) %>%
+  with(., table(education, health)) %>%
+  xtable()
+
+#---------------------------#
+# Table: Summary Statistics #
+#---------------------------#
+so.statistics <- c("so.amount", "infraction.count", "corruption")
+mun.statistics <- c("")

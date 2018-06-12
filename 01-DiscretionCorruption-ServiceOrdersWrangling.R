@@ -1,5 +1,7 @@
 #------------------------------------------------------------------------------#
-# (TITLE TO BE DETERMINED)
+# Estimating the Effect of Discretionary Spending on Corruption:
+# Evidence from Brazilian Municipalities
+#
 # Service Order Data wrangling script
 # Prepared by:
 # Andre Assumpcao
@@ -28,7 +30,6 @@ library(readxl)     # Version 1.1.0
 library(psych)      # Version 1.8.4
 library(magrittr)   # Version 1.5
 library(stargazer)  # Version 5.2.1
-library(lfe)        # Version 2.6-2291
 
 #------------------------------------------------------------------------------#
 ################################ Data Wrangling ################################

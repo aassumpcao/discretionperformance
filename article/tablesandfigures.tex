@@ -1,16 +1,127 @@
-\documentclass[11pt,letterpaper]{article}
-\usepackage[utf8]{inputenc}
+\documentclass[11pt]{article}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{eurosym}
+\usepackage{geometry}
+\usepackage{ulem}
 \usepackage{graphicx}
-\usepackage[left=0.50in, right=0.50in, top=0.50in, bottom=0.50in]{geometry}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage{comment}
+\usepackage{footmisc}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage{pdflscape}
+\usepackage{subfigure}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+
+\normalem
+
+\singlespacing
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newtheorem{hyp}{Hypothesis}
+\newtheorem{subhyp}{Hypothesis}[hyp]
+\renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+\newcommand\T{\rule{0pt}{2.6ex}}       % Top strut
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}} % Bottom strut
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+
 \author{Andre Assumpcao}
 
 \begin{document}
 
+\begin{table}[!htbp]
+  \caption{\label{tab:corruptioncodes} Corruption Infraction Codes}
+  \centering
+  \small
+  \begin{tabular}{r|l}
+  \hline
 
+  \hline
+  Code \# & Code Description                                          \T \B \\
+  \hline
+  \multicolumn{2}{r}{Procurement}                                     \T \B \\
+  \hline
+  (04) & Public tender was not publicized.                            \T \B \\
+  (05) & Tender winner used fake receipts to claim payments.          \T \B \\
+  (06) & Shell companies have participated in tender.                 \T \B \\
+  (08) & Tender documentation was fake.                               \T \B \\
+  (09) & Tender participant received special treatment.               \T \B \\
+  (30) & Wrong tender rules were applied.                             \T \B \\
+  (31) & Tender was incorrectly dismissed.                            \T \B \\
+  \hline
+  \multicolumn{2}{r}{Private Appropriation}                           \T \B \\
+  \hline
+  (11) & Good/service was overpriced.                                 \T \B \\
+  (12) & Supplier presented fake receipts.                            \T \B \\
+  (13) & Payments were unaccompanied by receipts.                     \T \B \\
+  (14) & Payments made to parties unrelated to policy implementation. \T \B \\
+  \hline
 
+  \hline
+  \multicolumn{2}{l}{Source: CEPESP-FGV. All other codes available in appendix {\bf INCLUDE LABEL} B.} \T
+  \end{tabular}
+\end{table}
 
+\begin{table}[!htbp]
+  \caption{\label{tab:procurementtypes} Procurement Categories}
+  \centering
+
+  \small
+  \begin{tabular}{crcc}
+  \hline
+
+  \hline
+  & \multicolumn{1}{c}{Type} & Goods/Services Purchases & Public Works \T \B \\
+  \hline
+  Category 0 & Tender-exempt & $                  x_{i} \leq R\$ 8,000   $ & $                  x_{i} \leq R\$15,000   $ \\
+  Category 1 & Invitational  & $ R\$ 80,000  \leq x_{i} >    R\$8,000    $ & $R\$150,000   \leq x_{i} >    R\$15,000   $ \\
+  Category 2 & Price Taking  & $ R\$ 650,000 \leq x_{i} >    R\$ 80,000  $ & $R\$1,500,000 \leq x_{i} >    R\$150,000  $ \\
+  Category 3 & Competitive   & $                  x_{i} >    R\$ 650,000 $ & $                  x_{i} >    R\$1,500,000$ \\
+  \hline
+
+  \hline
+  \multicolumn{4}{l}{Source: Law 8,666/93.} \T
+  \end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+  \caption{\label{tab:auditbyministry}Number of Municipal Audits by Ministry}
+  \centering
+  \small
+  \begin{tabular}{crrrr}
+    \hline
+
+    \hline
+    & \multicolumn{4}{c}{\parbox{.25\textwidth}{\centering Health}} \T \B \\
+    \multicolumn{1}{c}{\multirow{4}{*}{\parbox[c][][c]{.15\textwidth}{\centering Education}}} & \multicolumn{1}{l}{} & No & Yes & Total \T \B \\
+                         \cline{2-5}
+    \multicolumn{1}{c}{} & No    & 0  & 65   & 65   \T \B \\
+    \multicolumn{1}{c}{} & Yes   & 35 & 1040 & 1075 \T \B \\
+                         \cline{2-5}
+    \multicolumn{1}{c}{} & Total & 35 & 1105 & 1140 \T \B \\
+    \hline
+
+    \hline
+    \multicolumn{5}{p{.43\textwidth}}{Source: CGU and CEPESP-FGV. The total across rows and columns is equivalent to the number of municipalities in the sample.} \T
+  \end{tabular}
+\end{table}
 
 \end{document}
