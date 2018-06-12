@@ -55,7 +55,7 @@
 \vspace{0in}\\
 \noindent\textbf{Keywords:} corruption, procurement, discretion.\\
 \vspace{0in}\\
-\noindent\textbf{JEL Codes:} D73, K10, H57, H72, O12, P48.\\
+\noindent\textbf{JEL Codes:} D73, K10, H57, H72, H83, O12, P48.\\
 
 \bigskip
 \end{abstract}
@@ -71,6 +71,10 @@
 \section{Background and Data} \label{sec:background}
 
 \subsection{Data} \label{sec:data}
+
+\section{Theoretical Framework} \label{sec:theory}
+
+\subsection{Hypotheses} \label{subsec:hypotheses}
 
 \subsection{Empirical Strategy} \label{sec:methodology}
 
@@ -117,7 +121,7 @@ The system uses each service order's description to identify if it is procuremen
 
 An example is useful for understanding our classification process. Unigram ``aquisição'' (\emph{acquisition} in English) is stemmed to ``aquisi'' to form a search pattern for the \emph{purchases}-type procurement; unigrams ``adequação'' and ``habitacional'' are stemmed and combined to form ``adequa(.)*habitac''\footnote{All seach patterns are regular expressions.} search pattern for \emph{works}-type procurement. This bigram picks up variations in main keywords as well as coding mistakes due to, for instance, multiple whitespace between the two unigrams or due to coding Portuguese special characters (``adequação'' vs. ``adequacao'').
 
-\begin{table}[htbp]
+\begin{table}[!htbp]
   \caption{\label{tab:searchterms} Procurement Search Terms}
   \centering
   \small
@@ -125,11 +129,11 @@ An example is useful for understanding our classification process. Unigram ``aqu
   \hline
 
   \hline
-  Type & Search Terms \\
+  Type & Search Terms \T \B \\
   \hline
-  Purchases & ``aquisi'' ``execu'' ``equipame'' ``ve{[}íi{]}culo'' ``despesa'' ``aplica{[}çc{]}'' ``medicamento(.)*peaf'' ``compra'' ``recurso(.)*financ'' ``unidade(.)*m{[}óo{]}ve(.)*sa{[}úu{]}de'' ``pnate'' ``transporte(.)*escola'' ``desenv(.)*ensino'' ``kit'' ``siafi'' ``implementa{[}çc{]}'' ``adquir'' ``pme(.)*2004'' ``aparelhamento'' \\
+  Purchases & ``aquisi'' ``execu'' ``equipame'' ``ve{[}íi{]}culo'' ``despesa'' ``aplica{[}çc{]}'' ``medicamento(.)*peaf'' ``compra'' ``recurso(.)*financ'' ``unidade(.)*m{[}óo{]}ve(.)*sa{[}úu{]}de'' ``pnate'' ``transporte(.)*escola'' ``desenv(.)*ensino'' ``kit'' ``siafi'' ``implementa{[}çc{]}'' ``adquir'' ``pme(.)*2004'' ``aparelhamento'' \T \B \\
   \hline
-  Works & ``co(ns\textbar{}sn)tru'' ``obra'' ``implant'' ``infra(.)*estrut'' ``amplia'' ``abasteci(.)*d(.)*{[}áa{]}gua'' ``reforma'' ``(melhoria\textbar{}adequa)+(.)*(f{[}íi{]}sica\textbar{}escolar\textbar{}habitac\textbar{}sanit{[}áa{]}ria)+'' ``esgot'' ``adutora\textbar{}dessaliniz\textbar{}reservat{[}óo{]}'' ``sanit{[}áa{]}ri{[}ao{]}'' ``poço'' ``aperfei{[}çc{]}oa'' ``saneamento'' ``res{[}íi{]}duo(.)*s{[}óo{]}lido'' ``conclus{[}ãa{]}o''\\
+  Works & ``co(ns\textbar{}sn)tru'' ``obra'' ``implant'' ``infra(.)*estrut'' ``amplia'' ``abasteci(.)*d(.)*{[}áa{]}gua'' ``reforma'' ``(melhoria\textbar{}adequa)+(.)*(f{[}íi{]}sica\textbar{}escolar\textbar{}habitac\textbar{}sanit{[}áa{]}ria)+'' ``esgot'' ``adutora\textbar{}dessaliniz\textbar{}reservat{[}óo{]}'' ``sanit{[}áa{]}ri{[}ao{]}'' ``poço'' ``aperfei{[}çc{]}oa'' ``saneamento'' ``res{[}íi{]}duo(.)*s{[}óo{]}lido'' ``conclus{[}ãa{]}o'' \T \B \\
   \hline
 
   \hline

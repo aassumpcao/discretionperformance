@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"so.purhc",
+				"so.purchases.bySOtext"
+			],
+			[
+				"one",
+				"\\onehalfspacing                                   \tsetspace"
+			],
+			[
+				"so.pro",
+				"so.procurement.bycode"
+			],
+			[
+				"ragged",
+				"\\raggedright                                      \ttex"
+			],
+			[
 				"cite",
 				"cite\tTag"
 			],
@@ -82,10 +98,6 @@
 			[
 				"appen",
 				"appendix.data"
-			],
-			[
-				"so.pro",
-				"so.procurement.bySOtext"
 			],
 			[
 				"so.po",
@@ -502,17 +514,13 @@
 			[
 				"read",
 				"readxl\tInstalled Package"
-			],
-			[
-				"uniqu",
-				"unique\t{base}"
 			]
 		]
 	},
 	"buffers":
 	[
 	],
-	"build_system": "Packages/R-Box/support/R Markdown.sublime-build",
+	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -620,7 +628,7 @@
 			],
 			[
 				"Packages/LaTeXTools/LaTeX.sublime-build",
-				"PdfLaTeX"
+				"Traditional"
 			]
 		],
 		[
@@ -720,6 +728,30 @@
 		"selected_items":
 		[
 			[
+				"git stat",
+				"git: status"
+			],
+			[
+				"snip",
+				"Snippet: table"
+			],
+			[
+				"statu",
+				"git: status"
+			],
+			[
+				"snipp",
+				"Snippet: table"
+			],
+			[
+				"git statu",
+				"git: status"
+			],
+			[
+				"snippet:ta",
+				"Snippet: table"
+			],
+			[
 				"sta",
 				"git: status"
 			],
@@ -750,10 +782,6 @@
 			[
 				"git ini",
 				"git: init"
-			],
-			[
-				"statu",
-				"git: status"
 			],
 			[
 				"git che",
@@ -852,20 +880,12 @@
 				"git: branch"
 			],
 			[
-				"git stat",
-				"git: status"
-			],
-			[
 				"remote set ",
 				"github: set remote for integration"
 			],
 			[
 				"remot",
 				"git: remote add"
-			],
-			[
-				"git statu",
-				"git: status"
 			],
 			[
 				"pus",
@@ -1208,9 +1228,23 @@
 	],
 	"file_history":
 	[
-		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix.Rmd",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/01-DiscretionCorruption-ServiceOrdersWrangling.R",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/11-DiscretionCorruption-Appendix.R",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/discretioncorruption.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix.tex",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/discretioncorruption.Rmd",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix_tab5.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix_tab4.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix_tab3.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix_tab2.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix_tab4a.tex",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix.Rmd",
+		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/Default (OSX).sublime-keymap",
+		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/CiteBibtex.sublime-settings",
+		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/CiteBibtex/CiteBibtex.sublime-settings",
+		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/template.tex",
+		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/appendix.rmd",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article/Appendix.Rmd",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/discretioncorruption/discretioncorruption.Rmd",
@@ -1228,14 +1262,12 @@
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/README.md",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Programming Skills/GitHub/aassumpcao.github.io-master/publications/index.html",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Programming Skills/GitHub/aassumpcao.github.io/software/index.html",
-		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/01-DiscretionCorruption-ServiceOrdersWrangling.R",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/11-DiscretionCorruption-Annex.do",
 		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/Alignment/Base File.sublime-settings",
 		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/Base File.sublime-settings",
 		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/aassumpcao/Dropbox/Projeto AGUAS materiais/05 Maio 28 - Tarefas.rmd",
 		"/Users/aassumpcao/Desktop/teste",
-		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/textfind_sj.do",
 		"/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/discretioncorruption/README.md",
 		"/Users/aassumpcao/Library/Application Support/Sublime Text 3/Packages/User/GitSavvy.sublime-settings",
@@ -1270,6 +1302,125 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" & ",
+			" (",
+			"(",
+			" & ",
+			"\\multicolumn{2}{l",
+			"\\multicolumn{2}",
+			"\\multicolunm",
+			"& ",
+			": ",
+			"\\multicolunma",
+			"\\\\",
+			")",
+			"  c",
+			"Bottom-up Monitoring:",
+			"\\hline",
+			"\\\\",
+			"appendix.data",
+			"<= ",
+			"Human resources",
+			"Infrastructure",
+			" (",
+			"nce (",
+			"Performance",
+			"(",
+			"appropriation",
+			"infraction",
+			"Monitoring",
+			"irregularity",
+			"\n",
+			"= ",
+			"Email: ",
+			"abc",
+			"\\thanks{abc}",
+			"\\hline",
+			".35",
+			"width=0.3\\linewidth",
+			".png",
+			".plot",
+			"splot",
+			"esplot",
+			"plot",
+			"works.plot",
+			"purchases.plot",
+			"purchases.",
+			"plot",
+			"venn",
+			"png(f",
+			"dev.off()",
+			"png(filename = paste0(getwd(),",
+			"\"/article/",
+			"\"/article/purchases.plot1.png\")",
+			"dev.off()",
+			".png\"))",
+			"png(file",
+			"recordPlot()",
+			"& \\\\",
+			"Grant Description",
+			"/article/",
+			"\\T \\\\",
+			"raggedleft",
+			"Classification by ",
+			"on}} \\T \\B \\\\",
+			"\\hline \\T \\B \\\\",
+			"T \\B \\\\",
+			"\\hline \\T \\B",
+			"\\hline",
+			"\\T \\\\",
+			"\\T \\B",
+			"\\T \\\\",
+			"\\T \\B",
+			"\\\\",
+			"& & & & \\\\",
+			"raggedright",
+			"& No                   &",
+			"                   & ",
+			"                   ",
+			"           &",
+			"            &",
+			"           &",
+			"               ",
+			"              ",
+			"             ",
+			"            ",
+			"           ",
+			"          ",
+			"            ",
+			"           ",
+			"\\small",
+			"Classification",
+			"Panel",
+			"& \\multicolumn{4}{c}",
+			".35\\textwidth",
+			"Classification by Grant Description",
+			"                                                                                     & ",
+			"}{}                                                             ",
+			"                                                             &",
+			"rbox{3}",
+			"{3}{*}{",
+			"Service Order by ",
+			"\\ref{qua",
+			"\n  ",
+			"\\ref{qua",
+			"\n  ",
+			"{qua",
+			"subsection:",
+			"\\label{quality",
+			"quality",
+			"  ",
+			"   ",
+			"'' ",
+			"  ",
+			" ",
+			",",
+			"Average",
+			"enter",
+			"çã",
+			"\\c{c}\\~ao",
+			"ção",
+			"log",
 			"monitoring",
 			":",
 			"area,",
@@ -1278,8 +1429,7 @@
 			"nrow",
 			"= ",
 			", ",
-			"# Ve",
-			"#-"
+			"# Ve"
 		],
 		"highlight": true,
 		"in_selection": false,

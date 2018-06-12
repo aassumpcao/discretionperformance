@@ -79,22 +79,27 @@ appendix.data <-
       infraction.19, num_range("infraction.", 30:31), matches("purchases|works")
     ) %>%
     mutate(
-      so.procurement.bycode = ifelse(rowSums(.[,procurement.vector]) > 0, 1, 0),
-      so.procurement.bySOtext = ifelse(rowSums(.[,SOtext.vector]) > 0, 1, 0),
-      so.procurement.bygranttext = ifelse(rowSums(.[,granttext.vector])>0,
-                                             1, 0
-                                      ),
-      so.purchases.bycode         = so.procurement.bycode,
-      so.purchases.bySOtext       = purchases,
-      so.purchases.bygranttext = tpurchases,
-      so.works.bycode             = ifelse(
-                                      so.procurement.bycode == 1 |
-                                      infraction.19 == 1,
-                                      1,
-                                      0
-                                    ),
-      so.works.bySOtext           = works,
-      so.works.bygranttext     = tworks
+      so.procurement.bycode      = ifelse(
+                                     rowSums(.[,procurement.vector]) > 0, 1, 0
+                                   ),
+      so.procurement.bySOtext    = ifelse(
+                                     rowSums(.[,SOtext.vector]) > 0, 1, 0
+                                   ),
+      so.procurement.bygranttext = ifelse(
+                                     rowSums(.[,granttext.vector])>0,
+                                          1, 0
+                                   ),
+      so.purchases.bycode        = so.procurement.bycode,
+      so.purchases.bySOtext      = purchases,
+      so.purchases.bygranttext   = tpurchases,
+      so.works.bycode            = ifelse(
+                                     so.procurement.bycode == 1 |
+                                     infraction.19 == 1,
+                                     1,
+                                     0
+                                   ),
+      so.works.bySOtext          = works,
+      so.works.bygranttext       = tworks
     ) %>%
     select(contains("so."))
 
@@ -118,9 +123,10 @@ format(nrow(so.data), big.mark = ",")
 #----------------------#
 area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
 area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
-area3 <- nrow(subset(appendix.data,
-                     so.purchases.bySOtext == 1 & so.works.bySOtext== 1
-              )
+area3 <- nrow(
+           subset(
+             appendix.data, so.purchases.bySOtext == 1 & so.works.bySOtext== 1
+           )
          )
 
 # Producing the graphical object

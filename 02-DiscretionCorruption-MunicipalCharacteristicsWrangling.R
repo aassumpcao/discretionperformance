@@ -1,5 +1,4 @@
-
-# (TITLE TO BE DETERMINED)
+#------------------------------------------------------------------------------#
 # Municipal Characteristics Data wrangling script
 # Prepared by:
 # Andre Assumpcao
@@ -284,3 +283,7 @@ rm(
   list = objects(pattern = "education|health|reelect|elections"),
   gini, hdi, judiciary, radio, income
 )
+
+# Save to file
+save(mun.data,     file = "mun.data.Rda")
+save(mun.election, file = "mun.election.Rda")
