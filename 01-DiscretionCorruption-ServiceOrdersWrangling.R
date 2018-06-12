@@ -46,7 +46,7 @@ load("Sorteio8a31.Rda")            # CGU list of funds audited
 ### Mutating Joins ###
 #--------------------#
 # CEPESP coded 14,521 CGU service orders in health and education
-glimpse(corruption_discretion)
+# glimpse(corruption_discretion)
 
 # 1. Merge service orders with additional CGU audit information
 so.data <- Sorteio8a31 %>%
@@ -150,7 +150,7 @@ so.data %<>%
 ### Columns work ###
 #------------------#
 # 5. Drop useless columns (corruption)
-names(so.data)
+# names(so.data)
 so.data %<>% select(-convenio, -amount, -`(blank)`, -ValorLiberado)
 
 # 6. Rename and rearrange columns from largest to smallest aggregation level
@@ -281,7 +281,7 @@ so.data %<>%
   ) %>%
   rename(
     audit.start   = audit.start.x,
-    audit.end   = audit.end.x
+    audit.end     = audit.end.x
   ) %>%
   select(-contains(".y"))
 
@@ -292,8 +292,9 @@ rm(no.date, date.fill)
 so.data %<>%
   mutate(
     nchar.so.description = nchar(so.description),
-    audit.start = ymd(audit.start),
-    audit.end   = ymd(audit.end)
+    audit.start          = ymd(audit.start),
+    audit.end            = ymd(audit.end),
+    ibge.id              = ifelse(so.id == 148793, 313375, ibge.id)
   ) %>%
   group_by(so.subprogram) %>%
   arrange(so.subprogram, desc(nchar.so.description)) %>%
@@ -302,7 +303,7 @@ so.data %<>%
   select(-nchar.so.description)
 
 # 11. To log or not to log amount variable
-names(so.data)
+# names(so.data)
 
 #--------------------------#
 ### Back to columns work ###
@@ -343,7 +344,7 @@ so.data <- so.data.tagged %>%
   select(-contains("purchases"), -contains("works")) %>%
   select(
     c(1:3), transfer.type, c(4:15), so.type, so.procurement,
-    contains("infraction."), contains("corruption.")
+    contains("infraction."), contains("corruption."), contains("mismanagement")
   )
 # Remove unnecessary dataset
 rm(so.data.tagged)
@@ -378,4 +379,5 @@ so.data %<>%
 #     col_names = T
 #   )
 
+# Save to file
 save(so.data, file = "so.data.Rda")

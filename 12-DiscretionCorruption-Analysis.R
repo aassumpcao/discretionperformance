@@ -70,5 +70,76 @@ so.data %>%
 #---------------------------#
 # Table: Summary Statistics #
 #---------------------------#
-so.statistics <- c("so.amount", "infraction.count", "corruption")
-mun.statistics <- c("")
+# Produce statistics (and their labels) for summary statistics table
+# SO stats first
+so.statistics <-
+  c("so.amount", "infraction.count", "corruption.binary", "corruption.share",
+    "corruption.amount", "mismanagement.binary", "mismanagement.share",
+    "mismanagement.amount")
+so.statistics.labels <-
+  c("Amount (in R\\$)", "Infraction Count", "Corruption Index I (Binary)",
+    "Corruption Index II (Share of Total Infractions)",
+    "Corruption Index III (Amount)", "Mismanagement Index I (Binary)",
+    "Mismanagement Index II (Share of Total Infractions)",
+    "Mismanagement Index III (Amount)")
+
+# Then, municipal data, for which I need to join so.data, mun.data,
+# and mun.elections
+analysis.data %<>% left_join(., mun.data, by = c("ibge.id" = "ibge.id"))
+
+
+# Keep working on join
+
+
+so.data %>%
+  select(ibge.id, contains("audit")) %>%
+  transmute(
+
+    )
+
+
+
+table(so.data$audit.end)
+
+
+mun.statistics <- setdiff(c(names(mun.data), names(mun.election)), "ibge.id")
+mun.statistics.labels <-
+  c("Urban Population (Share)", "Female (Share)", "Illiteracy Rate",
+    "GDP", "Gini Index", "Human Development Index", "Poverty Rate",
+    "Presence of AM Radio", "Education Council Established",
+    "Health Council Established", "Seat of Judiciary Branch",
+
+  )
+
+# Produce Panel A: SO Data
+stargazer(
+  as.data.frame(so.data[,so.statistics]),
+  title            = "Summary Statistics",
+  out              = paste0(getwd(), "/article/tab_summarystats1.tex"),
+  out.header       = FALSE,
+  covariate.labels = so.statistics.labels,
+  align            = TRUE,
+  digits           = 3,
+  # digits.extra     = 4,
+  font.size        = "small",
+  header           = FALSE,
+  label            = "descriptivestatistics",
+  table.placement  = "!htbp"
+)
+
+# Produce Panel B: Municipal Data
+stargazer(
+  as.data.frame(so.data[,so.statistics]),
+  title            = "Summary Statistics",
+  out              = paste0(getwd(), "/article/tab_summarystats1.tex"),
+  out.header       = FALSE,
+  covariate.labels = so.statistics.labels,
+  align            = TRUE,
+  digits           = 3,
+  # digits.extra     = 4,
+  font.size        = "small",
+  header           = FALSE,
+  label            = "descriptivestatistics",
+  table.placement  = "!htbp"
+)
+

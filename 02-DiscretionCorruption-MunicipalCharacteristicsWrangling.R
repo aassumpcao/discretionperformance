@@ -128,7 +128,7 @@ mun.data <- read_excel("tab1.xls") %>%
     mun.femalepop = as.double(X__6),               # Female population share
   )
 
-# Literacy rate
+# Illiteracy rate
 unzip("Brasil.zip", "tab3.xls")
 education <- read_excel("tab3.xls") %>%
   select(X__1, X__4) %>%
@@ -274,12 +274,19 @@ mun.reelection <-
   mutate(mun.election = str_remove(mun.election, "d_reelected"))
 
 # Join all
-mun.election %<>%
-  full_join(
-    .,
-    mun.reelection,
+mun.election %>%
+  full_join(., mun.reelection,
     by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
-)
+  ) %>%
+  mutate(
+    mun.election = as.Date(
+      ifelse(
+        mun.election == 2000,
+        ymd("2000-10-01"),
+        ifelse(mun.election == 2004, ymd("2004-10-03"), ymd("2008-10-05"))
+      )
+    )
+  )
 
 # Remove useless data
 rm(

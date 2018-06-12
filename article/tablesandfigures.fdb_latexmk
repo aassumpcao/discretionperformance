@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1528827641 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1528827642
+["pdflatex"] 1528835051 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1528835051
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -70,16 +70,17 @@
   "/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg" 1480098839 2062 a0e7d66e09e508f51289a656aec06ed2 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty" 1480098839 15188 91281c7ddbccfa54a8e0c3b56ab5aa72 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty" 1525471425 13555 1c149904152e53130811b31763000c97 ""
+  "/usr/local/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty" 1523050425 2755 a95af7253bb47cb72ad0ac110a442c52 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/url/url.sty" 1480098842 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf" 1522066949 33362 cf75436e19743e94a92a6b1b9183c434 ""
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1528426230 2849778 d20fd0a0d92d412ec9b4143de20d68a5 ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1528423583 4220582 296642f53d93cdbc02373533d0f42b0a ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "tablesandfigures.aux" 1528827642 1404 60fc5ce785efcd8fa93bb84899cedebf ""
-  "tablesandfigures.out" 1528827642 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "tablesandfigures.tex" 1528827639 4506 c17d3ad760c4753df9a4412465a529bf ""
+  "tablesandfigures.aux" 1528835051 1609 4e5af707def94fcb2aadbb519cb8dc5f ""
+  "tablesandfigures.out" 1528835051 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "tablesandfigures.tex" 1528835048 5790 7688657b92ccbbe4f0bea3ce01c6212e ""
   (generated)
-  "tablesandfigures.aux"
   "tablesandfigures.out"
-  "tablesandfigures.log"
   "tablesandfigures.pdf"
+  "tablesandfigures.log"
+  "tablesandfigures.aux"

@@ -79,6 +79,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
