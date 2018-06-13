@@ -202,7 +202,7 @@ mismanagement.vector <- c("infraction.1", "infraction.2", "infraction.3",
                           "infraction.33", "infraction.34", "infraction.35",
                           "infraction.36")
 infraction.vector    <- c(corruption.vector, mismanagement.vector)
-
+describe(so.data)
 # Create outcomes from infraction vectors
 so.data %<>%
   mutate(
@@ -214,8 +214,14 @@ so.data %<>%
     mismanagement.binary = ifelse(rowSums(.[,mismanagement.vector]) > 0, 1, 0),
 
     # Infractions as share of total infractions
-    corruption.share     = rowSums(.[,corruption.vector]) / infraction.count,
-    mismanagement.share  = rowSums(.[,mismanagement.vector]) / infraction.count,
+    corruption.share     = ifelse(infraction.count == 0, 0,
+                             rowSums(
+                               .[,corruption.vector]) / infraction.count
+                           ),
+    mismanagement.share  = ifelse(infraction.count == 0, 0,
+                             rowSums(
+                               .[,mismanagement.vector]) / infraction.count
+                           ),
 
     # Amount as a share of total
     corruption.amount    = ifelse(corruption.binary == 1 & !is.na(so.amount),

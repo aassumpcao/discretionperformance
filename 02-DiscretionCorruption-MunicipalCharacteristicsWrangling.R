@@ -124,8 +124,8 @@ mun.data <- read_excel("tab1.xls") %>%
   filter(!is.na(X__4) & !is.na(X__6)) %>%
   transmute(
     ibge.id       = as.double(substr(X__1, 1, 6)), # IBGE id
-    mun.urbanpop  = as.double(X__4),               # Urban population share
-    mun.femalepop = as.double(X__6),               # Female population share
+    mun.urbanpop  = as.double(X__4) / 100,         # Urban population share
+    mun.femalepop = as.double(X__6) / 100,         # Female population share
   )
 
 # Illiteracy rate
@@ -136,7 +136,7 @@ education <- read_excel("tab3.xls") %>%
   filter(!is.na(X__4)) %>%
   transmute(
     ibge.id        = as.double(substr(X__1, 1, 6)), # IBGE id
-    mun.illiteracy = as.double(X__4)                # Illiteracy rate
+    mun.illiteracy = as.double(X__4) / 100          # Illiteracy rate
   )
 
 mun.data %<>% full_join(., education)
@@ -173,9 +173,9 @@ hdi <- read_excel(
   select(ANO, Codmun6, IDHM, PMPOB) %>%
   filter(ANO == 2010) %>%
   transmute(
-    ibge.id  = as.double(Codmun6), # IBGE id
-    mun.idhm = as.double(IDHM),    # HDI
-    mun.poor = as.double(PMPOB)    # Share of poor population
+    ibge.id  = as.double(Codmun6),    # IBGE id
+    mun.idhm = as.double(IDHM),       # HDI
+    mun.poor = as.double(PMPOB) / 100 # Share of poor population
   )
 
 mun.data %<>% full_join(., hdi)
@@ -249,7 +249,10 @@ mun.election <-
     key   = "mun.election",
     value = "mun.votemargin"
   ) %>%
-  mutate(mun.election = str_remove(mun.election, "ElecComp"))
+  mutate(
+    mun.election   = str_remove(mun.election, "ElecComp"),
+    mun.votemargin = mun.votemargin / 100
+  )
 
 # Reelection data
 reelected2000 <- read_excel("d_reelected_all.xlsx", sheet = "d_reelected2001")
@@ -274,7 +277,7 @@ mun.reelection <-
   mutate(mun.election = str_remove(mun.election, "d_reelected"))
 
 # Join all
-mun.election %>%
+mun.election %<>%
   full_join(., mun.reelection,
     by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
   ) %>%
