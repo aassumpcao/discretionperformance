@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------#
-# Estimating the Effect of Discretionary Spending on Corruption:
+# Estimating the Effect of Discretion on Corruption:
 # Evidence from Brazilian Municipalities
 #
 # Municipal Characteristics Data wrangling script

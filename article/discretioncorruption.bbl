@@ -4,6 +4,12 @@
 Assumpcao, A. (2018).
 \newblock Textfind: {{A Data}}-{{Driven Text Analysis Tool}} for {{Stata}}.
 
+\bibitem[Ferraz and Finan, 2008]{FerrazExposingCorruptPoliticians2008b}
+Ferraz, C. and Finan, F. (2008).
+\newblock Exposing {{Corrupt Politicians}}: {{The Effects}} of {{Brazil}}'s
+  {{Publicly Released Audits}} on {{Electoral Outcomes}}.
+\newblock {\em The Quarterly Journal of Economics}, 123:703--745.
+
 \bibitem[Grimmer and Stewart, 2013]{GrimmerTextDataPromise2013a}
 Grimmer, J. and Stewart, B.~M. (2013).
 \newblock Text as {{Data}}: {{The Promise}} and {{Pitfalls}} of {{Automatic
@@ -21,5 +27,10 @@ McCrary, J. (2008).
 \newblock Manipulation of the running variable in the regression discontinuity
   design: {{A}} density test.
 \newblock {\em Journal of Econometrics}, 142(2):698--714.
+
+\bibitem[Olken and Pande, 2012]{OlkenCorruptionDevelopingCountries2012b}
+Olken, B.~A. and Pande, R. (2012).
+\newblock Corruption in {{Developing Countries}}.
+\newblock {\em Annual Review of Economics}, 4:479--509.
 
 \end{thebibliography}

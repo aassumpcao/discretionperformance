@@ -25,7 +25,7 @@
 
 \normalem
 
-\singlespacing
+\onehalfspacing
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}{Proposition}
@@ -48,7 +48,7 @@
 \begin{document}
 
 \begin{titlepage}
-\title{Estimating the Effect of Discretionary Spending on Corruption: Evidence from Brazilian Municipalities\thanks{The authors acknowledge valuable contributions from Sergio Firpo, Caio Costa, Vinicius Brunassi, Guilherme Lambais,
+\title{Estimating the Effect of Discretion on Corruption: Evidence from Brazilian Municipalities\thanks{The authors acknowledge valuable contributions from Sergio Firpo, Caio Costa, Vinicius Brunassi, Guilherme Lambais,
 Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bruna Pizzolato and interns at the Center of Politics and Economics of the Public Sector (CEPESP) at the Getúlio Vargas Foundation (FGV). Special thanks to Ronald da Silva Balbe from the Federal Secretariat of Internal Control (SFC) at the Ministry of Transparency, former Office of the Comptroller-General (CGU), who provided us with supplementary data for this study. This work was directly supported by the University of North Carolina - Department of Public Policy, and indirectly supported by the National Council of Scientic Research (CNPq), the Coordination for Improvement of Higher Education Personnel (CAPES), and GVpesquisa. All errors are our own.}}
 \author{Andre Assumpcao\thanks{Department of Public Policy, The University of North Carolina at Chapel Hill. Email: \href{mailto:aassumpcao@unc.edu}{aassumpcao@unc.edu}} \and Ciro Biderman\thanks{Center of Politics and Economics of the Public Sector, Getúlio Vargas Foundation. Email: \href{mailto:ciro.biderman@fgv.br}{ciro.biderman@fgv.br}} \and George Avelino\thanks{Center of Politics and Economics of the Public Sector, Getúlio Vargas Foundation. Email: \href{mailto:george.avelino@fgv.br}{george.avelino@fgv.br}}}
 \date{\today}
@@ -67,19 +67,47 @@ Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bru
 \end{titlepage}
 \pagebreak \newpage
 
-\singlespacing
+% \singlespacing
 
 \section{Introduction} \label{sec:introduction}
 
 \section{Background and Data} \label{sec:background}
 
-\subsection{Data} \label{sec:data}
+\subsection{Data} \label{subsec:data}
 
 \section{Theoretical Framework} \label{sec:theory}
+The simple model here is based on \citet{OlkenCorruptionDevelopingCountries2012b} and posits a straightforward relationship between discretion and corruption. A representative policymaker earns wage \emph{w} from working in government and an additional bribe \emph{b} if she decides to engage in corruption. Her market wage is \emph{v}, which she receives if she quits, or is fired, from her government position. In order to engage in corruption, she must pay her individual dishonesty cost \emph{d} and subject herself to the probability of detection \emph{p}. For simplicity, we treat each corruption decision as an independent, one-time decision. Thus, such as in \citet{OlkenCorruptionDevelopingCountries2012b}, officials will engage in corruption when:
 
 \begin{equation}
   \begin{split}
-  X = 0
+    w - v < \frac{1-p}{p}\times(b-d)
+  \end{split}
+\end{equation}
+
+For municipal officials in charge of public procurement in Brazil, however, there are X important modifications we make to the decision model above. First, bribe level \emph{b} is a function of procurement amount and summarizes the opportunity cost of corruption. Assuming that officials are risk-averse, the higher the expenditure amount on any given government program for which there are purchases of goods and services, the lower the relative cost of corruption. In other words, \$100 missing from a \$1000-program are less important than \$100 missing from a \$200-program.
+
+Secondly, Brazilian procurement rules \emph{l} are an additional cost of corruption beyond \emph{p} and \emph{d}. As procurement amount increases, officials are subject to stricter requirements concerning the number of participants in the procurement process, the documents they have to submit, how long the call for participants should be open, etc., as described in section \ref{subsec:data}. Procurement categories determine the rules each official has to follow and determine more or less opportunities for embezzlement.
+
+Finally, the corruption decision
+
+
+\citet{FerrazExposingCorruptPoliticians2008b} and \citet{WintersLackingInformationCondoning2013} document how voters discount their electoral punishment for corruption findings when corruption is endemic, so
+
+
+
+
+is endemic  \citet{ChongDoesCorruptionInformation2015} document, respectively, how
+
+
+
+
+
+
+For municipal officials in charge of public procurement in Brazil, however, there are three other factors in their corruption decision: the procurement rules they have to follow (\emph{d}), the opportunity cost of corruption, measured as a function of expenditure amount (\emph{x}), and the overall corruption level \emph{c} in the municipality for which they work.
+
+\begin{equation}
+  \begin{split}
+  A
   \end{split}
 \end{equation}
 
@@ -97,7 +125,6 @@ Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bru
 \subsection{Cost-benefit Analysis} \label{subsec:cba}
 
 
-\onehalfspacing
 \setlength\bibsep{0pt}
 \bibliographystyle{apalike}
 \bibliography{/Users/aassumpcao/library.bib}

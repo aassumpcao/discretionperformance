@@ -1,5 +1,7 @@
   *------------------------------------------------------------------------------*
-* (TITLE TO BE DETERMINED)
+* Estimating the Effect of Discretion on Corruption:
+* Evidence from Brazilian Municipalities
+*
 * Appendix on Textual Classification
 * Prepared by:
 * Andre aassumpcao

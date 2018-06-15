@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1528918590 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1528918591
+["pdflatex"] 1528981867 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1528981868
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -81,11 +81,11 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1528426230 2849778 d20fd0a0d92d412ec9b4143de20d68a5 ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1528423583 4220582 296642f53d93cdbc02373533d0f42b0a ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "tablesandfigures.aux" 1528918591 1609 4e5af707def94fcb2aadbb519cb8dc5f ""
-  "tablesandfigures.out" 1528918591 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "tablesandfigures.tex" 1528918590 8629 144e58683cf4a09ba6d962d34f49f320 ""
+  "tablesandfigures.aux" 1528981868 1609 4e5af707def94fcb2aadbb519cb8dc5f ""
+  "tablesandfigures.out" 1528981867 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "tablesandfigures.tex" 1528981464 8629 0e25c72230247828768fdc1b25c414e0 ""
   (generated)
-  "tablesandfigures.pdf"
   "tablesandfigures.aux"
-  "tablesandfigures.out"
+  "tablesandfigures.pdf"
   "tablesandfigures.log"
+  "tablesandfigures.out"
