@@ -4,6 +4,18 @@
 Assumpcao, A. (2018).
 \newblock Textfind: {{A Data}}-{{Driven Text Analysis Tool}} for {{Stata}}.
 
+\bibitem[Becker, 1968]{BeckerCrimePunishmentEconomic1968}
+Becker, G.~S. (1968).
+\newblock Crime and {{Punishment}}: {{An Economic Approach}}.
+\newblock {\em Journal of Political Economy}, 76:169--217.
+
+\bibitem[Chong et~al., 2015]{ChongDoesCorruptionInformation2015}
+Chong, A., De~La~O, A., Karlan, D., and Wantchekon, L. (2015).
+\newblock Does {{Corruption Information Inspire}} the {{Fight}} or {{Quash}}
+  the {{Hope}}? {{A Field Experiment}} in {{Mexico}} on {{Voter Turnout}},
+  {{Choice}}, and {{Party Identification}}.
+\newblock {\em The Journal of Politics}, 77:55--71.
+
 \bibitem[Ferraz and Finan, 2008]{FerrazExposingCorruptPoliticians2008b}
 Ferraz, C. and Finan, F. (2008).
 \newblock Exposing {{Corrupt Politicians}}: {{The Effects}} of {{Brazil}}'s
@@ -32,5 +44,17 @@ McCrary, J. (2008).
 Olken, B.~A. and Pande, R. (2012).
 \newblock Corruption in {{Developing Countries}}.
 \newblock {\em Annual Review of Economics}, 4:479--509.
+
+\bibitem[{Rose-Ackerman}, 1975]{Rose-AckermanEconomicsCorruption1975}
+{Rose-Ackerman}, S. (1975).
+\newblock The {{Economics}} of {{Corruption}}.
+\newblock {\em Journal of Public Economics}, 4:187--203.
+
+\bibitem[Winters and {Weitz-Shapiro},
+  2013]{WintersLackingInformationCondoning2013}
+Winters, M.~S. and {Weitz-Shapiro}, R. (2013).
+\newblock Lacking {{Information}} or {{Condoning Corruption}}: {{When Do Voters
+  Support Corrupt Politicians}}?
+\newblock {\em Comparative Politics}, 45:418--436.
 
 \end{thebibliography}

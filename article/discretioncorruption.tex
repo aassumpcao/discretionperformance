@@ -20,8 +20,8 @@
 \usepackage{multirow}
 \usepackage{dcolumn}
 \usepackage{makecell}
-\usepackage{hyperref}
-\hypersetup{unicode=true}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{unicode = true}
 
 \normalem
 
@@ -75,46 +75,42 @@ Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bru
 
 \subsection{Data} \label{subsec:data}
 
-\section{Theoretical Framework} \label{sec:theory}
-The simple model here is based on \citet{OlkenCorruptionDevelopingCountries2012b} and posits a straightforward relationship between discretion and corruption. A representative policymaker earns wage \emph{w} from working in government and an additional bribe \emph{b} if she decides to engage in corruption. Her market wage is \emph{v}, which she receives if she quits, or is fired, from her government position. In order to engage in corruption, she must pay her individual dishonesty cost \emph{d} and subject herself to the probability of detection \emph{p}. For simplicity, we treat each corruption decision as an independent, one-time decision. Thus, such as in \citet{OlkenCorruptionDevelopingCountries2012b}, officials will engage in corruption when:
-
-\begin{equation}
+\section{Estimation} \label{sec:methodology}
+\subsection{Model} \label{subsec:model}
+The simple model here is based on \citet{OlkenCorruptionDevelopingCountries2012b} and posits a straightforward relationship between discretion and corruption. A representative policymaker earns wage \emph{w} from working in government and an additional bribe \emph{b} if she decides to engage in corruption. Her market wage is \emph{v}, which she receives if she quits, or is fired, from her government position. If she chooses corruption, she must pay her individual dishonesty cost \emph{d} and subject herself to the probability of detection \emph{p}. For simplicity, we treat each corruption decision as an independent, one-time decision. Thus, officials will engage in corruption when:
+\begin{equation} \label{eq:eq1}
   \begin{split}
     w - v < \frac{1-p}{p}\times(b-d)
   \end{split}
 \end{equation}
 
-For municipal officials in charge of public procurement in Brazil, however, there are X important modifications we make to the decision model above. First, bribe level \emph{b} is a function of procurement amount and summarizes the opportunity cost of corruption. Assuming that officials are risk-averse, the higher the expenditure amount on any given government program for which there are purchases of goods and services, the lower the relative cost of corruption. In other words, \$100 missing from a \$1000-program are less important than \$100 missing from a \$200-program.
-
-Secondly, Brazilian procurement rules \emph{l} are an additional cost of corruption beyond \emph{p} and \emph{d}. As procurement amount increases, officials are subject to stricter requirements concerning the number of participants in the procurement process, the documents they have to submit, how long the call for participants should be open, etc., as described in section \ref{subsec:data}. Procurement categories determine the rules each official has to follow and determine more or less opportunities for embezzlement.
-
-Finally, the corruption decision
+The first important change to the model above is the treatment of corruption gains \emph{b} as a function of procurement amount \emph{x}. Every procurement call is a one-off opportunity for corruption and, as such, bears little resemblance to frequent, fixed payments in exchange for continuous favors. Bribe offers are likely linked to the overall value of contracts, hence holding gains fixed \citep{OlkenCorruptionDevelopingCountries2012b} is a less accurate depiction of corruption in this context. As contract value goes up, we can expect that officials will ask for (or will be offered) larger payments to favor one bidder or another. This is also known as the opportunity cost of corruption, and posits that bribe levels are increasing in the value of goods/services being procured -- a \$100,000 contract might see a \$5,000 bribe while a \$50,000 contract might see a \$3,000 bribe.\footnote{We additionally assume that officials are risk-averse since the larger contract the larger the public attention for any given procurement call.}
 
 
-\citet{FerrazExposingCorruptPoliticians2008b} and \citet{WintersLackingInformationCondoning2013} document how voters discount their electoral punishment for corruption findings when corruption is endemic, so
+Secondly, Brazilian procurement rules \emph{l} impose an additional cost of corruption beyond \emph{p} and \emph{d}. As contract amount increases, officials are subject to stricter procurement requirements regarding the number of participants in the procurement process, the documents they have to submit, how long the call for participants should be open, and others as described in section \ref{subsec:data}. Procurement categories determine the rules each official has to follow and, as a consequence, the opportunity for corruption. Stricter rules offset the lower opportunity cost of corruption and we discuss their relationship in section \ref{subsec:hypotheses}.
 
+The last novel contribution here is modeling individual corruption decision as endogenous. In this setting, officials behave strategically: if they see their colleagues engaging in corrupt exchanges and getting by unnoticed, they are also more likely to be corrupt themselves simply because their cost of being honest is higher. Holding constant the ability to uncover and prosecute corruption cases (due to local resource constraints), the probability of detection of any wrongdoing decreases with the number of dishonest people and the number of illegal actions in each municipality. In other words, being honest in a corrupt environment is costly. \citet{FerrazExposingCorruptPoliticians2008b}, \citet{WintersLackingInformationCondoning2013}, and \citet{ChongDoesCorruptionInformation2015} document a similar behavior according to which voters discount corruption evidence from electoral punishment when corruption is endemic in local elections in Brazil and Mexico. There is no reason to think that public officials would behave differently. After manipulating and adding these factors to equation \ref{eq:eq1}, the corruption function then becomes:\footnote{There is no particular functional form determining the relationship among all variables in our framework. We mostly focus on the most important factors summarizing the relationship between discretion and corruption, which is our focus in this paper.}
+\begin{equation} \label{eq:eq2}
+  \begin{aligned}
+  b = f&(w,\ v,\ p,\ d,\ x,\ l,\ r)& \\
+  f'&(-, +, -, -,+, -,+)&
+  \end{aligned}
+\end{equation}
 
+Where \emph{b} is our corruption index as a function of all previous variables (\emph{w, v, p, d}) plus procurement amount \emph{x}, procurement rules \emph{l}, and municipal level of corruption \emph{r}. The representative official wants to maximize \emph{b} with respect to all right-hand side variables and their hypothesized relationship is summarized by \emph{f}'s first derivative signs in line 2 of equation \ref{eq:eq1}. The efficiency wage hypothesis predicts that higher public sector wages \emph{w} would reduce corruption by increasing the returns to honesty and making illegal options less attractive. The same rationale applies to market wages \emph{v}, wherein an increase in earnings would have to be met by higher returns to public office either in wages (relatively rigid) or bribes (relatively flexible). With respect to the probability of detection \emph{p} and dishonesty costs \emph{d}, an unobservable individual cost function including the severity of punishment, the corruption literature suggests they are important deterrence factors \citep{BeckerCrimePunishmentEconomic1968,Rose-AckermanEconomicsCorruption1975}.\footnote{Article 37 of the Brazilian Constitution, Law 8,666/93, and the related legislation lay out the punishment for individual corruption in the public sector. Severity, however, does not change over the period under analysis (2004-2010) and, as such, is irrelevant for the model developed here; i.e.~the constant term in the regression equations in section \ref{subsec:design} soaks up any severity effects.}
 
-
-is endemic  \citet{ChongDoesCorruptionInformation2015} document, respectively, how
-
-
-
-
-
-
-For municipal officials in charge of public procurement in Brazil, however, there are three other factors in their corruption decision: the procurement rules they have to follow (\emph{d}), the opportunity cost of corruption, measured as a function of expenditure amount (\emph{x}), and the overall corruption level \emph{c} in the municipality for which they work.
-
-\begin{equation}
-  \begin{split}
-  A
-  \end{split}
+The last three variables in equation \ref{eq:eq2} are the centerpiece of our model. We anticipate that  procurement amount \emph{x} and overall municipal corruption \emph{r} are positively correlated with one's decision to engage in corruption and jointly offset the efforts to reduce corruption by imposing stricter, less discretionary rules on public spending in Brazil. Moreover, \emph{x} and \emph{r} have negative second derivatives, representing the official's risk-aversion, while \emph{l} should have a positive second derivative. In other words, higher-order procurement types are less effective at reducing corruption than lower-order types. These relationships are described below.
+\begin{equation} \label{eq:eq3}
+    (i)   f_{x} > 0; f_{xx} < 0 \qquad
+    (ii)  f_{l} < 0; f_{ll} > 0 \qquad
+    (iii) f_{r} > 0; f_{rr} < 0 \qquad
 \end{equation}
 
 
-\subsection{Hypotheses} \label{subsec:hypotheses}
 
-\subsection{Empirical Strategy} \label{sec:methodology}
+\subsection{Reseach Design} \label{subsec:design}
+
+\subsection{Hypotheses} \label{subsec:hypotheses}
 
 \section{Results} \label{sec:result}
 
