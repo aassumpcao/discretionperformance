@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretioncorruption"] 1529337627 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1529344129
+["bibtex discretioncorruption"] 1529359329 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1529359337
   "/Users/aassumpcao/library.bib" 1528641809 395041 b92a1eaa5f009c49fa4a0728a6e144dd ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "discretioncorruption.aux" 1529344129 6947 6331007312e8f672e1a866690d688928 ""
+  "discretioncorruption.aux" 1529359330 6951 c450b634806067db0bb03e410b37fe16 ""
   (generated)
   "discretioncorruption.blg"
   "discretioncorruption.bbl"
-["pdflatex"] 1529344128 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1529344129
+["pdflatex"] 1529359329 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1529359337
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -78,6 +78,7 @@
   "/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty" 1528061023 66287 4d41f8426c88e7e3befa3751d10eee3f ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty" 1528061023 66886 46ef3dcb181d859253f9946a83d2c3df ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty" 1480098825 10197 204f75d5d8d88aa345a8c402e879e63b ""
+  "/usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty" 1480098827 42666 6fa770e3485520a6a5f2ea7d259c8f8d ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/eurosym/eurosym.sty" 1480098827 3028 8faeef64adee9b964b5e7f5e45921024 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/footmisc/footmisc.sty" 1480098829 25776 d28bd6d82f168f8cb2268584b67a2a98 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty" 1525727744 41645 0653033a985e06c69a2a9cea9a95e31a ""
@@ -101,6 +102,7 @@
   "/usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty" 1480201744 5015 cd8d25106b58dfc16af57528a07d0bc9 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty" 1480098835 45456 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/auxhook.sty" 1480098836 3834 4363110eb0ef1eb2b71c8fcbcdb6c357 ""
+  "/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/centernot.sty" 1480098836 1538 17db797fcc398536cd8bdd254b46ce0f ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty" 1480098836 12095 5337833c991d80788a43d3ce26bd1c46 ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty" 1480098836 7075 2fe3d848bba95f139de11ded085e74aa ""
   "/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/kvoptions.sty" 1480098836 22417 1d9df1eb66848aa31b18a593099cf45c ""
@@ -121,10 +123,10 @@
   "appendix_tab3.tex" 1528981657 2539 0f6b30ea5fc1a1fec491bad50e7ab003 ""
   "appendix_tab4.tex" 1528981987 1501 f50e7fc4c0f586897a202e79fca79531 ""
   "appendix_tab5.tex" 1528639648 1493 6860420cf99230724d89d30ec2de1846 ""
-  "discretioncorruption.aux" 1529344129 6947 6331007312e8f672e1a866690d688928 ""
-  "discretioncorruption.bbl" 1529337627 2627 0a7720732fd8a7203d15966cb46e96d3 "bibtex discretioncorruption"
-  "discretioncorruption.out" 1529344129 2322 fd0e9dbcf9edf0de9455d611b3c773fd ""
-  "discretioncorruption.tex" 1529344128 30650 23cfb8fe1861f0f9761dcb39e7c8ff17 ""
+  "discretioncorruption.aux" 1529359330 6951 c450b634806067db0bb03e410b37fe16 ""
+  "discretioncorruption.bbl" 1529359329 2627 0a7720732fd8a7203d15966cb46e96d3 "bibtex discretioncorruption"
+  "discretioncorruption.out" 1529359330 2327 57aec35236c63cffcf9bb73eae9f9be7 ""
+  "discretioncorruption.tex" 1529359327 32029 fdfaba2b4251ced1a13ea5bfe31d83fb ""
   "purchasesmanipulation1.png" 1528716166 30278 bb587f445924e5ae9d25687d1b6e1b87 ""
   "purchasesmanipulation2.png" 1528644595 32884 ef978692813f0fcb891285b38c038ff1 ""
   "purchasesmanipulation3.png" 1528644595 35944 ce5cc97b6c324be7daae0117db90275e ""
@@ -133,7 +135,7 @@
   "worksmanipulation2.png" 1528716201 34334 d339ff813b6e20f5d529c641e6cc24cc ""
   "worksmanipulation3.png" 1528716337 35560 ac5af908b0eee7cdb40df2216af91a85 ""
   (generated)
+  "discretioncorruption.pdf"
+  "discretioncorruption.log"
   "discretioncorruption.aux"
   "discretioncorruption.out"
-  "discretioncorruption.log"
-  "discretioncorruption.pdf"

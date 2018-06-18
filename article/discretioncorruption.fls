@@ -24,6 +24,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/eurosym/eurosym.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/eurosym/eurosym.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
@@ -65,6 +67,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/footmisc/footmisc.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/footmisc/footmisc.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/pdflscape.sty

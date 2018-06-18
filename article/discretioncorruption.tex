@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{centernot}
 \usepackage{amsfonts}
 \usepackage{eurosym}
 \usepackage{geometry}
@@ -12,6 +13,7 @@
 \usepackage{sectsty}
 \usepackage{comment}
 \usepackage{footmisc}
+\usepackage{enumitem}
 \usepackage{caption}
 \usepackage{natbib}
 \usepackage{pdflscape}
@@ -34,10 +36,13 @@
 \newtheorem{hyp}{Hypothesis}
 \newtheorem{subhyp}{Hypothesis}[hyp]
 \renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+% \renewcommand{\labelenumi}{H.\arabic{enumi}.} %
 \newcommand\T{\rule{0pt}{2.6ex}}       % Top strut
 \newcommand\B{\rule[-1.2ex]{0pt}{0pt}} % Bottom strut
 \newcommand{\red}[1]{{\color{red} #1}}
 \newcommand{\blue}[1]{{\color{blue} #1}}
+\newcommand{\ci}{\perp\!\!\!\perp}
+\newcommand{\nci}{\centernot{\ci}}
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
@@ -92,8 +97,8 @@ Secondly, Brazilian procurement rules \emph{l} impose an additional cost of corr
 The last novel contribution here is modeling individual corruption decision as endogenous. In this setting, officials behave strategically: if they see their colleagues engaging in corrupt exchanges and getting by unnoticed, they are also more likely to be corrupt themselves simply because their cost of being honest is higher. Holding constant the ability to uncover and prosecute corruption cases (due to local resource constraints), the probability of detection of any wrongdoing decreases with the number of dishonest people and the number of illegal actions in each municipality. In other words, being honest in a corrupt environment is costly. \citet{FerrazExposingCorruptPoliticians2008b}, \citet{WintersLackingInformationCondoning2013}, and \citet{ChongDoesCorruptionInformation2015} document a similar behavior according to which voters discount corruption evidence from electoral punishment when corruption is endemic in local elections in Brazil and Mexico. There is no reason to think that public officials would behave differently. After manipulating and adding these factors to equation \ref{eq:eq1}, the corruption function then becomes:\footnote{There is no particular functional form determining the relationship among all variables in our framework. We mostly focus on the most important factors summarizing the relationship between discretion and corruption, which is our focus in this paper.}
 \begin{equation} \label{eq:eq2}
   \begin{aligned}
-  b = f&(w,\ v,\ p,\ d,\ x,\ l,\ r)& \\
-  f'&(-, +, -, -,+, -,+)&
+    b = f(w,\ v,\ p,\ d,\ x,\ l,\ r)& \\
+    \nabla f'(-,+,-,-,+,-,+)&
   \end{aligned}
 \end{equation}
 
@@ -101,16 +106,20 @@ Where \emph{b} is our corruption index as a function of all previous variables (
 
 The last three variables in equation \ref{eq:eq2} are the centerpiece of our model. We anticipate that  procurement amount \emph{x} and overall municipal corruption \emph{r} are positively correlated with one's decision to engage in corruption and jointly offset the efforts to reduce corruption by imposing stricter, less discretionary rules on public spending in Brazil. Moreover, \emph{x} and \emph{r} have negative second derivatives, representing the official's risk-aversion, while \emph{l} should have a positive second derivative. In other words, higher-order procurement types are less effective at reducing corruption than lower-order types. These relationships are described below.
 \begin{equation} \label{eq:eq3}
-    (i)   f_{x} > 0; f_{xx} < 0 \qquad
-    (ii)  f_{l} < 0; f_{ll} > 0 \qquad
-    (iii) f_{r} > 0; f_{rr} < 0 \qquad
+  (i)   f_{x} > 0; f_{xx} < 0 \qquad \qquad
+  (ii)  f_{l} < 0; f_{ll} > 0 \qquad \qquad
+  (iii) f_{r} > 0; f_{rr} < 0 \qquad \qquad
 \end{equation}
 
+The analysis in this paper focuses on the partial derivatives in (ii), and we are interested in potential endogenous relationships between \emph{l}, \emph{x}, and \emph{r}. According to Law 8,666/93, contracting rules are a deterministic function of procurement amount, so we know with certainty that \emph{l} is a function of \emph{x}. On the other hand, the procurement categories in the Brazilian legislation are independent of any particular government corruption, so we know that \emph{l} does not depend on \emph{r}. The only effect of the existing corruption level on procurement type works through the contracting amount. The direction of the effect, however, is unclear: although a more corrupt body of public officials might want larger contracting values so that their cut compensates the risk of detection, we cannot rule out a negative effect on procurement amount if corrupt, but smart, officials would know best and keep their corruption earnings low enough not to draw any attention to their actions. In the following section, we discuss the identification strategy that allows us to isolate the causal effects of discretion on corruption.
 
-
-\subsection{Reseach Design} \label{subsec:design}
+\subsection{Research Design} \label{subsec:design}
 
 \subsection{Hypotheses} \label{subsec:hypotheses}
+
+\begin{enumerate}
+  \item
+\end{enumerate}
 
 \section{Results} \label{sec:result}
 
