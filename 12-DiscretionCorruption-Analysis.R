@@ -77,17 +77,17 @@ so.statistics <- c("so.amount", "infraction.count", "corruption.binary",
   "corruption.share", "corruption.amount", "mismanagement.binary",
   "mismanagement.share", "mismanagement.amount")
 so.statistics.labels <- c("Amount (in R$)", "Infraction Count",
-  "Corruption Index I (Binary)",
-  "Corruption Index II (Share of Total Infractions)",
-  "Corruption Index III (Amount)", "Mismanagement Index I (Binary)",
-  "Mismanagement Index II (Share of Total Infractions)",
-  "Mismanagement Index III (Amount)")
+  "Corruption Indicator I (Binary)",
+  "Corruption Indicator II (Share of Total Infractions)",
+  "Corruption Indicator III (Amount)", "Mismanagement Indicator I (Binary)",
+  "Mismanagement Indicator II (Share of Total Infractions)",
+  "Mismanagement Indicator III (Amount)")
 
 # Then municipal stats second
 mun.statistics <- setdiff(c(names(mun.data), names(mun.election)),
   c("ibge.id", "mun.election"))
 mun.statistics.labels <- c("Urban Population (Share)", "Female (Share)",
-  "Illiteracy Rate", "GDP", "Gini Index", "Human Development Index",
+  "Illiteracy Rate", "GDP", "Gini Index", "Human Development Indicator",
   "Poverty Rate", "Presence of AM Radio", "Education Council Established",
   "Health Council Established", "Seat of Judiciary Branch", "Vote Margin",
   "Mayor Reelection Rate")

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  18 JUN 2018 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  19 JUN 2018 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -404,22 +404,22 @@ Now handling font encoding PU ...
 (./discretioncorruption.aux)
 \openout1 = `discretioncorruption.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -490,7 +490,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box36
-Package hyperref Info: Link coloring OFF on input line 53.
+Package hyperref Info: Link coloring OFF on input line 54.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -500,59 +500,59 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count134
 )
-LaTeX Info: Redefining \ref on input line 53.
-LaTeX Info: Redefining \pageref on input line 53.
-LaTeX Info: Redefining \nameref on input line 53.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \nameref on input line 54.
 
 (./discretioncorruption.out) (./discretioncorruption.out)
 \@outlinefile=\write4
 \openout4 = `discretioncorruption.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 61.
+LaTeX Font Info:    Try loading font information for U+msa on input line 62.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 61.
+LaTeX Font Info:    Try loading font information for U+msb on input line 62.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 61.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--67
+Underfull \hbox (badness 10000) in paragraph at lines 63--68
 
  []
 
 [0
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1] [2] (./discretioncorruption.bbl [3]) [4]
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+[1] [2] [3] (./discretioncorruption.bbl) [4]
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
 \OT1/cmr/m/n/10 ``com-pra'' ``re-curso(.)*financ'' ``unidade(.)*m[^^Soo]ve(.)*s
 a[^^Suu]de'' ``pnate'' ``trans-
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 178.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 204.
 
-Underfull \hbox (badness 2213) in paragraph at lines 178--179
+Underfull \hbox (badness 2213) in paragraph at lines 204--205
 []|\OT1/cmr/m/n/10 ``co(ns\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 sn)tru'' ``obra'' `
 `im-plant'' ``in-fra(.)*estrut'' ``am-plia'' ``abasteci(.)*d(.)*[^^Saa]gua''
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 \OT1/cmr/m/n/10 ``re-forma'' ``(mel-ho-ria\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 ade
 qua)+(.)*(f[^^S^^Pi]sica\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 escolar\OMS/cmsy/m/n/
 10 j\OT1/cmr/m/n/10 habitac\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 sanit[^^Saa]ria)+'
@@ -560,7 +560,7 @@ qua)+(.)*(f[^^S^^Pi]sica\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 escolar\OMS/cmsy/m/n/
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 178--179
+Underfull \hbox (badness 3291) in paragraph at lines 204--205
 \OT1/cmr/m/n/10 ``adu-tora\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 dessaliniz\OMS/cmsy
 /m/n/10 j\OT1/cmr/m/n/10 reservat[^^Soo]'' ``sanit[^^Saa]ri[ao]'' ``po^^Xco'' `
 `aper-fei[^^Xcc]oa'' ``sanea-mento''
@@ -570,83 +570,84 @@ Underfull \hbox (badness 3291) in paragraph at lines 178--179
 
 
 ]
-<venn.png, id=165, 481.8pt x 481.8pt>
+<venn.png, id=173, 481.8pt x 481.8pt>
 File: venn.png Graphic file (type png)
 <use venn.png>
-Package pdftex.def Info: venn.png  used on input line 189.
+Package pdftex.def Info: venn.png  used on input line 215.
 (pdftex.def)             Requested size: 140.92793pt x 140.92409pt.
  [6 <./venn.png>] (./appendix_tab2.tex) (./appendix_tab3.tex [7]) [8]
 (./appendix_tab4.tex) [9] (./appendix_tab5.tex) [10] [11] [12]
-<purchasesmanipulation1.png, id=244, 481.8pt x 481.8pt>
+<purchasesmanipulation1.png, id=252, 481.8pt x 481.8pt>
 File: purchasesmanipulation1.png Graphic file (type png)
 <use purchasesmanipulation1.png>
-Package pdftex.def Info: purchasesmanipulation1.png  used on input line 342.
+Package pdftex.def Info: purchasesmanipulation1.png  used on input line 368.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation1.png, id=245, 481.8pt x 481.8pt>
+<worksmanipulation1.png, id=253, 481.8pt x 481.8pt>
 File: worksmanipulation1.png Graphic file (type png)
 <use worksmanipulation1.png>
-Package pdftex.def Info: worksmanipulation1.png  used on input line 342.
+Package pdftex.def Info: worksmanipulation1.png  used on input line 368.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation2.png, id=246, 481.8pt x 481.8pt>
+<purchasesmanipulation2.png, id=254, 481.8pt x 481.8pt>
 File: purchasesmanipulation2.png Graphic file (type png)
 <use purchasesmanipulation2.png>
-Package pdftex.def Info: purchasesmanipulation2.png  used on input line 343.
+Package pdftex.def Info: purchasesmanipulation2.png  used on input line 369.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation2.png, id=247, 481.8pt x 481.8pt>
+<worksmanipulation2.png, id=255, 481.8pt x 481.8pt>
 File: worksmanipulation2.png Graphic file (type png)
 <use worksmanipulation2.png>
-Package pdftex.def Info: worksmanipulation2.png  used on input line 343.
+Package pdftex.def Info: worksmanipulation2.png  used on input line 369.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation3.png, id=248, 481.8pt x 481.8pt>
+<purchasesmanipulation3.png, id=256, 481.8pt x 481.8pt>
 File: purchasesmanipulation3.png Graphic file (type png)
 <use purchasesmanipulation3.png>
-Package pdftex.def Info: purchasesmanipulation3.png  used on input line 344.
+Package pdftex.def Info: purchasesmanipulation3.png  used on input line 370.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation3.png, id=249, 481.8pt x 481.8pt>
+<worksmanipulation3.png, id=257, 481.8pt x 481.8pt>
 File: worksmanipulation3.png Graphic file (type png)
 <use worksmanipulation3.png>
-Package pdftex.def Info: worksmanipulation3.png  used on input line 344.
+Package pdftex.def Info: worksmanipulation3.png  used on input line 370.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 376.
  [13] [14 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchase
 smanipulation2.png> <./worksmanipulation2.png> <./purchasesmanipulation3.png> <
 ./worksmanipulation3.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 350.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 376.
  (./discretioncorruption.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 350.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 350.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 376.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 376.
 Package rerunfilecheck Info: File `discretioncorruption.out' has not changed.
 (rerunfilecheck)             Checksum: 57AEC35236C63CFFCF9BB73EAE9F9BE7;2327.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 350.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 376.
  ) 
 Here is how much of TeX's memory you used:
- 12466 strings out of 492646
- 178803 string characters out of 6129564
- 274105 words of memory out of 5000000
- 16123 multiletter control sequences out of 15000+600000
- 17153 words of font info for 67 fonts, out of 8000000 for 9000
+ 12491 strings out of 492646
+ 179193 string characters out of 6129564
+ 274380 words of memory out of 5000000
+ 16141 multiletter control sequences out of 15000+600000
+ 17461 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,16n,39p,1681b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,16n,39p,1681b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
-texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
-e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2
-018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
-8/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on discretioncorruption.pdf (15 pages, 403296 bytes).
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
+cal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
+l/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
+ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
+/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/20
+18/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on discretioncorruption.pdf (15 pages, 418928 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
- 66 named destinations out of 1000 (max. 500000)
+ 349 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
