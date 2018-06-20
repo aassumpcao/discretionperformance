@@ -77,7 +77,7 @@ so.data %>%
 so.statistics <- c("so.amount", "infraction.count", "corruption.binary",
   "corruption.share", "corruption.amount", "mismanagement.binary",
   "mismanagement.share", "mismanagement.amount")
-so.statistics.labels <- c("Amount (in R$)", "Infraction Count",
+so.statistics.labels <- c("Amount (in R)", "Infraction Count",
   "Corruption Indicator I (Binary)",
   "Corruption Indicator II (Share of Total Infractions)",
   "Corruption Indicator III (Amount)", "Mismanagement Indicator I (Binary)",
@@ -199,17 +199,30 @@ names(analysis.data)
 # Define vector of outcomes
 outcomes <- setdiff(so.statistics, c("so.amount", "infraction.count"))
 
+# Define outcome labels
+outcome.labels <- setdiff(
+  so.statistics.labels, c("Amount (in R)", "Infraction Count")
+)
+
 # Define vector of procurement-specific regressors
 so.covariates <- paste(
   "so.amount", "I(so.amount^2)", "mun.corruption", "I(mun.corruption^2)",
   "factor(so.procurement)", sep = " + "
 )
+# Define Covariates Labels
+so.covariates.labels <- c("Amount (in R)", "Amount (in R, Squared)",
+  "Municipal Corruption", "Municipal Corruption (Squared)",
+  "Procurement Type 1", "Procurement Type 2", "Procurement Type 3")
 
 # Define vector of municipality characteristics
 mun.covariates <- analysis.data %>%
   ungroup() %>%
   dplyr::select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
   names()
+
+# Define Covariates labels
+mun.covariates.labels <- c()
+
 
 # Pull factor positions
 factors <- grep(
@@ -245,7 +258,10 @@ for (i in seq(from = 1, to = 6)) {
   # Run each regression
   lm <- lm(
     as.formula(
-      paste(outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "), sep = " ~ ")
+      paste(
+        outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "),
+        sep = " ~ "
+      )
     ),
     data = analysis.data
   )
@@ -263,33 +279,39 @@ for (i in seq(from = 1, to = 6)) {
 # Table: First Linear Regressions #
 #---------------------------------#
 stargazer(
-  so.lm.corruption.1, so.lm.corruption.2, so.lm.corruption.3,
-  so.lm.corruption.covariates.1, so.lm.corruption.covariates.2,
-  so.lm.corruption.covariates.3
+  # Regressions that will be printed to table
+  list(so.lm.corruption.1, so.lm.corruption.covariates.1, so.lm.corruption.2,
+  so.lm.corruption.covariates.2, so.lm.corruption.3,
+  so.lm.corruption.covariates.3),
+
+  # Table commands
+  title                  = "Corruption Determinants in Brazilian Municipalities",
+  out                    = paste0(getwd(), "/article/tab_mainregression.tex"),
+  out.header             = FALSE,
+  column.labels          = rep(
+                            c(outcome.labels[[1]],
+                              outcome.labels[[2]],
+                              outcome.labels[[3]]
+                            ),
+                            2
+                           ),
+  column.separate        = rep(1, 6),
+  covariate.labels       = so.covariates.labels,
+  dep.var.labels.include = FALSE,
+  align                  = TRUE,
+  column.sep.width       = "2pt",
+  digits                 = 3,
+  # digits.extra         = 4,
+  font.size              = "small",
+  header                 = FALSE,
+  keep                   = c("amount|corrupt|procurement"),
+  label                  = "mainregression",
+  no.space = TRUE,
+  table.placement        = "!htbp",
+  omit = c("control", "ministry", "lottery"),
+  omit.labels = c("Municipal Controls", "Ministry Fixed-Effects", "Lottery Fixed-Effects"),
+  omit.stat = c("rsq", "ser"),
+  star.cutoffs = c(10, 5, 1)
 )
 
-
-stargazer(
-  list(
-    get(paste0("so.lm.corruption.", seq(1, 3))),
-    get(paste0("so.lm.corruption.covariates.", seq(1, 3)))
-  ),
-  title = "Corruption Determinants in Brazilian Municipalities",
-  out = paste0(getwd(), "/article/tab_firstregression")
-)
-
-
-
-
-  title            = "Summary Statistics",
-  out              = paste0(getwd(), "/article/tab_summarystats2.tex"),
-  out.header       = FALSE,
-  covariate.labels = mun.statistics.labels,
-  align            = TRUE,
-  column.sep.width = "2pt",
-  digits           = 3,
-  # digits.extra     = 4,
-  font.size        = "small",
-  header           = FALSE,
-  label            = "descriptivestatistics",
-  table.placement  = "!htbp"
+summary(so.lm.corruption.covariates.1)

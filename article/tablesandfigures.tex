@@ -172,5 +172,50 @@
   \end{tabular}
 \end{table}
 
+\begin{table}[!htbp]
+  \caption{\label{mainregression}Corruption Determinants in Brazilian Municipalities}
+  \centering
+  \small
+  \begin{tabular}{lcc@{\extracolsep{5pt}}cc@{\extracolsep{5pt}}cc}
+  \hline
+
+  \hline
+  & \multicolumn{6}{c}{\textit{Dependent variable:}} \\
+  \cline{2-7}
+  & \multicolumn{2}{c}{\makecell[tc]{Corruption \\ Indicator I \\ \footnotesize{(Binary)}}} & \multicolumn{2}{c}{\makecell[tc]{Corruption \\ Indicator II \\ \footnotesize{(Share of Total} \\ \footnotesize{Infractions)}}} & \multicolumn{2}{c}{\makecell[tc]{Corruption \\ Indicator III \\ \footnotesize{(Amount)}}} \T \B \\
+  \cline{2-3} \cline{4-5} \cline{6-7}
+  & \multicolumn{1}{c}{(1)}        & \multicolumn{1}{c}{(2)}            & \multicolumn{1}{c}{(3)}            & \multicolumn{1}{c}{(4)}            & \multicolumn{1}{c}{(5)}            & \multicolumn{1}{c}{(6)}                                                                                                                           \T \B \\
+  \hline
+   Amount                          & 0.000\textsuperscript{***}         & 0.000\textsuperscript{***}         & 0.000\textsuperscript{***}         & 0.000\textsuperscript{***}         & 0.451\textsuperscript{***}        & 0.452\textsuperscript{***}          \T \B \\
+   \footnotesize{(in R\$)}         & (0.000)                            & (0.000)                            & (0.000)                            & (0.000)                            & (0.005)                           & (0.005)                             \T \B \\
+   Amount                          & -0.000\textsuperscript{***}        & -0.000\textsuperscript{***}        & -0.000\textsuperscript{***}        & -0.000\textsuperscript{***}        & -0.000\textsuperscript{***}       & -0.000\textsuperscript{***}         \T \B \\
+   \footnotesize{(in R\$, Squared)}& (0.000)                            & (0.000)                            & (0.000)                            & (0.000)                            & (0.000)                           & (0.000)                             \T \B \\
+   Municipal Corruption            & 1.079\textsuperscript{***}         & 0.812\textsuperscript{***}         & 0.546\textsuperscript{***}         & 0.423\textsuperscript{***}         & 130,305\textsuperscript{***}      & 174,681\textsuperscript{***}        \T \B \\
+                                   & (0.102)                            & (0.105)                            & (0.061)                            & (0.064)                            & (135,208)                         & (142,285)                           \T \B \\
+   Municipal Corruption            & -1.619\textsuperscript{***}        & -1.396\textsuperscript{***}        & -0.412\textsuperscript{***}        & -0.327\textsuperscript{***}        & -109,920\textsuperscript{***}     & -178,577\textsuperscript{***}       \T \B \\
+   \footnotesize{(Squared)}        & (0.192)                            & (0.193)                            & (0.115)                            & (0.117)                            & (255,158)                         & (262,354)                           \T \B \\
+   Procurement Type 1              & 0.086\textsuperscript{***}         & 0.114\textsuperscript{***}         & 0.035\textsuperscript{***}         & 0.046\textsuperscript{***}         & -11,702\textsuperscript{***}      & -2,273\textsuperscript{***}         \T \B \\
+                                   & (0.021)                            & (0.021)                            & (0.012)                            & (0.013)                            & (27,711)                          & (28,279)                            \T \B \\
+   Procurement Type 2              & 0.162\textsuperscript{***}         & 0.205\textsuperscript{***}         & 0.064\textsuperscript{***}         & 0.079\textsuperscript{***}         & -63,758\textsuperscript{***}      & -39,176\textsuperscript{***}        \T \B \\
+                                   & (0.021)                            & (0.022)                            & (0.013)                            & (0.013)                            & (28,326)                          & (29,628)                            \T \B \\
+   Procurement Type 3              & 0.174\textsuperscript{***}         & 0.188\textsuperscript{***}         & 0.040\textsuperscript{***}         & 0.046\textsuperscript{***}         & -381,097\textsuperscript{***}     & -353,389\textsuperscript{***}       \T \B \\
+                                   & (0.030)                            & (0.030)                            & (0.018)                            & (0.018)                            & (39,550)                          & (40,533)                            \T \B \\
+  \hline
+  Municipal Controls               & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}             & \multicolumn{1}{c}{Yes}             \T \B \\
+  Ministry Fixed-Effects           & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}             & \multicolumn{1}{c}{Yes}             \T \B \\
+  Lottery Fixed-Effects            & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}              & \multicolumn{1}{c}{Yes}            & \multicolumn{1}{c}{-}             & \multicolumn{1}{c}{Yes}             \T \B \\
+  \hline
+  Observations                     & \multicolumn{1}{c}{9,593}          & \multicolumn{1}{c}{9,593}          & \multicolumn{1}{c}{9,593}          & \multicolumn{1}{c}{9,593}          & \multicolumn{1}{c}{9,593}         & \multicolumn{1}{c}{9,593}           \T \B \\
+  Adjusted R$^{2}$                 & \multicolumn{1}{c}{0.034}          & \multicolumn{1}{c}{0.074}          & \multicolumn{1}{c}{0.036}          & \multicolumn{1}{c}{0.052}          & \multicolumn{1}{c}{0.551}         & \multicolumn{1}{c}{0.551}           \T \B \\
+  F Statistic                      & \multicolumn{1}{c}{48.926$^{***}$} & \multicolumn{1}{c}{17.992$^{***}$} & \multicolumn{1}{c}{52.371$^{***}$} & \multicolumn{1}{c}{12.606$^{***}$} & \multicolumn{1}{c}{1,680$^{***}$} & \multicolumn{1}{c}{262.439$^{***}$} \T \B \\
+  \hline
+
+  \hline
+  \multicolumn{7}{p{.5\textwidth}}{Notes:$^{*}$p$<$10; $^{**}$p$<$5; $^{***}$p$<$1} \T
+  \end{tabular}
+\end{table}
+
+
+
 
 \end{document}
