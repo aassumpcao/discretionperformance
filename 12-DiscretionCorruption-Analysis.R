@@ -35,6 +35,7 @@ library(tikzDevice)  # Version 0.11
 library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
 library(fuzzyjoin)   # Version 0.1.4
+library(zeligverse)  # Version 5.1.6
 
 #------------------------------------------------------------------------------#
 ############################## Summary Statistics ##############################
@@ -62,10 +63,10 @@ load("mun.election.Rda")
 so.data %>%
   group_by(ibge.id) %>%
   dplyr::summarize(
-    education = max(education),
-    health    = max(health)
+    so.education = max(so.education),
+    so.health    = max(so.health)
   ) %>%
-  with(., table(education, health)) %>%
+  with(., table(so.education, so.health)) %>%
   xtable()
 
 #---------------------------#
@@ -139,7 +140,7 @@ analysis.data <- left_join(so.data, mun.data, by = c("ibge.id" = "ibge.id")) %>%
 # Finally, we break municipalities data apart from the main dataset
 summary.stats.panelB <-
   analysis.data %>%
-  select(ibge.id, mun.statistics) %>%
+  dplyr::select(ibge.id, mun.statistics) %>%
   group_by(ibge.id) %>%
   dplyr::summarize_all(funs(mean))
 
@@ -180,3 +181,115 @@ stargazer(
 #------------------------------------------------------------------------------#
 ################################### Analysis ###################################
 #------------------------------------------------------------------------------#
+#-----------------#
+# Main regression #
+#-----------------#
+# First we need to create the municipal corruption variable
+analysis.data %<>%
+  group_by(ibge.id) %>%
+  mutate(
+    mun.corruption = sum(corruption.count) / sum(infraction.count),
+    mun.corruption = mun.corruption - (corruption.count /sum(infraction.count)),
+    mun.corruption = ifelse(is.na(mun.corruption), 0, mun.corruption)) %>%
+  dplyr::select(c(1:66), mun.corruption, c(67:80))
+
+# Check the variables we should use
+names(analysis.data)
+
+# Define vector of outcomes
+outcomes <- setdiff(so.statistics, c("so.amount", "infraction.count"))
+
+# Define vector of procurement-specific regressors
+so.covariates <- paste(
+  "so.amount", "I(so.amount^2)", "mun.corruption", "I(mun.corruption^2)",
+  "factor(so.procurement)", sep = " + "
+)
+
+# Define vector of municipality characteristics
+mun.covariates <- analysis.data %>%
+  ungroup() %>%
+  dplyr::select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
+  names()
+
+# Pull factor positions
+factors <- grep(
+  mun.covariates, pattern = "radio|council|lottery|judiciary|reelected|so\\.")
+
+# Concatenate municipal covariates vector
+for (i in factors) {
+  mun.covariates[[i]] <- paste0("factor(", mun.covariates[[i]], ")")
+}
+
+# Collapse to single vector
+mun.covariates <- paste(mun.covariates, collapse = " + ")
+
+# Run service order regressions, no covariates
+for (i in seq(from = 1, to = 6)) {
+  # Run each regression
+  lm <- lm(
+    as.formula(paste(outcomes[[i]], so.covariates, sep = " ~ ")),
+    data = analysis.data
+  )
+  # Store corruption regressions
+  if (i <= 3) {
+    assign(paste0("so.lm.corruption.", i), lm)
+  }
+  # And mismanagement regressions
+  else {
+    assign(paste0("so.lm.mismanagement.", i-3), lm)
+  }
+}
+
+# Define
+for (i in seq(from = 1, to = 6)) {
+  # Run each regression
+  lm <- lm(
+    as.formula(
+      paste(outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "), sep = " ~ ")
+    ),
+    data = analysis.data
+  )
+  # Store corruption regressions
+  if (i <= 3) {
+    assign(paste0("so.lm.corruption.covariates.", i), lm)
+  }
+  # And mismanagement regressions
+  else {
+    assign(paste0("so.lm.mismanagement.covariates.", i-3), lm)
+  }
+}
+
+#---------------------------------#
+# Table: First Linear Regressions #
+#---------------------------------#
+stargazer(
+  so.lm.corruption.1, so.lm.corruption.2, so.lm.corruption.3,
+  so.lm.corruption.covariates.1, so.lm.corruption.covariates.2,
+  so.lm.corruption.covariates.3
+)
+
+
+stargazer(
+  list(
+    get(paste0("so.lm.corruption.", seq(1, 3))),
+    get(paste0("so.lm.corruption.covariates.", seq(1, 3)))
+  ),
+  title = "Corruption Determinants in Brazilian Municipalities",
+  out = paste0(getwd(), "/article/tab_firstregression")
+)
+
+
+
+
+  title            = "Summary Statistics",
+  out              = paste0(getwd(), "/article/tab_summarystats2.tex"),
+  out.header       = FALSE,
+  covariate.labels = mun.statistics.labels,
+  align            = TRUE,
+  column.sep.width = "2pt",
+  digits           = 3,
+  # digits.extra     = 4,
+  font.size        = "small",
+  header           = FALSE,
+  label            = "descriptivestatistics",
+  table.placement  = "!htbp"

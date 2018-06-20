@@ -50,7 +50,7 @@ load("Sorteio8a31.Rda")            # CGU list of funds audited
 
 # 1. Merge service orders with additional CGU audit information
 so.data <- Sorteio8a31 %>%
-  select(
+  dplyr::select(
     numero, instrumento_transferencia, convenio, periodo_realizacao_inicio_1,
     periodo_realizacao_final, funcional_programatica
   ) %>%
@@ -58,7 +58,7 @@ so.data <- Sorteio8a31 %>%
 
 # 2. Merge service orders with audit report data from CEPESP
 so.data <- base_cgu %>%
-  select(
+  dplyr::select(
     SO_number, cod_ibge, draw, policy, subpolicy, amount, MEC, MS,
     objFiscalizacao
   ) %>%
@@ -98,7 +98,7 @@ so.data <- base_cgu %>%
 
 # 1. Merge missing policy and subpolicy information
 so.data <- Sorteio8a31 %>%
-  select(funcional_programatica) %>%
+  dplyr::select(funcional_programatica) %>%
   mutate(subpolicy1 = substr(funcional_programatica, 6, 13)) %>%
   distinct(subpolicy1, .keep_all = T) %>%
   left_join(so.data, ., by = c("subpolicy1", "subpolicy1")) %>%
@@ -111,12 +111,12 @@ so.data <- Sorteio8a31 %>%
                                       funcional_programatica
                                   )
   ) %>%
-  select(-funcional_programatica.x, -funcional_programatica.y)
+  dplyr::select(-funcional_programatica.x, -funcional_programatica.y)
 
 # 3. Merge service orders with Federal grants information
 so.data <- cgu_convenios %>%
   filter(TipoEnteConvenente != "'E' (estadual)") %>%
-  select(NúmeroConvênio, ObjetoConvênio, ValorLiberado) %>%
+  dplyr::select(NúmeroConvênio, ObjetoConvênio, ValorLiberado) %>%
   mutate(
     ValorLiberado = parse_double(ValorLiberado,
                                       locale = locale(decimal_mark = ",")
@@ -143,7 +143,7 @@ so.data %<>%
     into = c("fun", "subfun", "program", "action", "locator"),
     sep  = c(2, 5, 9, 13)
   ) %>%
-  select(-locator, -contains("policy"))
+  dplyr::select(-locator, -contains("policy"))
 
 
 #------------------#
@@ -151,7 +151,7 @@ so.data %<>%
 #------------------#
 # 5. Drop useless columns (corruption)
 # names(so.data)
-so.data %<>% select(-convenio, -amount, -`(blank)`, -ValorLiberado)
+so.data %<>% dplyr::select(-convenio, -amount, -`(blank)`, -ValorLiberado)
 
 # 6. Rename and rearrange columns from largest to smallest aggregation level
 so.data %<>%
@@ -162,8 +162,8 @@ so.data %<>%
     audit.end            = periodo_realizacao_final,
     ibge.id              = cod_ibge,
     lottery.id           = draw,
-    education            = MEC,
-    health               = infraction.MS,
+    so.education         = MEC,
+    so.health            = infraction.MS,
     so.description       = infraction.objFiscalizacao,
     infraction.count     = "Grand Total",
     so.function          = fun,
@@ -172,9 +172,9 @@ so.data %<>%
     so.subprogram        = action,
     transfer.description = ObjetoConvênio
   ) %>%
-  select(
-    ibge.id, transfer.id, transfer.description, education, health, lottery.id,
-    audit.start, audit.end, contains("so"), contains("infraction")
+  dplyr::select(
+    ibge.id, transfer.id, transfer.description, so.education, so.health,
+    lottery.id, audit.start, audit.end, contains("so"), contains("infraction")
   )
 
 # 7. Create corruption and mismanagement outcomes (== 7 outcomes total)
@@ -259,7 +259,7 @@ no.date <- tibble(
 
 # Fill in missing values for date from municipal audit lottery
 date.fill <- so.data %>%
-  select(ibge.id, lottery.id, so.id, contains("audit")) %>%
+  dplyr::select(ibge.id, lottery.id, so.id, contains("audit")) %>%
   unite("unique.id", c("ibge.id", "lottery.id"), sep = "", remove = F) %>%
   group_by(unique.id) %>%
   fill(audit.start, audit.end, .direction = "up") %>%
@@ -276,7 +276,7 @@ date.fill <- so.data %>%
                   )
   ) %>%
   ungroup() %>%
-  select(so.id, audit.start, audit.end)
+  dplyr::select(so.id, audit.start, audit.end)
 
 # Pull imputed dates to final SO dataset
 so.data %<>%
@@ -289,7 +289,7 @@ so.data %<>%
     audit.start   = audit.start.x,
     audit.end     = audit.end.x
   ) %>%
-  select(-contains(".y"))
+  dplyr::select(-contains(".y"))
 
 # Remove fill data
 rm(no.date, date.fill)
@@ -306,7 +306,7 @@ so.data %<>%
   arrange(so.subprogram, desc(nchar.so.description)) %>%
   fill(so.description, .direction = "down") %>%
   ungroup() %>%
-  select(-nchar.so.description)
+  dplyr::select(-nchar.so.description)
 
 # 11. To log or not to log amount variable
 # names(so.data)
@@ -319,7 +319,7 @@ so.data %<>%
 load("soData_tagged.Rda")
 
 so.data <- so.data.tagged %>%
-  select(soID, contains("purchases"), contains("works")) %>%
+  dplyr::select(soID, contains("purchases"), contains("works")) %>%
   left_join(so.data, ., by = c("so.id" = "soID")) %>%
   mutate(
     so.type        = ifelse(
@@ -347,8 +347,8 @@ so.data <- so.data.tagged %>%
                             so.type == 2 & so.amount > 1500000,3, so.procurement
                      )
   ) %>%
-  select(-contains("purchases"), -contains("works")) %>%
-  select(
+  dplyr::select(-contains("purchases"), -contains("works")) %>%
+  dplyr::select(
     c(1:3), transfer.type, c(4:15), so.type, so.procurement,
     contains("infraction."), contains("corruption."), contains("mismanagement")
   )

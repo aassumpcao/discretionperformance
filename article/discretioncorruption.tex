@@ -118,13 +118,13 @@ The analysis in this paper focuses on the partial derivatives in (ii), and we ar
 
 \begin{equation} \label{eq:mainregression}
   \begin{aligned}
-    y_{i} = \alpha + \gamma_{1}x + \gamma_{2}x^{2} + \delta_{1}r + \delta_{2}r^{2} + \rho l + \sum \beta_{k}X + \varepsilon
+    y_{i} = \alpha + \gamma_{1}x + \gamma_{2}x^{2} + \delta_{1}r + \delta_{2}r^{2} + \rho_{1}l_{1} + \rho_{2}l_{2} + \rho_{3}l_{3} + \sum \beta_{k}X + \varepsilon
   \end{aligned}
 \end{equation}
 
-\begin{equation}
+\begin{equation} \label{eq:rddregression}
   \begin{aligned}
-    y_{i,j} = \alpha + \gamma_{1}(x-c_{j}) + \gamma_{2}(x-c_{j})^{2}+ \rho_{1}(x \geq c_{j}) + \rho_{2} (x-c_{j}) (x \geq c_{j}+ \sum \beta_{k}X + \varepsilon
+    y_{i,j} = \alpha + \gamma_{1}(x-c_{j}) + \gamma_{2}(x-c_{j})^{2}+ \rho_{1}(x \geq c_{j}) + \rho_{2} (x-c_{j}) (x \geq c_{j}) + \sum \beta_{k}X + \varepsilon
   \end{aligned}
 \end{equation}
 
