@@ -157,7 +157,7 @@ stargazer(
   # digits.extra     = 4,
   font.size        = "small",
   header           = FALSE,
-  label            = "descriptivestatistics",
+  label            = "tab:descriptivestatistics",
   table.placement  = "!htbp"
 )
 
@@ -174,7 +174,7 @@ stargazer(
   # digits.extra     = 4,
   font.size        = "small",
   header           = FALSE,
-  label            = "descriptivestatistics",
+  label            = "tab:descriptivestatistics",
   table.placement  = "!htbp"
 )
 
@@ -205,12 +205,16 @@ outcome.labels <- setdiff(
 )
 
 # Define vector of procurement-specific regressors
+# so.covariates <- paste(
+#   "(so.amount)", "mun.corruption", "I(mun.corruption^2)",
+#   "factor(so.procurement)", sep = " + "
+# )
 so.covariates <- paste(
   "so.amount", "I(so.amount^2)", "mun.corruption", "I(mun.corruption^2)",
   "factor(so.procurement)", sep = " + "
 )
 # Define Covariates Labels
-so.covariates.labels <- c("Amount (in R)", "Amount (in R, Squared)",
+so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
   "Municipal Corruption", "Municipal Corruption (Squared)",
   "Procurement Type 1", "Procurement Type 2", "Procurement Type 3")
 
@@ -220,8 +224,8 @@ mun.covariates <- analysis.data %>%
   dplyr::select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
   names()
 
-# Define Covariates labels
-mun.covariates.labels <- c()
+# Define Covariates labels (not necessary)
+# mun.covariates.labels <- c()
 
 
 # Pull factor positions
@@ -236,7 +240,7 @@ for (i in factors) {
 # Collapse to single vector
 mun.covariates <- paste(mun.covariates, collapse = " + ")
 
-# Run service order regressions, no covariates
+# Run service order regressions w/o covariates
 for (i in seq(from = 1, to = 6)) {
   # Run each regression
   lm <- lm(
@@ -253,7 +257,7 @@ for (i in seq(from = 1, to = 6)) {
   }
 }
 
-# Define
+# Run service order regressions w/ covariates
 for (i in seq(from = 1, to = 6)) {
   # Run each regression
   lm <- lm(
@@ -305,13 +309,14 @@ stargazer(
   font.size              = "small",
   header                 = FALSE,
   keep                   = c("amount|corrupt|procurement"),
-  label                  = "mainregression",
-  no.space = TRUE,
+  label                  = "tab:mainregression",
+  no.space               = TRUE,
   table.placement        = "!htbp",
-  omit = c("control", "ministry", "lottery"),
-  omit.labels = c("Municipal Controls", "Ministry Fixed-Effects", "Lottery Fixed-Effects"),
-  omit.stat = c("rsq", "ser"),
-  star.cutoffs = c(10, 5, 1)
+  omit                   = c("control", "ministry", "lottery"),
+  omit.labels            = c("Municipal Characteristics",
+                             "Ministry Fixed-Effects", "Lottery Fixed-Effects"),
+  omit.stat              = c("rsq", "ser"),
+  star.cutoffs           = c(.1, .05, .01)
 )
 
-summary(so.lm.corruption.covariates.1)
+summary(so.lm.corruption.1)
