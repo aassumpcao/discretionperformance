@@ -30,13 +30,13 @@ library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
 library(Hmisc)       # Version 4.1.1
 library(rdd)         # Version 0.99.1
-library(extrafont)   # Version 0.17
 library(tikzDevice)  # Version 0.11
 library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
-library(fuzzyjoin)   # Version 0.1.4
-library(zeligverse)  # Version 5.1.6
-
+library(commarobust) # Version 0.1.0
+library(rlist)       # Version 0.4.6.1
+library(rdrobust)
+sessionInfo()
 #------------------------------------------------------------------------------#
 ############################## Summary Statistics ##############################
 #------------------------------------------------------------------------------#
@@ -101,7 +101,7 @@ mun.election %<>%
   group_by(., mun.election) %>%
   group_by(ibge.id, add = TRUE) %>%
   slice(which.max(mun.election)) %>%
-  ungroup()
+  ungroup() %>%
   mutate(mun.election = as.Date(mun.election))
 
 # We now join them all at once.
@@ -191,7 +191,8 @@ analysis.data %<>%
     mun.corruption = sum(corruption.count) / sum(infraction.count),
     mun.corruption = mun.corruption - (corruption.count /sum(infraction.count)),
     mun.corruption = ifelse(is.na(mun.corruption), 0, mun.corruption)) %>%
-  dplyr::select(c(1:66), mun.corruption, c(67:80))
+  dplyr::select(c(1:66), mun.corruption, c(67:80)) %>%
+  ungroup()
 
 # Check the variables we should use
 names(analysis.data)
@@ -204,7 +205,7 @@ outcome.labels <- setdiff(
   so.statistics.labels, c("Amount (in R)", "Infraction Count")
 )
 
-# Define vector of procurement-specific regressors
+# # Define vector of procurement-specific regressors
 # so.covariates <- paste(
 #   "(so.amount)", "mun.corruption", "I(mun.corruption^2)",
 #   "factor(so.procurement)", sep = " + "
@@ -220,7 +221,6 @@ so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
 
 # Define vector of municipality characteristics
 mun.covariates <- analysis.data %>%
-  ungroup() %>%
   dplyr::select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
   names()
 
@@ -244,17 +244,19 @@ mun.covariates <- paste(mun.covariates, collapse = " + ")
 for (i in seq(from = 1, to = 6)) {
   # Run each regression
   lm <- lm(
-    as.formula(paste(outcomes[[i]], so.covariates, sep = " ~ ")),
+    as.formula(
+      paste(outcomes[[i]], so.covariates, sep = " ~ ")),
     data = analysis.data
   )
   # Store corruption regressions
   if (i <= 3) {
-    assign(paste0("so.lm.corruption.", i), lm)
+    assign(paste0("lm.corruption.", i), lm)
   }
   # And mismanagement regressions
   else {
-    assign(paste0("so.lm.mismanagement.", i-3), lm)
+    assign(paste0("lm.mismanagement.", i-3), lm)
   }
+  rm(lm)
 }
 
 # Run service order regressions w/ covariates
@@ -271,12 +273,13 @@ for (i in seq(from = 1, to = 6)) {
   )
   # Store corruption regressions
   if (i <= 3) {
-    assign(paste0("so.lm.corruption.covariates.", i), lm)
+    assign(paste0("lm.corruption.covariates.", i), lm)
   }
   # And mismanagement regressions
   else {
-    assign(paste0("so.lm.mismanagement.covariates.", i-3), lm)
+    assign(paste0("lm.mismanagement.covariates.", i-3), lm)
   }
+  rm(lm)
 }
 
 #---------------------------------#
@@ -284,39 +287,244 @@ for (i in seq(from = 1, to = 6)) {
 #---------------------------------#
 stargazer(
   # Regressions that will be printed to table
-  list(so.lm.corruption.1, so.lm.corruption.covariates.1, so.lm.corruption.2,
-  so.lm.corruption.covariates.2, so.lm.corruption.3,
-  so.lm.corruption.covariates.3),
+  list(lm.corruption.1, lm.corruption.covariates.1, lm.corruption.2,
+  lm.corruption.covariates.2, lm.corruption.3,
+  lm.corruption.covariates.3),
 
   # Table commands
-  title                  = "Corruption Determinants in Brazilian Municipalities",
-  out                    = paste0(getwd(), "/article/tab_mainregression.tex"),
-  out.header             = FALSE,
-  column.labels          = rep(
+  title                 = "Corruption Determinants in Brazilian Municipalities",
+  out                   = paste0(getwd(), "/article/tab_mainregression.tex"),
+  out.header            = FALSE,
+  column.labels         = rep(
                             c(outcome.labels[[1]],
                               outcome.labels[[2]],
                               outcome.labels[[3]]
                             ),
                             2
-                           ),
-  column.separate        = rep(1, 6),
-  covariate.labels       = so.covariates.labels,
-  dep.var.labels.include = FALSE,
-  align                  = TRUE,
-  column.sep.width       = "2pt",
-  digits                 = 3,
-  # digits.extra         = 4,
-  font.size              = "small",
-  header                 = FALSE,
-  keep                   = c("amount|corrupt|procurement"),
-  label                  = "tab:mainregression",
-  no.space               = TRUE,
-  table.placement        = "!htbp",
-  omit                   = c("control", "ministry", "lottery"),
-  omit.labels            = c("Municipal Characteristics",
-                             "Ministry Fixed-Effects", "Lottery Fixed-Effects"),
-  omit.stat              = c("rsq", "ser"),
-  star.cutoffs           = c(.1, .05, .01)
+                          ),
+  column.separate       = rep(1, 6),
+  covariate.labels      = so.covariates.labels,
+  dep.var.labels.include= FALSE,
+  align                 = TRUE,
+
+  # Ask for robust standard errors
+  se                    = starprep(
+                            lm.corruption.1, lm.corruption.covariates.1,
+                            lm.corruption.2, lm.corruption.covariates.2,
+                            lm.corruption.3, lm.corruption.covariates.3,
+                            clusters = analysis.data$ibge.id,
+                            alpha = .1
+                          ),
+  # p                     = starprep(
+  #                           list(
+  #                             lm.corruption.1, lm.corruption.covariates.1,
+  #                             lm.corruption.2, lm.corruption.covariates.2,
+  #                             lm.corruption.3, lm.corruption.covariates.3
+  #                           ),
+  #                           stat     = "p.value",
+  #                           clusters = analysis.data$ibge.id,
+  #                           alpha    = .1
+  #                         ),
+  column.sep.width      = "2pt",
+  digits                = 3,
+  digits.extra          = 0,
+  # initial.zero          = FALSE,
+  font.size             = "small",
+  header                = FALSE,
+  keep                  = c("amount|corrupt|procurement"),
+  label                 = "tab:mainregression",
+  no.space              = TRUE,
+  table.placement       = "!htbp",
+  omit                  = c("control", "ministry", "lottery"),
+  omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
+                            "Lottery Fixed-Effects"),
+  omit.stat             = c("rsq", "ser"),
+  star.cutoffs          = c(.1, .05, .01)
 )
 
-summary(so.lm.corruption.1)
+# Remove the models from the environment in R
+rm(list = objects(pattern = "lm\\.|summary\\.stats"))
+
+#-----------------------#
+# Bandwidth choice test #
+#-----------------------#
+# We use Cattaneo (2016)'s rules for sub-setting the sample. In cases where
+# assignment to different treatments is cumulative on the running variable, they
+# suggest using observations with running values up to c-1 and c+1 cutoff values
+# for each c cutoff.
+purchases.bandwidth.1 <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount <=  80000 & so.type == 1)
+purchases.bandwidth.2 <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount >    8000 & so.amount <= 650000 & so.type == 1)
+purchases.bandwidth.3 <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount >   80000 & so.type == 1)
+works.bandwidth.1     <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount <= 150000 & so.type == 2)
+works.bandwidth.2     <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount >   15000 & so.amount <= 1500000 & so.type == 2)
+works.bandwidth.3     <- analysis.data %>%
+  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  filter(so.amount > 150000  & so.type == 2)
+
+# Test 1: CCT = Calonico et al. (2015)
+# Create empty vectors for later calculation of mean bandwidth
+p.cutoff1.bw <- double(length = 6)
+p.cutoff2.bw <- double(length = 6)
+p.cutoff3.bw <- double(length = 6)
+w.cutoff1.bw <- double(length = 6)
+w.cutoff2.bw <- double(length = 6)
+w.cutoff3.bw <- double(length = 6)
+
+
+
+rdrobust.purchases.1.outcome.1 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[1]]), so.amount, c = 8000,    cluster = ibge.id))
+rdrobust.purchases.1.outcome.2 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[2]]), so.amount, c = 8000,    cluster = ibge.id))
+rdrobust.purchases.1.outcome.3 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[3]]), so.amount, c = 8000,    cluster = ibge.id))
+rdrobust.purchases.1.outcome.4 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[4]]), so.amount, c = 8000,    cluster = ibge.id))
+rdrobust.purchases.1.outcome.5 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[5]]), so.amount, c = 8000,    cluster = ibge.id))
+rdrobust.purchases.1.outcome.6 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[6]]), so.amount, c = 8000,    cluster = ibge.id))
+
+rdrobust.purchases.2.outcome.1 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[1]]), so.amount, c = 80000,   cluster = ibge.id))
+rdrobust.purchases.2.outcome.2 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[2]]), so.amount, c = 80000,   cluster = ibge.id))
+rdrobust.purchases.2.outcome.3 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[3]]), so.amount, c = 80000,   cluster = ibge.id))
+rdrobust.purchases.2.outcome.4 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[4]]), so.amount, c = 80000,   cluster = ibge.id))
+rdrobust.purchases.2.outcome.5 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[5]]), so.amount, c = 80000,   cluster = ibge.id))
+rdrobust.purchases.2.outcome.6 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[6]]), so.amount, c = 80000,   cluster = ibge.id))
+
+rdrobust.purchases.3.outcome.1 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[1]]), so.amount, c = 650000,  cluster = ibge.id))
+rdrobust.purchases.3.outcome.2 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[2]]), so.amount, c = 650000,  cluster = ibge.id))
+rdrobust.purchases.3.outcome.3 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[3]]), so.amount, c = 650000,  cluster = ibge.id))
+rdrobust.purchases.3.outcome.4 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[4]]), so.amount, c = 650000,  cluster = ibge.id))
+rdrobust.purchases.3.outcome.5 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[5]]), so.amount, c = 650000,  cluster = ibge.id))
+rdrobust.purchases.3.outcome.6 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[6]]), so.amount, c = 650000,  cluster = ibge.id))
+
+rdrobust.works.1.outcome.1     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[1]]), so.amount, c = 15000,   cluster = ibge.id))
+rdrobust.works.1.outcome.2     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[2]]), so.amount, c = 15000,   cluster = ibge.id))
+rdrobust.works.1.outcome.3     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[3]]), so.amount, c = 15000,   cluster = ibge.id))
+rdrobust.works.1.outcome.4     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[4]]), so.amount, c = 15000,   cluster = ibge.id))
+rdrobust.works.1.outcome.5     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[5]]), so.amount, c = 15000,   cluster = ibge.id))
+rdrobust.works.1.outcome.6     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[6]]), so.amount, c = 15000,   cluster = ibge.id))
+
+rdrobust.works.2.outcome.1     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[1]]), so.amount, c = 150000,  cluster = ibge.id))
+rdrobust.works.2.outcome.2     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[2]]), so.amount, c = 150000,  cluster = ibge.id))
+rdrobust.works.2.outcome.3     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[3]]), so.amount, c = 150000,  cluster = ibge.id))
+rdrobust.works.2.outcome.4     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[4]]), so.amount, c = 150000,  cluster = ibge.id))
+rdrobust.works.2.outcome.5     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[5]]), so.amount, c = 150000,  cluster = ibge.id))
+rdrobust.works.2.outcome.6     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[6]]), so.amount, c = 150000,  cluster = ibge.id))
+
+rdrobust.works.3.outcome.1     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[1]]), so.amount, c = 1500000, cluster = ibge.id))
+rdrobust.works.3.outcome.2     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[2]]), so.amount, c = 1500000, cluster = ibge.id))
+rdrobust.works.3.outcome.3     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[3]]), so.amount, c = 1500000, cluster = ibge.id))
+rdrobust.works.3.outcome.4     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[4]]), so.amount, c = 1500000, cluster = ibge.id))
+rdrobust.works.3.outcome.5     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[5]]), so.amount, c = 1500000, cluster = ibge.id))
+rdrobust.works.3.outcome.6     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[6]]), so.amount, c = 1500000, cluster = ibge.id))
+
+summary(rdrobust.purchases.1.outcome.1)
+summary(rdrobust.purchases.1.outcome.2)
+summary(rdrobust.purchases.1.outcome.3)
+summary(rdrobust.purchases.1.outcome.4)
+summary(rdrobust.purchases.1.outcome.5)
+summary(rdrobust.purchases.1.outcome.6)
+summary(rdrobust.purchases.2.outcome.1)
+summary(rdrobust.purchases.2.outcome.2)
+summary(rdrobust.purchases.2.outcome.3)
+summary(rdrobust.purchases.2.outcome.4)
+summary(rdrobust.purchases.2.outcome.5)
+summary(rdrobust.purchases.2.outcome.6)
+summary(rdrobust.purchases.3.outcome.1)
+summary(rdrobust.purchases.3.outcome.2)
+summary(rdrobust.purchases.3.outcome.3)
+summary(rdrobust.purchases.3.outcome.4)
+summary(rdrobust.purchases.3.outcome.5)
+summary(rdrobust.purchases.3.outcome.6)
+summary(rdrobust.works.1.outcome.1)
+summary(rdrobust.works.1.outcome.2)
+summary(rdrobust.works.1.outcome.3)
+summary(rdrobust.works.1.outcome.4)
+summary(rdrobust.works.1.outcome.5)
+summary(rdrobust.works.1.outcome.6)
+summary(rdrobust.works.2.outcome.1)
+summary(rdrobust.works.2.outcome.2)
+summary(rdrobust.works.2.outcome.3)
+summary(rdrobust.works.2.outcome.4)
+summary(rdrobust.works.2.outcome.5)
+summary(rdrobust.works.2.outcome.6)
+summary(rdrobust.works.3.outcome.1)
+summary(rdrobust.works.3.outcome.2)
+summary(rdrobust.works.3.outcome.3)
+summary(rdrobust.works.3.outcome.4)
+summary(rdrobust.works.3.outcome.5)
+summary(rdrobust.works.3.outcome.6)
+
+
+# Test 2: IK  = Imbens and Kalyanaraman (2012)
+# We loop over all outcomes for the optimal bandwidth
+for (i in seq(outcomes)) {
+
+  # Create RDDdata objects for each triad proc.type-cutoff-outcome (2x3x6)
+  RDDdata.purchases.1 <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 8000,    data = purchases.bandwidth.1)
+  RDDdata.purchases.2 <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 80000,   data = purchases.bandwidth.2)
+  RDDdata.purchases.3 <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 650000,  data = purchases.bandwidth.3)
+  RDDdata.works.1     <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 15000,   data = works.bandwidth.1)
+  RDDdata.works.2     <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 150000,  data = works.bandwidth.2)
+  RDDdata.works.3     <- RDDdata(y = get(outcomes[i]), x = so.amount,
+    cutpoint = 1500000, data = works.bandwidth.3)
+
+  # Assign new object names before ending loop
+  for (x in seq(1, 3)) {
+    assign(
+      paste0(
+        "RDD.pcutoff", x, ".outcome", i),
+        get(paste0("RDDdata.purchases.", x)
+      )
+    )
+    assign(
+      paste0(
+        "RDD.wcutoff", x, ".outcome", i),
+        get(paste0("RDDdata.works.", x)
+      )
+    )
+  }
+  rm(list = objects(pattern = "RDDdata\\.(purchases|works)\\."))
+}
+
+# Create empty vectors for later calculation of mean bandwidth
+p.cutoff1.bw <- double(length = 6)
+p.cutoff2.bw <- double(length = 6)
+p.cutoff3.bw <- double(length = 6)
+w.cutoff1.bw <- double(length = 6)
+w.cutoff2.bw <- double(length = 6)
+w.cutoff3.bw <- double(length = 6)
+
+# Fill in vectors
+for (i in seq(1, 6)) {
+
+  # Each element is one bandwidth calculation
+  p.cutoff1.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff1", ".outcome", i)))
+  p.cutoff2.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff2", ".outcome", i)))
+  p.cutoff3.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff3", ".outcome", i)))
+  w.cutoff1.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff1", ".outcome", i)))
+  w.cutoff2.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff2", ".outcome", i)))
+  w.cutoff3.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff3", ".outcome", i)))
+
+}
+
+# Mean bandwidth
+mean(p.cutoff1.bw)
+mean(p.cutoff2.bw)
+mean(p.cutoff3.bw)
+mean(w.cutoff1.bw)
+mean(w.cutoff2.bw)
+mean(w.cutoff3.bw)
+
+# Test 3: CV  = Ludwig and Miller (2007)
