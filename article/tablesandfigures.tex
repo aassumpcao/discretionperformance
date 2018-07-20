@@ -211,10 +211,41 @@
   \hline
 
   \hline
-\multicolumn{7}{p{.93\textwidth}}{\footnotesize{Notes: This table reports the relationship between the (new) corruption determinants in the context of Brazilian municipalities. Corruption Indicator I (columns 1-2) is a binary variable turning on when the procurement call has at least one corruption infraction. Corruption Indicator II (columns 3-4) is the share of corruption infractions over all infractions for any single procurement call. Corruption Indicator III (columns 5-6) is the share of corruption infractions over all infractions times the procurement amount. Municipal corruption is computed by aggregating indicator II at the municipal level; it summarizes the relationship between the corruption level at each procurement call vs.~overall municipal corruption. Municipal controls are summarized in table \ref{tab:descriptivestatistics} and control for other variables that are associated with individual corruption decisions. Robust standard errors are clustered at the municipal level and are reported in parentheses. $^{*}$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}} \T
+  \multicolumn{7}{p{.93\textwidth}}{\footnotesize{Notes: This table reports the relationship between the (new) corruption determinants in the context of Brazilian municipalities. Corruption Indicator I (columns 1-2) is a binary variable turning on when the procurement call has at least one corruption infraction. Corruption Indicator II (columns 3-4) is the share of corruption infractions over all infractions for any single procurement call. Corruption Indicator III (columns 5-6) is the share of corruption infractions over all infractions times the procurement amount. Municipal corruption is computed by aggregating indicator II at the municipal level; it summarizes the relationship between the corruption level at each procurement call vs.~overall municipal corruption. Municipal controls are summarized in table \ref{tab:descriptivestatistics} and control for other variables that are associated with individual corruption decisions. Robust standard errors are clustered at the municipal level and are reported in parentheses. $^{*}$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}} \T
   \end{tabular}
 \end{table}
 
+\newpage
+
+\begin{table}[!htbp]
+\caption{\label{tab:bandwidth}Bandwidth Choice (in R\$)}
+\centering
+\small
+  \begin{tabular}{crr@{\extracolsep{6pt}}rr@{\extracolsep{6pt}}}
+    \hline
+
+    \hline
+    & \multicolumn{2}{c}{Purchases} & \multicolumn{2}{c}{Public Works} \T \B \\
+    \cline{2-3} \cline{4-5}
+    Cutoff & Amount  & Range         & Amount    & Range               \T \B \\
+    \hline
+    1      & 8,000   & $\pm$ 3,839   & 15,000    & $\pm$ 6,269         \T \B \\
+    2      & 80,000  & $\pm$ 30,085  & 150,000   & $\pm$ 46,798        \T \B \\
+    3      & 650,000 & $\pm$ 216,058 & 1,500,000 & $\pm$ 773,044       \T \B \\
+    \hline
+
+    \hline
+    \multicolumn{5}{p{.5\textwidth}}{\footnotesize{Notes: All values have been rounded to zero decimal cases. The ranges have been determined by the average bandwidth across all six outcomes using the optimal bandwidth selection from \citet{CalonicoSebastianRobustNonparametricConfidence2014, CalonicoOptimalDataDrivenRegression2015, CattaneoInterpretingRegressionDiscontinuity2016}.}}
+  \end{tabular}
+\end{table}
+
+
+
+
+
+\setlength\bibsep{0pt}
+\bibliographystyle{apalike}
+\bibliography{/Users/aassumpcao/library.bib}
 
 \end{document}
 

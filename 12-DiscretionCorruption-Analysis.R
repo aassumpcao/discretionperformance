@@ -34,7 +34,24 @@ library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
 library(commarobust) # Version 0.1.0
 library(rlist)       # Version 0.4.6.1
+library(estimatr)
 library(rdrobust)
+library(RDDtools)
+
+#------------------------------------------------------------------------------#
+################################## Functions ###################################
+#------------------------------------------------------------------------------#
+# Function to help subset datasets to be used in RDD estimation
+bandwidthRange <- function(x, cutpoint, limit){
+  # Args:
+  #   x:        column serving as assignment variable
+  #   cutpoint: cutoff assigning observations to different treatments
+  #   limit:    symmetric range on either side of cutoff value
+
+  # Returns:
+  #   Logical vector used to subset dataset
+  invisible(between(x, cutpoint - limit, cutpoint + limit))
+}
 
 #------------------------------------------------------------------------------#
 ############################## Summary Statistics ##############################
@@ -235,13 +252,11 @@ for (i in seq(from = 1, to = 6)) {
       paste(outcomes[[i]], so.covariates, sep = " ~ ")),
     data = analysis.data
   )
-  # Store corruption regressions
-  if (i <= 3) {
-    assign(paste0("lm.corruption.", i), lm)
-  } else {
-    # And mismanagement regressions
-    assign(paste0("lm.mismanagement.", i-3), lm)
-  }
+  # Store corruption and mismanagement regressions
+  if (i <= 3) {assign(paste0("lm.corruption.", i), lm)}
+  else        {assign(paste0("lm.mismanagement.", i-3), lm)}
+
+ # Remove temporary object
   rm(lm)
 }
 
@@ -258,12 +273,10 @@ for (i in seq(from = 1, to = 6)) {
     data = analysis.data
   )
   # Store corruption regressions
-  if (i <= 3) {
-    assign(paste0("lm.corruption.covariates.", i), lm)
-  } else {
-    # And mismanagement regressions
-    assign(paste0("lm.mismanagement.covariates.", i-3), lm)
-  }
+  if (i <= 3) {assign(paste0("lm.corruption.x.", i), lm)}
+  else        {assign(paste0("lm.mismanagement.x.", i-3), lm)}
+
+  # Remove temporary object
   rm(lm)
 }
 
@@ -273,9 +286,9 @@ for (i in seq(from = 1, to = 6)) {
 stargazer(
 
   # Regressions that will be printed to table
-  list(lm.corruption.1, lm.corruption.covariates.1, lm.corruption.2,
-  lm.corruption.covariates.2, lm.corruption.3,
-  lm.corruption.covariates.3),
+  list(lm.corruption.1, lm.corruption.x.1, lm.corruption.2,
+  lm.corruption.x.2, lm.corruption.3,
+  lm.corruption.x.3),
 
   # Table commands
   title                 = "Corruption Determinants in Brazilian Municipalities",
@@ -295,17 +308,17 @@ stargazer(
 
   # Ask for robust standard errors
   se                    = starprep(
-                            lm.corruption.1, lm.corruption.covariates.1,
-                            lm.corruption.2, lm.corruption.covariates.2,
-                            lm.corruption.3, lm.corruption.covariates.3,
+                            lm.corruption.1, lm.corruption.x.1,
+                            lm.corruption.2, lm.corruption.x.2,
+                            lm.corruption.3, lm.corruption.x.3,
                             clusters = analysis.data$ibge.id,
                             alpha    = .1
                           ),
   # p                     = starprep(
   #                           list(
-  #                             lm.corruption.1, lm.corruption.covariates.1,
-  #                             lm.corruption.2, lm.corruption.covariates.2,
-  #                             lm.corruption.3, lm.corruption.covariates.3
+  #                             lm.corruption.1, lm.corruption.x.1,
+  #                             lm.corruption.2, lm.corruption.x.2,
+  #                             lm.corruption.3, lm.corruption.x.3
   #                           ),
   #                           stat     = "p.value",
   #                           clusters = analysis.data$ibge.id,
@@ -331,186 +344,260 @@ stargazer(
 # Remove the models from the environment in R
 rm(list = objects(pattern = "lm\\.|summary\\.stats"))
 
-#-----------------------#
-# Bandwidth choice test #
-#-----------------------#
+#------------------------------------------------------------------------------#
+############################ Bandwidth choice test #############################
+#------------------------------------------------------------------------------#
 # We use Cattaneo (2016)'s rules for sub-setting the sample. In cases where
 # assignment to different treatments is cumulative on the running variable, they
 # suggest using observations with running values up to c-1 and c+1 cutoff values
 # for each c cutoff.
 purchases.bandwidth.1 <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount <=  80000 & so.type == 1)
 purchases.bandwidth.2 <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >    8000 & so.amount <= 650000 & so.type == 1)
 purchases.bandwidth.3 <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >   80000 & so.type == 1)
 works.bandwidth.1     <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount <= 150000 & so.type == 2)
 works.bandwidth.2     <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >   15000 & so.amount <= 1500000 & so.type == 2)
 works.bandwidth.3     <- analysis.data %>%
-  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount > 150000  & so.type == 2)
 
-# Test 1: CCT = Calonico et al. (2015)
-# Create empty vectors for later calculation of mean bandwidth
-p.cutoff1.bw <- double(length = 6)
-p.cutoff2.bw <- double(length = 6)
-p.cutoff3.bw <- double(length = 6)
-w.cutoff1.bw <- double(length = 6)
-w.cutoff2.bw <- double(length = 6)
-w.cutoff3.bw <- double(length = 6)
+# Define vector of datasets used for bandwidth tests
+purchases.bandwidth.list <- c(ls(pattern = "purchases\\.bandwidth\\.[0-9]"))
+works.bandwidth.list     <- c(ls(pattern = "works\\.bandwidth\\.[0-9]"))
 
+# Define vector of cutoffs for bandwidth tests
+purchases.cutoff.list <- c(8000, 80000, 650000)
+works.cutoff.list     <- c(15000, 150000, 1500000)
 
+#--------------------------------------#
+# Test 1: CCT = Calonico et al. (2015) #
+#--------------------------------------#
+# Create list of vectors which will take up the bandwidth values
+purchases.cct.vector <- rep(0, 18)
+works.cct.vector     <- rep(0, 18)
 
-rdrobust.purchases.1.outcome.1 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[1]]), so.amount, c = 8000,    cluster = ibge.id))
-rdrobust.purchases.1.outcome.2 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[2]]), so.amount, c = 8000,    cluster = ibge.id))
-rdrobust.purchases.1.outcome.3 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[3]]), so.amount, c = 8000,    cluster = ibge.id))
-rdrobust.purchases.1.outcome.4 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[4]]), so.amount, c = 8000,    cluster = ibge.id))
-rdrobust.purchases.1.outcome.5 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[5]]), so.amount, c = 8000,    cluster = ibge.id))
-rdrobust.purchases.1.outcome.6 <- with(purchases.bandwidth.1, rdbwselect(get(outcomes[[6]]), so.amount, c = 8000,    cluster = ibge.id))
+# Loop over cutoffs and outcomes for CCT bandwidth calculation (PURCHASES)
+for (i in seq(from = 1, to = 3)) {
 
-rdrobust.purchases.2.outcome.1 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[1]]), so.amount, c = 80000,   cluster = ibge.id))
-rdrobust.purchases.2.outcome.2 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[2]]), so.amount, c = 80000,   cluster = ibge.id))
-rdrobust.purchases.2.outcome.3 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[3]]), so.amount, c = 80000,   cluster = ibge.id))
-rdrobust.purchases.2.outcome.4 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[4]]), so.amount, c = 80000,   cluster = ibge.id))
-rdrobust.purchases.2.outcome.5 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[5]]), so.amount, c = 80000,   cluster = ibge.id))
-rdrobust.purchases.2.outcome.6 <- with(purchases.bandwidth.2, rdbwselect(get(outcomes[[6]]), so.amount, c = 80000,   cluster = ibge.id))
+  # Loop over outcomes
+  for (x in seq(from = 1, to = 6)) {
 
-rdrobust.purchases.3.outcome.1 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[1]]), so.amount, c = 650000,  cluster = ibge.id))
-rdrobust.purchases.3.outcome.2 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[2]]), so.amount, c = 650000,  cluster = ibge.id))
-rdrobust.purchases.3.outcome.3 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[3]]), so.amount, c = 650000,  cluster = ibge.id))
-rdrobust.purchases.3.outcome.4 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[4]]), so.amount, c = 650000,  cluster = ibge.id))
-rdrobust.purchases.3.outcome.5 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[5]]), so.amount, c = 650000,  cluster = ibge.id))
-rdrobust.purchases.3.outcome.6 <- with(purchases.bandwidth.3, rdbwselect(get(outcomes[[6]]), so.amount, c = 650000,  cluster = ibge.id))
-
-rdrobust.works.1.outcome.1     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[1]]), so.amount, c = 15000,   cluster = ibge.id))
-rdrobust.works.1.outcome.2     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[2]]), so.amount, c = 15000,   cluster = ibge.id))
-rdrobust.works.1.outcome.3     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[3]]), so.amount, c = 15000,   cluster = ibge.id))
-rdrobust.works.1.outcome.4     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[4]]), so.amount, c = 15000,   cluster = ibge.id))
-rdrobust.works.1.outcome.5     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[5]]), so.amount, c = 15000,   cluster = ibge.id))
-rdrobust.works.1.outcome.6     <- with(works.bandwidth.1,     rdbwselect(get(outcomes[[6]]), so.amount, c = 15000,   cluster = ibge.id))
-
-rdrobust.works.2.outcome.1     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[1]]), so.amount, c = 150000,  cluster = ibge.id))
-rdrobust.works.2.outcome.2     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[2]]), so.amount, c = 150000,  cluster = ibge.id))
-rdrobust.works.2.outcome.3     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[3]]), so.amount, c = 150000,  cluster = ibge.id))
-rdrobust.works.2.outcome.4     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[4]]), so.amount, c = 150000,  cluster = ibge.id))
-rdrobust.works.2.outcome.5     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[5]]), so.amount, c = 150000,  cluster = ibge.id))
-rdrobust.works.2.outcome.6     <- with(works.bandwidth.2,     rdbwselect(get(outcomes[[6]]), so.amount, c = 150000,  cluster = ibge.id))
-
-rdrobust.works.3.outcome.1     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[1]]), so.amount, c = 1500000, cluster = ibge.id))
-rdrobust.works.3.outcome.2     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[2]]), so.amount, c = 1500000, cluster = ibge.id))
-rdrobust.works.3.outcome.3     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[3]]), so.amount, c = 1500000, cluster = ibge.id))
-rdrobust.works.3.outcome.4     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[4]]), so.amount, c = 1500000, cluster = ibge.id))
-rdrobust.works.3.outcome.5     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[5]]), so.amount, c = 1500000, cluster = ibge.id))
-rdrobust.works.3.outcome.6     <- with(works.bandwidth.3,     rdbwselect(get(outcomes[[6]]), so.amount, c = 1500000, cluster = ibge.id))
-
-summary(rdrobust.purchases.1.outcome.1)
-summary(rdrobust.purchases.1.outcome.2)
-summary(rdrobust.purchases.1.outcome.3)
-summary(rdrobust.purchases.1.outcome.4)
-summary(rdrobust.purchases.1.outcome.5)
-summary(rdrobust.purchases.1.outcome.6)
-summary(rdrobust.purchases.2.outcome.1)
-summary(rdrobust.purchases.2.outcome.2)
-summary(rdrobust.purchases.2.outcome.3)
-summary(rdrobust.purchases.2.outcome.4)
-summary(rdrobust.purchases.2.outcome.5)
-summary(rdrobust.purchases.2.outcome.6)
-summary(rdrobust.purchases.3.outcome.1)
-summary(rdrobust.purchases.3.outcome.2)
-summary(rdrobust.purchases.3.outcome.3)
-summary(rdrobust.purchases.3.outcome.4)
-summary(rdrobust.purchases.3.outcome.5)
-summary(rdrobust.purchases.3.outcome.6)
-summary(rdrobust.works.1.outcome.1)
-summary(rdrobust.works.1.outcome.2)
-summary(rdrobust.works.1.outcome.3)
-summary(rdrobust.works.1.outcome.4)
-summary(rdrobust.works.1.outcome.5)
-summary(rdrobust.works.1.outcome.6)
-summary(rdrobust.works.2.outcome.1)
-summary(rdrobust.works.2.outcome.2)
-summary(rdrobust.works.2.outcome.3)
-summary(rdrobust.works.2.outcome.4)
-summary(rdrobust.works.2.outcome.5)
-summary(rdrobust.works.2.outcome.6)
-summary(rdrobust.works.3.outcome.1)
-summary(rdrobust.works.3.outcome.2)
-summary(rdrobust.works.3.outcome.3)
-summary(rdrobust.works.3.outcome.4)
-summary(rdrobust.works.3.outcome.5)
-summary(rdrobust.works.3.outcome.6)
-
-
-# Test 2: IK  = Imbens and Kalyanaraman (2012)
-# We loop over all outcomes for the optimal bandwidth
-for (i in seq(outcomes)) {
-
-  # Create RDDdata objects for each triad proc.type-cutoff-outcome (2x3x6)
-  RDDdata.purchases.1 <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 8000,    data = purchases.bandwidth.1)
-  RDDdata.purchases.2 <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 80000,   data = purchases.bandwidth.2)
-  RDDdata.purchases.3 <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 650000,  data = purchases.bandwidth.3)
-  RDDdata.works.1     <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 15000,   data = works.bandwidth.1)
-  RDDdata.works.2     <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 150000,  data = works.bandwidth.2)
-  RDDdata.works.3     <- RDDdata(y = get(outcomes[i]), x = so.amount,
-    cutpoint = 1500000, data = works.bandwidth.3)
-
-  # Assign new object names before ending loop
-  for (x in seq(1, 3)) {
-    assign(
-      paste0(
-        "RDD.pcutoff", x, ".outcome", i),
-        get(paste0("RDDdata.purchases.", x)
+    # Assign temporary object to hold bandwidth calculation output
+    cct <- get(purchases.bandwidth.list[i]) %$%
+      rdbwselect(get(outcomes[[x]]),
+                 so.amount,
+                 c = as.double(purchases.cutoff.list[i]),
+                 cluster = ibge.id
       )
-    )
-    assign(
-      paste0(
-        "RDD.wcutoff", x, ".outcome", i),
-        get(paste0("RDDdata.works.", x)
-      )
-    )
+
+    # # Assign new object name (uncomment if you'd like to see individual band-
+    # # width results)
+    # assign(paste0("rdrobust.purchases.1.outcome.", x), cct)
+
+    # Extract bandwidth from bandwidth function and assign to bandwidth vector
+    if      (i == 1) {purchases.cct.vector[x]    <- cct$bws[[1]]}
+    else if (i == 2) {purchases.cct.vector[x+6]  <- cct$bws[[1]]}
+    else             {purchases.cct.vector[x+12] <- cct$bws[[1]]}
   }
-  rm(list = objects(pattern = "RDDdata\\.(purchases|works)\\."))
 }
 
-# Create empty vectors for later calculation of mean bandwidth
-p.cutoff1.bw <- double(length = 6)
-p.cutoff2.bw <- double(length = 6)
-p.cutoff3.bw <- double(length = 6)
-w.cutoff1.bw <- double(length = 6)
-w.cutoff2.bw <- double(length = 6)
-w.cutoff3.bw <- double(length = 6)
+# Loop over cutoffs and outcomes for CCT bandwidth calculation (WORKS)
+for (i in seq(from = 1, to = 3)) {
 
-# Fill in vectors
-for (i in seq(1, 6)) {
+  # Loop over outcomes
+  for (x in seq(from = 1, to = 6)) {
 
-  # Each element is one bandwidth calculation
-  p.cutoff1.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff1", ".outcome", i)))
-  p.cutoff2.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff2", ".outcome", i)))
-  p.cutoff3.bw[[i]] <- RDDbw_IK(get(paste0("RDD.pcutoff3", ".outcome", i)))
-  w.cutoff1.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff1", ".outcome", i)))
-  w.cutoff2.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff2", ".outcome", i)))
-  w.cutoff3.bw[[i]] <- RDDbw_IK(get(paste0("RDD.wcutoff3", ".outcome", i)))
+    # Assign temporary object to hold bandwidth calculation output
+    cct <- get(works.bandwidth.list[i]) %$%
+      rdbwselect(get(outcomes[[x]]),
+                 so.amount,
+                 c = as.double(works.cutoff.list[i]),
+                 cluster = ibge.id
+      )
 
+    # # Assign new object name (uncomment if you'd like to see individual band-
+    # # width results)
+    # assign(paste0("rdrobust.works.1.outcome.", x), cct)
+
+    # Extract bandwidth from bandwidth function and assign to bandwidth vector
+    if      (i == 1) {works.cct.vector[x]    <- cct$bws[[1]]}
+    else if (i == 2) {works.cct.vector[x+6]  <- cct$bws[[1]]}
+    else             {works.cct.vector[x+12] <- cct$bws[[1]]}
+  }
 }
 
-# Mean bandwidth
-mean(p.cutoff1.bw)
-mean(p.cutoff2.bw)
-mean(p.cutoff3.bw)
-mean(w.cutoff1.bw)
-mean(w.cutoff2.bw)
-mean(w.cutoff3.bw)
+# Remove unnecessary objects
+rm(list = objects(pattern = "^(cct)$"))
 
-# Test 3: CV  = Ludwig and Miller (2007)
+#----------------------------------------------#
+# Test 2: IK  = Imbens and Kalyanaraman (2012) #
+#----------------------------------------------#
+# Create list of vectors which will take up the bandwidth values
+purchases.ik.vector <- rep(0, 18)
+works.ik.vector     <- rep(0, 18)
+
+# Loop over cutoffs and outcomes for IK bandwidth calculation (PURCHASES)
+for (i in seq(from = 1, to = 3)) {
+
+  # Loop over outcomes
+  for (x in seq(from = 1, to = 6)) {
+
+    # Assign temporary object to hold bandwidth calculation output
+    ik <- RDDdata(y        = get(outcomes[[x]]),
+                  x        = so.amount,
+                  cutpoint = as.double(purchases.cutoff.list[i]),
+                  data     = get(purchases.bandwidth.list[i])
+          )
+
+    # Assign new object name
+    assign(paste0("ik.", x), ik)
+
+    # Extract bandwidth from bandwidth function and assign to bandwidth vector
+    if        (i == 1) {
+      purchases.ik.vector[x]    <- RDDbw_IK(get(paste0("ik.", x)))
+    } else if (i == 2) {
+      purchases.ik.vector[x+6]  <- RDDbw_IK(get(paste0("ik.", x)))
+    } else {
+      purchases.ik.vector[x+12] <- RDDbw_IK(get(paste0("ik.", x)))
+    }
+  }
+  # Remove unnecessary objects
+  rm(list = objects(pattern = "ik\\.[0-9]"))
+}
+
+# Loop over cutoffs and outcomes for IK bandwidth calculation (WORKS)
+for (i in seq(from = 1, to = 3)) {
+
+  # Loop over outcomes
+  for (x in seq(from = 1, to = 6)) {
+
+    # Assign temporary object to hold bandwidth calculation output
+    ik <- RDDdata(y        = get(outcomes[[x]]),
+                  x        = so.amount,
+                  cutpoint = as.double(works.cutoff.list[i]),
+                  data     = get(works.bandwidth.list[i])
+          )
+
+    # Assign new object name
+    assign(paste0("ik.", x), ik)
+
+    # Extract bandwidth from bandwidth function and assign to bandwidth vector
+    if        (i == 1) {
+      works.ik.vector[x]    <- RDDbw_IK(get(paste0("ik.", x)))
+    } else if (i == 2) {
+      works.ik.vector[x+6]  <- RDDbw_IK(get(paste0("ik.", x)))
+    } else {
+      works.ik.vector[x+12] <- RDDbw_IK(get(paste0("ik.", x)))
+    }
+  }
+  # Remove unnecessary objects
+  rm(list = objects(pattern = "ik\\.[0-9]"))
+}
+
+# IK bandwidth is out of range
+mean(purchases.ik.vector[1:6])
+mean(purchases.ik.vector[7:12])
+mean(purchases.ik.vector[13:18])
+mean(works.ik.vector[1:6])
+mean(works.ik.vector[7:12])
+mean(works.ik.vector[13:18])
+
+# CCT bandwidth chosen
+p.bandwidth.1 <- mean(purchases.cct.vector[1:6])
+p.bandwidth.2 <- mean(purchases.cct.vector[7:12])
+p.bandwidth.3 <- mean(purchases.cct.vector[13:18])
+w.bandwidth.1 <- mean(works.cct.vector[1:6])
+w.bandwidth.2 <- mean(works.cct.vector[7:12])
+w.bandwidth.3 <- mean(works.cct.vector[13:18])
+
+# Subset dataset along CCT bandwidth limits
+purchases.bandwidth.1.cct <- analysis.data %>%
+  filter(bandwidthRange(so.amount,    8000, p.bandwidth.1) & so.type == 1)
+purchases.bandwidth.2.cct <- analysis.data %>%
+  filter(bandwidthRange(so.amount,   80000, p.bandwidth.2) & so.type == 1)
+purchases.bandwidth.3.cct <- analysis.data %>%
+  filter(bandwidthRange(so.amount,  650000, p.bandwidth.3) & so.type == 1)
+works.bandwidth.1.cct     <- analysis.data %>%
+  filter(bandwidthRange(so.amount,   15000, w.bandwidth.1) & so.type == 2)
+works.bandwidth.2.cct     <- analysis.data %>%
+  filter(bandwidthRange(so.amount,  150000, w.bandwidth.2) & so.type == 2)
+works.bandwidth.3.cct     <- analysis.data %>%
+  filter(bandwidthRange(so.amount, 1500000, w.bandwidth.3) & so.type == 2)
+
+#-------------------------#
+# Table: Bandwidth Choice #
+#-------------------------#
+# Format bandwidth limits as data frame and produce table. Last step is editing
+# the table in the TeX file.
+tibble(purchases.bandwidth = c(p.bandwidth.1, p.bandwidth.2, p.bandwidth.3),
+       works.bandwidth     = c(w.bandwidth.1, w.bandwidth.2, w.bandwidth.3)
+) %>%
+xtable()
+
+#------------------------------------#
+# Table: Multiple Cutoff Regressions #
+#------------------------------------#
+# Merge dataset vectors
+multiple.cutoff.data <- c(purchases.bandwidth.list, works.bandwidth.list)
+cct.cutoff.data      <- c(ls(pattern = "\\.bandwidth\\.[1-3]\\.cct"))
+
+# Run service order regressions w/o covariates.
+for (x in seq(from = 1, to = 6)) {
+
+  # Loop over outcomes
+  for (i in seq(from = 1, to = 6)) {
+
+    # Run each regression
+    lm <- lm(
+      as.formula(
+        paste(outcomes[[i]], so.covariates, sep = " ~ ")),
+      data = get(multiple.cutoff.data[x])
+    )
+
+    # If database number (x) is less than or equal to 3, this is a purchases
+    # regression. If the outcome number (i) is less than or equal to 3, this is
+    # a corruption regression.
+    if (x <= 3) {
+      if (i <= 3) {assign(paste0("lm.corruption.", i, ".purchases.", x), lm)}
+      else        {assign(paste0("lm.mismanagement.",i,".purchases.", x), lm)}
+    } else {
+      if (i <= 3) {assign(paste0("lm.corruption.", i, ".works.", x-3), lm)}
+      else        {assign(paste0("lm.mismanagement.", i, ".works.", x-3), lm)}
+    }
+    rm(lm)
+  }
+}
+
+# Run service order regressions w/ covariates.
+for (x in seq(from = 1, to = 6)) {
+
+  # Loop over outcomes
+  for (i in seq(from = 1, to = 6)) {
+
+    # Run each regression
+    lm <- lm(
+      as.formula(
+        paste(
+          outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "),
+          sep = " ~ "
+        )
+      ),
+      data = get(multiple.cutoff.data[x])
+    )
+
+    # If database number (x) is less than or equal to 3, this is a purchases
+    # regression. If the outcome number (i) is less than or equal to 3, this is
+    # a corruption regression.
+    if (x <= 3) {
+      if (i <= 3) {assign(paste0("lm.corruption.x.", i, ".purchases.", x), lm)}
+      else        {assign(paste0("lm.mismanagement.x.",i,".purchases.", x), lm)}
+    } else {
+      if (i <= 3) {assign(paste0("lm.corruption.x.", i, ".works.", x-3), lm)}
+      else        {assign(paste0("lm.mismanagement.x.", i, ".works.", x-3), lm)}
+    }
+    rm(lm)
+  }
+}
