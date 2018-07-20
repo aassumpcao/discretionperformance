@@ -7,7 +7,7 @@
 # Andre Assumpcao
 # aassumpcao@unc.edu
 #------------------------------------------------------------------------------#
-rm(list=ls())
+rm(list = ls())
 
 #------------------------------------------------------------------------------#
 # README:
@@ -28,7 +28,6 @@ library(lubridate)   # Version 1.7.4
 library(readxl)      # Version 1.1.0
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
-library(Hmisc)       # Version 4.1.1
 library(rdd)         # Version 0.99.1
 library(tikzDevice)  # Version 0.11
 library(stargazer)   # Version 5.2.2
@@ -36,7 +35,7 @@ library(xtable)      # Version 1.8.2
 library(commarobust) # Version 0.1.0
 library(rlist)       # Version 0.4.6.1
 library(rdrobust)
-sessionInfo()
+
 #------------------------------------------------------------------------------#
 ############################## Summary Statistics ##############################
 #------------------------------------------------------------------------------#
@@ -62,11 +61,11 @@ load("mun.election.Rda")
 # Run following command then manually edit in latex.
 so.data %>%
   group_by(ibge.id) %>%
-  dplyr::summarize(
+  summarize(
     so.education = max(so.education),
     so.health    = max(so.health)
-  ) %>%
-  with(., table(so.education, so.health)) %>%
+  ) %$%
+  table(so.education, so.health) %>%
   xtable()
 
 #---------------------------#
@@ -93,9 +92,9 @@ mun.statistics.labels <- c("Urban Population (Share)", "Female (Share)",
   "Health Council Established", "Seat of Judiciary Branch", "Vote Margin",
   "Mayor Reelection Rate")
 
-# Now I have to join all three datasets (service order data and municipal poli-
-# tical and SES characteristics). Before I do that, however, I need to remove
-# duplicated election data (due to runoff elections for municipalities
+# Now I have to join all three datasets (service order data, municipal, poli-
+# tical, and SES characteristics). Before that, however, I need to remove dupli-
+# cated election data (due to runoff elections for municipalities
 # whose number of voters is larger than 200,000).
 mun.election %<>%
   group_by(., mun.election) %>%
@@ -107,48 +106,40 @@ mun.election %<>%
 # We now join them all at once.
 analysis.data <- left_join(so.data, mun.data, by = c("ibge.id" = "ibge.id")) %>%
   mutate(
-    mun.election = as.Date(
-      ifelse(
-        audit.start <= ymd("2004-10-03"),
-        ymd("2000-10-01"),
-        ifelse(
-          audit.start <= ymd("2008-10-05"),
-          ymd("2004-10-03"),
-          ymd("2008-10-05")
-        )
-      )
-    )
+    mun.election = as.Date(ifelse(audit.start <= ymd("2004-10-03"),
+                                  ymd("2000-10-01"),
+                                  ifelse(audit.start <= ymd("2008-10-05"),
+                                         ymd("2004-10-03"),
+                                         ymd("2008-10-05")
+                                  )
+                           )
+                   )
   ) %>%
-  left_join(
-    .,
-    mun.election,
+  left_join(., mun.election,
     by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
   ) %>%
   mutate(
-    mun.votemargin = ifelse(
-      is.na(mun.votemargin),
-      mean(.$mun.votemargin, na.rm = TRUE),
-      mun.votemargin
-    ),
-    mun.reelected  = ifelse(
-      is.na(mun.reelected),
-      mean(.$mun.reelected,  na.rm = TRUE),
-      mun.reelected
-    )
+    mun.votemargin = ifelse(is.na(mun.votemargin),
+                            mean(.$mun.votemargin, na.rm = TRUE),
+                            mun.votemargin
+                     ),
+    mun.reelected  = ifelse(is.na(mun.reelected),
+                            mean(.$mun.reelected,  na.rm = TRUE),
+                            mun.reelected
+                     )
   )
 
 # Finally, we break municipalities data apart from the main dataset
-summary.stats.panelB <-
-  analysis.data %>%
-  dplyr::select(ibge.id, mun.statistics) %>%
+summary.stats.panelB <- analysis.data %>%
+  select(ibge.id, mun.statistics) %>%
   group_by(ibge.id) %>%
-  dplyr::summarize_all(funs(mean))
+  summarize_all(funs(mean))
 
 # Produce Panel A: Service Order Summary Statistics
 stargazer(
   as.data.frame(analysis.data[,so.statistics]),
   title            = "Summary Statistics",
-  out              = paste0(getwd(), "/article/tab_summarystats1.tex"),
+  out              = "./article/tab_summarystats1.tex",
   out.header       = FALSE,
   covariate.labels = so.statistics.labels,
   align            = TRUE,
@@ -165,7 +156,7 @@ stargazer(
 stargazer(
   as.data.frame(summary.stats.panelB[,c(mun.statistics)]),
   title            = "Summary Statistics",
-  out              = paste0(getwd(), "/article/tab_summarystats2.tex"),
+  out              = "./article/tab_summarystats2.tex",
   out.header       = FALSE,
   covariate.labels = mun.statistics.labels,
   align            = TRUE,
@@ -189,9 +180,10 @@ analysis.data %<>%
   group_by(ibge.id) %>%
   mutate(
     mun.corruption = sum(corruption.count) / sum(infraction.count),
-    mun.corruption = mun.corruption - (corruption.count /sum(infraction.count)),
-    mun.corruption = ifelse(is.na(mun.corruption), 0, mun.corruption)) %>%
-  dplyr::select(c(1:66), mun.corruption, c(67:80)) %>%
+    mun.corruption = mun.corruption - (corruption.count/sum(infraction.count)),
+    mun.corruption = ifelse(is.na(mun.corruption), 0, mun.corruption)
+  ) %>%
+  select(c(1:66), mun.corruption, c(67:80)) %>%
   ungroup()
 
 # Check the variables we should use
@@ -201,19 +193,14 @@ names(analysis.data)
 outcomes <- setdiff(so.statistics, c("so.amount", "infraction.count"))
 
 # Define outcome labels
-outcome.labels <- setdiff(
-  so.statistics.labels, c("Amount (in R)", "Infraction Count")
-)
+outcome.labels <- setdiff(so.statistics.labels,
+                          c("Amount (in R)", "Infraction Count")
+                  )
 
-# # Define vector of procurement-specific regressors
-# so.covariates <- paste(
-#   "(so.amount)", "mun.corruption", "I(mun.corruption^2)",
-#   "factor(so.procurement)", sep = " + "
-# )
-so.covariates <- paste(
-  "so.amount", "I(so.amount^2)", "mun.corruption", "I(mun.corruption^2)",
-  "factor(so.procurement)", sep = " + "
-)
+# Define vector of procurement-specific regressors
+so.covariates <- paste("so.amount", "I(so.amount^2)", "mun.corruption",
+  "I(mun.corruption^2)", "factor(so.procurement)", sep = " + ")
+
 # Define Covariates Labels
 so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
   "Municipal Corruption", "Municipal Corruption (Squared)",
@@ -221,23 +208,23 @@ so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
 
 # Define vector of municipality characteristics
 mun.covariates <- analysis.data %>%
-  dplyr::select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
+  select(c(67:78, 80, 81), so.education, so.health, lottery.id) %>%
   names()
 
 # Define Covariates labels (not necessary)
 # mun.covariates.labels <- c()
 
-
 # Pull factor positions
-factors <- grep(
-  mun.covariates, pattern = "radio|council|lottery|judiciary|reelected|so\\.")
+factors <- grep(mun.covariates,
+                pattern = "radio|council|lottery|judiciary|reelected|so\\."
+           )
 
 # Concatenate municipal covariates vector
 for (i in factors) {
   mun.covariates[[i]] <- paste0("factor(", mun.covariates[[i]], ")")
 }
 
-# Collapse to single vector
+# Collapse to unitary vector
 mun.covariates <- paste(mun.covariates, collapse = " + ")
 
 # Run service order regressions w/o covariates
@@ -251,9 +238,8 @@ for (i in seq(from = 1, to = 6)) {
   # Store corruption regressions
   if (i <= 3) {
     assign(paste0("lm.corruption.", i), lm)
-  }
-  # And mismanagement regressions
-  else {
+  } else {
+    # And mismanagement regressions
     assign(paste0("lm.mismanagement.", i-3), lm)
   }
   rm(lm)
@@ -274,9 +260,8 @@ for (i in seq(from = 1, to = 6)) {
   # Store corruption regressions
   if (i <= 3) {
     assign(paste0("lm.corruption.covariates.", i), lm)
-  }
-  # And mismanagement regressions
-  else {
+  } else {
+    # And mismanagement regressions
     assign(paste0("lm.mismanagement.covariates.", i-3), lm)
   }
   rm(lm)
@@ -286,6 +271,7 @@ for (i in seq(from = 1, to = 6)) {
 # Table: First Linear Regressions #
 #---------------------------------#
 stargazer(
+
   # Regressions that will be printed to table
   list(lm.corruption.1, lm.corruption.covariates.1, lm.corruption.2,
   lm.corruption.covariates.2, lm.corruption.3,
@@ -293,7 +279,7 @@ stargazer(
 
   # Table commands
   title                 = "Corruption Determinants in Brazilian Municipalities",
-  out                   = paste0(getwd(), "/article/tab_mainregression.tex"),
+  out                   = "./article/tab_mainregression.tex",
   out.header            = FALSE,
   column.labels         = rep(
                             c(outcome.labels[[1]],
@@ -313,7 +299,7 @@ stargazer(
                             lm.corruption.2, lm.corruption.covariates.2,
                             lm.corruption.3, lm.corruption.covariates.3,
                             clusters = analysis.data$ibge.id,
-                            alpha = .1
+                            alpha    = .1
                           ),
   # p                     = starprep(
   #                           list(
@@ -353,22 +339,22 @@ rm(list = objects(pattern = "lm\\.|summary\\.stats"))
 # suggest using observations with running values up to c-1 and c+1 cutoff values
 # for each c cutoff.
 purchases.bandwidth.1 <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount <=  80000 & so.type == 1)
 purchases.bandwidth.2 <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >    8000 & so.amount <= 650000 & so.type == 1)
 purchases.bandwidth.3 <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >   80000 & so.type == 1)
 works.bandwidth.1     <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount <= 150000 & so.type == 2)
 works.bandwidth.2     <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount >   15000 & so.amount <= 1500000 & so.type == 2)
 works.bandwidth.3     <- analysis.data %>%
-  dplyr::select(outcomes, so.amount, so.type, ibge.id) %>%
+  select(outcomes, so.amount, so.type, ibge.id) %>%
   filter(so.amount > 150000  & so.type == 2)
 
 # Test 1: CCT = Calonico et al. (2015)
