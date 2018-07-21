@@ -1,17 +1,16 @@
 \begin{thebibliography}{}
 
+\bibitem[Calonico et~al., 2014]{CalonicoRobustNonparametricConfidence2014}
+Calonico, S., Cattaneo, M.~D., and Titiunik, R. (2014).
+\newblock Robust {{Nonparametric Confidence Intervals}} for
+  {{Regression}}-{{Discontinuity Designs}}.
+\newblock {\em Econometrica}, 82(6):2295--2326.
+
 \bibitem[Calonico et~al., 2015]{CalonicoOptimalDataDrivenRegression2015}
 Calonico, S., Cattaneo, M.~D., and Titiunik, R. (2015).
 \newblock Optimal {{Data}}-{{Driven Regression Discontinuity Plots}}.
 \newblock {\em Journal of the American Statistical Association},
   110:1753--1769.
-
-\bibitem[{Calonico Sebastian} et~al.,
-  2014]{CalonicoSebastianRobustNonparametricConfidence2014}
-{Calonico Sebastian}, {Cattaneo Matias D.}, and {Titiunik Rocio} (2014).
-\newblock Robust {{Nonparametric Confidence Intervals}} for
-  {{Regression}}-{{Discontinuity Designs}}.
-\newblock {\em Econometrica}, 82(6):2295--2326.
 
 \bibitem[Cattaneo et~al.,
   2016]{CattaneoInterpretingRegressionDiscontinuity2016}

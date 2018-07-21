@@ -41,7 +41,7 @@ library(RDDtools)
 #------------------------------------------------------------------------------#
 ################################## Functions ###################################
 #------------------------------------------------------------------------------#
-# Function to help subset datasets to be used in RDD estimation
+# Function to help subset data to be used in RDD estimation
 bandwidthRange <- function(x, cutpoint, limit){
   # Args:
   #   x:        column serving as assignment variable
@@ -246,24 +246,16 @@ mun.covariates <- paste(mun.covariates, collapse = " + ")
 
 # Run service order regressions w/o covariates
 for (i in seq(from = 1, to = 6)) {
-  # Run each regression
+
+  # Run each regression w/ covariates
   lm <- lm(
     as.formula(
       paste(outcomes[[i]], so.covariates, sep = " ~ ")),
     data = analysis.data
   )
-  # Store corruption and mismanagement regressions
-  if (i <= 3) {assign(paste0("lm.corruption.", i), lm)}
-  else        {assign(paste0("lm.mismanagement.", i-3), lm)}
 
- # Remove temporary object
-  rm(lm)
-}
-
-# Run service order regressions w/ covariates
-for (i in seq(from = 1, to = 6)) {
-  # Run each regression
-  lm <- lm(
+  # Run each regression w/covariates
+  lm.x <- lm(
     as.formula(
       paste(
         outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "),
@@ -272,12 +264,16 @@ for (i in seq(from = 1, to = 6)) {
     ),
     data = analysis.data
   )
-  # Store corruption regressions
-  if (i <= 3) {assign(paste0("lm.corruption.x.", i), lm)}
-  else        {assign(paste0("lm.mismanagement.x.", i-3), lm)}
-
-  # Remove temporary object
-  rm(lm)
+  # Store corruption and mismanagement regressions
+  if (i <= 3) {
+    assign(paste0("lm.corruption.", i), lm)
+    assign(paste0("lm.corruption.x.", i), lm.x)
+  } else {
+    assign(paste0("lm.mismanagement.", i-3), lm)
+    assign(paste0("lm.mismanagement.x.", i-3), lm.x)
+  }
+ # Remove temporary object
+  rm(lm, lm.x)
 }
 
 #---------------------------------#
@@ -398,9 +394,9 @@ for (i in seq(from = 1, to = 3)) {
     # assign(paste0("rdrobust.purchases.1.outcome.", x), cct)
 
     # Extract bandwidth from bandwidth function and assign to bandwidth vector
-    if      (i == 1) {purchases.cct.vector[x]    <- cct$bws[[1]]}
-    else if (i == 2) {purchases.cct.vector[x+6]  <- cct$bws[[1]]}
-    else             {purchases.cct.vector[x+12] <- cct$bws[[1]]}
+    if      (i == 1) purchases.cct.vector[x]    <- cct$bws[[1]]
+    else if (i == 2) purchases.cct.vector[x+6]  <- cct$bws[[1]]
+    else             purchases.cct.vector[x+12] <- cct$bws[[1]]
   }
 }
 
@@ -423,9 +419,9 @@ for (i in seq(from = 1, to = 3)) {
     # assign(paste0("rdrobust.works.1.outcome.", x), cct)
 
     # Extract bandwidth from bandwidth function and assign to bandwidth vector
-    if      (i == 1) {works.cct.vector[x]    <- cct$bws[[1]]}
-    else if (i == 2) {works.cct.vector[x+6]  <- cct$bws[[1]]}
-    else             {works.cct.vector[x+12] <- cct$bws[[1]]}
+    if      (i == 1) works.cct.vector[x]    <- cct$bws[[1]]
+    else if (i == 2) works.cct.vector[x+6]  <- cct$bws[[1]]
+    else             works.cct.vector[x+12] <- cct$bws[[1]]
   }
 }
 
@@ -545,59 +541,180 @@ multiple.cutoff.data <- c(purchases.bandwidth.list, works.bandwidth.list)
 cct.cutoff.data      <- c(ls(pattern = "\\.bandwidth\\.[1-3]\\.cct"))
 
 # Run service order regressions w/o covariates.
-for (x in seq(from = 1, to = 6)) {
+for (i in seq(from = 1, to = 6)) {
 
   # Loop over outcomes
-  for (i in seq(from = 1, to = 6)) {
+  for (x in seq(from = 1, to = 6)) {
 
-    # Run each regression
+    # Run each regression w/o covariates
     lm <- lm(
       as.formula(
-        paste(outcomes[[i]], so.covariates, sep = " ~ ")),
-      data = get(multiple.cutoff.data[x])
+        paste(outcomes[[x]], so.covariates, sep = " ~ ")),
+      data = get(multiple.cutoff.data[i])
     )
 
-    # If database number (x) is less than or equal to 3, this is a purchases
-    # regression. If the outcome number (i) is less than or equal to 3, this is
-    # a corruption regression.
-    if (x <= 3) {
-      if (i <= 3) {assign(paste0("lm.corruption.", i, ".purchases.", x), lm)}
-      else        {assign(paste0("lm.mismanagement.",i,".purchases.", x), lm)}
-    } else {
-      if (i <= 3) {assign(paste0("lm.corruption.", i, ".works.", x-3), lm)}
-      else        {assign(paste0("lm.mismanagement.", i, ".works.", x-3), lm)}
-    }
-    rm(lm)
-  }
-}
-
-# Run service order regressions w/ covariates.
-for (x in seq(from = 1, to = 6)) {
-
-  # Loop over outcomes
-  for (i in seq(from = 1, to = 6)) {
-
-    # Run each regression
-    lm <- lm(
+    # Run each regression w/ covariates
+    lm.x <- lm(
       as.formula(
         paste(
-          outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "),
+          outcomes[[x]], paste(so.covariates, mun.covariates, sep = " + "),
           sep = " ~ "
         )
       ),
-      data = get(multiple.cutoff.data[x])
+      data = get(multiple.cutoff.data[i])
     )
 
-    # If database number (x) is less than or equal to 3, this is a purchases
-    # regression. If the outcome number (i) is less than or equal to 3, this is
+    # If database number (i) is less than or equal to 3, this is a purchases
+    # regression. If the outcome number (x) is less than or equal to 3, this is
     # a corruption regression.
-    if (x <= 3) {
-      if (i <= 3) {assign(paste0("lm.corruption.x.", i, ".purchases.", x), lm)}
-      else        {assign(paste0("lm.mismanagement.x.",i,".purchases.", x), lm)}
+    if (i <= 3) {
+      if (x <= 3) {
+        assign(paste0("lm.corruption.", x, ".purchases.", i), lm)
+        assign(paste0("lm.corruption.x.", x, ".purchases.", i), lm.x)
+      } else {
+        assign(paste0("lm.mismanagement.", x,".purchases.", i), lm)
+        assign(paste0("lm.mismanagement.x.", x,".purchases.", i), lm.x)
+      }
     } else {
-      if (i <= 3) {assign(paste0("lm.corruption.x.", i, ".works.", x-3), lm)}
-      else        {assign(paste0("lm.mismanagement.x.", i, ".works.", x-3), lm)}
+      if (x <= 3) {
+        assign(paste0("lm.corruption.", x, ".works.", i-3), lm)
+        assign(paste0("lm.corruption.x.", x, ".works.", i-3), lm.x)
+      } else {
+        assign(paste0("lm.mismanagement.", x, ".works.", i-3), lm)
+        assign(paste0("lm.mismanagement.x.", x, ".works.", i-3), lm.x)
+      }
     }
-    rm(lm)
+    rm(lm, lm.x)
   }
 }
+
+# Produce table
+# stargazer()
+
+#--------------------------------------------------------#
+# Table: Local Quadratic Regressions using CCT bandwidth #
+#--------------------------------------------------------#
+# Create vector of datasets
+local.reg.data <- c(ls(pattern = "\\.(cct)$"))
+
+# Create vector of bandwidths
+local.reg.bandwidth <- c(ls(pattern = "(p|w)\\.bandwidth\\.[1-3]?"))
+
+# Create vector of cutpoints
+local.reg.cutpoints <- c(purchases.cutoff.list, works.cutoff.list)
+
+# 1st loop: 6 datasets (3x cutoffs for purchases and works)
+for (i in seq(from = 1, to = 6)) {
+
+  # 2nd loop: 6 outcomes (3x corruption, 3x mismanagement)
+  for (x in seq(from = 1, to = 6)) {
+
+    # No municipal covariates regression
+    ll <- lm(
+      as.formula(
+        paste(outcomes[[x]], so.covariates, sep = " ~ ")),
+      data = get(local.reg.data[i])
+    )
+
+    # Municipal covariates regression
+    ll.x <- lm(
+      as.formula(
+        paste(
+          outcomes[[x]], paste(so.covariates, mun.covariates, sep = " + "),
+          sep = " ~ "
+        )
+      ),
+      data = get(local.reg.data[i])
+    )
+
+    # If database number (i) is less than or equal to 3, this is a purchases
+    # regression. If the outcome number (x) is less than or equal to 3, this is
+    # a corruption regression.
+    if (i <= 3) {
+      if (x <= 3) {
+        assign(paste0("ll.corruption.", x, ".purchases.", i), ll)
+        assign(paste0("ll.corruption.x.", x, ".purchases.", i), ll.x)
+      } else {
+        assign(paste0("ll.mismanagement.", x,".purchases.", i), ll)
+        assign(paste0("ll.mismanagement.x.", x,".purchases.", i), ll.x)
+      }
+    } else {
+      if (x <= 3) {
+        assign(paste0("ll.corruption.", x, ".works.", i-3), ll)
+        assign(paste0("ll.corruption.x.", x, ".works.", i-3), ll.x)
+      } else {
+        assign(paste0("ll.mismanagement.", x, ".works.", i-3), ll)
+        assign(paste0("ll.mismanagement.x.", x, ".works.", i-3), ll.x)
+      }
+    }
+    rm(ll, ll.x)
+  }
+}
+
+#---------------------------------------#
+# Table: CCT Non-parametric Regressions #
+#---------------------------------------#
+# Run service order regressions w/o covariates.
+# 1st loop: 6 datasets (3x cutoffs for purchases and works)
+for (i in seq(from = 1, to = 6)) {
+
+  # 2nd loop: 6 outcomes (3x corruption, 3x mismanagement)
+  for (x in seq(from = 1, to = 6)) {
+
+    # Local linear regression for each unique combination dataset-cutoff-outcome
+    nonp <- get(local.reg.data[i]) %$%
+      rdrobust(y       = get(outcomes[x]),
+               x       = so.amount,
+               c       = local.reg.cutpoints[i],
+               h       = get(local.reg.bandwidth[i]),
+               cluster = ibge.id,
+               level   = 90,
+               all     = TRUE
+      )
+
+    # If database number (i) is less than or equal to 3, this is a purchases
+    # regression. If the outcome number (x) is less than or equal to 3, this is
+    # a corruption regression.
+    if (i <= 3) {
+      if (x <= 3) assign(paste0("nonp.corruption.", x, ".purchases.", i), nonp)
+      else        assign(paste0("nonp.mismanagement.", x,".purchases.", i),nonp)
+    } else {
+      if (x <= 3) assign(paste0("nonp.corruption.", x, ".works.", i-3), nonp)
+      else        assign(paste0("nonp.mismanagement.", x, ".works.", i-3), nonp)
+    }
+    rm(nonp)
+  }
+}
+
+# # Run service order regressions w/ covariates.
+# # 1st loop: 6 datasets (3x cutoffs for purchases and works)
+# for (i in seq(from = 1, to = 6)) {
+
+#   # 2nd loop: 6 outcomes (3x corruption, 3x mismanagement)
+#   for (x in seq(from = 1, to = 6)) {
+
+#     # Local linear regression for each unique combination dataset-cutoff-outcome
+#     ll <- get(local.linear.data[i]) %$%
+#       rdrobust(y       = get(outcomes[x]),
+#                x       = so.amount,
+#                c       = local.linear.cutpoints[i],
+#                h       = get(local.linear.bandwidth[i]),
+#                cluster = ibge.id,
+#                level   = 90,
+#                all     = TRUE
+#       )
+
+#     # If database number (i) is less than or equal to 3, this is a purchases
+#     # regression. If the outcome number (x) is less than or equal to 3, this is
+#     # a corruption regression.
+#     if (i <= 3) {
+#       if (x <= 3) assign(paste0("ll.corruption.x.", x, ".purchases.", i), ll)
+#       else        assign(paste0("ll.mismanagement.x.", x,".purchases.", i), ll)
+#     } else {
+#       if (x <= 3) assign(paste0("ll.corruption.x.", x, ".works.", i-3), ll)
+#       else        assign(paste0("ll.mismanagement.x.", x, ".works.", i-3), ll)
+#     }
+#     rm(ll)
+#   }
+# }
+
