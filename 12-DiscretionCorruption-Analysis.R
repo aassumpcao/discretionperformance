@@ -34,9 +34,9 @@ library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
 library(commarobust) # Version 0.1.0
 library(rlist)       # Version 0.4.6.1
-library(estimatr)
-library(rdrobust)
-library(RDDtools)
+library(estimatr)    # Version 0.8.0
+library(rdrobust)    # Version 0.99.1
+library(RDDtools)    # Version 0.22
 
 #------------------------------------------------------------------------------#
 ################################## Functions ###################################
@@ -65,12 +65,12 @@ load("mun.election.Rda")
 #-------------------------#
 # Table: Corruption Codes #
 #-------------------------#
-# IN MARKDOWN/LATEX ONLY
+# IN LATEX ONLY
 
 #--------------------------#
 # Table: Procurement Types #
 #--------------------------#
-# IN MARKDOWN/LATEX ONLY
+# IN LATEX ONLY
 
 #---------------------------#
 # Table: Audits by Ministry #
@@ -588,8 +588,151 @@ for (i in seq(from = 1, to = 6)) {
   }
 }
 
-# Produce table
-# stargazer()
+# Produce purchases table without covariates
+stargazer(
+
+  # Regressions that will be printed to table
+  list(
+    ll.mismanagement.4.purchases.1,
+    ll.mismanagement.5.purchases.1,
+    ll.mismanagement.6.purchases.1,
+    ll.mismanagement.4.purchases.2,
+    ll.mismanagement.5.purchases.2,
+    ll.mismanagement.6.purchases.2,
+    ll.mismanagement.4.purchases.3,
+    ll.mismanagement.5.purchases.3,
+    ll.mismanagement.6.purchases.3
+  ),
+
+  # Table commands
+  title                 = "Effect of Procurement Type on Corruption Outcomes",
+  out                   = "./article/tab_multiplecutoff_purchases.tex",
+  out.header            = FALSE,
+  column.labels         = rep(
+                            c(outcome.labels[[1]],
+                              outcome.labels[[2]],
+                              outcome.labels[[3]]
+                            ),
+                            3
+                          ),
+  column.separate       = rep(1, 9),
+  covariate.labels      = so.covariates.labels,
+  dep.var.labels.include= FALSE,
+  align                 = TRUE,
+
+  # # Ask for robust standard errors
+  # se                    = starprep(
+  #                           lm.corruption.1.purchases.1,
+  #                           lm.corruption.2.purchases.1,
+  #                           lm.corruption.3.purchases.1,
+  #                           lm.corruption.1.purchases.2,
+  #                           lm.corruption.2.purchases.2,
+  #                           lm.corruption.3.purchases.2,
+  #                           lm.corruption.1.purchases.3,
+  #                           lm.corruption.2.purchases.3,
+  #                           lm.corruption.3.purchases.3,
+  #                           clusters = analysis.data$ibge.id,
+  #                           alpha    = .1
+  #                         ),
+  # p                     = starprep(
+  #                           list(
+  #                             lm.corruption.1, lm.corruption.x.1,
+  #                             lm.corruption.2, lm.corruption.x.2,
+  #                             lm.corruption.3, lm.corruption.x.3
+  #                           ),
+  #                           stat     = "p.value",
+  #                           clusters = analysis.data$ibge.id,
+  #                           alpha    = .1
+  #                         ),
+  column.sep.width      = "2pt",
+  digits                = 3,
+  digits.extra          = 0,
+  # initial.zero          = FALSE,
+  font.size             = "small",
+  header                = FALSE,
+  keep                  = c("amount|corrupt|procurement"),
+  label                 = "tab:multiplecutoffpurchases",
+  no.space              = TRUE,
+  table.placement       = "!htbp",
+  omit                  = c("control", "ministry", "lottery"),
+  omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
+                            "Lottery Fixed-Effects"),
+  omit.stat             = c("rsq", "ser"),
+  star.cutoffs          = c(.1, .05, .01)
+)
+
+# Produce works table without covariates
+stargazer(
+
+  # Regressions that will be printed to table
+  list(
+    ll.mismanagement.4.works.1,
+    ll.mismanagement.5.works.1,
+    ll.mismanagement.6.works.1,
+    ll.mismanagement.4.works.2,
+    ll.mismanagement.5.works.2,
+    ll.mismanagement.6.works.2,
+    ll.mismanagement.4.works.3,
+    ll.mismanagement.5.works.3,
+    ll.mismanagement.6.works.3
+  ),
+
+  # Table commands
+  title                 = "Effect of Procurement Type on Corruption Outcomes",
+  out                   = "./article/tab_multiplecutoff_works.tex",
+  out.header            = FALSE,
+  column.labels         = rep(
+                            c(outcome.labels[[1]],
+                              outcome.labels[[2]],
+                              outcome.labels[[3]]
+                            ),
+                            3
+                          ),
+  column.separate       = rep(1, 9),
+  covariate.labels      = so.covariates.labels,
+  dep.var.labels.include= FALSE,
+  align                 = TRUE,
+
+  # # Ask for robust standard errors
+  # se                    = starprep(
+  #                           lm.corruption.1.purchases.1,
+  #                           lm.corruption.2.purchases.1,
+  #                           lm.corruption.3.purchases.1,
+  #                           lm.corruption.1.purchases.2,
+  #                           lm.corruption.2.purchases.2,
+  #                           lm.corruption.3.purchases.2,
+  #                           lm.corruption.1.purchases.3,
+  #                           lm.corruption.2.purchases.3,
+  #                           lm.corruption.3.purchases.3,
+  #                           clusters = analysis.data$ibge.id,
+  #                           alpha    = .1
+  #                         ),
+  # p                     = starprep(
+  #                           list(
+  #                             lm.corruption.1, lm.corruption.x.1,
+  #                             lm.corruption.2, lm.corruption.x.2,
+  #                             lm.corruption.3, lm.corruption.x.3
+  #                           ),
+  #                           stat     = "p.value",
+  #                           clusters = analysis.data$ibge.id,
+  #                           alpha    = .1
+  #                         ),
+  column.sep.width      = "2pt",
+  digits                = 3,
+  digits.extra          = 0,
+  # initial.zero          = FALSE,
+  font.size             = "small",
+  header                = FALSE,
+  keep                  = c("amount|corrupt|procurement"),
+  label                 = "tab:multiplecutoffworks",
+  no.space              = TRUE,
+  table.placement       = "!htbp",
+  omit                  = c("control", "ministry", "lottery"),
+  omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
+                            "Lottery Fixed-Effects"),
+  omit.stat             = c("rsq", "ser"),
+  star.cutoffs          = c(.1, .05, .01)
+)
 
 #--------------------------------------------------------#
 # Table: Local Quadratic Regressions using CCT bandwidth #
@@ -718,3 +861,6 @@ for (i in seq(from = 1, to = 6)) {
 #   }
 # }
 
+#------------------------------------------------------------------------------#
+#################################### Plots #####################################
+#------------------------------------------------------------------------------#
