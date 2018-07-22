@@ -53,6 +53,23 @@ bandwidthRange <- function(x, cutpoint, limit){
   invisible(between(x, cutpoint - limit, cutpoint + limit))
 }
 
+# Function to break away cluster var in starprep from data. Useful when lm
+# objects passed to stargazer use different datasets.
+starprepMod <- function(model, data, cluster, alpha){
+  # Args:
+  #   model:   model passed to starprep for s.e. calculation
+  #   data:    data from which to pull cluster variable
+  #   cluster: cluster variable passed to starprep
+  #   alpha:   significance level passed to starprep
+
+  # Returns:
+  #   starprep list
+  temp      <- starprep(model, cluster = data$cluster, alpha = alpha)
+  temp[[2]] <- NULL
+
+  return(temp)
+}
+
 #------------------------------------------------------------------------------#
 ############################## Summary Statistics ##############################
 #------------------------------------------------------------------------------#
@@ -620,20 +637,20 @@ stargazer(
   dep.var.labels.include= FALSE,
   align                 = TRUE,
 
-  # # Ask for robust standard errors
-  # se                    = starprep(
-  #                           lm.corruption.1.purchases.1,
-  #                           lm.corruption.2.purchases.1,
-  #                           lm.corruption.3.purchases.1,
-  #                           lm.corruption.1.purchases.2,
-  #                           lm.corruption.2.purchases.2,
-  #                           lm.corruption.3.purchases.2,
-  #                           lm.corruption.1.purchases.3,
-  #                           lm.corruption.2.purchases.3,
-  #                           lm.corruption.3.purchases.3,
-  #                           clusters = analysis.data$ibge.id,
-  #                           alpha    = .1
-  #                         ),
+  # Ask for robust standard errors
+  se                    = starprep(
+                            lm.corruption.1.purchases.1,
+                            lm.corruption.2.purchases.1,
+                            lm.corruption.3.purchases.1,
+                            lm.corruption.1.purchases.2,
+                            lm.corruption.2.purchases.2,
+                            lm.corruption.3.purchases.2,
+                            lm.corruption.1.purchases.3,
+                            lm.corruption.2.purchases.3,
+                            lm.corruption.3.purchases.3,
+                            clusters = analysis.data$ibge.id,
+                            alpha    = .1
+                          ),
   # p                     = starprep(
   #                           list(
   #                             lm.corruption.1, lm.corruption.x.1,
