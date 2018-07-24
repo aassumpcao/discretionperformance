@@ -23,19 +23,19 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 # Minimum requirements to run script
 library(tidyverse)   # Version 1.2.1
-library(haven)       # Version 1.1.1
+library(haven)       # Version 1.1.2
 library(lubridate)   # Version 1.7.4
 library(readxl)      # Version 1.1.0
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
-library(rdd)         # Version 0.99.1
-library(tikzDevice)  # Version 0.11
+library(rdd)         # Version 0.57
+library(tikzDevice)  # Version 0.12
 library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
 library(commarobust) # Version 0.1.0
 library(rlist)       # Version 0.4.6.1
-library(estimatr)    # Version 0.8.0
-library(rdrobust)    # Version 0.99.1
+library(estimatr)    # Version 0.10.0
+library(rdrobust)    # Version 0.99.3
 library(RDDtools)    # Version 0.22
 
 #------------------------------------------------------------------------------#
@@ -605,151 +605,211 @@ for (i in seq(from = 1, to = 6)) {
   }
 }
 
-# Produce purchases table without covariates
-stargazer(
+# Make it easier to visualize corruption coefficients
+# Filter models
+effect.1 <- lapply(
+  as.list(objects(pattern = "lm\\.corruption\\.[1-3]\\.(.)+\\.(1)$")), get)
+effect.2 <- lapply(
+  as.list(objects(pattern = "lm\\.corruption\\.[1-3]\\.(.)+\\.(2)$")), get)
+effect.3 <- lapply(
+  as.list(objects(pattern = "lm\\.corruption\\.[1-3]\\.(.)+\\.(3)$")), get)
 
-  # Regressions that will be printed to table
-  list(
-    ll.mismanagement.4.purchases.1,
-    ll.mismanagement.5.purchases.1,
-    ll.mismanagement.6.purchases.1,
-    ll.mismanagement.4.purchases.2,
-    ll.mismanagement.5.purchases.2,
-    ll.mismanagement.6.purchases.2,
-    ll.mismanagement.4.purchases.3,
-    ll.mismanagement.5.purchases.3,
-    ll.mismanagement.6.purchases.3
-  ),
+# Create column with model names
+names(effect.1) <- objects(pattern= "lm\\.corruption\\.[1-3]\\.(.)+\\.(1)$")
+names(effect.2) <- objects(pattern= "lm\\.corruption\\.[1-3]\\.(.)+\\.(2)$")
+names(effect.3) <- objects(pattern= "lm\\.corruption\\.[1-3]\\.(.)+\\.(3)$")
 
-  # Table commands
-  title                 = "Effect of Procurement Type on Corruption Outcomes",
-  out                   = "./article/tab_multiplecutoff_purchases.tex",
-  out.header            = FALSE,
-  column.labels         = rep(
-                            c(outcome.labels[[1]],
-                              outcome.labels[[2]],
-                              outcome.labels[[3]]
-                            ),
-                            3
-                          ),
-  column.separate       = rep(1, 9),
-  covariate.labels      = so.covariates.labels,
-  dep.var.labels.include= FALSE,
-  align                 = TRUE,
+# Put them into table format
+effect.1 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)1") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.2 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)2") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.3 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)3") %>%
+  mutate(p.value = format(p.value, digits = 3))
 
-  # Ask for robust standard errors
-  se                    = starprep(
-                            lm.corruption.1.purchases.1,
-                            lm.corruption.2.purchases.1,
-                            lm.corruption.3.purchases.1,
-                            lm.corruption.1.purchases.2,
-                            lm.corruption.2.purchases.2,
-                            lm.corruption.3.purchases.2,
-                            lm.corruption.1.purchases.3,
-                            lm.corruption.2.purchases.3,
-                            lm.corruption.3.purchases.3,
-                            clusters = analysis.data$ibge.id,
-                            alpha    = .1
-                          ),
-  # p                     = starprep(
-  #                           list(
-  #                             lm.corruption.1, lm.corruption.x.1,
-  #                             lm.corruption.2, lm.corruption.x.2,
-  #                             lm.corruption.3, lm.corruption.x.3
-  #                           ),
-  #                           stat     = "p.value",
-  #                           clusters = analysis.data$ibge.id,
-  #                           alpha    = .1
-  #                         ),
-  column.sep.width      = "2pt",
-  digits                = 3,
-  digits.extra          = 0,
-  # initial.zero          = FALSE,
-  font.size             = "small",
-  header                = FALSE,
-  keep                  = c("amount|corrupt|procurement"),
-  label                 = "tab:multiplecutoffpurchases",
-  no.space              = TRUE,
-  table.placement       = "!htbp",
-  omit                  = c("control", "ministry", "lottery"),
-  omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
-                            "Lottery Fixed-Effects"),
-  omit.stat             = c("rsq", "ser"),
-  star.cutoffs          = c(.1, .05, .01)
-)
+# Bind into one dataset
+lm.corruption.models <- rbind(effect.1, effect.2, effect.3)
 
-# Produce works table without covariates
-stargazer(
+# Make it easier to visualize corruption coefficients
+# Filter models
+effect.1 <- lapply(
+  as.list(objects(pattern = "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(1)$")), get)
+effect.2 <- lapply(
+  as.list(objects(pattern = "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(2)$")), get)
+effect.3 <- lapply(
+  as.list(objects(pattern = "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(3)$")), get)
 
-  # Regressions that will be printed to table
-  list(
-    ll.mismanagement.4.works.1,
-    ll.mismanagement.5.works.1,
-    ll.mismanagement.6.works.1,
-    ll.mismanagement.4.works.2,
-    ll.mismanagement.5.works.2,
-    ll.mismanagement.6.works.2,
-    ll.mismanagement.4.works.3,
-    ll.mismanagement.5.works.3,
-    ll.mismanagement.6.works.3
-  ),
+# Create column with model names
+names(effect.1) <- objects(pattern= "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(1)$")
+names(effect.2) <- objects(pattern= "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(2)$")
+names(effect.3) <- objects(pattern= "lm\\.mismanagement\\.[4-6]\\.(.)+\\.(3)$")
 
-  # Table commands
-  title                 = "Effect of Procurement Type on Corruption Outcomes",
-  out                   = "./article/tab_multiplecutoff_works.tex",
-  out.header            = FALSE,
-  column.labels         = rep(
-                            c(outcome.labels[[1]],
-                              outcome.labels[[2]],
-                              outcome.labels[[3]]
-                            ),
-                            3
-                          ),
-  column.separate       = rep(1, 9),
-  covariate.labels      = so.covariates.labels,
-  dep.var.labels.include= FALSE,
-  align                 = TRUE,
+# Put them into table format
+effect.1 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)1") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.2 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)2") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.3 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)3") %>%
+  mutate(p.value = format(p.value, digits = 3))
 
-  # # Ask for robust standard errors
-  # se                    = starprep(
-  #                           lm.corruption.1.purchases.1,
-  #                           lm.corruption.2.purchases.1,
-  #                           lm.corruption.3.purchases.1,
-  #                           lm.corruption.1.purchases.2,
-  #                           lm.corruption.2.purchases.2,
-  #                           lm.corruption.3.purchases.2,
-  #                           lm.corruption.1.purchases.3,
-  #                           lm.corruption.2.purchases.3,
-  #                           lm.corruption.3.purchases.3,
-  #                           clusters = analysis.data$ibge.id,
-  #                           alpha    = .1
-  #                         ),
-  # p                     = starprep(
-  #                           list(
-  #                             lm.corruption.1, lm.corruption.x.1,
-  #                             lm.corruption.2, lm.corruption.x.2,
-  #                             lm.corruption.3, lm.corruption.x.3
-  #                           ),
-  #                           stat     = "p.value",
-  #                           clusters = analysis.data$ibge.id,
-  #                           alpha    = .1
-  #                         ),
-  column.sep.width      = "2pt",
-  digits                = 3,
-  digits.extra          = 0,
-  # initial.zero          = FALSE,
-  font.size             = "small",
-  header                = FALSE,
-  keep                  = c("amount|corrupt|procurement"),
-  label                 = "tab:multiplecutoffworks",
-  no.space              = TRUE,
-  table.placement       = "!htbp",
-  omit                  = c("control", "ministry", "lottery"),
-  omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
-                            "Lottery Fixed-Effects"),
-  omit.stat             = c("rsq", "ser"),
-  star.cutoffs          = c(.1, .05, .01)
-)
+# Bind into one dataset
+lm.mismanagement.models <- rbind(effect.1, effect.2, effect.3)
+
+# # Empty standard error matrix
+# se.matrix  <- NULL
+
+# # Loop for adding s.e. from each model to s.e. matrix
+# for (i in seq(from = 1, to = 9)) {
+#   se.matrix[i] <- starprepMod(reg.models[[i]], reg.data[i], ibge.id, .1)
+# }
+
+
+# # Produce purchases table without covariates
+# stargazer(
+
+#   # Regressions that will be printed to table
+#   list(
+#     lm.corruption.1.purchases.1,
+#     lm.corruption.2.purchases.1,
+#     lm.corruption.3.purchases.1,
+#     lm.corruption.1.purchases.2,
+#     lm.corruption.2.purchases.2,
+#     lm.corruption.3.purchases.2,
+#     lm.corruption.1.purchases.3,
+#     lm.corruption.2.purchases.3,
+#     lm.corruption.3.purchases.3
+#   ),
+
+#   # Table commands
+#   title                 = "Effect of Procurement Type on Corruption Outcomes",
+#   # type                  = "text",
+#   out                   = "./article/tab_multiplecutoff_purchases.tex",
+#   out.header            = FALSE,
+#   column.labels         = rep(
+#                             c(outcome.labels[[1]],
+#                               outcome.labels[[2]],
+#                               outcome.labels[[3]]
+#                             ),
+#                             3
+#                           ),
+#   column.separate       = rep(1, 9),
+#   covariate.labels      = so.covariates.labels,
+#   dep.var.labels.include= FALSE,
+#   align                 = TRUE,
+
+#   # Ask for robust standard errors
+#   se                    = se.matrix,
+#   # p                     = starprep(
+#   #                           list(
+#   #                             lm.corruption.1, lm.corruption.x.1,
+#   #                             lm.corruption.2, lm.corruption.x.2,
+#   #                             lm.corruption.3, lm.corruption.x.3
+#   #                           ),
+#   #                           stat     = "p.value",
+#   #                           clusters = analysis.data$ibge.id,
+#   #                           alpha    = .1
+#   #                         ),
+#   column.sep.width      = "2pt",
+#   digits                = 3,
+#   digits.extra          = 0,
+#   # initial.zero          = FALSE,
+#   font.size             = "small",
+#   header                = FALSE,
+#   keep                  = c("amount|corrupt|procurement"),
+#   label                 = "tab:multiplecutoffpurchases",
+#   no.space              = TRUE,
+#   table.placement       = "!htbp",
+#   omit                  = c("control", "ministry", "lottery"),
+#   omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
+#                             "Lottery Fixed-Effects"),
+#   omit.stat             = c("rsq", "ser"),
+#   star.cutoffs          = c(.1, .05, .01)
+# )
+
+# # Produce works table without covariates
+# stargazer(
+
+#   # Regressions that will be printed to table
+#   list(
+#     ll.mismanagement.4.works.1,
+#     ll.mismanagement.5.works.1,
+#     ll.mismanagement.6.works.1,
+#     ll.mismanagement.4.works.2,
+#     ll.mismanagement.5.works.2,
+#     ll.mismanagement.6.works.2,
+#     ll.mismanagement.4.works.3,
+#     ll.mismanagement.5.works.3,
+#     ll.mismanagement.6.works.3
+#   ),
+
+#   # Table commands
+#   title                 = "Effect of Procurement Type on Corruption Outcomes",
+#   out                   = "./article/tab_multiplecutoff_works.tex",
+#   out.header            = FALSE,
+#   column.labels         = rep(
+#                             c(outcome.labels[[1]],
+#                               outcome.labels[[2]],
+#                               outcome.labels[[3]]
+#                             ),
+#                             3
+#                           ),
+#   column.separate       = rep(1, 9),
+#   covariate.labels      = so.covariates.labels,
+#   dep.var.labels.include= FALSE,
+#   align                 = TRUE,
+
+#   # # Ask for robust standard errors
+#   # se                    = starprep(
+#   #                           lm.corruption.1.purchases.1,
+#   #                           lm.corruption.2.purchases.1,
+#   #                           lm.corruption.3.purchases.1,
+#   #                           lm.corruption.1.purchases.2,
+#   #                           lm.corruption.2.purchases.2,
+#   #                           lm.corruption.3.purchases.2,
+#   #                           lm.corruption.1.purchases.3,
+#   #                           lm.corruption.2.purchases.3,
+#   #                           lm.corruption.3.purchases.3,
+#   #                           clusters = analysis.data$ibge.id,
+#   #                           alpha    = .1
+#   #                         ),
+#   # p                     = starprep(
+#   #                           list(
+#   #                             lm.corruption.1, lm.corruption.x.1,
+#   #                             lm.corruption.2, lm.corruption.x.2,
+#   #                             lm.corruption.3, lm.corruption.x.3
+#   #                           ),
+#   #                           stat     = "p.value",
+#   #                           clusters = analysis.data$ibge.id,
+#   #                           alpha    = .1
+#   #                         ),
+#   column.sep.width      = "2pt",
+#   digits                = 3,
+#   digits.extra          = 0,
+#   # initial.zero          = FALSE,
+#   font.size             = "small",
+#   header                = FALSE,
+#   keep                  = c("amount|corrupt|procurement"),
+#   label                 = "tab:multiplecutoffworks",
+#   no.space              = TRUE,
+#   table.placement       = "!htbp",
+#   omit                  = c("control", "ministry", "lottery"),
+#   omit.labels           = c("Municipal Controls", "Ministry Fixed-Effects",
+#                             "Lottery Fixed-Effects"),
+#   omit.stat             = c("rsq", "ser"),
+#   star.cutoffs          = c(.1, .05, .01)
+# )
 
 #--------------------------------------------------------#
 # Table: Local Quadratic Regressions using CCT bandwidth #
@@ -810,6 +870,70 @@ for (i in seq(from = 1, to = 6)) {
     rm(ll, ll.x)
   }
 }
+
+
+# Make it easier to visualize corruption coefficients
+# Filter models
+effect.1 <- lapply(
+  as.list(objects(pattern = "ll\\.corruption\\.[1-3]\\.(.)+\\.(1)$")), get)
+effect.2 <- lapply(
+  as.list(objects(pattern = "ll\\.corruption\\.[1-3]\\.(.)+\\.(2)$")), get)
+effect.3 <- lapply(
+  as.list(objects(pattern = "ll\\.corruption\\.[1-3]\\.(.)+\\.(3)$")), get)
+
+# Create column with model names
+names(effect.1) <- objects(pattern= "ll\\.corruption\\.[1-3]\\.(.)+\\.(1)$")
+names(effect.2) <- objects(pattern= "ll\\.corruption\\.[1-3]\\.(.)+\\.(2)$")
+names(effect.3) <- objects(pattern= "ll\\.corruption\\.[1-3]\\.(.)+\\.(3)$")
+
+# Put them into table format
+effect.1 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)1") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.2 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)2") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.3 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)3") %>%
+  mutate(p.value = format(p.value, digits = 3))
+
+# Bind into one dataset
+ll.corruption.models <- rbind(effect.1, effect.2, effect.3)
+
+# Make it easier to visualize corruption coefficients
+# Filter models
+effect.1 <- lapply(
+  as.list(objects(pattern = "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(1)$")), get)
+effect.2 <- lapply(
+  as.list(objects(pattern = "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(2)$")), get)
+effect.3 <- lapply(
+  as.list(objects(pattern = "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(3)$")), get)
+
+# Create column with model names
+names(effect.1) <- objects(pattern= "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(1)$")
+names(effect.2) <- objects(pattern= "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(2)$")
+names(effect.3) <- objects(pattern= "ll\\.mismanagement\\.[4-6]\\.(.)+\\.(3)$")
+
+# Put them into table format
+effect.1 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)1") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.2 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)2") %>%
+  mutate(p.value = format(p.value, digits = 3))
+effect.3 %<>%
+  plyr::ldply(tidy, .id = "model") %>%
+  filter(term == "factor(so.procurement)3") %>%
+  mutate(p.value = format(p.value, digits = 3))
+
+# Bind into one dataset
+ll.mismanagement.models <- rbind(effect.1, effect.2, effect.3)
+
 
 #---------------------------------------#
 # Table: CCT Non-parametric Regressions #
