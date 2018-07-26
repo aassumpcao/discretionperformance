@@ -36,7 +36,7 @@ library(commarobust) # Version 0.1.0
 library(rlist)       # Version 0.4.6.1
 library(estimatr)    # Version 0.10.0
 library(rdrobust)    # Version 0.99.3
-library(rdmulti)
+library(rdmulti)     # Version 0.20
 library(RDDtools)    # Version 0.22
 
 #------------------------------------------------------------------------------#
@@ -368,29 +368,26 @@ rm(list = objects(pattern = "lm\\.|summary\\.stats"))
 # data. First, we run non-cumulative multiple cutoff by pooling together purcha-
 # ses and works and centering them around their equivalent cutoff(8k and 15k)
 for (x in seq(from = 1, to = 6)) {
-
   cutoff.1 <- analysis.data %$%
-    rdmc(Y          = get(outcomes[i]),
+    rdmc(Y          = get(outcomes[x]),
          X          = so.amount,
          C          = so.cutoff.1,
          pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-         pvec       = c(2,2)
+         pvec       = c(2, 2)
     )
-
   cutoff.2 <- analysis.data %$%
-    rdmc(Y          = get(outcomes[i]),
+    rdmc(Y          = get(outcomes[x]),
          X          = so.amount,
          C          = so.cutoff.2,
          pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-         pvec       = c(2,2)
+         pvec       = c(2, 2)
     )
-
   cutoff.3 <- analysis.data %$%
-    rdmc(Y          = get(outcomes[i]),
+    rdmc(Y          = get(outcomes[x]),
          X          = so.amount,
          C          = so.cutoff.3,
          pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-         pvec       = c(2,2)
+         pvec       = c(2, 2)
     )
 
   # Assign new object names
@@ -406,25 +403,71 @@ for (x in seq(from = 1, to = 6)) {
   rm(cutoff.1, cutoff.2, cutoff.3)
 }
 
+# Significant pooled results with municipal corruption as a covariate
+analysis.data %$%
+  rdmc(Y          = corruption.share,
+       X          = so.amount,
+       C          = so.cutoff.1,
+       pooled.opt = paste("covs = analysis.data$mun.corruption",
+                          "level = 90",
+                          "cluster = analysis.data$ibge.id",
+                          "all = TRUE", sep = ", "),
+       pvec       = c(2, 2)
+  )
+analysis.data %$%
+  rdmc(Y          = mismanagement.binary,
+       X          = so.amount,
+       C          = so.cutoff.1,
+       pooled.opt = paste("covs = analysis.data$mun.corruption",
+                          "level = 90",
+                          "cluster = analysis.data$ibge.id",
+                          "all = TRUE", sep = ", "),
+       pvec       = c(2, 2)
+  )
+analysis.data %$%
+  rdmc(Y          = mismanagement.share,
+       X          = so.amount,
+       C          = so.cutoff.1,
+       pooled.opt = paste("covs = analysis.data$mun.corruption",
+                          "level = 90",
+                          "cluster = analysis.data$ibge.id",
+                          "all = TRUE", sep = ", "),
+       pvec       = c(2, 2)
+  )
+
 # Now we run the cumulative analysis separating out purchases and works. We once
 # again use Cataneo's rdmulti package but now the focus is on function rdms()
 purchases.data  <- analysis.data %>% filter(so.type == 1)
 works.data      <- analysis.data %>% filter(so.type == 2)
 
-# Define vector for loop
-cumulative.data <- c(purchases.data, works.data)
+# Loop over each database and each outcome and spit out the coefficients of the
+# cumulative regressions
+for (x in seq(from = 1, to = 6)) {
+  purchases <- purchases.data %$%
+    rdms(Y          = get(outcomes[x]),
+         X          = so.amount,
+         C          = c(8000, 80000, 650000),
+         pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
+         pvec       = c(2, 2, 2)
+    )
+  works <- works.data %$%
+    rdms(Y          = get(outcomes[x]),
+         X          = so.amount,
+         C          = c(15000, 150000, 1500000),
+         pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
+         pvec       = c(2, 2, 2)
+    )
 
-purchases.data %$%
-  rdms(Y = corruption.binary,
-       X = so.amount,
-       C = c(8000, 80000, 650000),
-       pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-       )
-
-
-
-
-
+  # Assign new object names
+  if (x <= 3) {
+    assign(paste0("cumulative.corruption.", x, ".purchases"), purchases)
+    assign(paste0("cumulative.corruption.", x, ".works"), works)
+  } else {
+    assign(paste0("cumulative.mismanagement.", x, ".purchases"), purchases)
+    assign(paste0("cumulative.mismanagement.", x, ".works"), works)
+  }
+  rm(purchases, works)
+}
 
 # # Empty standard error matrix
 # se.matrix  <- NULL
