@@ -62,7 +62,7 @@ Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bru
 \begin{abstract}
 \noindent Placeholder\\
 \vspace{0in}\\
-\noindent\textbf{Keywords:} corruption, procurement, discretion.\\
+\noindent\textbf{Keywords:} corruption, misallocation of resources, procurement, discretion, government performance.\\
 \vspace{0in}\\
 \noindent\textbf{JEL Codes:} D73, K10, H57, H72, H83, O12, P48.\\
 
@@ -77,12 +77,26 @@ Robert Garlick, and Marisa Domino. Excellent research assistance provided by Bru
 
 \section{Introduction} \label{sec:introduction}
 
+An important discussion in developing countries is whether governments attract qualified professionals to implement policy and efficiently allocate scarce resources. When public officials are competent, there does not seem to exist much opposition to these policymakers having discretion in the allocation of public resources. This is particularly important when it comes to lower-level bureaucrats, who know more about the communities they serve and, thus, are better placed to understand and deliver on the needs of their people \citep{LipskyStreetLevelBureaucracy30th2010}. However, it is often the case that governments attract a heterogeneous pool of workers with high and low quality professionals. Some might even be good professionals but have bad intentions. Incompetence and rent-seeking behavior help explain why officials deviate from their duties and why spending controls are called into action \citep{LambsdorffCorruptionRentSeeking2002, OlkenCorruptionCostsRedistribution2006}.
+
+In this paper, we investigate the relationship between discretion in public spending and government performance. In particular, we look at whether lower discretion reduces corruption and misallocation of public resources in Brazilian municipalities. To our knowledge, this is the first study in the economics literature specifically focusing on the effect of discretion on government performance. There are many studies looking at the relationship between economic or political decentralization and corruption \citep{Treismancausescorruptioncrossnational2000,FismanDecentralizationcorruptionevidence2002,FanPoliticaldecentralizationcorruption2009,ChoudhuryGovernmentaldecentralizationcorruption2015}, but they generally face similar issues: they present cross-country evidence, unable to capture \emph{within}-country corruption heterogeneity \citep{Treismancausescorruptioncrossnational2000,FismanDecentralizationcorruptionevidence2002}; they employ perception-based \citep{Treismancausescorruptioncrossnational2000,FismanDecentralizationcorruptionevidence2002} and experienced-based \citep{FanPoliticaldecentralizationcorruption2009,ChoudhuryGovernmentaldecentralizationcorruption2015} corruption measures,  both susceptible to non-trivial measurement error; and, finally, they are all dealing with some sort of imperfect measurement of economic and political decentralization (devolution of fiscal revenues and number of government levels, for instance). Moreover, decentralization encompasses many context-specific factors beyond discretion that could jointly determine government performance.
+
+% We exploit discontinuities in Brazilian  procurement law to assess whether tighter spending rules make it more difficult for public officials to extract rents (\citealt{becker1968,rose1975,stigler1970}) and to misallocate resources. Exogenous variation comes from Law 8,666, passed in 1993, which determines procurement types for all government levels in Brazil as a function of the amount procured. By looking at municipal purchase orders around monetary cutoffs where procurement rules changes discontinuously, we infer causal relationships between discretion and corruption.
+
+% The change to stricter procurement rules increases corruption by 12.5 percentage points. The legislation does a poor job of deterring corruption, most likely because procurement types are not much different from each other. The policy takeaway is the need to improve the design of spending regulations.
+
+% Besides looking at an unexplored determinant of corruption, we also contribute to the literature by employing an objective measure of corruption in line with \cite{bertrand2007obtaining,olken2009corruption,fismanmiguel} and a few others. Our measure is similar to that of \cite{ferraz01052008,ferraz2011} but we use improvements made by \cite{lopes2011} to build our corruption index. Finally, we contribute to advance the use of regression discontinuity by suggesting an interpretation of fuzzy RD when the researcher cannot precisely observe the assignment variable.
+
+% The remainder of this paper is organized as follows: section II introduces our theoretical model, section III presents previous studies and our data. We run empirical tests in section IV and discuss results in V. Section VI concludes.
+
 \section{Background and Data} \label{sec:background}
 
 \subsection{Data} \label{subsec:data}
 
-\section{Estimation} \label{sec:methodology}
+\section{Estimation Strategy} \label{sec:methodology}
+
 \subsection{Model} \label{subsec:model}
+
 The simple model here is based on \citet{OlkenCorruptionDevelopingCountries2012b} and posits a straightforward relationship between discretion and corruption. A representative policymaker earns wage \emph{w} from working in government and an additional bribe \emph{b} if she decides to engage in corruption. Her market wage is \emph{v}, which she receives if she quits, or is fired, from her government position. If she chooses corruption, she must pay her individual dishonesty cost \emph{d} and subject herself to the probability of detection \emph{p}. For simplicity, we treat each corruption decision as an independent, one-time decision. Thus, officials will engage in corruption when:
 \begin{equation} \label{eq:simplemodel}
   \begin{split}
@@ -118,8 +132,18 @@ The analysis in this paper focuses on the partial derivatives in (ii), and we ar
 
 In addition to reducing corruption, the Brazilian procurement legislation should lead to a more efficient allocation of public resources. The first reason is that fewer resources would be lost to corruption and, thus, they would be correctly employed to deliver both more and better policy. However, since performance indicators are aggregated at the municipal level, we cannot really isolate the effect of individual procurement rules on policy from other performance determinants, i.e. the quality of the bureaucracy, physical infrastructure, legal institutions, etc.
 
-The second channel through which procurement rules could reduce the misallocation of resources is by standardizing the procurement of goods and services and by making local government officials stick to the policy plan set out at higher levels of government. In the case of Brazilian municipalities, this effectively means adhering to federal-mandated school and health programs instead of using funds to cover other competing expenses or budget shortfalls. Finally,
+The second channel through which procurement rules could reduce the misallocation of resources is by standardizing the procurement of goods and services and by making local government officials stick to policy plans set out at higher levels of government. In the case of Brazilian municipalities, this effectively means adhering to federal-mandated school and health programs instead of using funds to cover other competing expenses or budget shortfalls. Thus, we also look at the effect of discretion on mismanagement of public resources.
 
+\begin{equation} \label{eq:alternativeoutcome}
+  \begin{aligned}
+    m = f(w,\ v,\ p,\ d,\ x,\ l,\ r)& \\
+    \nabla f'(-,+,-,-,+,-,+)&
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  m_{l} < 0
+\end{equation}
 
 \subsection{Research Design} \label{subsec:design}
 
@@ -141,13 +165,20 @@ The second channel through which procurement rules could reduce the misallocatio
   \item \emph{\hypopen \space (which are investigated via CGU's service orders), an increase in the tender amount is associated with an increase in all three corruption indicators.}
   \item \emph{\hypopen, an increase in the tender amount is associated with decreasing returns to corruption as measured by the amount potentially lost to corruption (corruption indicator II) and the share of corruption findings to overall wrongdoing (corruption indicator III).}
 \end{enumerate}
+
 \begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
   \item \emph{\hypopen \space (which are investigated via CGU's service orders), an increase in the municipal corruption level, measured by the share of corruption findings to the overall level of wrongdoing in any municipality (aggregated corruption indicator III by municipality), is associated with a higher probability that any individual tender will contain at least one corruption finding (corruption indicator I).}
   \item \emph{\hypopen, an increase in the municipal corruption level, measured by the share of corruption findings to the overall level of wrongdoing in any municipality (aggregated corruption indicator III by municipality), is associated with decreasing returns to corruption as measure by the amount potentially lost to corruption (corruption indicator II).}
 \end{enumerate}
+
 \begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
   \item \textit{\hypopen \space (which are investigated via CGU's service orders), stricter procurement rules reduce corruption as measured by all three corruption indicators, \emph{all else equal}.}
   \item \textit{\hypopen, stricter procurement rules reduce corruption at a decreasing rate as measured by all three corruption indicators, \emph{all else equal}.}
+\end{enumerate}
+
+\begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
+  \item \textit{\hypopen \space (which are investigated via CGU's service orders), stricter procurement rules reduce mismanagement as measured by all three mismanagement indicators, \emph{all else equal}.}
+  \item \textit{\hypopen, stricter procurement rules reduce mismanagement at a decreasing rate as measured by all three mismanagement indicators, \emph{all else equal}.}
 \end{enumerate}
 
 
@@ -186,6 +217,7 @@ The second channel through which procurement rules could reduce the misallocatio
 \clearpage
 
 \appendix
+
 \section{Appendix: Service Order Classification} \label{sec:appendixA}
 
 Service orders issued by CGU investigated different uses of public resources in addition to procurement, e.g.~for officials compensation, for school activities, or for community monitoring of public policies. The discretion measure proposed here, however, is exclusive to procurement expenditures made under Law 8,666/93. The ideal dataset for this study would contain explicit procurement information collected by CGU auditors, but unfortunately this is not the case. The reporting of procurement processes is implicit, via descriptions of investigations or findings of violations to Law 8,666/93. Thus, we isolate service orders which investigated procurement processes from the rest by implementing an classification system based on the information retrieval and natural-language processing literatures.
@@ -362,7 +394,7 @@ Although no text analysis mechanism is perfect, the evidence presented here supp
 
 \section{Service Amount Maniputation}\label{sec:appendixC}
 
-The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any discretion threshold, which is uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on corruption. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of running variable for all six discretion cutoffs in the Brazilian procurement legislation.
+The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any discretion threshold, which is uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on corruption. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of running variable for all six cutoffs in the Brazilian procurement legislation.
 
 \begin{figure}[!htbp]
   \caption{\label{fig:manipulationtests} Cutoff Manipulation Tests}
