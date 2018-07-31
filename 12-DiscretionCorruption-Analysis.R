@@ -23,21 +23,16 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 # Minimum requirements to run script
 library(tidyverse)   # Version 1.2.1
-library(haven)       # Version 1.1.2
+# library(haven)       # Version 1.1.2
 library(lubridate)   # Version 1.7.4
-library(readxl)      # Version 1.1.0
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
-library(rdd)         # Version 0.57
 library(tikzDevice)  # Version 0.12
 library(stargazer)   # Version 5.2.2
 library(xtable)      # Version 1.8.2
-library(commarobust) # Version 0.1.0
-library(rlist)       # Version 0.4.6.1
 library(estimatr)    # Version 0.10.0
 library(rdrobust)    # Version 0.99.3
 library(rdmulti)     # Version 0.20
-library(RDDtools)    # Version 0.22
 
 #------------------------------------------------------------------------------#
 ################################## Functions ###################################
