@@ -4,45 +4,46 @@ The top-level auxiliary file: discretioncorruption.aux
 The style file: apalike.bst
 Database file #1: /Users/aassumpcao/library.bib
 Warning--empty note in AssumpcaotextfindDataDrivenText2018
-You've used 17 entries,
+Warning--empty institution in LichandCorruptionGoodYour2017
+You've used 24 entries,
             1935 wiz_defined-function locations,
-            590 strings with 7373 characters,
-and the built_in function-call counts, 6155 in all, are:
-= -- 604
-> -- 182
-< -- 15
-+ -- 62
-- -- 56
-* -- 513
-:= -- 1083
-add.period$ -- 50
-call.type$ -- 17
-change.case$ -- 112
-chr.to.int$ -- 17
-cite$ -- 18
-duplicate$ -- 233
-empty$ -- 474
-format.name$ -- 85
-if$ -- 1217
+            638 strings with 8838 characters,
+and the built_in function-call counts, 8731 in all, are:
+= -- 858
+> -- 277
+< -- 21
++ -- 94
+- -- 86
+* -- 734
+:= -- 1541
+add.period$ -- 71
+call.type$ -- 24
+change.case$ -- 163
+chr.to.int$ -- 24
+cite$ -- 26
+duplicate$ -- 326
+empty$ -- 656
+format.name$ -- 130
+if$ -- 1720
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 87
-num.names$ -- 51
-pop$ -- 69
+missing$ -- 22
+newline$ -- 122
+num.names$ -- 72
+pop$ -- 102
 preamble$ -- 1
-purify$ -- 113
+purify$ -- 163
 quote$ -- 0
-skip$ -- 183
+skip$ -- 254
 stack$ -- 0
-substring$ -- 510
-swap$ -- 16
-text.length$ -- 0
+substring$ -- 698
+swap$ -- 22
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
-warning$ -- 1
-while$ -- 49
+type$ -- 142
+warning$ -- 2
+while$ -- 68
 width$ -- 0
-write$ -- 219
-(There was 1 warning)
+write$ -- 310
+(There were 2 warnings)

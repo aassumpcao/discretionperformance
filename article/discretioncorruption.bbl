@@ -9,6 +9,12 @@ Becker, G.~S. (1968).
 \newblock Crime and {{Punishment}}: {{An Economic Approach}}.
 \newblock {\em Journal of Political Economy}, 76:169--217.
 
+\bibitem[Becker and Stigler, 1974]{BeckerLawEnforcementMalfeasance1974}
+Becker, G.~S. and Stigler, G.~J. (1974).
+\newblock Law {{Enforcement}}, {{Malfeasance}}, and {{Compensation}} of
+  {{Enforcers}}.
+\newblock {\em The Journal of Legal Studies}, 3(1):1--18.
+
 \bibitem[Chong et~al., 2015]{ChongDoesCorruptionInformation2015}
 Chong, A., De~La~O, A., Karlan, D., and Wantchekon, L. (2015).
 \newblock Does {{Corruption Information Inspire}} the {{Fight}} or {{Quash}}
@@ -18,14 +24,14 @@ Chong, A., De~La~O, A., Karlan, D., and Wantchekon, L. (2015).
 
 \bibitem[Choudhury, 2015]{ChoudhuryGovernmentaldecentralizationcorruption2015}
 Choudhury, S. (2015).
-\newblock Governmental decentralization and corruption revisited:
-  {{Accounting}} for potential endogeneity.
+\newblock Governmental {{Decentralization}} and {{Corruption Revisited}}:
+  {{Accounting}} for {{Potential Endogeneity}}.
 \newblock {\em Economics Letters}, 136:218--222.
 
 \bibitem[Fan et~al., 2009]{FanPoliticaldecentralizationcorruption2009}
 Fan, C.~S., Lin, C., and Treisman, D. (2009).
-\newblock Political decentralization and corruption: {{Evidence}} from around
-  the world.
+\newblock Political {{Decentralization}} and {{Corruption}}: {{Evidence}} from
+  {{Around}} the {{World}}.
 \newblock {\em Journal of Public Economics}, 93(1):14--34.
 
 \bibitem[Ferraz and Finan, 2008]{FerrazExposingCorruptPoliticians2008b}
@@ -34,9 +40,21 @@ Ferraz, C. and Finan, F. (2008).
   {{Publicly Released Audits}} on {{Electoral Outcomes}}.
 \newblock {\em The Quarterly Journal of Economics}, 123:703--745.
 
+\bibitem[Ferraz and Finan, 2011]{FerrazElectoralAccountabilityCorruption2011a}
+Ferraz, C. and Finan, F. (2011).
+\newblock Electoral {{Accountability}} and {{Corruption}}: {{Evidence}} from
+  the {{Audits}} of {{Local Governments}}.
+\newblock {\em American Economic Review}, 101:1274--1311.
+
+\bibitem[Ferraz et~al., 2012]{FerrazCorruptinglearningEvidence2012}
+Ferraz, C., Finan, F., and Moreira, D.~B. (2012).
+\newblock Corrupting {{Learning}}: {{Evidence}} from {{Missing Federal
+  Education Funds}} in {{Brazil}}.
+\newblock {\em Journal of Public Economics}, 96(9):712--726.
+
 \bibitem[Fisman and Gatti, 2002]{FismanDecentralizationcorruptionevidence2002}
 Fisman, R. and Gatti, R. (2002).
-\newblock Decentralization and corruption: Evidence across countries.
+\newblock Decentralization and {{Corruption}}: {{Evidence Across Countries}}.
 \newblock {\em Journal of Public Economics}, 83(3):325--345.
 
 \bibitem[Grimmer and Stewart, 2013]{GrimmerTextDataPromise2013a}
@@ -56,16 +74,26 @@ Lambsdorff, J.~G. (2002).
 \newblock Corruption and {{Rent}}-{{Seeking}}.
 \newblock {\em Public Choice}, 113:97--125.
 
+\bibitem[Lichand et~al., 2017]{LichandCorruptionGoodYour2017}
+Lichand, G., Lopes, M. F.~M., and Medeiros, M.~M. (2017).
+\newblock Is {{Corruption Good}} for {{Your Health}}?
+\newblock Technical report.
+
 \bibitem[Lipsky, 2010]{LipskyStreetLevelBureaucracy30th2010}
 Lipsky, M. (2010).
 \newblock {\em Street-{{Level Bureaucracy}}, 30th {{Anniversary Edition}}:
   {{Dilemmas}} of the {{Individual}} in {{Public Service}}}.
 \newblock {Russell Sage Foundation}.
 
+\bibitem[Litschig and Zamboni, 2015]{LitschigJudicialPresenceRent2015}
+Litschig, S. and Zamboni, Y. (2015).
+\newblock Judicial {{Presence}} and {{Rent Extraction}}.
+\newblock Working {{Paper}} 796, {Barcelona GSE}, Barcelona.
+
 \bibitem[McCrary, 2008]{McCraryManipulationrunningvariable2008}
 McCrary, J. (2008).
-\newblock Manipulation of the running variable in the regression discontinuity
-  design: {{A}} density test.
+\newblock Manipulation of the {{Running Variable}} in the {{Regression
+  Discontinuity Design}}: {{A Density Test}}.
 \newblock {\em Journal of Econometrics}, 142(2):698--714.
 
 \bibitem[Olken, 2006]{OlkenCorruptionCostsRedistribution2006}
@@ -84,9 +112,14 @@ Olken, B.~A. and Pande, R. (2012).
 \newblock The {{Economics}} of {{Corruption}}.
 \newblock {\em Journal of Public Economics}, 4:187--203.
 
+\bibitem[Stigler, 1970]{StiglerOptimumEnforcementLaws1970}
+Stigler, G.~J. (1970).
+\newblock The {{Optimum Enforcement}} of {{Laws}}.
+\newblock {\em Journal of Political Economy}, 78:526--536.
+
 \bibitem[Treisman, 2000]{Treismancausescorruptioncrossnational2000}
 Treisman, D. (2000).
-\newblock The causes of corruption: A cross-national study.
+\newblock The {{Causes}} of {{Corruption}}: A {{Cross}}-national {{Study}}.
 \newblock {\em Journal of Public Economics}, 76(3):399--457.
 
 \bibitem[Winters and {Weitz-Shapiro},
@@ -95,5 +128,11 @@ Winters, M.~S. and {Weitz-Shapiro}, R. (2013).
 \newblock Lacking {{Information}} or {{Condoning Corruption}}: {{When Do Voters
   Support Corrupt Politicians}}?
 \newblock {\em Comparative Politics}, 45:418--436.
+
+\bibitem[Zamboni and Litschig, 2018]{ZamboniAuditriskrent2018}
+Zamboni, Y. and Litschig, S. (2018).
+\newblock Audit {{Risk}} and {{Rent Extraction}}: {{Evidence}} from a
+  {{Randomized Evaluation}} in {{Brazil}}.
+\newblock {\em Journal of Development Economics}, 134:133--149.
 
 \end{thebibliography}
