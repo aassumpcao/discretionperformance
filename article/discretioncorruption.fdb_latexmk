@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretioncorruption"] 1533216931 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1533216942
+["bibtex discretioncorruption"] 1533238249 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1533238374
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "discretioncorruption.aux" 1533216941 10885 4f2ddabb1b988195e67c5d8be4b2b0b4 ""
+  "discretioncorruption.aux" 1533238374 12116 c3f265fa2199613d853396393980c0ef ""
   (generated)
   "discretioncorruption.bbl"
   "discretioncorruption.blg"
-["pdflatex"] 1533216941 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1533216942
+["pdflatex"] 1533238373 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1533238374
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -123,19 +123,20 @@
   "appendix_tab3.tex" 1533215069 2539 0f6b30ea5fc1a1fec491bad50e7ab003 ""
   "appendix_tab4.tex" 1528981987 1501 f50e7fc4c0f586897a202e79fca79531 ""
   "appendix_tab5.tex" 1528639648 1493 6860420cf99230724d89d30ec2de1846 ""
-  "discretioncorruption.aux" 1533216941 10885 4f2ddabb1b988195e67c5d8be4b2b0b4 ""
-  "discretioncorruption.bbl" 1533216932 7565 808f86660bab697d2e54fcfa0df977d3 "bibtex discretioncorruption"
-  "discretioncorruption.out" 1533216941 2617 79318dc332b66bcbf869a13bb3b9e5f4 ""
-  "discretioncorruption.tex" 1533216940 48688 04912a808b05b41c69096d9a114af813 ""
-  "purchasesmanipulation1.png" 1528716166 30278 bb587f445924e5ae9d25687d1b6e1b87 ""
-  "purchasesmanipulation2.png" 1528644595 32884 ef978692813f0fcb891285b38c038ff1 ""
-  "purchasesmanipulation3.png" 1528644595 35944 ce5cc97b6c324be7daae0117db90275e ""
-  "venn.png" 1528719345 37030 1d61bb25cd21b54df13996c8da447eaa ""
-  "worksmanipulation1.png" 1528716191 34796 d7a105046699c2204ccafd1698254549 ""
-  "worksmanipulation2.png" 1528716201 34334 d339ff813b6e20f5d529c641e6cc24cc ""
-  "worksmanipulation3.png" 1528716337 35560 ac5af908b0eee7cdb40df2216af91a85 ""
+  "discretioncorruption.aux" 1533238374 12116 c3f265fa2199613d853396393980c0ef ""
+  "discretioncorruption.bbl" 1533238249 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretioncorruption"
+  "discretioncorruption.out" 1533238374 3043 11f56a3858afc03c72a8e7eeda58419a ""
+  "discretioncorruption.tex" 1533238373 55733 7e06f9d03b63c805e5bbcb1d2a1ad84a ""
+  "purchasesmanipulation1.png" 1533218285 30278 bb587f445924e5ae9d25687d1b6e1b87 ""
+  "purchasesmanipulation2.png" 1533218285 32884 ef978692813f0fcb891285b38c038ff1 ""
+  "purchasesmanipulation3.png" 1533218285 35944 ce5cc97b6c324be7daae0117db90275e ""
+  "tab_auditbyministry.tex" 1533233069 877 474f142e3bb054d589cc3ffb7021245b ""
+  "venn.png" 1533218227 37030 1d61bb25cd21b54df13996c8da447eaa ""
+  "worksmanipulation1.png" 1533218285 34796 d7a105046699c2204ccafd1698254549 ""
+  "worksmanipulation2.png" 1533218285 34334 d339ff813b6e20f5d529c641e6cc24cc ""
+  "worksmanipulation3.png" 1533218285 35560 ac5af908b0eee7cdb40df2216af91a85 ""
   (generated)
-  "discretioncorruption.out"
   "discretioncorruption.aux"
   "discretioncorruption.pdf"
+  "discretioncorruption.out"
   "discretioncorruption.log"

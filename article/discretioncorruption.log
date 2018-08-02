@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  2 AUG 2018 09:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  2 AUG 2018 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -537,22 +537,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--68
 [0
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1] [2] [3] [4] [5] [6] (./discretioncorruption.bbl [7] [8]) [9]
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
+[1] [2] [3] [4] (./tab_auditbyministry.tex) [5] [6] [7] [8]
+(./discretioncorruption.bbl [9] [10]) [11]
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 \OT1/cmr/m/n/10 ``com-pra'' ``re-curso(.)*financ'' ``unidade(.)*m[^^Soo]ve(.)*s
 a[^^Suu]de'' ``pnate'' ``trans-
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 254.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
 
-Underfull \hbox (badness 2213) in paragraph at lines 254--255
+Underfull \hbox (badness 2213) in paragraph at lines 276--277
 []|\OT1/cmr/m/n/10 ``co(ns\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 sn)tru'' ``obra'' `
 `im-plant'' ``in-fra(.)*estrut'' ``am-plia'' ``abasteci(.)*d(.)*[^^Saa]gua''
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 254--255
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
 \OT1/cmr/m/n/10 ``re-forma'' ``(mel-ho-ria\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 ade
 qua)+(.)*(f[^^S^^Pi]sica\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 escolar\OMS/cmsy/m/n/
 10 j\OT1/cmr/m/n/10 habitac\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 sanit[^^Saa]ria)+'
@@ -560,85 +561,74 @@ qua)+(.)*(f[^^S^^Pi]sica\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 escolar\OMS/cmsy/m/n/
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 254--255
+Underfull \hbox (badness 3291) in paragraph at lines 276--277
 \OT1/cmr/m/n/10 ``adu-tora\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 dessaliniz\OMS/cmsy
 /m/n/10 j\OT1/cmr/m/n/10 reservat[^^Soo]'' ``sanit[^^Saa]ri[ao]'' ``po^^Xco'' `
 `aper-fei[^^Xcc]oa'' ``sanea-mento''
  []
 
-[10
+[12
 
 
 ]
-<venn.png, id=285, 481.8pt x 481.8pt>
+<venn.png, id=339, 481.8pt x 481.8pt>
 File: venn.png Graphic file (type png)
 <use venn.png>
-Package pdftex.def Info: venn.png  used on input line 265.
+Package pdftex.def Info: venn.png  used on input line 287.
 (pdftex.def)             Requested size: 140.92793pt x 140.92409pt.
- [11 <./venn.png>] (./appendix_tab2.tex) (./appendix_tab3.tex) [12]
-[13] (./appendix_tab4.tex) [14] (./appendix_tab5.tex) [15] [16] [17]
-<purchasesmanipulation1.png, id=363, 481.8pt x 481.8pt>
+ [13 <./venn.png>] (./appendix_tab2.tex) (./appendix_tab3.tex) [14]
+[15] (./appendix_tab4.tex) [16] (./appendix_tab5.tex) [17] [18] [19]
+<purchasesmanipulation1.png, id=417, 481.8pt x 481.8pt>
 File: purchasesmanipulation1.png Graphic file (type png)
 <use purchasesmanipulation1.png>
-Package pdftex.def Info: purchasesmanipulation1.png  used on input line 417.
-(pdftex.def)             Requested size: 144.5411pt x 144.5411pt.
-<purchasesmanipulation2.png, id=364, 481.8pt x 481.8pt>
-File: purchasesmanipulation2.png Graphic file (type png)
-<use purchasesmanipulation2.png>
-Package pdftex.def Info: purchasesmanipulation2.png  used on input line 417.
-(pdftex.def)             Requested size: 144.5411pt x 144.5411pt.
-<purchasesmanipulation3.png, id=365, 481.8pt x 481.8pt>
-File: purchasesmanipulation3.png Graphic file (type png)
-<use purchasesmanipulation3.png>
-Package pdftex.def Info: purchasesmanipulation3.png  used on input line 417.
-(pdftex.def)             Requested size: 144.5411pt x 144.5411pt.
-File: purchasesmanipulation1.png Graphic file (type png)
-<use purchasesmanipulation1.png>
-Package pdftex.def Info: purchasesmanipulation1.png  used on input line 429.
+Package pdftex.def Info: purchasesmanipulation1.png  used on input line 439.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation1.png, id=366, 481.8pt x 481.8pt>
+<worksmanipulation1.png, id=418, 481.8pt x 481.8pt>
 File: worksmanipulation1.png Graphic file (type png)
 <use worksmanipulation1.png>
-Package pdftex.def Info: worksmanipulation1.png  used on input line 429.
+Package pdftex.def Info: worksmanipulation1.png  used on input line 439.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
+<purchasesmanipulation2.png, id=419, 481.8pt x 481.8pt>
 File: purchasesmanipulation2.png Graphic file (type png)
 <use purchasesmanipulation2.png>
-Package pdftex.def Info: purchasesmanipulation2.png  used on input line 430.
+Package pdftex.def Info: purchasesmanipulation2.png  used on input line 440.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation2.png, id=367, 481.8pt x 481.8pt>
+<worksmanipulation2.png, id=420, 481.8pt x 481.8pt>
 File: worksmanipulation2.png Graphic file (type png)
 <use worksmanipulation2.png>
-Package pdftex.def Info: worksmanipulation2.png  used on input line 430.
+Package pdftex.def Info: worksmanipulation2.png  used on input line 440.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
+<purchasesmanipulation3.png, id=421, 481.8pt x 481.8pt>
 File: purchasesmanipulation3.png Graphic file (type png)
 <use purchasesmanipulation3.png>
-Package pdftex.def Info: purchasesmanipulation3.png  used on input line 431.
+Package pdftex.def Info: purchasesmanipulation3.png  used on input line 441.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation3.png, id=368, 481.8pt x 481.8pt>
+<worksmanipulation3.png, id=422, 481.8pt x 481.8pt>
 File: worksmanipulation3.png Graphic file (type png)
 <use worksmanipulation3.png>
-Package pdftex.def Info: worksmanipulation3.png  used on input line 431.
+Package pdftex.def Info: worksmanipulation3.png  used on input line 441.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 437.
- [18 <./purchasesmanipulation1.png> <./purchasesmanipulation2.png> <./purchases
-manipulation3.png>] [19 <./worksmanipulation1.png> <./worksmanipulation2.png> <
-./worksmanipulation3.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 437.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 445.
+ [20]
+[21 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchasesmanip
+ulation2.png> <./worksmanipulation2.png> <./purchasesmanipulation3.png> <./work
+smanipulation3.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 445.
  (./discretioncorruption.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 437.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 437.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 445.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 445.
 Package rerunfilecheck Info: File `discretioncorruption.out' has not changed.
-(rerunfilecheck)             Checksum: 79318DC332B66BCBF869A13BB3B9E5F4;2617.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 437.
+(rerunfilecheck)             Checksum: 11F56A3858AFC03C72A8E7EEDA58419A;3043.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 445.
  ) 
 Here is how much of TeX's memory you used:
- 12583 strings out of 492646
- 182848 string characters out of 6129564
- 275349 words of memory out of 5000000
- 16204 multiletter control sequences out of 15000+600000
+ 12597 strings out of 492646
+ 183205 string characters out of 6129564
+ 275503 words of memory out of 5000000
+ 16211 multiletter control sequences out of 15000+600000
  17461 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,39p,1694b,475s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,39p,1771b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -655,10 +645,10 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 8/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on discretioncorruption.pdf (20 pages, 431755 bytes).
+Output written on discretioncorruption.pdf (22 pages, 440633 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 406 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 514 PDF objects out of 1000 (max. 8388607)
+ 455 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 196 words of extra memory for PDF output out of 10000 (max. 10000000)
 
