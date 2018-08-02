@@ -3,47 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: discretioncorruption.aux
 The style file: apalike.bst
 Database file #1: /Users/aassumpcao/library.bib
-Warning--empty note in AssumpcaotextfindDataDrivenText2018
-Warning--empty institution in LichandCorruptionGoodYour2017
-You've used 24 entries,
+You've used 29 entries,
             1935 wiz_defined-function locations,
-            638 strings with 8838 characters,
-and the built_in function-call counts, 8731 in all, are:
-= -- 858
-> -- 277
-< -- 21
-+ -- 94
-- -- 86
-* -- 734
-:= -- 1541
-add.period$ -- 71
-call.type$ -- 24
-change.case$ -- 163
-chr.to.int$ -- 24
-cite$ -- 26
-duplicate$ -- 326
-empty$ -- 656
-format.name$ -- 130
-if$ -- 1720
+            665 strings with 10061 characters,
+and the built_in function-call counts, 10778 in all, are:
+= -- 1049
+> -- 372
+< -- 20
++ -- 126
+- -- 118
+* -- 911
+:= -- 1901
+add.period$ -- 87
+call.type$ -- 29
+change.case$ -- 203
+chr.to.int$ -- 29
+cite$ -- 29
+duplicate$ -- 401
+empty$ -- 801
+format.name$ -- 167
+if$ -- 2119
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 22
-newline$ -- 122
-num.names$ -- 72
-pop$ -- 102
+missing$ -- 30
+newline$ -- 148
+num.names$ -- 87
+pop$ -- 141
 preamble$ -- 1
-purify$ -- 163
+purify$ -- 204
 quote$ -- 0
-skip$ -- 254
+skip$ -- 310
 stack$ -- 0
-substring$ -- 698
-swap$ -- 22
-text.length$ -- 1
+substring$ -- 839
+swap$ -- 29
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 142
-warning$ -- 2
-while$ -- 68
+type$ -- 172
+warning$ -- 0
+while$ -- 81
 width$ -- 0
-write$ -- 310
-(There were 2 warnings)
+write$ -- 373

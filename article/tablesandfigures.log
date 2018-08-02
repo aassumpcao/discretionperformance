@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  21 JUL 2018 17:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  1 AUG 2018 17:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -514,39 +514,25 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 134--174
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4]
-Overfull \hbox (1176.57367pt too wide) in paragraph at lines 249--283
- [][] 
- []
-
-[5
-
-]
-Overfull \hbox (1357.24866pt too wide) in paragraph at lines 291--325
- [][] 
- []
-
-(./tablesandfigures.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 333.
- [6
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 333.
+[2] [3] (./tablesandfigures.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./tablesandfigures.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 333.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 333.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `tablesandfigures.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 11963 strings out of 492646
- 169858 string characters out of 6129564
- 279791 words of memory out of 5000000
- 15705 multiletter control sequences out of 15000+600000
+ 11957 strings out of 492646
+ 169762 string characters out of 6129564
+ 279633 words of memory out of 5000000
+ 15703 multiletter control sequences out of 15000+600000
  10452 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,16n,39p,1137b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,16n,39p,1137b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
 /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -559,10 +545,10 @@ xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
 live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texli
 ve/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on tablesandfigures.pdf (6 pages, 141552 bytes).
+Output written on tablesandfigures.pdf (4 pages, 136587 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
+ 92 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

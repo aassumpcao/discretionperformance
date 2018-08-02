@@ -3,6 +3,7 @@
 \bibitem[Assumpcao, 2018]{AssumpcaotextfindDataDrivenText2018}
 Assumpcao, A. (2018).
 \newblock Textfind: {{A Data}}-{{Driven Text Analysis Tool}} for {{Stata}}.
+\newblock {\em Working Paper}.
 
 \bibitem[Becker, 1968]{BeckerCrimePunishmentEconomic1968}
 Becker, G.~S. (1968).
@@ -14,6 +15,31 @@ Becker, G.~S. and Stigler, G.~J. (1974).
 \newblock Law {{Enforcement}}, {{Malfeasance}}, and {{Compensation}} of
   {{Enforcers}}.
 \newblock {\em The Journal of Legal Studies}, 3(1):1--18.
+
+\bibitem[Calonico et~al., 2014]{CalonicoRobustNonparametricConfidence2014}
+Calonico, S., Cattaneo, M.~D., and Titiunik, R. (2014).
+\newblock Robust {{Nonparametric Confidence Intervals}} for
+  {{Regression}}-{{Discontinuity Designs}}.
+\newblock {\em Econometrica}, 82(6):2295--2326.
+
+\bibitem[Calonico et~al., 2015]{CalonicoOptimalDataDrivenRegression2015}
+Calonico, S., Cattaneo, M.~D., and Titiunik, R. (2015).
+\newblock Optimal {{Data}}-{{Driven Regression Discontinuity Plots}}.
+\newblock {\em Journal of the American Statistical Association},
+  110:1753--1769.
+
+\bibitem[Cattaneo et~al.,
+  2016]{CattaneoInterpretingRegressionDiscontinuity2016}
+Cattaneo, M.~D., Keele, L., Titiunik, R., and {Vazquez-Bare}, G. (2016).
+\newblock Interpreting {{Regression Discontinuity Designs}} with {{Multiple
+  Cutoffs}}.
+\newblock {\em The Journal of Politics}, 78(4):1229--1248.
+
+\bibitem[Cattaneo et~al., 2018]{CattaneoAnalysisRegressionDiscontinuity2018}
+Cattaneo, M.~D., Titiunik, R., and {Vazquez-Bare}, G. (2018).
+\newblock Analysis of {{Regression Discontinuity Designs}} with {{Multiple
+  Cutoffs}} or {{Multiple Scores}}.
+\newblock {\em Working Paper}.
 
 \bibitem[Chong et~al., 2015]{ChongDoesCorruptionInformation2015}
 Chong, A., De~La~O, A., Karlan, D., and Wantchekon, L. (2015).
@@ -52,6 +78,12 @@ Ferraz, C., Finan, F., and Moreira, D.~B. (2012).
   Education Funds}} in {{Brazil}}.
 \newblock {\em Journal of Public Economics}, 96(9):712--726.
 
+\bibitem[Finan et~al., 2018]{FinanGovernmentAuditsReduce2018}
+Finan, F., Ferraz, C., and Avis, E. (2018).
+\newblock Do {{Government Audits Reduce Corruption}}? {{Estimating}} the
+  {{Impacts}} of {{Exposing Corrupt Politicians}}.
+\newblock {\em Journal of Political Economy}.
+
 \bibitem[Fisman and Gatti, 2002]{FismanDecentralizationcorruptionevidence2002}
 Fisman, R. and Gatti, R. (2002).
 \newblock Decentralization and {{Corruption}}: {{Evidence Across Countries}}.
@@ -77,7 +109,7 @@ Lambsdorff, J.~G. (2002).
 \bibitem[Lichand et~al., 2017]{LichandCorruptionGoodYour2017}
 Lichand, G., Lopes, M. F.~M., and Medeiros, M.~M. (2017).
 \newblock Is {{Corruption Good}} for {{Your Health}}?
-\newblock Technical report.
+\newblock {\em Working Paper}.
 
 \bibitem[Lipsky, 2010]{LipskyStreetLevelBureaucracy30th2010}
 Lipsky, M. (2010).
@@ -88,7 +120,7 @@ Lipsky, M. (2010).
 \bibitem[Litschig and Zamboni, 2015]{LitschigJudicialPresenceRent2015}
 Litschig, S. and Zamboni, Y. (2015).
 \newblock Judicial {{Presence}} and {{Rent Extraction}}.
-\newblock Working {{Paper}} 796, {Barcelona GSE}, Barcelona.
+\newblock {\em Barcelona GSE Working Paper Series Working Paper 796}.
 
 \bibitem[McCrary, 2008]{McCraryManipulationrunningvariable2008}
 McCrary, J. (2008).

@@ -7,7 +7,7 @@
 # Andre Assumpcao
 # aassumpcao@unc.edu
 #------------------------------------------------------------------------------#
-rm(list=ls())
+rm(list = ls())
 
 #------------------------------------------------------------------------------#
 # README:
@@ -73,7 +73,7 @@ irregularities.cgu %<>%
 # Three vectors for the data transformation below
 procurement.vector  <- paste0("infraction.", c(4:10, 30:31))
 SOtext.vector       <- c("purchases", "works")
-granttext.vector <- c("tpurchases", "tworks")
+granttext.vector    <- c("tpurchases", "tworks")
 
 # Create the data for classification checks
 appendix.data <-
@@ -149,7 +149,7 @@ venn.plot <-
   )
 
 # Producing the graphical device for LaTeX
-png(paste0(getwd(),"/article/venn.png"))
+png("./article/venn.png")
 grid.draw(venn.plot)
 dev.off()
 
@@ -181,10 +181,7 @@ works.terms <- c("co(ns|sn)tru", "obra", "implant", "infra(.)*estrut", "amplia",
 # TABLE: Purchases Results #
 #--------------------------#
 purchases.results <-
-  read.delim(
-    paste0(getwd(), "/tables/appendix_tab2.txt"),
-    colClasses = "character"
-  ) %>%
+read.delim("./tables/appendix_tab2.txt", colClasses = "character") %>%
   select(-X, -X.1) %>%
   transmute(
     `Total Finds`        = as.numeric(c1),
@@ -212,10 +209,7 @@ purchases.results <-
 # TABLE: Works Results #
 #----------------------#
 works.results <-
-  read.delim(
-    paste0(getwd(), "/tables/appendix_tab3.txt"),
-    colClasses = "character"
-  ) %>%
+  read.delim("./tables/appendix_tab3.txt", colClasses = "character") %>%
   select(-X, -X.1) %>%
   transmute(
     `Total Finds`        = as.numeric(c1),
@@ -250,8 +244,6 @@ nrow(
 
 # RE-WRITE TABLE 4
 
-
-
 #--------------------------------------------#
 # TABLE: SO description vs. Procurement Code #
 #--------------------------------------------#
@@ -259,10 +251,8 @@ no.works <- appendix.data[appendix.data$so.works.bySOtext != 1, ]
 
 # RE-WRITE TABLE 5
 
-table(appendix.data$so.procurement.bySOtext, appendix.data$so.purchases.bycode)
-
-table(appendix.data$so.procurement.bySOtext, appendix.data$so.works.bycode)
-
+appendix.data %$% table(so.procurement.bySOtext,so.purchases.bycode)
+appendix.data %$% table(so.procurement.bySOtext,so.works.bycode)
 
 #------------------------------------------------------------------------------#
 ################################## Appendix B ##################################
@@ -292,17 +282,17 @@ works.cutoff3 <-
   filter(so.amount >=  750000 & so.amount <= 2500000 & so.purchases.bySOtext!=1)
 
 # Run t-tests on manipulation
-purchases.manipulation1 <- with(purchases.cutoff1,DCdensity(so.amount,    8000))
-purchases.manipulation2 <- with(purchases.cutoff2,DCdensity(so.amount,   80000))
-purchases.manipulation3 <- with(purchases.cutoff3,DCdensity(so.amount,  650000))
-works.manipulation1     <- with(works.cutoff1,    DCdensity(so.amount,   15000))
-works.manipulation2     <- with(works.cutoff2,    DCdensity(so.amount,  150000))
-works.manipulation3     <- with(works.cutoff3,    DCdensity(so.amount, 1500000))
+purchases.manipulation1 <- purchases.cutoff1 %$% DCdensity(so.amount,    8000)
+purchases.manipulation2 <- purchases.cutoff2 %$% DCdensity(so.amount,   80000)
+purchases.manipulation3 <- purchases.cutoff3 %$% DCdensity(so.amount,  650000)
+works.manipulation1     <- works.cutoff1     %$% DCdensity(so.amount,   15000)
+works.manipulation2     <- works.cutoff2     %$% DCdensity(so.amount,  150000)
+works.manipulation3     <- works.cutoff3     %$% DCdensity(so.amount, 1500000)
 
 # Save cutoff plots
 # Plot 1
-png(filename = paste0(getwd(), "/article/purchasesmanipulation1.png"))
-with(purchases.cutoff1, DCdensity(so.amount,    8000))
+png(filename = "./article/purchasesmanipulation1.png")
+purchases.cutoff1 %$% DCdensity(so.amount,    8000)
 abline(v = 8000)
 title(
   main = "Purchases Cutoff 1",
@@ -319,8 +309,8 @@ title(
 dev.off()
 
 # Plot 2
-png(filename = paste0(getwd(), "/article/purchasesmanipulation2.png"))
-with(purchases.cutoff2, DCdensity(so.amount,   80000))
+png(filename = "./article/purchasesmanipulation2.png")
+purchases.cutoff2 %$% DCdensity(so.amount,   80000)
 abline(v = 80000)
 title(
   main = "Purchases Cutoff 2",
@@ -337,8 +327,8 @@ title(
 dev.off()
 
 # Plot 3
-png(filename = paste0(getwd(), "/article/purchasesmanipulation3.png"))
-with(purchases.cutoff3, DCdensity(so.amount,  650000))
+png(filename = "./article/purchasesmanipulation3.png")
+purchases.cutoff3 %$% DCdensity(so.amount,  650000)
 abline(v = 650000)
 title(
   main = "Purchases Cutoff 3",
@@ -355,8 +345,8 @@ title(
 dev.off()
 
 # Plot 4
-png(filename = paste0(getwd(), "/article/worksmanipulation1.png"))
-with(works.cutoff1,     DCdensity(so.amount,   15000))
+png(filename = "./article/worksmanipulation1.png")
+works.cutoff1 %$% DCdensity(so.amount,   15000)
 abline(v = 15000)
 title(
   main = "Works Cutoff 1",
@@ -373,8 +363,8 @@ title(
 dev.off()
 
 # Plot 5
-png(filename = paste0(getwd(), "/article/worksmanipulation2.png"))
-with(works.cutoff2,     DCdensity(so.amount,  150000))
+png(filename = "./article/worksmanipulation2.png")
+works.cutoff2 %$% DCdensity(so.amount,  150000)
 abline(v = 150000)
 title(
   main = "Works Cutoff 2",
@@ -391,8 +381,8 @@ title(
 dev.off()
 
 # Plot 6
-png(filename = paste0(getwd(), "/article/worksmanipulation3.png"))
-with(works.cutoff3,     DCdensity(so.amount, 1500000))
+png(filename = "./article/worksmanipulation3.png")
+works.cutoff3 %$% DCdensity(so.amount, 1500000)
 abline(v = 1500000)
 title(
   main = "Works Cutoff 3",
