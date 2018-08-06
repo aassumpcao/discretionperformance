@@ -110,20 +110,22 @@
   \centering
 
   \small
-  \begin{tabular}{crcc}
+  \begin{tabular}{crrlrl}
   \hline
 
   \hline
-  & \multicolumn{1}{c}{Type} & Goods/Services Purchases & Public Works \T \B \\
+  & \multicolumn{1}{c}{Type} & \multicolumn{2}{c}{Goods/Services Purchases} & \multicolumn{2}{c}{Public Works} \T \B    \\
   \hline
-  Category 0 & Direct contracting & $                  x_{i} \leq R\$ 8,000   $ & $                  x_{i} \leq R\$15,000   $ \\
-  Category 1 & Invitational       & $ R\$ 80,000  \leq x_{i} >    R\$8,000    $ & $R\$150,000   \leq x_{i} >    R\$15,000   $ \\
-  Category 2 & Price Taking       & $ R\$ 650,000 \leq x_{i} >    R\$ 80,000  $ & $R\$1,500,000 \leq x_{i} >    R\$150,000  $ \\
-  Category 3 & Competitive        & $                  x_{i} >    R\$ 650,000 $ & $                  x_{i} >    R\$1,500,000$ \\
+             &                    & \emph{Lower Bound} & \emph{Higher Bound} & \emph{Lower Bound} & \emph{Higher Bound} \T \B \\
+  \hline
+  Category 0 & Direct contracting & -                  & R\$ 8,000           & -                  & R\$15,000           \T \B \\
+  Category 1 & Invitational       & R\$ 8,000.01       & R\$ 80,000          & R\$15,000.01       & R\$15,000           \T \B \\
+  Category 2 & Price Comparison   & R\$ 80,000.01      & R\$ 650,000         & R\$150,000.01      & R\$1,500,000        \T \B \\
+  Category 3 & Competitive        & R\$ 650,000.01     & -                   & R\$1,500,000.01    & -                   \T \B \\
   \hline
 
   \hline
-  \multicolumn{4}{l}{\footnotesize Source: Law 8,666/93.} \T
+  \multicolumn{6}{l}{\footnotesize Source: Law 8,666/93. $x_{i}$ is the contract value.} \T
   \end{tabular}
 \end{table}
 

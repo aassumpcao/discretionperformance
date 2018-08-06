@@ -1,0 +1,6 @@
+PWD /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article
+INPUT /usr/local/texlive/2018/texmf.cnf
+INPUT /usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT procurementtypes.tex
+OUTPUT procurementtypes.log

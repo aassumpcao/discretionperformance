@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex tablesandfigures"] 1533157517 "tablesandfigures.aux" "tablesandfigures.bbl" "tablesandfigures" 1533157564
+["bibtex tablesandfigures"] 1533580023 "tablesandfigures.aux" "tablesandfigures.bbl" "tablesandfigures" 1533580928
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "tablesandfigures.aux" 1533157564 2554 b85034a10f31374e65f5302dcbbd1456 ""
+  "tablesandfigures.aux" 1533580928 2554 1cf6984db0927d67e691dd73fc941ce6 ""
   (generated)
-  "tablesandfigures.bbl"
   "tablesandfigures.blg"
-["pdflatex"] 1533157564 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1533157564
+  "tablesandfigures.bbl"
+["pdflatex"] 1533580927 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1533580928
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1480098698 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -30,8 +30,7 @@
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1480098711 520 4889cce2180234b97cad636b6039c722 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1480098733 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb" 1480098733 32298 c6d25bb16d1eac01ebdc6d7084126a1e ""
-  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1480098733 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
-  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1480098733 36281 c355509802a035cadc5f15869451dcee ""
+  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1480098733 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1480098733 36094 798f80770b3b148ceedd006d487db67c ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1480098733 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1480098733 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
@@ -101,12 +100,12 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1528426230 2849778 d20fd0a0d92d412ec9b4143de20d68a5 ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1528423583 4220582 296642f53d93cdbc02373533d0f42b0a ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "tablesandfigures.aux" 1533157564 2554 b85034a10f31374e65f5302dcbbd1456 ""
-  "tablesandfigures.bbl" 1533157518 921 4ed0cead43bdfecdcfc22083c7ed7ef5 "bibtex tablesandfigures"
-  "tablesandfigures.out" 1533157564 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "tablesandfigures.tex" 1533157563 17297 cd5afdaa31de2bb0b7685d004eb8599b ""
+  "tablesandfigures.aux" 1533580928 2554 1cf6984db0927d67e691dd73fc941ce6 ""
+  "tablesandfigures.bbl" 1533580023 921 4ed0cead43bdfecdcfc22083c7ed7ef5 "bibtex tablesandfigures"
+  "tablesandfigures.out" 1533580928 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "tablesandfigures.tex" 1533580927 17521 9bf6c513342cdc1e8a3aaa90cc8f8384 ""
   (generated)
-  "tablesandfigures.out"
   "tablesandfigures.pdf"
   "tablesandfigures.aux"
+  "tablesandfigures.out"
   "tablesandfigures.log"
