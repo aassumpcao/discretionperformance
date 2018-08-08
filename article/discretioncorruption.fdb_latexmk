@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretioncorruption"] 1533579726 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1533579728
+["bibtex discretioncorruption"] 1533749346 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1533749404
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "discretioncorruption.aux" 1533579727 12381 ae5e930a7a10dfd60aa24b1c128eb011 ""
+  "discretioncorruption.aux" 1533749404 12609 8fd9edf6baddcf41a7959f3d6d7a7c27 ""
   (generated)
-  "discretioncorruption.blg"
   "discretioncorruption.bbl"
-["pdflatex"] 1533579726 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1533579728
+  "discretioncorruption.blg"
+["pdflatex"] 1533749403 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1533749404
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -42,10 +42,7 @@
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1480098733 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1480098733 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1480098733 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
-  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1480098733 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
-  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1480098733 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1480098733 35469 70d41d2b9ea31d5d813066df7c99281c ""
-  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1480098733 36094 798f80770b3b148ceedd006d487db67c ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1480098733 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1480098733 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1480098733 32362 179c33bbf43f19adbb3825bb4e36e57a ""
@@ -126,11 +123,12 @@
   "appendix_tab3.tex" 1533215069 2539 0f6b30ea5fc1a1fec491bad50e7ab003 ""
   "appendix_tab4.tex" 1528981987 1501 f50e7fc4c0f586897a202e79fca79531 ""
   "appendix_tab5.tex" 1528639648 1493 6860420cf99230724d89d30ec2de1846 ""
-  "discretioncorruption.aux" 1533579727 12381 ae5e930a7a10dfd60aa24b1c128eb011 ""
-  "discretioncorruption.bbl" 1533579726 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretioncorruption"
-  "discretioncorruption.out" 1533579727 3043 11f56a3858afc03c72a8e7eeda58419a ""
-  "discretioncorruption.tex" 1533579627 58790 d225c5e8adeb83e2a60dec121896ef12 ""
-  "procurementtypes.tex" 1533579725 894 f9c9a56ead5dfa7b2b0190c915449c58 ""
+  "corruptioncodes.tex" 1533746660 1453 5ec4d2fd731aa194a9852d0a5358cf03 ""
+  "discretioncorruption.aux" 1533749404 12609 8fd9edf6baddcf41a7959f3d6d7a7c27 ""
+  "discretioncorruption.bbl" 1533749346 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretioncorruption"
+  "discretioncorruption.out" 1533749404 3043 11f56a3858afc03c72a8e7eeda58419a ""
+  "discretioncorruption.tex" 1533749403 60471 c4cf4186f6e9fce8a8cad1b0bd4a4af5 ""
+  "procurementtypes.tex" 1533741749 1283 879afd6ce1313a52b588a9e1cb253062 ""
   "purchasesmanipulation1.png" 1533218285 30278 bb587f445924e5ae9d25687d1b6e1b87 ""
   "purchasesmanipulation2.png" 1533218285 32884 ef978692813f0fcb891285b38c038ff1 ""
   "purchasesmanipulation3.png" 1533218285 35944 ce5cc97b6c324be7daae0117db90275e ""
@@ -140,7 +138,7 @@
   "worksmanipulation2.png" 1533218285 34334 d339ff813b6e20f5d529c641e6cc24cc ""
   "worksmanipulation3.png" 1533218285 35560 ac5af908b0eee7cdb40df2216af91a85 ""
   (generated)
-  "discretioncorruption.log"
   "discretioncorruption.aux"
-  "discretioncorruption.pdf"
   "discretioncorruption.out"
+  "discretioncorruption.pdf"
+  "discretioncorruption.log"
