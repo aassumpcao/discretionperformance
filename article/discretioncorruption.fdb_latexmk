@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretioncorruption"] 1534021244 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1534021246
+["bibtex discretioncorruption"] 1534088567 "discretioncorruption.aux" "discretioncorruption.bbl" "discretioncorruption" 1534106363
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "discretioncorruption.aux" 1534021245 13452 52ce4916c3ff9c81140f41d452cbe8a4 ""
+  "discretioncorruption.aux" 1534106363 13645 f266344c1aad0d5cb7c274916c364c06 ""
   (generated)
-  "discretioncorruption.blg"
   "discretioncorruption.bbl"
-["pdflatex"] 1534021244 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1534021246
+  "discretioncorruption.blg"
+["pdflatex"] 1534106362 "discretioncorruption.tex" "discretioncorruption.pdf" "discretioncorruption" 1534106363
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -41,6 +41,7 @@
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1480098711 520 4889cce2180234b97cad636b6039c722 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1480098733 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1480098733 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1480098733 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1480098733 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1480098733 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1480098733 35469 70d41d2b9ea31d5d813066df7c99281c ""
@@ -127,11 +128,11 @@
   "appendix_tab4.tex" 1533761226 1508 2d9c2206f94a4eaa9d0c7658f0bf3eff ""
   "appendix_tab5.tex" 1533761231 1500 fae09770e8031bc37a06a1ff0bec0ffa ""
   "corruptioncodes.tex" 1533761124 1460 b93e2133e7b6c771255686432e151a35 ""
-  "discretioncorruption.aux" 1534021245 13452 52ce4916c3ff9c81140f41d452cbe8a4 ""
-  "discretioncorruption.bbl" 1534021244 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretioncorruption"
-  "discretioncorruption.out" 1534021245 3102 39c5fbc5c9aa541091ce0ade30576ca2 ""
-  "discretioncorruption.tex" 1534021243 74151 7387fd0698c594e1d0db3a6c6e9e9ecf ""
-  "procurementtypes.tex" 1533761109 1290 31870981d62085ec13f2751b5b53846c ""
+  "discretioncorruption.aux" 1534106363 13645 f266344c1aad0d5cb7c274916c364c06 ""
+  "discretioncorruption.bbl" 1534088567 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretioncorruption"
+  "discretioncorruption.out" 1534106363 3263 603afc3c0db3c17b27629502595ee20f ""
+  "discretioncorruption.tex" 1534106362 77032 0d0c66bd267503d62eefdcd0b869050b ""
+  "procurementtypes.tex" 1534106359 1291 365609ee9e42e19a51ab20387ba9b17d ""
   "purchasesmanipulation1.png" 1533218285 30278 bb587f445924e5ae9d25687d1b6e1b87 ""
   "purchasesmanipulation2.png" 1533218285 32884 ef978692813f0fcb891285b38c038ff1 ""
   "purchasesmanipulation3.png" 1533218285 35944 ce5cc97b6c324be7daae0117db90275e ""
@@ -142,7 +143,7 @@
   "worksmanipulation2.png" 1533218285 34334 d339ff813b6e20f5d529c641e6cc24cc ""
   "worksmanipulation3.png" 1533218285 35560 ac5af908b0eee7cdb40df2216af91a85 ""
   (generated)
-  "discretioncorruption.out"
-  "discretioncorruption.log"
   "discretioncorruption.aux"
   "discretioncorruption.pdf"
+  "discretioncorruption.log"
+  "discretioncorruption.out"
