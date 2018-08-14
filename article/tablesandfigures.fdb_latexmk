@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex tablesandfigures"] 1533580023 "tablesandfigures.aux" "tablesandfigures.bbl" "tablesandfigures" 1533764036
+["bibtex tablesandfigures"] 1534258759 "tablesandfigures.aux" "tablesandfigures.bbl" "tablesandfigures" 1534258760
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "tablesandfigures.aux" 1533764036 2554 1cf6984db0927d67e691dd73fc941ce6 ""
+  "tablesandfigures.aux" 1534258760 2562 099743dd716176c89523266088bd4c8b ""
   (generated)
-  "tablesandfigures.blg"
   "tablesandfigures.bbl"
-["pdflatex"] 1533764036 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1533764036
+  "tablesandfigures.blg"
+["pdflatex"] 1534258760 "tablesandfigures.tex" "tablesandfigures.pdf" "tablesandfigures" 1534258760
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1480098698 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -100,12 +100,12 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1528426230 2849778 d20fd0a0d92d412ec9b4143de20d68a5 ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1528423583 4220582 296642f53d93cdbc02373533d0f42b0a ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "tablesandfigures.aux" 1533764036 2554 1cf6984db0927d67e691dd73fc941ce6 ""
-  "tablesandfigures.bbl" 1533580023 921 4ed0cead43bdfecdcfc22083c7ed7ef5 "bibtex tablesandfigures"
-  "tablesandfigures.out" 1533764036 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "tablesandfigures.tex" 1533764036 17762 50c7149c7fef3466fba31d84b2b30b91 ""
+  "tablesandfigures.aux" 1534258760 2562 099743dd716176c89523266088bd4c8b ""
+  "tablesandfigures.bbl" 1534258759 921 4ed0cead43bdfecdcfc22083c7ed7ef5 "bibtex tablesandfigures"
+  "tablesandfigures.out" 1534258760 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "tablesandfigures.tex" 1533837833 17766 0e54cc7ac1a152cb24830349a3b4b95e ""
   (generated)
+  "tablesandfigures.log"
   "tablesandfigures.out"
   "tablesandfigures.aux"
-  "tablesandfigures.log"
   "tablesandfigures.pdf"

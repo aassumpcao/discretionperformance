@@ -51,6 +51,10 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics/rotating.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/graphics/rotating.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
@@ -196,6 +200,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
 INPUT tab_descriptivestats.tex
 INPUT tab_descriptivestats.tex
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT tab_mainregression1.tex
+INPUT tab_mainregression1.tex
 INPUT discretioncorruption.bbl
 INPUT discretioncorruption.bbl
 INPUT venn.png

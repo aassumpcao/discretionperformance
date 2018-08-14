@@ -1,0 +1,46 @@
+
+\begin{table}[!htbp] \centering
+  \caption{Performance Determinants in Brazilian Municipalities}
+  \label{tab:mainregression}
+  \scriptsize
+
+  \begin{tabular}{l@{\extracolsep{4pt}}cccc@{\extracolsep{4pt}}cccc}
+  \hline
+
+  \hline
+  & \multicolumn{8}{c}{\textit{Dependent variable:}} \T \B \\
+
+  & \multicolumn{4}{c}{Corruption Indicator I (Binary)} & \multicolumn{4}{c}{Mismanagement Indicator I (Binary)} \T \B \\
+  \cline{2-5} \cline{6-9}
+  & \multicolumn{2}{c}{Purchases} & \multicolumn{2}{c}{Works} & \multicolumn{2}{c}{Purchases} & \multicolumn{2}{c}{Works}  \T \B\\
+  \cline{2-3} \cline{4-5} \cline{6-7} \cline{8-9}
+  & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} & \multicolumn{1}{c}{(5)} & \multicolumn{1}{c}{(6)} & \multicolumn{1}{c}{(7)} & \multicolumn{1}{c}{(8)} \T \B \\
+  \hline
+  Amount (in R\$)                & 0.000$^{***}$  & 0.000$^{***}$  & 0.000          & 0.000          & -0.000         & -0.000         & 0.000$^{***}$  & 0.000$^{***}$  \T \B \\
+                                 & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        \T \B \\
+  Amount (in R\$)                & -0.000         & -0.000$^{*}$   & -0.000         & -0.000         & 0.000          & 0.000          & -0.000$^{***}$ & -0.000$^{***}$ \T \B \\
+  (Squared)                      & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        & (0.000)        \T \B \\
+  Municipal Corruption           & 1.015$^{***}$  & 0.766$^{***}$  & 1.303$^{***}$  & 0.974$^{***}$  & 0.441$^{***}$  & 0.440$^{***}$  & 0.479$^{***}$  & 0.428$^{**}$   \T \B \\
+                                 & (0.112)        & (0.116)        & (0.179)        & (0.180)        & (0.112)        & (0.116)        & (0.179)        & (0.180)        \T \B \\
+  Municipal Corruption           & -1.544$^{***}$ & -1.388$^{***}$ & -1.834$^{***}$ & -1.474$^{***}$ & -2.053$^{***}$ & -2.060$^{***}$ & -1.694$^{***}$ & -1.542$^{***}$ \T \B \\
+  (Squared)                      & (0.214)        & (0.212)        & (0.333)        & (0.312)        & (0.214)        & (0.212)        & (0.333)        & (0.312)        \T \B \\
+  Procurement Type 1             & 0.072$^{***}$  & 0.101$^{***}$  & 0.185$^{***}$  & 0.177$^{***}$  & -0.034         & -0.038$^{*}$   & 0.266$^{***}$  & 0.254$^{***}$  \T \B \\
+                                 & (0.022)        & (0.022)        & (0.036)        & (0.034)        & (0.022)        & (0.022)        & (0.036)        & (0.034)        \T \B \\
+  Procurement Type 2             & 0.122$^{***}$  & 0.175$^{***}$  & 0.322$^{***}$  & 0.303$^{***}$  & -0.034         & -0.035         & 0.449$^{***}$  & 0.436$^{***}$  \T \B \\
+                                 & (0.023)        & (0.024)        & (0.037)        & (0.036)        & (0.023)        & (0.024)        & (0.037)        & (0.036)        \T \B \\
+  Procurement Type 3             & 0.172$^{***}$  & 0.202$^{***}$  & 0.099          & 0.102          & 0.042          & 0.032          & 0.325$^{***}$  & 0.343$^{***}$  \T \B \\
+                                 & (0.035)        & (0.034)        & (0.091)        & (0.089)        & (0.035)        & (0.034)        & (0.091)        & (0.089)        \T \B \\
+  \hline
+  Municipal Controls     & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B \\
+  Ministry Fixed-Effects & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B \\
+  Lottery Fixed-Effects  & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B \\
+  \hline
+  Observations     & \multicolumn{1}{c}{6,911}          & \multicolumn{1}{c}{6,911}          & \multicolumn{1}{c}{2,682}          & \multicolumn{1}{c}{2,682}         & \multicolumn{1}{c}{6,911}          & \multicolumn{1}{c}{6,911}          & \multicolumn{1}{c}{2,682}          & \multicolumn{1}{c}{2,682}          \T \B \\
+  Adjusted R$^{2}$ & \multicolumn{1}{c}{0.032}          & \multicolumn{1}{c}{0.076}          & \multicolumn{1}{c}{0.053}          & \multicolumn{1}{c}{0.105}         & \multicolumn{1}{c}{0.048}          & \multicolumn{1}{c}{0.067}          & \multicolumn{1}{c}{0.087}          & \multicolumn{1}{c}{0.175}          \T \B \\
+  F Statistic      & \multicolumn{1}{c}{33.331$^{***}$} & \multicolumn{1}{c}{13.642$^{***}$} & \multicolumn{1}{c}{22.417$^{***}$} & \multicolumn{1}{c}{7.968$^{***}$} & \multicolumn{1}{c}{51.071$^{***}$} & \multicolumn{1}{c}{12.084$^{***}$} & \multicolumn{1}{c}{37.633$^{***}$} & \multicolumn{1}{c}{13.669$^{***}$} \T \B \\
+  \hline
+
+  \hline
+  \multicolumn{9}{p{\columnwidth}}{\footnotesize{Notes: This table reports the relationship between the corruption and management determinants in the context of Brazilian municipalities. Corruption Indicator I (columns 1-4) and Management Indicator I (columns 5-8) are binary variables turning on when the procurement call has at least one corruption or program management infraction. Municipal corruption is computed by aggregating corruption indicator II at the municipal level; it summarizes the relationship between the corruption level at each procurement call vs.~overall municipal performance. Municipal controls are summarized in table \ref{tab:descriptivestatistics} and control for other variables that are associated with individual corruption decisions. Robust standard errors are clustered at the municipal level and are reported in parentheses. $^{*}$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}} \T\\
+  \end{tabular}
+\end{table}

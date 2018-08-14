@@ -1,27 +1,28 @@
-#------------------------------------------------------------------------------#
-# Estimating the Effect of Discretion on Corruption:
+################################################################################
+# Estimating the Effect of Discretion on Government Performance:
 # Evidence from Brazilian Municipalities
 #
 # Analysis Script
 # Prepared by:
 # Andre Assumpcao
 # aassumpcao@unc.edu
-#------------------------------------------------------------------------------#
+################################################################################
 rm(list = ls())
 
-#------------------------------------------------------------------------------#
+################################################################################
 # README:
 #
 # This third script produces the analysis in the paper. If you would like to re-
 # produce the analysis you should run this script after all other three have
 # been run.
 #
-#------------------------------------------------------------------------------#
+################################################################################
 
-#------------------------------------------------------------------------------#
-################################### Packages ###################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Packages
+################################################################################
 # Minimum requirements to run script
+library(here)
 library(tidyverse)   # Version 1.2.1
 # library(haven)       # Version 1.1.2
 library(lubridate)   # Version 1.7.4
@@ -35,9 +36,9 @@ library(rdrobust)    # Version 0.99.3
 library(rdmulti)     # Version 0.20
 library(rdpower)
 
-#------------------------------------------------------------------------------#
-################################## Functions ###################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Functions
+################################################################################
 # Function to help subset data to be used in RDD estimation
 bandwidthRange <- function(x, cutpoint, limit){
   # Args:
@@ -67,38 +68,18 @@ starprepMod <- function(model, data, cluster, alpha){
   return(temp)
 }
 
-#------------------------------------------------------------------------------#
-############################## Summary Statistics ##############################
-#------------------------------------------------------------------------------#
+################################################################################
+# Load data
+################################################################################
 # Load datasets
 load("so.data.Rda")
 load("appendix.data.Rda")
 load("mun.data.Rda")
 load("mun.election.Rda")
 
-#-------------------------#
-# Table: Corruption Codes #
-#-------------------------#
-# IN LATEX ONLY
-
-#--------------------------#
-# Table: Procurement Types #
-#--------------------------#
-# IN LATEX ONLY
-
-#---------------------------#
-# Table: Audits by Ministry #
-#---------------------------#
-# Run following command then manually edit in latex.
-so.data %>%
-  group_by(ibge.id) %>%
-  summarize(
-    so.education = max(so.education),
-    so.health    = max(so.health)
-  ) %$%
-  table(so.education, so.health) %>%
-  xtable()
-
+################################################################################
+# Definition of variables included in tables
+################################################################################
 # Produce statistics (and their labels) for summary statistics table
 # SO stats first
 so.statistics <- c("so.amount", "infraction.count", "corruption.binary",
@@ -112,18 +93,48 @@ so.statistics.labels <- c("Amount (in R)", "Infraction Count",
   "Mismanagement Indicator III (Amount)")
 
 # Then municipal stats second
-mun.statistics <- setdiff(c(names(mun.data), names(mun.election)),
-  c("ibge.id", "mun.election"))
+mun.statistics        <- setdiff(c(names(mun.data), names(mun.election)),
+                                 c("ibge.id", "mun.election"))
 mun.statistics.labels <- c("Urban Population (Share)", "Female (Share)",
-  "Illiteracy Rate", "GDP", "Gini Index", "Human Development Indicator",
-  "Poverty Rate", "Presence of AM Radio", "Education Council Established",
-  "Health Council Established", "Seat of Judiciary Branch", "Vote Margin",
-  "Mayor Reelection Rate")
+                           "Illiteracy Rate", "GDP", "Gini Index",
+                           "Human Development Indicator", "Poverty Rate",
+                           "Presence of AM Radio",
+                           "Education Council Established",
+                           "Health Council Established",
+                           "Seat of Judiciary Branch", "Vote Margin",
+                           "Mayor Reelection Rate")
 
-# Now I have to join all three datasets (service order data, municipal, poli-
-# tical, and SES characteristics). Before that, however, I need to remove dupli-
-# cated election data (due to runoff elections for municipalities
-# whose number of voters is larger than 200,000).
+################################################################################
+# Descriptive Statistics and Simple Tabulations
+################################################################################
+#-------------------------------------------------------------------------------
+# Table: Audits by Ministry
+#-------------------------------------------------------------------------------
+# Run following command then manually edit in latex.
+so.data %>%
+  group_by(ibge.id) %>%
+  summarize(so.education = max(so.education),
+            so.health    = max(so.health)) %$%
+  table(so.education, so.health) %>%
+  xtable()
+
+#-------------------------------------------------------------------------------
+# Table: Corruption Codes
+#-------------------------------------------------------------------------------
+# In Latex only
+
+#-------------------------------------------------------------------------------
+# Table: Procurement Categories
+#-------------------------------------------------------------------------------
+# In Latex only
+
+#-------------------------------------------------------------------------------
+# Table: Descriptive Statistics
+#-------------------------------------------------------------------------------
+# I have to join all three datasets (service order data, municipal, political,
+# and SES characteristics). Before that, however, I need to remove duplicated
+# election data (due to runoff elections for municipalities whose number of
+# voters is larger than 200,000).
 mun.election %<>%
   group_by(., mun.election) %>%
   group_by(ibge.id, add = TRUE) %>%
@@ -135,23 +146,21 @@ mun.election %<>%
 analysis.data <- left_join(so.data, mun.data, by = c("ibge.id" = "ibge.id")) %>%
   mutate(
     mun.election = case_when(
-                      audit.start <= ymd("2004-10-03") ~ ymd("2000-10-01"),
-                      audit.start <= ymd("2008-10-05") ~ ymd("2004-10-03"),
-                      audit.start  > ymd("2008-10-05") ~ ymd("2008-10-05")
+                     audit.start <= ymd("2004-10-03") ~ ymd("2000-10-01"),
+                     audit.start <= ymd("2008-10-05") ~ ymd("2004-10-03"),
+                     audit.start  > ymd("2008-10-05") ~ ymd("2008-10-05")
                    )
   ) %>%
   left_join(., mun.election,
-    by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
+            by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
   ) %>%
   mutate(
     mun.votemargin = ifelse(is.na(mun.votemargin),
                             mean(.$mun.votemargin, na.rm = TRUE),
-                            mun.votemargin
-                     ),
+                            mun.votemargin),
     mun.reelected  = ifelse(is.na(mun.reelected),
                             mean(.$mun.reelected,  na.rm = TRUE),
-                            mun.reelected
-                     ),
+                            mun.reelected),
     so.cutoff.1    = case_when(so.type == 1 ~ 8000,   so.type == 2 ~ 15000),
     so.cutoff.2    = case_when(so.type == 1 ~ 80000,  so.type == 2 ~ 150000),
     so.cutoff.3    = case_when(so.type == 1 ~ 650000, so.type == 2 ~ 1500000)
@@ -163,9 +172,6 @@ summary.stats.panelB <- analysis.data %>%
   group_by(ibge.id) %>%
   summarize_all(funs(mean))
 
-#---------------------------#
-# Table: Summary Statistics #
-#---------------------------#
 # Produce Panel A: Service Order Summary Statistics
 stargazer(
   as.data.frame(analysis.data[,so.statistics]),
@@ -177,7 +183,7 @@ stargazer(
   column.sep.width = "2pt",
   digits           = 3,
   # digits.extra     = 4,
-  font.size        = "small",
+  font.size        = "scriptsize",
   header           = FALSE,
   label            = "tab:descriptivestatistics",
   table.placement  = "!htbp"
@@ -194,18 +200,18 @@ stargazer(
   column.sep.width = "2pt",
   digits           = 3,
   # digits.extra     = 4,
-  font.size        = "small",
+  font.size        = "scriptsize",
   header           = FALSE,
-  label            = "tab:descriptivestatistics",
+  # label            = "tab:descriptivestatistics",
   table.placement  = "!htbp"
 )
 
-#------------------------------------------------------------------------------#
-################################ OLS Analysis ##################################
-#------------------------------------------------------------------------------#
-#-----------------#
-# Main regression #
-#-----------------#
+################################################################################
+# OLS Analysis
+################################################################################
+#-------------------------------------------------------------------------------
+# Table: Corruption Determinants
+#-------------------------------------------------------------------------------
 # First we need to create the municipal corruption variable
 analysis.data %<>%
   group_by(ibge.id) %>%
@@ -217,6 +223,10 @@ analysis.data %<>%
   select(c(1:18), contains("so.cutoff"), c(19:66), mun.corruption, c(67:83)) %>%
   ungroup()
 
+# Subset variable for OLS regressions
+ols.purchases <- filter(analysis.data, so.type == 1)
+ols.works     <- filter(analysis.data, so.type == 2)
+
 # Check the variables we should use
 names(analysis.data)
 
@@ -225,17 +235,19 @@ outcomes <- setdiff(so.statistics, c("so.amount", "infraction.count"))
 
 # Define outcome labels
 outcome.labels <- setdiff(so.statistics.labels,
-                          c("Amount (in R)", "Infraction Count")
-                  )
+                          c("Amount (in R)", "Infraction Count"))
 
 # Define vector of procurement-specific regressors
 so.covariates <- paste("so.amount", "I(so.amount^2)", "mun.corruption",
-  "I(mun.corruption^2)", "factor(so.procurement)", sep = " + ")
+                       "I(mun.corruption^2)", "factor(so.procurement)",
+                       sep = " + ")
 
 # Define Covariates Labels
 so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
-  "Municipal Corruption", "Municipal Corruption (Squared)",
-  "Procurement Type 1", "Procurement Type 2", "Procurement Type 3")
+                          "Municipal Corruption",
+                          "Municipal Corruption (Squared)",
+                          "Procurement Type 1", "Procurement Type 2",
+                          "Procurement Type 3")
 
 # Define vector of municipality characteristics
 mun.covariates <- analysis.data %>%
@@ -246,9 +258,8 @@ mun.covariates <- analysis.data %>%
 # mun.covariates.labels <- c()
 
 # Pull factor positions
-factors <- grep(mun.covariates,
-                pattern = "radio|council|lottery|judiciary|reelected|so\\."
-           )
+factors <- grep(pattern = "radio|council|lottery|judiciary|reelected|so\\.",
+                mun.covariates)
 
 # Concatenate municipal covariates vector
 for (i in factors) {
@@ -258,72 +269,113 @@ for (i in factors) {
 # Collapse to unitary vector
 mun.covariates <- paste(mun.covariates, collapse = " + ")
 
-# Run service order regressions
-for (i in seq(from = 1, to = 6)) {
+#-------------------------------------------------------------------------------
+# Run regressions
+#-------------------------------------------------------------------------------
+# Define vectors used in OLS analysis
+ols.outcomes <- c(outcomes[1], outcomes[4])
+ols.labels   <- c(outcome.labels[1], outcome.labels[4])
+ols.datasets <- c("ols.purchases", "ols.works")
 
-  # Run each regression w/ covariates
-  lm <- lm(
-    as.formula(
-      paste(outcomes[[i]], so.covariates, sep = " ~ ")),
-    data = analysis.data
-  )
+# Run regressions
+for (i in seq(1:2)) {
 
-  # Run each regression w/covariates
-  lm.x <- lm(
-    as.formula(
-      paste(
-        outcomes[[i]], paste(so.covariates, mun.covariates, sep = " + "),
-        sep = " ~ "
-      )
-    ),
-    data = analysis.data
-  )
-  # Store corruption and mismanagement regressions
-  if (i <= 3) {
-    assign(paste0("lm.corruption.", i), lm)
-    assign(paste0("lm.corruption.x.", i), lm.x)
+  # Purchases regression without covariates
+  lm.p   <- lm(as.formula(paste0(ols.outcomes[i], " ~ ", so.covariates)),
+               data = get(ols.datasets[1]))
+
+  # Purchases regression with covariates
+  lm.p.x <- lm(as.formula(paste0(ols.outcomes[i], " ~ ",
+                                 paste(so.covariates, mun.covariates, sep = "+")
+
+                          )
+               ),
+               data = get(ols.datasets[1])
+            )
+
+  # Works regression without covariates
+  lm.w   <- lm(as.formula(paste0(ols.outcomes[i], " ~ ", so.covariates)),
+               data = get(ols.datasets[2]))
+
+  # Works regression with covariates
+  lm.w.x <- lm(as.formula(paste0(ols.outcomes[i], " ~ ",
+                                 paste(so.covariates, mun.covariates, sep = "+")
+
+                          )
+               ),
+               data = get(ols.datasets[2])
+            )
+
+  # Set them aside in list
+  if (i == 1) {
+    # Models
+    corruption.binary.models <- list(lm.p, lm.p.x, lm.w, lm.w.x)
+
+    # Clustered standard errors for star prep
+    se.1 <- starprepMod(corruption.binary.models[[1]],
+                        ols.purchases,
+                        ibge.id,
+                        alpha = .1)
+    se.2 <- starprepMod(corruption.binary.models[[2]],
+                        ols.purchases,
+                        ibge.id,
+                        alpha = .1)
+    se.3 <- starprepMod(corruption.binary.models[[3]],
+                        ols.works,
+                        ibge.id,
+                        alpha = .1)
+    se.4 <- starprepMod(corruption.binary.models[[4]],
+                        ols.works,
+                        ibge.id,
+                        alpha = .1)
+    se.corruption <- c(se.1, se.2, se.3, se.4)
+
   } else {
-    assign(paste0("lm.mismanagement.", i-3), lm)
-    assign(paste0("lm.mismanagement.x.", i-3), lm.x)
+    mismanagement.binary.models <- list(lm.p, lm.p.x, lm.w, lm.w.x)
+
+    se.1 <- starprepMod(corruption.binary.models[[1]],
+                        ols.purchases,
+                        ibge.id,
+                        alpha = .1)
+    se.2 <- starprepMod(corruption.binary.models[[2]],
+                        ols.purchases,
+                        ibge.id,
+                        alpha = .1)
+    se.3 <- starprepMod(corruption.binary.models[[3]],
+                        ols.works,
+                        ibge.id,
+                        alpha = .1)
+    se.4 <- starprepMod(corruption.binary.models[[4]],
+                        ols.works,
+                        ibge.id,
+                        alpha = .1)
+    se.mismanagement <- c(se.1, se.2, se.3, se.4)
   }
- # Remove temporary object
-  rm(lm, lm.x)
+
+  rm(list = objects(pattern = "lm\\.|se\\.[1-4]"))
 }
 
-#---------------------------------#
-# Table: First Linear Regressions #
-#---------------------------------#
+#--------------------------------
+# Table: First Linear Regressions
+#--------------------------------
+# Corruption
 stargazer(
 
   # Regressions that will be printed to table
-  list(lm.corruption.1, lm.corruption.x.1, lm.corruption.2,
-  lm.corruption.x.2, lm.corruption.3,
-  lm.corruption.x.3),
+  list(corruption.binary.models, mismanagement.binary.models),
 
   # Table commands
-  title                 = "Corruption Determinants in Brazilian Municipalities",
+  title                 = "Performance Determinants in Brazilian Municipalities",
   out                   = "./article/tab_mainregression.tex",
   out.header            = FALSE,
-  column.labels         = rep(
-                            c(outcome.labels[[1]],
-                              outcome.labels[[2]],
-                              outcome.labels[[3]]
-                            ),
-                            2
-                          ),
-  column.separate       = rep(1, 6),
+  column.labels         = c(outcome.labels[[1]], outcome.labels[[4]]),
+  column.separate       = c(4, 4),
   covariate.labels      = so.covariates.labels,
   dep.var.labels.include= FALSE,
   align                 = TRUE,
 
   # Ask for robust standard errors
-  se                    = starprep(
-                            lm.corruption.1, lm.corruption.x.1,
-                            lm.corruption.2, lm.corruption.x.2,
-                            lm.corruption.3, lm.corruption.x.3,
-                            clusters = analysis.data$ibge.id,
-                            alpha    = .1
-                          ),
+  se                    = c(se.corruption, se.mismanagement),
   # p                     = starprep(
   #                           list(
   #                             lm.corruption.1, lm.corruption.x.1,
@@ -331,14 +383,15 @@ stargazer(
   #                             lm.corruption.3, lm.corruption.x.3
   #                           ),
   #                           stat     = "p.value",
-  #                           clusters = analysis.data$ibge.id,
+  #                           clusters = ols.purchases$ibge.id,
   #                           alpha    = .1
   #                         ),
   column.sep.width      = "2pt",
   digits                = 3,
   digits.extra          = 0,
   # initial.zero          = FALSE,
-  font.size             = "small",
+  float.env             = "sidewaystable",
+  font.size             = "scriptsize",
   header                = FALSE,
   keep                  = c("amount|corrupt|procurement"),
   label                 = "tab:mainregression",
@@ -354,9 +407,9 @@ stargazer(
 # Remove the models from the environment in R
 rm(list = objects(pattern = "lm\\.|summary\\.stats"))
 
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------
 ############################ Bandwidth choice test #############################
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------
 # We use Cattaneo (2016)'s rules for sub-setting the sample. In cases where
 # assignment to different treatments is cumulative on the running variable, they
 # suggest using observations with running values up to c-1 and c+1 cutoff values
@@ -382,9 +435,9 @@ works.bandwidth.list     <- c(ls(pattern = "works\\.bandwidth\\.[0-9]"))
 purchases.cutoff.list <- c(8000, 80000, 650000)
 works.cutoff.list     <- c(15000, 150000, 1500000)
 
-#--------------------------------------#
+#--------------------------------------
 # Test 1: CCT = Calonico et al. (2015) #
-#--------------------------------------#
+#--------------------------------------
 # Create list of vectors which will take up the bandwidth values
 purchases.cct.vector <- rep(0, 18)
 works.cct.vector     <- rep(0, 18)
@@ -450,9 +503,9 @@ w.bandwidth.1 <- mean(works.cct.vector[1:6])
 w.bandwidth.2 <- mean(works.cct.vector[7:12])
 w.bandwidth.3 <- mean(works.cct.vector[13:18])
 
-#-------------------------#
+#-------------------------
 # Table: Bandwidth Choice #
-#-------------------------#
+#-------------------------
 # Format bandwidth limits as data frame and produce table. Last step is editing
 # the table in the TeX file.
 tibble(purchases.bandwidth = c(p.bandwidth.1, p.bandwidth.2, p.bandwidth.3),
@@ -460,9 +513,9 @@ tibble(purchases.bandwidth = c(p.bandwidth.1, p.bandwidth.2, p.bandwidth.3),
 ) %>%
 xtable()
 
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------
 ################################# RD Analysis ##################################
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------
 # We use Cattaneo's rdmulti package to deal with multiple cutoff nature of our
 # data. First, we run non-cumulative multiple cutoff by pooling together purcha-
 # ses and works and centering them around their equivalent cutoff(8k and 15k)
@@ -579,6 +632,6 @@ for (x in seq(from = 1, to = 6)) {
   rm(purchases, works)
 }
 
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------
 #################################### Plots #####################################
-#------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------

@@ -7,6 +7,7 @@
 \usepackage{geometry}
 \usepackage{ulem}
 \usepackage{graphicx}
+\usepackage{rotating}
 \usepackage{caption}
 \usepackage{color}
 \usepackage{setspace}
@@ -221,33 +222,21 @@ This relationship is easily translated to our model and is symmetric to the corr
 %   \item \emph{\hypopen, an increase in the municipal corruption level, measured by the share of corruption findings to the overall level of wrongdoing in any municipality (corruption indicator III aggregated by municipality), is associated with decreasing returns to corruption as measure by the amount potentially lost to corruption (corruption indicator II).}
 % \end{enumerate}
 
-Based on the models in sections \ref{subsec:corruption} and \ref{subsec:mismanagement}, we discuss policy implications of discretion by looking at four overarching hypotheses and their relationship with each other. For clarity, we present discretion positions of citizens and legislators in a simple principal-agent framework. The discussion is grounded on the Brazilian procurement case but the takeaways are applicable to similar discussions on whether to grant officials more discretion or not.
+Based on the models in sections \ref{subsec:corruption} and \ref{subsec:mismanagement}, we discuss policy implications of discretion by looking at two overarching hypotheses and their relationship with each other. For clarity, we present discretion positions of citizens and legislators in a simple principal-agent framework. The analysis is grounded on the Brazilian procurement case but the takeaways are applicable to similar discussions on whether to grant officials more discretion or not.
 
-The most important hypotheses focus on corruption outcomes. Principals (citizens) would like to see lower corruption because they believe it to be in the interest of the population. More and better policy is possible when there are more resources available. Agents (federal legislators) can altruistically favor lower corruption or, alternatively, claim credit for its reduction; in either case, there is a positive electoral payoff for fighting corruption. In fact, corruption prevention motivated the adoption of Law 8,666/93 and confirms the proposed hierarchy.
+The most important hypothesis focus on corruption outcomes. Principals (citizens) would like to see lower corruption because they believe it to be in the interest of the population. More and better policy is possible when there are more resources available. Agents (federal legislators) can altruistically favor lower corruption or, alternatively, claim credit for its reduction; in either case, there is a positive electoral payoff for fighting corruption. In fact, corruption prevention motivated the adoption of Law 8,666/93 and confirms the proposed hierarchy.
 
 \begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
   \item \textit{\hypopen, stricter procurement rules reduce corruption as measured by all three corruption indicators, \emph{all else equal}.}
 \end{enumerate}
 
-Hypothesis 1 summarizes the main research question in this study. We are interested in the partial effect of discretion on corruption. Hypothesis 1 is very restrictive and requires statistically significant discretion parameters for all cutoffs and procurement types for an unconditional and positive effect on government performance. Its confirmation is our first goal for section \ref{sec:result}. A less restrictive but valuable reading of hypothesis 1 is the significant reduction of corruption, as measured by any of the three indexes, for any of the cutoffs in either procurement type. If the more restrictive version is confirmed, both the representative citizen and legislator are unconditionally happy with the bill and should support less discretion across the board; if the less restrictive version is the case, then their positions are slightly different. Legislators can still claim credit for reducing corruption, and they will take it wherever they can find it, while citizens might remain unhappy with government simply because corruption prevention was not enough to shift resources back to policy. This brings up hypothesis 2.
-
-\begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
-  \item \textit{\hypopen, stricter procurement rules reduce corruption at a decreasing rate as measured by all three corruption indicators, \emph{all else equal}.}
-\end{enumerate}
-
-Ideally, citizens would not like to see it confirmed; the more corruption prevented by moving up discretion rules, the better. However, officials' risk aversion and the offsetting effect of larger embezzlement potential (relative to one's earnings when procurement amounts are larger) makes this a less likely scenario. Legislators are relatively indifferent to this hypothesis since they can claim credit for fighting corruption either way; the magnitude of the effect is just secondary. Thus, citizen's support for Law 8,666/93 is conditional on the magnitude of corruption reduction generated by discretion.
-
-Program management outcomes come next. Since they were not the intended goal of passing procurement legislation in 1993, they are important outcomes in the absence of corruption effects.\footnote{If corruption is significantly reduced by discretion, then any gain in program management is welcome; however, it is unlikely that improvements in program management alone would increase the support for Law 8,666/93.}
+Hypothesis 1 summarizes the main research question in this study. We are interested in the partial effect of discretion on corruption. Hypothesis 1 is very restrictive and requires statistically significant discretion parameters for all cutoffs and procurement types for an unconditional and positive effect on government performance. A less restrictive but valuable reading of hypothesis 1 is the significant reduction of corruption, as measured by any of the three indexes, for any of the cutoffs in either procurement type. If the more restrictive version is confirmed, both the representative citizen and legislator are unconditionally happy with the bill and should support less discretion across the board; if the less restrictive version is the case, then their positions are slightly different. While legislators can still claim credit for reducing corruption, and they will take it wherever they can find it, citizens might be unhappy with the law if there is only limited corruption prevention. To the representative citizen, any regulation that does not deliver on its goals is excessive. Thus, when corruption impacts are limited, citizens will want to see additional, side benefits of passing legislation, e.g.~better resource or policy management; this takes us to hypothesis 2.
 
 \begin{enumerate}[label = H\arabic{enumi}:, font = \bfseries, labelindent = \parindent, leftmargin = *, resume] % Local relabelling of enumerate
   \item \textit{\hypopen, stricter procurement rules reduce mismanagement as measured by any of three mismanagement indicators, \emph{all else equal}.}
-  \item \textit{\hypopen, stricter procurement rules reduce mismanagement at a decreasing rate as measured by any of three mismanagement indicators, \emph{all else equal}.}
 \end{enumerate}
 
-The first hypothesis on program management is parallel to corruption hypothesis 1. It states that less discretion should reduce mismanagement of public resources, the reasoning being that it would favor better program management practices, such as speedy procurement or the purchase of program-mandated goods/services. Since program management improvement is a side-effect to the main objective of Law 8,666/93, any positive effect here is welcome. Thus, once corruption effects have been accounted for, the least restrictive form is sufficient for supporting the law. As with hypothesis 1, we are looking at the significance of discretion parameters. The second hypothesis for program management outcomes (H4) evaluates the magnitude of the effect as stricter rules are applied in public procurement. We expect that the relative infrequency of larger calls, the number of additional requirements, or the complexity of proposals when there is more competition are all potential factors making it harder to keep up to the legislation in all fronts.
-
-The benefits of program management for both citizens and legislators are straightforward. Legislators welcome, but not work for, better resource management.
-
+A direct side-effect of the Brazilian procurement law is better program (policy) management, captured in hypothesis 2. Legislation that reduces discretion in spending decisions should improve resource management by implementing speedy procurement practices or the purchase of program-mandate goods/services. Being an unintended goal of Law 8,666/93, any improvement in program management is welcome. Once corruption effects have been accounted for, the least restrictive form of hypothesis 2 is sufficient for supporting the procurement law. Citizens would condition their support to the corruption-ineffective discretion legislation if these side benefits are confirmed.
 
 \section{Estimation Strategy} \label{sec:methodology}
 
@@ -290,6 +279,10 @@ Law 8,666/93 has two additional features that require the design extensively dis
 In addition, the discretion categories are cumulative within each procurement type. There are different versions of treatment for different ranges of procurement amount. Thus, we cannot rule out that assignment scores (i.e. the monetary amount in each procurement call) could be related to potential outcomes. What is reassuring, however, is that the solutions to multi-cutoff RD limitations proposed by \citet{CattaneoInterpretingRegressionDiscontinuity2016} can all be implemented here: we estimate treatment effects both for pooled and independent cutoff samples, both across (multiple non-cumulative cutoffs) and within (multiple cumulative cutoffs) procurement type. Our results remain unchanged in each specification.
 
 \section{Results} \label{sec:result}
+
+\input{tab_mainregression1}
+
+\newpage
 
 \subsection{Falsification Tests} \label{subsec:discussion}
 

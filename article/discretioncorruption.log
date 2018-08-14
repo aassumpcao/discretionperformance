@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  13 AUG 2018 14:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  14 AUG 2018 17:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -160,6 +160,18 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen123
 \Gin@req@width=\dimen124
 )
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count104
+\rotFPtop=\skip47
+\rotFPbot=\skip48
+\rot@float@box=\box32
+\rot@mess@toks=\toks23
+)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2018/05/01 v3.3-147 Customizing captions (AR)
 
@@ -174,7 +186,8 @@ Package caption3 Info: TeX engine: e-TeX on input line 64.
 \caption@parindent=\dimen130
 \caption@hangindent=\dimen131
 )
-\c@ContinuedFloat=\count104
+\c@ContinuedFloat=\count105
+Package caption Info: rotating package is loaded.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
@@ -197,9 +210,9 @@ les
 Excluding comment 'comment')
 (/usr/local/texlive/2018/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
-\FN@temptoken=\toks23
+\FN@temptoken=\toks24
 \footnotemargin=\dimen132
-\c@pp@next@reset=\count105
+\c@pp@next@reset=\count106
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -211,18 +224,18 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\labelindent=\skip47
+\labelindent=\skip49
 \enit@outerparindent=\dimen133
-\enit@toks=\toks24
-\enit@inbox=\box32
-\enitdp@description=\count106
+\enit@toks=\toks25
+\enit@inbox=\box33
+\enitdp@description=\count107
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip48
-\bibsep=\skip49
+\bibhang=\skip50
+\bibsep=\skip51
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count107
+\c@NAT@ctr=\count108
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -234,39 +247,39 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip50
-\subfigcapskip=\skip51
+\subfigtopskip=\skip52
+\subfigcapskip=\skip53
 \subfigcaptopadj=\dimen134
-\subfigbottomskip=\skip52
+\subfigbottomskip=\skip54
 \subfigcapmargin=\dimen135
-\subfiglabelskip=\skip53
-\c@subfigure=\count108
-\c@lofdepth=\count109
-\c@subtable=\count110
-\c@lotdepth=\count111
+\subfiglabelskip=\skip55
+\c@subfigure=\count109
+\c@lofdepth=\count110
+\c@subtable=\count111
+\c@lotdepth=\count112
 
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 (/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip54
-\subfig@bottom=\skip55
+\subfig@top=\skip56
+\subfig@bottom=\skip57
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
 Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
 \col@sep=\dimen136
-\ar@mcellbox=\box33
+\ar@mcellbox=\box34
 \extrarowheight=\dimen137
-\NC@list=\toks25
-\extratabsurround=\skip56
-\backup@length=\skip57
-\ar@cellbox=\box34
+\NC@list=\toks26
+\extratabsurround=\skip58
+\backup@length=\skip59
+\ar@cellbox=\box35
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
-\multirow@colwidth=\skip58
-\multirow@cntb=\count112
-\multirow@dima=\skip59
+\multirow@colwidth=\skip60
+\multirow@cntb=\count113
+\multirow@dima=\skip61
 \bigstrutjot=\dimen138
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty
@@ -275,8 +288,8 @@ Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen139
-\c@nlinenum=\count113
-\TeXr@lab=\toks26
+\c@nlinenum=\count114
+\TeXr@lab=\toks27
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
@@ -331,15 +344,15 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen140
-\Hy@linkcounter=\count114
-\Hy@pagecounter=\count115
+\Hy@linkcounter=\count115
+\Hy@pagecounter=\count116
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count116
+\Hy@SavedSpaceFactor=\count117
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -351,7 +364,7 @@ Package hyperref Info: Plain pages OFF on input line 4524.
 Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count117
+\c@Hy@tempcnt=\count118
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
@@ -359,7 +372,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
 \XeTeXLinkMargin=\dimen141
-\Fld@menulength=\count118
+\Fld@menulength=\count119
 \Field@Width=\dimen142
 \Fld@charsize=\dimen143
 Package hyperref Info: Hyper figures OFF on input line 6369.
@@ -371,55 +384,55 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6394.
 Package hyperref Info: PDF/A mode OFF on input line 6399.
 LaTeX Info: Redefining \ref on input line 6439.
 LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count119
-\c@Item=\count120
-\c@Hfootnote=\count121
+\Hy@abspage=\count120
+\c@Item=\count121
+\c@Hfootnote=\count122
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count122
-\c@bookmark@seq@number=\count123
+\Fld@listcount=\count123
+\c@bookmark@seq@number=\count124
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip60
+\Hy@SectionHShift=\skip62
 )
-Package hyperref Info: Option `unicode' set `true' on input line 26.
+Package hyperref Info: Option `unicode' set `true' on input line 27.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-\c@theorem=\count124
-\c@proposition=\count125
-\c@hyp=\count126
-\c@subhyp=\count127
+\c@theorem=\count125
+\c@proposition=\count126
+\c@hyp=\count127
+\c@subhyp=\count128
 
 (./discretioncorruption.aux)
 \openout1 = `discretioncorruption.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -457,17 +470,17 @@ LaTeX Font Info:    ... okay on input line 54.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count128
+\scratchcounter=\count129
 \scratchdimen=\dimen144
-\scratchbox=\box35
-\nofMPsegments=\count129
-\nofMParguments=\count130
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count131
+\scratchbox=\box36
+\nofMPsegments=\count130
+\nofMParguments=\count131
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count132
 \MPscratchDim=\dimen145
-\MPnumerator=\count132
-\makeMPintoPDFobject=\count133
-\everyMPtoPDFconversion=\toks28
+\MPnumerator=\count133
+\makeMPintoPDFobject=\count134
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -489,8 +502,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box36
-Package hyperref Info: Link coloring OFF on input line 54.
+\AtBeginShipoutBox=\box37
+Package hyperref Info: Link coloring OFF on input line 55.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -498,39 +511,39 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count134
+\c@section@level=\count135
 )
-LaTeX Info: Redefining \ref on input line 54.
-LaTeX Info: Redefining \pageref on input line 54.
-LaTeX Info: Redefining \nameref on input line 54.
+LaTeX Info: Redefining \ref on input line 55.
+LaTeX Info: Redefining \pageref on input line 55.
+LaTeX Info: Redefining \nameref on input line 55.
 
 (./discretioncorruption.out) (./discretioncorruption.out)
 \@outlinefile=\write4
 \openout4 = `discretioncorruption.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 62.
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 62.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 63.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--68
+Underfull \hbox (badness 10000) in paragraph at lines 64--69
 
  []
 
@@ -540,10 +553,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--68
 [1] [2] [3] [4] (./tab_auditbyministry.tex) (./corruptioncodes.tex) [5]
 [6] (./procurementtypes.tex)
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 137.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
  [7] [8] [9] (./tab_descriptivestats.tex) [10]
-[11] [12] [13] [14] [15] [16] [17] (./discretioncorruption.bbl [18]) [19]
-Underfull \hbox (badness 10000) in paragraph at lines 347--348
+[11] [12] [13] [14] [15] [16] (./tab_mainregression1.tex
+Overfull \hbox (29.49977pt too wide) in paragraph at lines 7--46
+ [][] 
+ []
+
+) [17] [18] (./discretioncorruption.bbl [19]) [20]
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
 \OT1/cmr/m/n/8 ho-ria\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 adequa)+(.)*(f[^^S^^Pi]sic
 a\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 escolar\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 habitac
 \OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 sanit[^^Saa]ria)+'' ``es-got'' ``adu-tora\OMS/c
@@ -551,67 +569,67 @@ msy/m/n/8 j\OT1/cmr/m/n/8 dessaliniz\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 reservat[^^
 Soo]''
  []
 
-[20
+[21
 
 
 ]
-<venn.png, id=466, 481.8pt x 481.8pt>
+<venn.png, id=467, 481.8pt x 481.8pt>
 File: venn.png Graphic file (type png)
 <use venn.png>
-Package pdftex.def Info: venn.png  used on input line 358.
+Package pdftex.def Info: venn.png  used on input line 351.
 (pdftex.def)             Requested size: 140.92793pt x 140.92409pt.
- (./appendix_tab2.tex) [21 <./venn.png>] (./appendix_tab3.tex) [22]
-(./appendix_tab4.tex) [23] [24] (./appendix_tab5.tex) [25] [26]
-<purchasesmanipulation1.png, id=539, 481.8pt x 481.8pt>
+ (./appendix_tab2.tex) [22 <./venn.png>] (./appendix_tab3.tex) [23]
+(./appendix_tab4.tex) [24] [25] (./appendix_tab5.tex) [26] [27]
+<purchasesmanipulation1.png, id=540, 481.8pt x 481.8pt>
 File: purchasesmanipulation1.png Graphic file (type png)
 <use purchasesmanipulation1.png>
-Package pdftex.def Info: purchasesmanipulation1.png  used on input line 506.
+Package pdftex.def Info: purchasesmanipulation1.png  used on input line 499.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation1.png, id=540, 481.8pt x 481.8pt>
+<worksmanipulation1.png, id=541, 481.8pt x 481.8pt>
 File: worksmanipulation1.png Graphic file (type png)
 <use worksmanipulation1.png>
-Package pdftex.def Info: worksmanipulation1.png  used on input line 506.
+Package pdftex.def Info: worksmanipulation1.png  used on input line 499.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation2.png, id=541, 481.8pt x 481.8pt>
+<purchasesmanipulation2.png, id=542, 481.8pt x 481.8pt>
 File: purchasesmanipulation2.png Graphic file (type png)
 <use purchasesmanipulation2.png>
-Package pdftex.def Info: purchasesmanipulation2.png  used on input line 507.
+Package pdftex.def Info: purchasesmanipulation2.png  used on input line 500.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation2.png, id=542, 481.8pt x 481.8pt>
+<worksmanipulation2.png, id=543, 481.8pt x 481.8pt>
 File: worksmanipulation2.png Graphic file (type png)
 <use worksmanipulation2.png>
-Package pdftex.def Info: worksmanipulation2.png  used on input line 507.
+Package pdftex.def Info: worksmanipulation2.png  used on input line 500.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation3.png, id=543, 481.8pt x 481.8pt>
+<purchasesmanipulation3.png, id=544, 481.8pt x 481.8pt>
 File: purchasesmanipulation3.png Graphic file (type png)
 <use purchasesmanipulation3.png>
-Package pdftex.def Info: purchasesmanipulation3.png  used on input line 508.
+Package pdftex.def Info: purchasesmanipulation3.png  used on input line 501.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation3.png, id=544, 481.8pt x 481.8pt>
+<worksmanipulation3.png, id=545, 481.8pt x 481.8pt>
 File: worksmanipulation3.png Graphic file (type png)
 <use worksmanipulation3.png>
-Package pdftex.def Info: worksmanipulation3.png  used on input line 508.
+Package pdftex.def Info: worksmanipulation3.png  used on input line 501.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 512.
- [27] [28 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchase
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 505.
+ [28] [29 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchase
 smanipulation2.png> <./worksmanipulation2.png> <./purchasesmanipulation3.png> <
 ./worksmanipulation3.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 512.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 505.
  (./discretioncorruption.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 512.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 512.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 505.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 505.
 Package rerunfilecheck Info: File `discretioncorruption.out' has not changed.
 (rerunfilecheck)             Checksum: A32CA875335DC24FE49F31CE128F4688;3654.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 512.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 505.
  ) 
 Here is how much of TeX's memory you used:
- 12634 strings out of 492646
- 183750 string characters out of 6129564
- 276894 words of memory out of 5000000
- 16218 multiletter control sequences out of 15000+600000
+ 12738 strings out of 492646
+ 185167 string characters out of 6129564
+ 278644 words of memory out of 5000000
+ 16314 multiletter control sequences out of 15000+600000
  16821 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,39p,2311b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,39p,2311b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -633,10 +651,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2018/texmf
 dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2018/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on discretioncorruption.pdf (29 pages, 534097 bytes).
+Output written on discretioncorruption.pdf (30 pages, 535374 bytes).
 PDF statistics:
- 655 PDF objects out of 1000 (max. 8388607)
+ 656 PDF objects out of 1000 (max. 8388607)
  583 compressed objects within 6 object streams
- 126 named destinations out of 1000 (max. 500000)
+ 125 named destinations out of 1000 (max. 500000)
  220 words of extra memory for PDF output out of 10000 (max. 10000000)
 
