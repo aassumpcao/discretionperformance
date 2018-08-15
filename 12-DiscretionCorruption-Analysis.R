@@ -48,6 +48,9 @@ bandwidthRange <- function(x, cutpoint, limit){
 
   # Returns:
   #   Logical vector used to subset dataset
+
+  # Body:
+  #   Invisibly subset data
   invisible(between(x, cutpoint - limit, cutpoint + limit))
 }
 
@@ -62,10 +65,60 @@ starprepMod <- function(model, data, cluster, alpha){
 
   # Returns:
   #   starprep list
+
+  # Body:
+  #   Run starprep with used-provided data (instead of standard dataset)
   temp      <- starprep(model, cluster = data$cluster, alpha = alpha)
   temp[[2]] <- NULL
 
   return(temp)
+}
+
+# Function to quickly produce OLS models and clustered standard errors for first
+# table
+lmMod <- function(y, se = FALSE){
+  # Args:
+  #   y:  outcome variable
+  #   se: clustered se
+
+  # Retuns:
+  #   List of lm objects OR clustered se for stargazer
+
+  # Body:
+  #   We first produce the four models to print out table
+  #   Purchases
+  lm.1 <- lm(as.formula(paste0(y, " ~ ", so.covariates)), data = purchases.data)
+  lm.2 <- lm(as.formula(paste0(y, " ~ ", paste(so.covariates, mun.covariates,
+             sep = " + "))), data = purchases.data)
+
+  #   Works
+  lm.3 <- lm(as.formula(paste0(y, " ~ ", so.covariates)), data = works.data)
+  lm.4 <- lm(as.formula(paste0(y, " ~ ", paste(so.covariates, mun.covariates,
+             sep = " + "))), data = works.data)
+
+  #   Put all models in list
+  models <- list(lm.1, lm.2, lm.3, lm.4)
+
+  #   Then we produce the four vectors of s.e. for stargazer
+  if (se == TRUE) {
+
+    #   Purchases
+    se.1 <- starprep(lm.1, clusters = purchases.data$ibge.id, alpha = .1)
+    se.2 <- starprep(lm.2, clusters = purchases.data$ibge.id, alpha = .1)
+    se.3 <- starprep(lm.3, clusters = works.data$ibge.id,     alpha = .1)
+    se.4 <- starprep(lm.4, clusters = works.data$ibge.id,     alpha = .1)
+
+    #   Put all se's in list
+    se <- c(se.1, se.2, se.3, se.4)
+
+    #   Return se vector
+    return(se)
+
+  } else {
+
+    #   Return lm list
+    return(models)
+  }
 }
 
 ################################################################################
@@ -224,8 +277,8 @@ analysis.data %<>%
   ungroup()
 
 # Subset variable for OLS regressions
-ols.purchases <- filter(analysis.data, so.type == 1)
-ols.works     <- filter(analysis.data, so.type == 2)
+purchases.data <- filter(analysis.data, so.type == 1)
+works.data     <- filter(analysis.data, so.type == 2)
 
 # Check the variables we should use
 names(analysis.data)
@@ -270,94 +323,20 @@ for (i in factors) {
 mun.covariates <- paste(mun.covariates, collapse = " + ")
 
 #-------------------------------------------------------------------------------
-# Run regressions
+# Run OLS regressions
 #-------------------------------------------------------------------------------
-# Define vectors used in OLS analysis
-ols.outcomes <- c(outcomes[1], outcomes[4])
+# Define labels for stargazer
 ols.labels   <- c(outcome.labels[1], outcome.labels[4])
-ols.datasets <- c("ols.purchases", "ols.works")
 
-# Run regressions
-for (i in seq(1:2)) {
+# Corruption and mismananagement models and clustered standard errors
+corruption.binary.models    <- lmMod("corruption.binary")
+mismanagement.binary.models <- lmMod("mismanagement.binary")
+se.corruption               <- lmMod("corruption.binary",    se = TRUE)
+se.mismanagement            <- lmMod("mismanagement.binary", se = TRUE)
 
-  # Purchases regression without covariates
-  lm.p   <- lm(as.formula(paste0(ols.outcomes[i], " ~ ", so.covariates)),
-               data = get(ols.datasets[1]))
-
-  # Purchases regression with covariates
-  lm.p.x <- lm(as.formula(paste0(ols.outcomes[i], " ~ ",
-                                 paste(so.covariates, mun.covariates, sep = "+")
-
-                          )
-               ),
-               data = get(ols.datasets[1])
-            )
-
-  # Works regression without covariates
-  lm.w   <- lm(as.formula(paste0(ols.outcomes[i], " ~ ", so.covariates)),
-               data = get(ols.datasets[2]))
-
-  # Works regression with covariates
-  lm.w.x <- lm(as.formula(paste0(ols.outcomes[i], " ~ ",
-                                 paste(so.covariates, mun.covariates, sep = "+")
-
-                          )
-               ),
-               data = get(ols.datasets[2])
-            )
-
-  # Set them aside in list
-  if (i == 1) {
-    # Models
-    corruption.binary.models <- list(lm.p, lm.p.x, lm.w, lm.w.x)
-
-    # Clustered standard errors for star prep
-    se.1 <- starprepMod(corruption.binary.models[[1]],
-                        ols.purchases,
-                        ibge.id,
-                        alpha = .1)
-    se.2 <- starprepMod(corruption.binary.models[[2]],
-                        ols.purchases,
-                        ibge.id,
-                        alpha = .1)
-    se.3 <- starprepMod(corruption.binary.models[[3]],
-                        ols.works,
-                        ibge.id,
-                        alpha = .1)
-    se.4 <- starprepMod(corruption.binary.models[[4]],
-                        ols.works,
-                        ibge.id,
-                        alpha = .1)
-    se.corruption <- c(se.1, se.2, se.3, se.4)
-
-  } else {
-    mismanagement.binary.models <- list(lm.p, lm.p.x, lm.w, lm.w.x)
-
-    se.1 <- starprepMod(corruption.binary.models[[1]],
-                        ols.purchases,
-                        ibge.id,
-                        alpha = .1)
-    se.2 <- starprepMod(corruption.binary.models[[2]],
-                        ols.purchases,
-                        ibge.id,
-                        alpha = .1)
-    se.3 <- starprepMod(corruption.binary.models[[3]],
-                        ols.works,
-                        ibge.id,
-                        alpha = .1)
-    se.4 <- starprepMod(corruption.binary.models[[4]],
-                        ols.works,
-                        ibge.id,
-                        alpha = .1)
-    se.mismanagement <- c(se.1, se.2, se.3, se.4)
-  }
-
-  rm(list = objects(pattern = "lm\\.|se\\.[1-4]"))
-}
-
-#--------------------------------
+#-------------------------------------------------------------------------------
 # Table: First Linear Regressions
-#--------------------------------
+#-------------------------------------------------------------------------------
 # Corruption
 stargazer(
 
@@ -365,7 +344,7 @@ stargazer(
   list(corruption.binary.models, mismanagement.binary.models),
 
   # Table commands
-  title                 = "Performance Determinants in Brazilian Municipalities",
+  title                 ="Performance Determinants in Brazilian Municipalities",
   out                   = "./article/tab_mainregression.tex",
   out.header            = FALSE,
   column.labels         = c(outcome.labels[[1]], outcome.labels[[4]]),
@@ -374,23 +353,14 @@ stargazer(
   dep.var.labels.include= FALSE,
   align                 = TRUE,
 
-  # Ask for robust standard errors
+  # Provide self-calculated standard errors
   se                    = c(se.corruption, se.mismanagement),
-  # p                     = starprep(
-  #                           list(
-  #                             lm.corruption.1, lm.corruption.x.1,
-  #                             lm.corruption.2, lm.corruption.x.2,
-  #                             lm.corruption.3, lm.corruption.x.3
-  #                           ),
-  #                           stat     = "p.value",
-  #                           clusters = ols.purchases$ibge.id,
-  #                           alpha    = .1
-  #                         ),
+
   column.sep.width      = "2pt",
   digits                = 3,
   digits.extra          = 0,
   # initial.zero          = FALSE,
-  float.env             = "sidewaystable",
+  # float.env             = "sidewaystable",
   font.size             = "scriptsize",
   header                = FALSE,
   keep                  = c("amount|corrupt|procurement"),
@@ -405,117 +375,112 @@ stargazer(
 )
 
 # Remove the models from the environment in R
-rm(list = objects(pattern = "lm\\.|summary\\.stats"))
+rm(list = objects(pattern = "se\\.|\\.binary"))
 
-#-------------------------------------------------------------------------------
-############################ Bandwidth choice test #############################
-#-------------------------------------------------------------------------------
-# We use Cattaneo (2016)'s rules for sub-setting the sample. In cases where
-# assignment to different treatments is cumulative on the running variable, they
-# suggest using observations with running values up to c-1 and c+1 cutoff values
-# for each c cutoff.
-purchases.bandwidth.1 <- analysis.data %>%
-  filter(so.amount <=  80000 & so.type == 1)
-purchases.bandwidth.2 <- analysis.data %>%
-  filter(so.amount >    8000 & so.amount <= 650000 & so.type == 1)
-purchases.bandwidth.3 <- analysis.data %>%
-  filter(so.amount >   80000 & so.type == 1)
-works.bandwidth.1     <- analysis.data %>%
-  filter(so.amount <= 150000 & so.type == 2)
-works.bandwidth.2     <- analysis.data %>%
-  filter(so.amount >   15000 & so.amount <= 1500000 & so.type == 2)
-works.bandwidth.3     <- analysis.data %>%
-  filter(so.amount > 150000  & so.type == 2)
+# ##############################################################################
+# # Bandwidth choice test
+# ##############################################################################
+# # We use Cattaneo (2016)'s rules for sub-setting the sample. In cases where
+# # assignment to different treatments is cumulative on the running variable,
+# # they suggest using observations with running values up to c-1 and c+1 cutoff
+# # values for each c cutoff.
+# # Purchases
+# p.bandwidth.1 <- filter(purchases.data, so.amount <=80000)
+# p.bandwidth.2 <- filter(purchases.data, so.amount > 8000 & so.amount<=650000)
+# p.bandwidth.3 <- filter(purchases.data, so.amount > 80000)
+# w.bandwidth.1 <- filter(works.data,     so.amount <=150000)
+# w.bandwidth.2 <- filter(works.data,     so.amount > 15000 &so.amount<=1500000)
+# w.bandwidth.3 <- filter(works.data,     so.amount > 150000)
 
-# Define vector of datasets used for bandwidth tests
-purchases.bandwidth.list <- c(ls(pattern = "purchases\\.bandwidth\\.[0-9]"))
-works.bandwidth.list     <- c(ls(pattern = "works\\.bandwidth\\.[0-9]"))
+# # Define vector of datasets used for bandwidth tests
+# purchases.bandwidth.list <- c(ls(pattern = "p\\.bandwidth\\.[0-9]"))
+# works.bandwidth.list     <- c(ls(pattern = "w\\.bandwidth\\.[0-9]"))
 
-# Define vector of cutoffs for bandwidth tests
-purchases.cutoff.list <- c(8000, 80000, 650000)
-works.cutoff.list     <- c(15000, 150000, 1500000)
+# # Define vector of cutoffs for bandwidth tests
+# purchases.cutoff.list <- c(8000, 80000, 650000)
+# works.cutoff.list     <- c(15000, 150000, 1500000)
 
-#--------------------------------------
-# Test 1: CCT = Calonico et al. (2015) #
-#--------------------------------------
-# Create list of vectors which will take up the bandwidth values
-purchases.cct.vector <- rep(0, 18)
-works.cct.vector     <- rep(0, 18)
+# #-------------------------------------
+# # Test 1: CCT = Calonico et al. (2015)
+# #-------------------------------------
+# # Create list of vectors which will take up the bandwidth values
+# purchases.cct.vector <- rep(0, 18)
+# works.cct.vector     <- rep(0, 18)
 
-# Loop over cutoffs and outcomes for CCT bandwidth calculation (PURCHASES)
-for (i in seq(from = 1, to = 3)) {
+# # Loop over cutoffs and outcomes for CCT bandwidth calculation (PURCHASES)
+# for (i in seq(from = 1, to = 3)) {
 
-  # Loop over outcomes
-  for (x in seq(from = 1, to = 6)) {
+#   # Loop over outcomes
+#   for (x in seq(from = 1, to = 6)) {
 
-    # Assign temporary object to hold bandwidth calculation output
-    cct <- get(purchases.bandwidth.list[i]) %$%
-      rdbwselect(get(outcomes[[x]]),
-                 so.amount,
-                 c = as.double(purchases.cutoff.list[i]),
-                 cluster = ibge.id
-      )
+#     # Assign temporary object to hold bandwidth calculation output
+#     cct <- get(purchases.bandwidth.list[i]) %$%
+#       rdbwselect(get(outcomes[[x]]),
+#                  so.amount,
+#                  c = as.double(purchases.cutoff.list[i]),
+#                  cluster = ibge.id
+#       )
 
-    # # Assign new object name (uncomment if you'd like to see individual band-
-    # # width results)
-    # assign(paste0("rdrobust.purchases.1.outcome.", x), cct)
+#     # # Assign new object name (uncomment if you'd like to see individual
+#     # # bandwidth results)
+#     # assign(paste0("rdrobust.purchases.1.outcome.", x), cct)
 
-    # Extract bandwidth from bandwidth function and assign to bandwidth vector
-    if      (i == 1) purchases.cct.vector[x]    <- cct$bws[[1]]
-    else if (i == 2) purchases.cct.vector[x+6]  <- cct$bws[[1]]
-    else             purchases.cct.vector[x+12] <- cct$bws[[1]]
-  }
-}
+#     # Extract bandwidth from bandwidth function and assign to bandwidth vector
+#     if      (i == 1) purchases.cct.vector[x]    <- cct$bws[[1]]
+#     else if (i == 2) purchases.cct.vector[x+6]  <- cct$bws[[1]]
+#     else             purchases.cct.vector[x+12] <- cct$bws[[1]]
+#   }
+# }
 
-# Loop over cutoffs and outcomes for CCT bandwidth calculation (WORKS)
-for (i in seq(from = 1, to = 3)) {
+# # Loop over cutoffs and outcomes for CCT bandwidth calculation (WORKS)
+# for (i in seq(from = 1, to = 3)) {
 
-  # Loop over outcomes
-  for (x in seq(from = 1, to = 6)) {
+#   # Loop over outcomes
+#   for (x in seq(from = 1, to = 6)) {
 
-    # Assign temporary object to hold bandwidth calculation output
-    cct <- get(works.bandwidth.list[i]) %$%
-      rdbwselect(get(outcomes[[x]]),
-                 so.amount,
-                 c = as.double(works.cutoff.list[i]),
-                 cluster = ibge.id
-      )
+#     # Assign temporary object to hold bandwidth calculation output
+#     cct <- get(works.bandwidth.list[i]) %$%
+#       rdbwselect(get(outcomes[[x]]),
+#                  so.amount,
+#                  c = as.double(works.cutoff.list[i]),
+#                  cluster = ibge.id
+#       )
 
-    # # Assign new object name (uncomment if you'd like to see individual band-
-    # # width results)
-    # assign(paste0("rdrobust.works.1.outcome.", x), cct)
+#     # # Assign new object name (uncomment if you'd like to see individual
+#     # # bandwidth results)
+#     # assign(paste0("rdrobust.works.1.outcome.", x), cct)
 
-    # Extract bandwidth from bandwidth function and assign to bandwidth vector
-    if      (i == 1) works.cct.vector[x]    <- cct$bws[[1]]
-    else if (i == 2) works.cct.vector[x+6]  <- cct$bws[[1]]
-    else             works.cct.vector[x+12] <- cct$bws[[1]]
-  }
-}
+#     # Extract bandwidth from bandwidth function and assign to bandwidth vector
+#     if      (i == 1) works.cct.vector[x]    <- cct$bws[[1]]
+#     else if (i == 2) works.cct.vector[x+6]  <- cct$bws[[1]]
+#     else             works.cct.vector[x+12] <- cct$bws[[1]]
+#   }
+# }
 
-# Remove unnecessary objects
-rm(list = objects(pattern = "^(cct)$"))
+# # Remove unnecessary objects
+# rm(list = objects(pattern = "^(cct)$"))
 
-# CCT bandwidth chosen
-p.bandwidth.1 <- mean(purchases.cct.vector[1:6])
-p.bandwidth.2 <- mean(purchases.cct.vector[7:12])
-p.bandwidth.3 <- mean(purchases.cct.vector[13:18])
-w.bandwidth.1 <- mean(works.cct.vector[1:6])
-w.bandwidth.2 <- mean(works.cct.vector[7:12])
-w.bandwidth.3 <- mean(works.cct.vector[13:18])
+# # CCT bandwidth chosen
+# p.bandwidth.1 <- mean(purchases.cct.vector[1:6])
+# p.bandwidth.2 <- mean(purchases.cct.vector[7:12])
+# p.bandwidth.3 <- mean(purchases.cct.vector[13:18])
+# w.bandwidth.1 <- mean(works.cct.vector[1:6])
+# w.bandwidth.2 <- mean(works.cct.vector[7:12])
+# w.bandwidth.3 <- mean(works.cct.vector[13:18])
 
-#-------------------------
-# Table: Bandwidth Choice #
-#-------------------------
-# Format bandwidth limits as data frame and produce table. Last step is editing
-# the table in the TeX file.
-tibble(purchases.bandwidth = c(p.bandwidth.1, p.bandwidth.2, p.bandwidth.3),
-       works.bandwidth     = c(w.bandwidth.1, w.bandwidth.2, w.bandwidth.3)
-) %>%
-xtable()
+# #------------------------
+# # Table: Bandwidth Choice
+# #------------------------
+# # Format bandwidth limits as data frame and produce table. Last step is
+# # editing the table in the TeX file.
+# tibble(purchases.bandwidth = c(p.bandwidth.1, p.bandwidth.2, p.bandwidth.3),
+#        works.bandwidth     = c(w.bandwidth.1, w.bandwidth.2, w.bandwidth.3)
+# ) %>%
+# xtable()
 
-#-------------------------------------------------------------------------------
-################################# RD Analysis ##################################
-#-------------------------------------------------------------------------------
+################################################################################
+# RD Multiple, Non-Cumulative Cutoff Analysis
+################################################################################
 # We use Cattaneo's rdmulti package to deal with multiple cutoff nature of our
 # data. First, we run non-cumulative multiple cutoff by pooling together purcha-
 # ses and works and centering them around their equivalent cutoff(8k and 15k)
@@ -598,12 +563,12 @@ analysis.data %$%
        pvec       = c(2, 2)
   )
 
+################################################################################
+# RD Multiple, NCumulative Cutoff Analysis
+################################################################################
 # Now we run the cumulative analysis separating out purchases and works. We once
-# again use Cataneo's rdmulti package but now the focus is on function rdms()
-purchases.data  <- analysis.data %>% filter(so.type == 1)
-works.data      <- analysis.data %>% filter(so.type == 2)
-
-# Loop over each database and each outcome and spit out the coefficients of the
+# again use Cataneo's rdmulti package but now the focus is on function rdms. We
+# loop over each database and each outcome and spit out the coefficients of the
 # cumulative regressions
 for (x in seq(from = 1, to = 6)) {
   purchases <- purchases.data %$%
@@ -631,7 +596,3 @@ for (x in seq(from = 1, to = 6)) {
   }
   rm(purchases, works)
 }
-
-#-------------------------------------------------------------------------------
-#################################### Plots #####################################
-#-------------------------------------------------------------------------------
