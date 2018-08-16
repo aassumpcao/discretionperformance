@@ -1,15 +1,15 @@
-#------------------------------------------------------------------------------#
-# Estimating the Effect of Discretion on Corruption:
+################################################################################
+# Estimating the Effect of Discretion on Government Performance:
 # Evidence from Brazilian Municipalities
 #
 # Appendix Script
 # Prepared by:
 # Andre Assumpcao
 # aassumpcao@unc.edu
-#------------------------------------------------------------------------------#
+################################################################################
 rm(list = ls())
 
-#------------------------------------------------------------------------------#
+################################################################################
 # README:
 #
 # This third script produces the analysis in the Appendix on service order clas-
@@ -17,11 +17,12 @@ rm(list = ls())
 # fy the service orders and produce quality measures of the classification pro-
 # cedure.
 #
-#------------------------------------------------------------------------------#
+################################################################################
 
-#------------------------------------------------------------------------------#
-################################### Packages ###################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Packages
+################################################################################
+library(here)
 library(tidyverse)   # Version 1.2.1
 library(haven)       # Version 1.1.1
 library(lubridate)   # Version 1.7.4
@@ -36,9 +37,27 @@ library(VennDiagram) # Version 1.6.203
 library(extrafont)   # Version 0.17
 library(tikzDevice)  # Version 0.11
 
-#------------------------------------------------------------------------------#
-################################## Wrangling ###################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Functions
+################################################################################
+# Function to help subset data to be used in RDD estimation
+bandwidthRange <- function(x, cutpoint, limit){
+  # Args:
+  #   x:        column serving as assignment variable
+  #   cutpoint: cutoff assigning observations to different treatments
+  #   limit:    symmetric range on either side of cutoff value
+
+  # Returns:
+  #   Logical vector used to subset dataset
+
+  # Body:
+  #   Invisibly subset data
+  invisible(between(x, cutpoint - limit, cutpoint + limit))
+}
+
+################################################################################
+# Wrangling
+################################################################################
 
 # Set options for running Stata from R
 options(
@@ -47,7 +66,7 @@ options(
 options("RStata.StataVersion" = 15)
 
 # Run do-file
-stata("11-DiscretionCorruption-Annex.do")
+stata("11-DiscretionCorruption-Appendix.do")
 
 # In the do-file above, I defined the keywords that should be matched in order
 # for a service order to be classified as general procurement (purchases) or
@@ -115,15 +134,15 @@ save(appendix.data, file = "appendix.data.Rda")
 
 rm(list = objects(pattern = "cgu|vector"))
 
-#------------------------------------------------------------------------------#
-################################## Appendix A ##################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Appendix A
+################################################################################
 ## Inline chunk for number of observations in analysis
 format(nrow(so.data), big.mark = ",")
 
-#----------------------#
-# FIGURE: Venn Diagram #
-#----------------------#
+#---------------------
+# FIGURE: Venn Diagram
+#---------------------
 area1 <- nrow(subset(appendix.data, so.purchases.bySOtext == 1))
 area2 <- nrow(subset(appendix.data, so.works.bySOtext     == 1))
 area3 <- nrow(
@@ -156,14 +175,14 @@ dev.off()
 # # Command for markdown inclusion
 # knitr::include_graphics("venn.png")
 
-#---------------------#
-# TABLE: Search Terms #
-#---------------------#
-# IN MARKDOWN / LATEX ONLY #
+#--------------------
+# TABLE: Search Terms
+#--------------------
+# In latex only
 
-#-----------------------#
-# TABLE: Search Results #
-#-----------------------#
+#----------------------
+# TABLE: Search Results
+#----------------------
 # Load search terms
 purchases.terms <- c("aquisi", "execu", "equipame", "ve[íi]culo", "despesa",
   "aplica[çc]", "medicamento(.)*peaf", "compra", "recurso(.)*financ",
@@ -177,9 +196,9 @@ works.terms <- c("co(ns|sn)tru", "obra", "implant", "infra(.)*estrut", "amplia",
   "adutora|dessaliniz|reservat[óo]", "sanit[áa]ri[ao]", "poço", "aperfei[çc]oa",
   "saneamento", "res[íi]duo(.)*s[óo]lido", "conclus[ãa]o", "Total")
 
-#--------------------------#
-# TABLE: Purchases Results #
-#--------------------------#
+#-------------------------
+# TABLE: Purchases Results
+#-------------------------
 purchases.results <-
 read.delim("./tables/appendix_tab2.txt", colClasses = "character") %>%
   select(-X, -X.1) %>%
@@ -205,9 +224,9 @@ read.delim("./tables/appendix_tab2.txt", colClasses = "character") %>%
 #   print.results     = TRUE
 # )
 
-#----------------------#
-# TABLE: Works Results #
-#----------------------#
+#---------------------
+# TABLE: Works Results
+#---------------------
 works.results <-
   read.delim("./tables/appendix_tab3.txt", colClasses = "character") %>%
   select(-X, -X.1) %>%
@@ -233,9 +252,9 @@ works.results <-
 #   print.results     = TRUE
 # )
 
-#---------------------------------------------#
-# TABLE: SO description vs. Grant description #
-#---------------------------------------------#
+#--------------------------------------------
+# TABLE: SO description vs. Grant description
+#--------------------------------------------
 ## Inline number of SO that have descriptions both from SO text and Grant text
 nrow(
   appendix.data %>%
@@ -244,9 +263,9 @@ nrow(
 
 # RE-WRITE TABLE 4
 
-#--------------------------------------------#
-# TABLE: SO description vs. Procurement Code #
-#--------------------------------------------#
+#-------------------------------------------
+# TABLE: SO description vs. Procurement Code
+#-------------------------------------------
 no.works <- appendix.data[appendix.data$so.works.bySOtext != 1, ]
 
 # RE-WRITE TABLE 5
@@ -254,46 +273,70 @@ no.works <- appendix.data[appendix.data$so.works.bySOtext != 1, ]
 appendix.data %$% table(so.procurement.bySOtext,so.purchases.bycode)
 appendix.data %$% table(so.procurement.bySOtext,so.works.bycode)
 
-#------------------------------------------------------------------------------#
-################################## Appendix B ##################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Appendix B
+################################################################################
 # In appendix B, we run the McCrary (2008) tests to guarantee that there are no
 # manipulation issues around cutoffs in Law 8,666/93. In the lines below we sub-
 # set the data to calculate manipulation at each cutoff.
-manipulation.data <- filter(appendix.data, so.procurement.bySOtext == 1)
+manipulation.data <- filter(appendix.data, so.procurement.bySOtext == 1) %>%
+  select(c(1, 3, 6, 9, 11))
 
-purchases.cutoff1  <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount >=    4000 & so.amount <=   12000 & so.works.bySOtext != 1)
-purchases.cutoff2  <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount >=   40000 & so.amount <=  120000 & so.works.bySOtext != 1)
-purchases.cutoff3  <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount >=  500000 & so.amount <=  750000 & so.works.bySOtext != 1)
-works.cutoff1 <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount <=   30000 & so.purchases.bySOtext!=1)
-works.cutoff2 <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount >=   75000 & so.amount <=  225000 & so.purchases.bySOtext!=1)
-works.cutoff3 <-
-  select(manipulation.data, c(1,6,9,11)) %>%
-  filter(so.amount >=  750000 & so.amount <= 2500000 & so.purchases.bySOtext!=1)
+# Here we pull the optimal bandwidth from the main analysis file
+bandwidth.table <- readRDS("bandwidth.table.Rds")
+
+# Define purchase and works bandwidths as the average across corruption and
+# mismanagement bandwidths from call to rmds() in main analysis script
+purchases.bandwidth.1 <- mean(as.double(bandwidth.table[1, c(1:6)]))
+purchases.bandwidth.2 <- mean(as.double(bandwidth.table[2, c(1:6)]))
+purchases.bandwidth.3 <- mean(as.double(bandwidth.table[3, c(1:6)]))
+works.bandwidth.1     <- mean(as.double(bandwidth.table[1, c(1:6)]))
+works.bandwidth.2     <- mean(as.double(bandwidth.table[2, c(1:6)]))
+works.bandwidth.3     <- mean(as.double(bandwidth.table[3, c(1:6)]))
+
+# Subset sample for corruption cutoff 1
+purchases.cutoff.1 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext != 1 ~ so.amount - 8000)) %>%
+  filter(bandwidthRange(so.amount, 0, purchases.bandwidth.1))
+
+# Subset sample for corruption cutoff 2
+purchases.cutoff.2 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext != 1 ~ so.amount - 80000)) %>%
+  filter(bandwidthRange(so.amount, 0, purchases.bandwidth.2))
+
+# Subset sample for corruption cutoff 3
+purchases.cutoff.3 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext != 1 ~ so.amount - 650000)) %>%
+  filter(bandwidthRange(so.amount, 0, purchases.bandwidth.3))
+
+# Subset sample for mismanagement cutoff 1
+works.cutoff.1 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext == 1 ~ so.amount - 15000)) %>%
+  filter(bandwidthRange(so.amount, 0, works.bandwidth.1))
+
+# Subset sample for mismanagement cutoff 2
+works.cutoff.2 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext == 1 ~ so.amount - 150000)) %>%
+  filter(bandwidthRange(so.amount, 0, works.bandwidth.2))
+
+# Subset sample for mismanagement cutoff 3
+works.cutoff.3 <- manipulation.data %>%
+  mutate(so.amount = case_when(so.works.bySOtext == 1 ~ so.amount - 1500000))%>%
+  filter(bandwidthRange(so.amount, 0, works.bandwidth.3))
 
 # Run t-tests on manipulation
-purchases.manipulation1 <- purchases.cutoff1 %$% DCdensity(so.amount,    8000)
-purchases.manipulation2 <- purchases.cutoff2 %$% DCdensity(so.amount,   80000)
-purchases.manipulation3 <- purchases.cutoff3 %$% DCdensity(so.amount,  650000)
-works.manipulation1     <- works.cutoff1     %$% DCdensity(so.amount,   15000)
-works.manipulation2     <- works.cutoff2     %$% DCdensity(so.amount,  150000)
-works.manipulation3     <- works.cutoff3     %$% DCdensity(so.amount, 1500000)
+purchases.manipulation1 <- purchases.cutoff.1 %$% DCdensity(so.amount, 0)
+purchases.manipulation2 <- purchases.cutoff.2 %$% DCdensity(so.amount, 0)
+purchases.manipulation3 <- purchases.cutoff.3 %$% DCdensity(so.amount, 0)
+works.manipulation1     <- works.cutoff.1     %$% DCdensity(so.amount, 0)
+works.manipulation2     <- works.cutoff.2     %$% DCdensity(so.amount, 0)
+works.manipulation3     <- works.cutoff.3     %$% DCdensity(so.amount, 0)
 
 # Save cutoff plots
 # Plot 1
 png(filename = "./article/purchasesmanipulation1.png")
-purchases.cutoff1 %$% DCdensity(so.amount,    8000)
-abline(v = 8000)
+purchases.cutoff.1 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Purchases Cutoff 1",
   xlab = paste0(
@@ -301,7 +344,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", purchases.manipulation1),
     "; n = ",
-    nrow(purchases.cutoff1),
+    nrow(purchases.cutoff.1),
     ")",
     collapse = ""
   )
@@ -310,8 +353,8 @@ dev.off()
 
 # Plot 2
 png(filename = "./article/purchasesmanipulation2.png")
-purchases.cutoff2 %$% DCdensity(so.amount,   80000)
-abline(v = 80000)
+purchases.cutoff.2 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Purchases Cutoff 2",
   xlab = paste0(
@@ -319,7 +362,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", purchases.manipulation2),
     "; n = ",
-    nrow(purchases.cutoff2),
+    nrow(purchases.cutoff.2),
     ")",
     collapse = ""
   )
@@ -328,8 +371,8 @@ dev.off()
 
 # Plot 3
 png(filename = "./article/purchasesmanipulation3.png")
-purchases.cutoff3 %$% DCdensity(so.amount,  650000)
-abline(v = 650000)
+purchases.cutoff.3 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Purchases Cutoff 3",
   xlab = paste0(
@@ -337,7 +380,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", purchases.manipulation3),
     "; n = ",
-    nrow(purchases.cutoff3),
+    nrow(purchases.cutoff.3),
     ")",
     collapse = ""
   )
@@ -346,8 +389,8 @@ dev.off()
 
 # Plot 4
 png(filename = "./article/worksmanipulation1.png")
-works.cutoff1 %$% DCdensity(so.amount,   15000)
-abline(v = 15000)
+works.cutoff.1 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Works Cutoff 1",
   xlab = paste0(
@@ -355,7 +398,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", works.manipulation1),
     "; n = ",
-    nrow(works.cutoff1),
+    nrow(works.cutoff.1),
     ")",
     collapse = ""
   )
@@ -364,8 +407,8 @@ dev.off()
 
 # Plot 5
 png(filename = "./article/worksmanipulation2.png")
-works.cutoff2 %$% DCdensity(so.amount,  150000)
-abline(v = 150000)
+works.cutoff.2 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Works Cutoff 2",
   xlab = paste0(
@@ -373,7 +416,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", works.manipulation2),
     "; n = ",
-    nrow(works.cutoff2),
+    nrow(works.cutoff.2),
     ")",
     collapse = ""
   )
@@ -382,8 +425,8 @@ dev.off()
 
 # Plot 6
 png(filename = "./article/worksmanipulation3.png")
-works.cutoff3 %$% DCdensity(so.amount, 1500000)
-abline(v = 1500000)
+works.cutoff.3 %$% DCdensity(so.amount, 0)
+abline(v = 0)
 title(
   main = "Works Cutoff 3",
   xlab = paste0(
@@ -391,7 +434,7 @@ title(
     "(p-value: ",
     sprintf("%0.3f", works.manipulation3),
     "; n = ",
-    nrow(works.cutoff3),
+    nrow(works.cutoff.3),
     ")",
     collapse = ""
   )

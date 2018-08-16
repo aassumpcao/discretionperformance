@@ -1,11 +1,17 @@
-mun.covariates
-?lapply
+p.balance.1 %>% unlist() %>% as.tibble(row.names = c(so.statistics, mun.statistics))
+?rownames
 
+names(covs)
 
-outcome.labels
+class(covs$model.1)
 
-analysis.data %$% table(so.type)
+covs
 
-analysis.data %<>% filter(so.type == 2)
-?grep
+str(p.balance.1)
+str(c)
 
+nrow(purchases.cutoff.1["so.procurement" > 0,])
+?collapse
+class(purchases.cutoff.1$so.procurement)
+
+covs

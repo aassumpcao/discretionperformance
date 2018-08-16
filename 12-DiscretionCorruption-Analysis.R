@@ -22,7 +22,7 @@ rm(list = ls())
 # Packages
 ################################################################################
 # Minimum requirements to run script
-library(here)
+library(here)        # Version 0.1
 library(tidyverse)   # Version 1.2.1
 # library(haven)       # Version 1.1.2
 library(lubridate)   # Version 1.7.4
@@ -34,7 +34,7 @@ library(xtable)      # Version 1.8.2
 library(estimatr)    # Version 0.10.0
 library(rdrobust)    # Version 0.99.3
 library(rdmulti)     # Version 0.20
-library(rdpower)
+library(rdpower)     # Version 0.2
 
 ################################################################################
 # Functions
@@ -119,6 +119,91 @@ lmMod <- function(y, se = FALSE){
     #   Return lm list
     return(models)
   }
+}
+
+# Function to join all bandwidths spit out by rdms() and rdmc() into one table
+bandwidthTable <- function(){
+  # Args:
+  #   (empty)
+
+  # Returns:
+  #   List of bandwidth ranges for bandwidth table
+
+  # Body:
+  #   Add corruption bandwidths to first half of table
+  cI    <- c(non.cumulative.corruption.1.cutoff.1$H[2],
+             non.cumulative.corruption.1.cutoff.2$H[2],
+             non.cumulative.corruption.1.cutoff.3$H[2],
+             non.cumulative.corruption.1.cutoff.1$H[3],
+             non.cumulative.corruption.1.cutoff.2$H[3],
+             non.cumulative.corruption.1.cutoff.3$H[3],
+             non.cumulative.corruption.1.cutoff.1$H[1],
+             non.cumulative.corruption.1.cutoff.2$H[1],
+             non.cumulative.corruption.1.cutoff.3$H[1])
+  cII   <- c(non.cumulative.corruption.2.cutoff.1$H[2],
+             non.cumulative.corruption.2.cutoff.2$H[2],
+             non.cumulative.corruption.2.cutoff.3$H[2],
+             non.cumulative.corruption.2.cutoff.1$H[3],
+             non.cumulative.corruption.2.cutoff.2$H[3],
+             non.cumulative.corruption.2.cutoff.3$H[3],
+             non.cumulative.corruption.2.cutoff.1$H[1],
+             non.cumulative.corruption.2.cutoff.2$H[1],
+             non.cumulative.corruption.2.cutoff.3$H[1])
+  cIII  <- c(non.cumulative.corruption.3.cutoff.1$H[2],
+             non.cumulative.corruption.3.cutoff.2$H[2],
+             non.cumulative.corruption.3.cutoff.3$H[2],
+             non.cumulative.corruption.3.cutoff.1$H[3],
+             non.cumulative.corruption.3.cutoff.2$H[3],
+             non.cumulative.corruption.3.cutoff.3$H[3],
+             non.cumulative.corruption.3.cutoff.1$H[1],
+             non.cumulative.corruption.3.cutoff.2$H[1],
+             non.cumulative.corruption.3.cutoff.3$H[1])
+
+  #   Add mismanagement bandwidths to second half of table
+  mmI   <- c(non.cumulative.mismanagement.4.cutoff.1$H[2],
+             non.cumulative.mismanagement.4.cutoff.2$H[2],
+             non.cumulative.mismanagement.4.cutoff.3$H[2],
+             non.cumulative.mismanagement.4.cutoff.1$H[3],
+             non.cumulative.mismanagement.4.cutoff.2$H[3],
+             non.cumulative.mismanagement.4.cutoff.3$H[3],
+             non.cumulative.mismanagement.4.cutoff.1$H[1],
+             non.cumulative.mismanagement.4.cutoff.2$H[1],
+             non.cumulative.mismanagement.4.cutoff.3$H[1])
+  mmII  <- c(non.cumulative.mismanagement.5.cutoff.1$H[2],
+             non.cumulative.mismanagement.5.cutoff.2$H[2],
+             non.cumulative.mismanagement.5.cutoff.3$H[2],
+             non.cumulative.mismanagement.5.cutoff.1$H[3],
+             non.cumulative.mismanagement.5.cutoff.2$H[3],
+             non.cumulative.mismanagement.5.cutoff.3$H[3],
+             non.cumulative.mismanagement.5.cutoff.1$H[1],
+             non.cumulative.mismanagement.5.cutoff.2$H[1],
+             non.cumulative.mismanagement.5.cutoff.3$H[1])
+  mmIII <- c(non.cumulative.mismanagement.6.cutoff.1$H[2],
+             non.cumulative.mismanagement.6.cutoff.2$H[2],
+             non.cumulative.mismanagement.6.cutoff.3$H[2],
+             non.cumulative.mismanagement.6.cutoff.1$H[3],
+             non.cumulative.mismanagement.6.cutoff.2$H[3],
+             non.cumulative.mismanagement.6.cutoff.3$H[3],
+             non.cumulative.mismanagement.6.cutoff.1$H[1],
+             non.cumulative.mismanagement.6.cutoff.2$H[1],
+             non.cumulative.mismanagement.6.cutoff.3$H[1])
+
+  # Join both sets of bandwidths
+  table <- tibble(cI, cII, cIII, mmI, mmII, mmIII)
+}
+
+# Function to perform multiple t-tests across variables in different datasets
+multiple_ttest <- function(x, df) {
+  # Args:
+  #   x:  variable for which you want the t-test performed
+  #   df: dataset from which to pull variable
+
+  # Returns:
+  #   List of means and p-values
+
+  # Body:
+  #   Perform multiple t-test
+         t.test(x ~ df$so.procurement, var.equal = FALSE, conf.level = .9)
 }
 
 ################################################################################
@@ -325,9 +410,6 @@ mun.covariates <- paste(mun.covariates, collapse = " + ")
 #-------------------------------------------------------------------------------
 # Run OLS regressions
 #-------------------------------------------------------------------------------
-# Define labels for stargazer
-ols.labels   <- c(outcome.labels[1], outcome.labels[4])
-
 # Corruption and mismananagement models and clustered standard errors
 corruption.binary.models    <- lmMod("corruption.binary")
 mismanagement.binary.models <- lmMod("mismanagement.binary")
@@ -375,7 +457,7 @@ stargazer(
 )
 
 # Remove the models from the environment in R
-rm(list = objects(pattern = "se\\.|\\.binary"))
+rm(list = objects(pattern = "se\\.|\\.binary|factors|summary.stats.panelB"))
 
 # ##############################################################################
 # # Bandwidth choice test
@@ -520,6 +602,185 @@ for (x in seq(from = 1, to = 6)) {
   rm(cutoff.1, cutoff.2, cutoff.3)
 }
 
+################################################################################
+# Bandwidth Choice
+################################################################################
+# We use the RD regressions above to construct our bandwidth table for covariate
+# balance test. Here we run the bandwidthTable() function defined at the start
+# of this script
+bandwidth.table <- bandwidthTable()
+
+# # Save R object which is used again in appendix
+# writeRDS(bandwidth.table, file = "./bandwidth.table.Rds")
+
+# Formatting work
+bandwidth.table %>%
+  rename_at(
+    vars(matches("c")),
+    funs(paste0("CIndicator ", c("I", "II", "III")))
+  ) %>%
+  rename_at(
+    vars(matches("mm")),
+    funs(paste0("MIndicator ", c("I", "II", "III")))
+  ) %>%
+  xtable(., caption = "CCT Bandwidths (in R\\$)",
+            label   = "tab:cctbandwidth",
+            align   = "lrrrrrr",
+            digits  = 0
+  ) %>%
+  print.xtable(., type              = "latex",
+                  file              = "./article/tab_bandwidth.tex",
+                  table.placement   = "!htbp",
+                  caption.placement = "top",
+                  hline.after       = c(rep(-1, 2), 0, 3, 6, rep(9, 2))
+  )
+
+################################################################################
+# Covariate Balance
+################################################################################
+# Define purchase and works bandwidths as the average across corruption and
+# mismanagement bandwidths from call to rmds() in main analysis script
+bandwidth.means <- map(data.table::transpose(bandwidth.table[1:6,]), mean)
+
+# Subset sample for corruption cutoff 1
+purchases.cutoff.1 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type != 2 ~ so.amount - 8000)) %>%
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V1))
+
+# Subset sample for corruption cutoff 2
+purchases.cutoff.2 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type != 2 ~ so.amount - 80000)) %>%
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V2))
+
+# Subset sample for corruption cutoff 3
+#   Strong evidence of manipulation (McCrary(2008) test)
+
+# Subset sample for mismanagement cutoff 1
+works.cutoff.1 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 15000)) %>%
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V4))
+
+# Subset sample for mismanagement cutoff 2
+works.cutoff.2 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 150000)) %>%
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V5))
+
+# Subset sample for mismanagement cutoff 3
+works.cutoff.3 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 1500000))%>%
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V6))
+
+# Perform multiple t-test and store everything back into each vector
+# Purchases 1
+p.balance.1 <- lapply(purchases.cutoff.1[,c(so.statistics, mun.statistics)],
+                      multiple_ttest,
+                      df = purchases.cutoff.1) %>%
+              {lapply(c(so.statistics, mun.statistics),
+                      function(x){x <- c(.[[x]][["p.value"]]
+                                         # .[[x]][["estimate"]][1],
+                                         # .[[x]][["estimate"]][2]
+                                         )})}
+# Purchases 2
+p.balance.2 <- lapply(purchases.cutoff.2[,c(so.statistics, mun.statistics)],
+                      multiple_ttest,
+                      df = purchases.cutoff.2) %>%
+              {lapply(c(so.statistics, mun.statistics),
+                      function(x){x <- c(.[[x]][["p.value"]]
+                                         # .[[x]][["estimate"]][1],
+                                         # .[[x]][["estimate"]][2]
+                                         )})}
+# Works 1
+w.balance.1 <- lapply(works.cutoff.1[,c(so.statistics, mun.statistics)],
+                      multiple_ttest,
+                      df = works.cutoff.1) %>%
+              {lapply(c(so.statistics, mun.statistics),
+                      function(x){x <- c(.[[x]][["p.value"]]
+                                         # .[[x]][["estimate"]][1],
+                                         # .[[x]][["estimate"]][2]
+                                         )})}
+# Works 2
+w.balance.2 <- lapply(works.cutoff.2[,c(so.statistics, mun.statistics)],
+                      multiple_ttest,
+                      df = works.cutoff.2) %>%
+              {lapply(c(so.statistics, mun.statistics),
+                      function(x){x <- c(.[[x]][["p.value"]]
+                                         # .[[x]][["estimate"]][1],
+                                         # .[[x]][["estimate"]][2]
+                                         )})}
+# Works 3
+w.balance.3 <- lapply(works.cutoff.3[,c(so.statistics, mun.statistics)],
+                      multiple_ttest,
+                      df = works.cutoff.3) %>%
+              {lapply(c(so.statistics, mun.statistics),
+                      function(x){x <- c(.[[x]][["p.value"]]
+                                         # .[[x]][["estimate"]][1],
+                                         # .[[x]][["estimate"]][2]
+                                         )})}
+
+# Compute number of observations for last row in table
+model1.sample <- as.vector(purchases.cutoff.1 %$% table(so.procurement)) %>%
+                 {paste0("(", paste0(., collapse = "; "), ")")}
+model2.sample <- as.vector(purchases.cutoff.2 %$% table(so.procurement)) %>%
+                 {paste0("(", paste0(., collapse = "; "), ")")}
+model3.sample <- as.vector(works.cutoff.1 %$% table(so.procurement)) %>%
+                 {paste0("(", paste0(., collapse = "; "), ")")}
+model4.sample <- as.vector(works.cutoff.2 %$% table(so.procurement)) %>%
+                 {paste0("(", paste0(., collapse = "; "), ")")}
+model5.sample <- as.vector(works.cutoff.3 %$% table(so.procurement)) %>%
+                 {paste0("(", paste0(., collapse = "; "), ")")}
+sample.size   <- c("Sample Size:", model1.sample, model2.sample, model3.sample,
+                   model4.sample, model5.sample)
+# Create table
+covs <- c(p.balance.1, p.balance.2, w.balance.1, w.balance.2, w.balance.3) %>%
+        unlist() %>%
+        cbind(sort(rep(paste("model", 1:5), 21))) %>%
+        as.tibble() %>%
+        unstack(`.` ~ V1) %>%
+        mutate_all(funs(as.double)) %>%
+        mutate_all(funs(sprintf("%0.3f", .))) %>%
+        cbind(c(so.statistics.labels, mun.statistics.labels)) %>%
+        select(6, c(1:5)) %>%
+        rbind(sample.size)
+
+
+
+
+
+# Produce table
+covs %>%
+  xtable(caption = "Means Tests Across Cutoffs",
+         label   = "tab:covariates",
+         align   = "llrrrrr",
+         digits  = 0
+  ) %>%
+  print.xtable(type              = "latex",
+               file              = "./article/tab_covariates.tex",
+               table.placement   = "!htbp",
+               caption.placement = "top",
+               size              = "scriptsize",
+               hline.after       = c(rep(-1, 2), 0, 8, 21, rep(22, 2)),
+               include.rownames  = FALSE
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Significant pooled results with municipal corruption as a covariate
 analysis.data %$%
   rdmc(Y          = corruption.share,
@@ -563,8 +824,11 @@ analysis.data %$%
        pvec       = c(2, 2)
   )
 
+# Remove unnecessary objects
+rm(list = objects(pattern = "bandwidth\\.table")
+
 ################################################################################
-# RD Multiple, NCumulative Cutoff Analysis
+# RD Multiple, Cumulative Cutoff Analysis
 ################################################################################
 # Now we run the cumulative analysis separating out purchases and works. We once
 # again use Cataneo's rdmulti package but now the focus is on function rdms. We
