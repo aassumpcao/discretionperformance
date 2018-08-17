@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  15 AUG 2018 11:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  17 AUG 2018 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -45,7 +45,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.5   \caption
-              {\label{tab:cctbandwidth} CCT Bandwidth (in R\$)}
+              {\label{tab:cctbandwidth} CCT Bandwidths (in R\$)}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -61,6 +61,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no ( in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -771,7 +772,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 \@sharp ->Notes: These are the \citet 
                                       {CattaneoInterpretingRegressionDiscont...
-l.29 ...pulation and for covariate balance tests.}
+l.29 ...manipulation and covariate balance tests.}
                                                    \T \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -968,8 +969,36 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -1000,9 +1029,6 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no v in font nullfont!
@@ -1026,7 +1052,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 ! Undefined control sequence.
-l.29 ...ation and for covariate balance tests.} \T
+l.29 ...ipulation and covariate balance tests.} \T
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1057,9 +1083,9 @@ or  <return>  to continue without it.
 Here is how much of TeX's memory you used:
  11 strings out of 492646
  211 string characters out of 6129564
- 60406 words of memory out of 5000000
+ 59406 words of memory out of 5000000
  3997 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 19i,8n,13p,369b,153s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 19i,8n,13p,397b,157s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

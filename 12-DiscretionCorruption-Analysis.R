@@ -12,9 +12,8 @@ rm(list = ls())
 ################################################################################
 # README:
 #
-# This third script produces the analysis in the paper. If you would like to re-
-# produce the analysis you should run this script after all other three have
-# been run.
+# Second go at School Aid Project Analysis produce the analysis you should run
+# this script after all other three have been run.
 #
 ################################################################################
 
@@ -742,10 +741,6 @@ covs <- c(p.balance.1, p.balance.2, w.balance.1, w.balance.2, w.balance.3) %>%
         select(6, c(1:5)) %>%
         rbind(sample.size)
 
-
-
-
-
 # Produce table
 covs %>%
   xtable(caption = "Means Tests Across Cutoffs",
@@ -762,18 +757,45 @@ covs %>%
                include.rownames  = FALSE
   )
 
+# Remove unnecessary objects
+rm(list = objects(pattern = "sample|covs|bandwidth|balance"))
 
+#-------------------------------------------------------------------------------
+# Table: Multiple, Non-Cumulative Cutoff
+#-------------------------------------------------------------------------------
+# Pull list of rdmc object names and create empty table
+rdmc.list  <- objects(pattern = "non\\.cumulative\\.")
+rdmc.table <- as.tibble()
 
+# Unlist and get the six statistics for each procurement type: all three
+# bias-adjusted parameters and their standard errors
+# Loop over outcomes
+for (i in seq(1:6)) {
 
+    # Loop over cutoffs
+    for (x in seq(1:3)) {
 
+      # Define object name
+      if (i < 4) {obj <- paste0("non.cumulative.corruption.",   i,".cutoff.",x)}
+      else       {obj <- paste0("non.cumulative.mismanagement.",i,".cutoff.",x)}
 
+      # Unlist object
+      obj <- unlist(get(obj))
 
+      # Determine row count for filling in rdmc table
+      if      (x == 1) {a <- x}
+      else if (x == 2) {a <- x + 1}
+      else             {a <- x + 2}
 
-
-
-
-
-
+      # Fill in table
+      rdmc.table[a,      i] <- obj$B2
+      rdmc.table[a + 1,  i] <- obj$V5^(1/2)
+      rdmc.table[a + 6,  i] <- obj$B3
+      rdmc.table[a + 7,  i] <- obj$V9^(1/2)
+      rdmc.table[a + 12, i] <- obj$B1
+      rdmc.table[a + 13, i] <- obj$V1^(1/2)
+    }
+}
 
 
 
