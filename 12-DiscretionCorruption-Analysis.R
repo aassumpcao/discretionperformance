@@ -129,66 +129,41 @@ bandwidthTable <- function(){
   #   List of bandwidth ranges for bandwidth table
 
   # Body:
-  #   Add corruption bandwidths to first half of table
-  cI    <- c(non.cumulative.corruption.1.cutoff.1$H[2],
-             non.cumulative.corruption.1.cutoff.2$H[2],
-             non.cumulative.corruption.1.cutoff.3$H[2],
-             non.cumulative.corruption.1.cutoff.1$H[3],
-             non.cumulative.corruption.1.cutoff.2$H[3],
-             non.cumulative.corruption.1.cutoff.3$H[3],
-             non.cumulative.corruption.1.cutoff.1$H[1],
-             non.cumulative.corruption.1.cutoff.2$H[1],
-             non.cumulative.corruption.1.cutoff.3$H[1])
-  cII   <- c(non.cumulative.corruption.2.cutoff.1$H[2],
-             non.cumulative.corruption.2.cutoff.2$H[2],
-             non.cumulative.corruption.2.cutoff.3$H[2],
-             non.cumulative.corruption.2.cutoff.1$H[3],
-             non.cumulative.corruption.2.cutoff.2$H[3],
-             non.cumulative.corruption.2.cutoff.3$H[3],
-             non.cumulative.corruption.2.cutoff.1$H[1],
-             non.cumulative.corruption.2.cutoff.2$H[1],
-             non.cumulative.corruption.2.cutoff.3$H[1])
-  cIII  <- c(non.cumulative.corruption.3.cutoff.1$H[2],
-             non.cumulative.corruption.3.cutoff.2$H[2],
-             non.cumulative.corruption.3.cutoff.3$H[2],
-             non.cumulative.corruption.3.cutoff.1$H[3],
-             non.cumulative.corruption.3.cutoff.2$H[3],
-             non.cumulative.corruption.3.cutoff.3$H[3],
-             non.cumulative.corruption.3.cutoff.1$H[1],
-             non.cumulative.corruption.3.cutoff.2$H[1],
-             non.cumulative.corruption.3.cutoff.3$H[1])
+  #   Add corruption and mismanagement bandwidths to table
+  table <- as.tibble()
 
-  #   Add mismanagement bandwidths to second half of table
-  mmI   <- c(non.cumulative.mismanagement.4.cutoff.1$H[2],
-             non.cumulative.mismanagement.4.cutoff.2$H[2],
-             non.cumulative.mismanagement.4.cutoff.3$H[2],
-             non.cumulative.mismanagement.4.cutoff.1$H[3],
-             non.cumulative.mismanagement.4.cutoff.2$H[3],
-             non.cumulative.mismanagement.4.cutoff.3$H[3],
-             non.cumulative.mismanagement.4.cutoff.1$H[1],
-             non.cumulative.mismanagement.4.cutoff.2$H[1],
-             non.cumulative.mismanagement.4.cutoff.3$H[1])
-  mmII  <- c(non.cumulative.mismanagement.5.cutoff.1$H[2],
-             non.cumulative.mismanagement.5.cutoff.2$H[2],
-             non.cumulative.mismanagement.5.cutoff.3$H[2],
-             non.cumulative.mismanagement.5.cutoff.1$H[3],
-             non.cumulative.mismanagement.5.cutoff.2$H[3],
-             non.cumulative.mismanagement.5.cutoff.3$H[3],
-             non.cumulative.mismanagement.5.cutoff.1$H[1],
-             non.cumulative.mismanagement.5.cutoff.2$H[1],
-             non.cumulative.mismanagement.5.cutoff.3$H[1])
-  mmIII <- c(non.cumulative.mismanagement.6.cutoff.1$H[2],
-             non.cumulative.mismanagement.6.cutoff.2$H[2],
-             non.cumulative.mismanagement.6.cutoff.3$H[2],
-             non.cumulative.mismanagement.6.cutoff.1$H[3],
-             non.cumulative.mismanagement.6.cutoff.2$H[3],
-             non.cumulative.mismanagement.6.cutoff.3$H[3],
-             non.cumulative.mismanagement.6.cutoff.1$H[1],
-             non.cumulative.mismanagement.6.cutoff.2$H[1],
-             non.cumulative.mismanagement.6.cutoff.3$H[1])
+  for (i in seq(1:6)) {
 
-  # Join both sets of bandwidths
-  table <- tibble(cI, cII, cIII, mmI, mmII, mmIII)
+      # Create empty vector which will take up bandwidth values
+      indicator    <- c()
+      first.third  <- c()
+      second.third <- c()
+      last.third   <- c()
+
+      # Loop over cutoffs
+      for (x in seq(1:3)) {
+
+        # Define object name
+        if (i < 4) obj <- paste0("non.cumulative.corruption.", i, ".cutoff.", x)
+        else       obj <- paste0("non.cumulative.mismanagement.",i,".cutoff.",x)
+
+        # Define vector elements
+        first.third[x]  <- unlist(get(obj))$H2
+        second.third[x] <- unlist(get(obj))$H3
+        last.third[x]   <- unlist(get(obj))$H1
+      }
+
+      # Fill in empty vector
+      indicator <- c(first.third, second.third, last.third)
+
+      # Rename indicator vector
+      if (i == 1) {table <- indicator}
+      else        {table <- cbind(table.2, indicator)}
+
+      rm(indicator)
+    }
+
+  return(as.tibble(table))
 }
 
 # Function to perform multiple t-tests across variables in different datasets
@@ -758,13 +733,12 @@ covs %>%
   )
 
 # Remove unnecessary objects
-rm(list = objects(pattern = "sample|covs|bandwidth|balance"))
+rm(list = objects(pattern = "sample|covs|bandwidth|\\.balance"))
 
 #-------------------------------------------------------------------------------
 # Table: Multiple, Non-Cumulative Cutoff
 #-------------------------------------------------------------------------------
-# Pull list of rdmc object names and create empty table
-rdmc.list  <- objects(pattern = "non\\.cumulative\\.")
+# Create empty table
 rdmc.table <- as.tibble()
 
 # Unlist and get the six statistics for each procurement type: all three
@@ -776,7 +750,7 @@ for (i in seq(1:6)) {
     for (x in seq(1:3)) {
 
       # Define object name
-      if (i < 4) {obj <- paste0("non.cumulative.corruption.",   i,".cutoff.",x)}
+      if (i < 4) {obj <- paste0("non.cumulative.corruption.", i, ".cutoff.", x)}
       else       {obj <- paste0("non.cumulative.mismanagement.",i,".cutoff.",x)}
 
       # Unlist object
@@ -795,6 +769,9 @@ for (i in seq(1:6)) {
       rdmc.table[a + 12, i] <- obj$B1
       rdmc.table[a + 13, i] <- obj$V1^(1/2)
     }
+
+    # Remove uncessary objects
+    rm(obj, a, x)
 }
 
 

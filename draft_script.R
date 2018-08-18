@@ -15,3 +15,6 @@ nrow(purchases.cutoff.1["so.procurement" > 0,])
 class(purchases.cutoff.1$so.procurement)
 
 covs
+
+non.cumulative.corruption.1.cutoff.1
+
