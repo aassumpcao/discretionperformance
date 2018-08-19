@@ -34,6 +34,7 @@ library(estimatr)    # Version 0.10.0
 library(rdrobust)    # Version 0.99.3
 library(rdmulti)     # Version 0.20
 library(rdpower)     # Version 0.2
+library(tikzDevice)
 
 ################################################################################
 # Functions
@@ -806,12 +807,32 @@ rdmc.table %>%
 # RD Plot for significant cutoffs (Cutoff 1, Works, for Mismanagement I-III)
 #-------------------------------------------------------------------------------
 # Significant pooled results with municipal corruption as a covariate
-works.cutoff.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
-works.cutoff.1 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2)
-works.cutoff.1 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2)
+# Outcome I
+tikz("./article/workscutoff11.tex", width = 5, height = 5, sanitize = TRUE)
+works.cutoff.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2,
+  title = "Mismanagement Outcome I", y.label = "", y.lim = c(0,1),
+  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
+  x.label = "Amount Centered at R$ 15,000 \n (n = 485)")
+dev.off()
 
-# Single purchases result on mismanagement
-purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
+# Outcome II
+tikz("./article/workscutoff12.tex", width = 5, height = 5, sanitize = TRUE)
+works.cutoff.1 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2,
+  title = "Mismanagement Outcome II", y.label = "", y.lim = c(0, 1),
+  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
+  x.label = "Amount Centered at R$ 15,000 \n (n = 485)")
+dev.off()
+
+# Outcome III
+tikz("./article/workscutoff13.tex", width = 5, height = 5, sanitize = TRUE)
+works.cutoff.1 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2,
+  title = "Mismanagement Outcome III", y.label = "",
+  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
+  x.label = "Amount Centered at R$ 15,000 \n (n = 423)")
+dev.off()
+
+# # Single purchases result on mismanagement
+# purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
 
 # Remove unnecessary objects
 rm(list = objects(pattern = "bandwidth\\.table")

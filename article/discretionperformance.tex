@@ -7,6 +7,7 @@
 \usepackage{geometry}
 \usepackage{ulem}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{rotating}
 \usepackage{caption}
 \usepackage{color}
@@ -288,7 +289,18 @@ In addition, the discretion categories are cumulative within each procurement ty
 
 \input{tab_rdmc1}
 
-Andre
+\begin{table}[!htbp]
+  \caption{\label{tab:workscutoff1} Discretion Effect on Mismanagement for Works Cutoff 1}
+  \centering
+  \begin{tabular}{c}
+  \resizebox{.33\textwidth}{!}{\input{workscutoff11}}
+  \resizebox{.33\textwidth}{!}{\input{workscutoff12}}
+  \resizebox{.33\textwidth}{!}{\input{workscutoff13}}
+  \end{tabular}
+
+\end{table}
+
+
 
 \newpage
 

@@ -152,6 +152,7 @@ area3 <- nrow(
          )
 
 # Producing the graphical object
+pdf("./article/venn.pdf", family = "CM Roman")
 venn.plot <-
   draw.pairwise.venn(
     area1      = area1,
@@ -168,7 +169,6 @@ venn.plot <-
   )
 
 # Producing the graphical device for LaTeX
-png("./article/venn.png")
 grid.draw(venn.plot)
 dev.off()
 
