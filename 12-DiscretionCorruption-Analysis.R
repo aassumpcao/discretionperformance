@@ -158,7 +158,7 @@ bandwidthTable <- function(){
 
       # Rename indicator vector
       if (i == 1) {table <- indicator}
-      else        {table <- cbind(table.2, indicator)}
+      else        {table <- cbind(table, indicator)}
 
       rm(indicator)
     }
@@ -177,7 +177,7 @@ multiple_ttest <- function(x, df) {
 
   # Body:
   #   Perform multiple t-test
-         t.test(x ~ df$so.procurement, var.equal = FALSE, conf.level = .9)
+  t.test(x ~ df$so.procurement, var.equal = FALSE, conf.level = .9)
 }
 
 ################################################################################
@@ -583,18 +583,18 @@ for (x in seq(from = 1, to = 6)) {
 # balance test. Here we run the bandwidthTable() function defined at the start
 # of this script
 bandwidth.table <- bandwidthTable()
-
+bandwidth.table
 # # Save R object which is used again in appendix
 # writeRDS(bandwidth.table, file = "./bandwidth.table.Rds")
 
 # Formatting work
 bandwidth.table %>%
   rename_at(
-    vars(matches("c")),
+    vars(c(1:3)),
     funs(paste0("CIndicator ", c("I", "II", "III")))
   ) %>%
   rename_at(
-    vars(matches("mm")),
+    vars(c(4:6)),
     funs(paste0("MIndicator ", c("I", "II", "III")))
   ) %>%
   xtable(., caption = "CCT Bandwidths (in R\\$)",
@@ -758,70 +758,60 @@ for (i in seq(1:6)) {
 
       # Determine row count for filling in rdmc table
       if      (x == 1) {a <- x}
-      else if (x == 2) {a <- x + 1}
-      else             {a <- x + 2}
+      else if (x == 2) {a <- x + 2}
+      else             {a <- x + 4}
 
       # Fill in table
       rdmc.table[a,      i] <- obj$B2
       rdmc.table[a + 1,  i] <- obj$V5^(1/2)
-      rdmc.table[a + 6,  i] <- obj$B3
-      rdmc.table[a + 7,  i] <- obj$V9^(1/2)
-      rdmc.table[a + 12, i] <- obj$B1
-      rdmc.table[a + 13, i] <- obj$V1^(1/2)
+      rdmc.table[a + 2,  i] <- obj$Nh2
+      rdmc.table[a + 9,  i] <- obj$B3
+      rdmc.table[a + 10, i] <- obj$V9^(1/2)
+      rdmc.table[a + 11, i] <- obj$Nh3
+      rdmc.table[a + 18, i] <- obj$B1
+      rdmc.table[a + 19, i] <- obj$V1^(1/2)
+      rdmc.table[a + 20, i] <- obj$Nh1
     }
 
     # Remove uncessary objects
     rm(obj, a, x)
 }
 
+# Edit rdmc.table
+rdmc.table %>%
+  rename_at(vars(c(1:3)), funs(paste0("Corruption ", as.roman(1:3)))) %>%
+  rename_at(vars(c(4:6)), funs(paste0("Mismanagement ", as.roman(1:3)))) %>%
+  mutate(Variable = rep(c("Procurement Type I",   " ", " ",
+                          "Procurement Type II",  " ", " ",
+                          "Procurement Type III", " ", " "),
+                        3)
+  ) %>%
+  select(Variable, everything()) %>%
+  mutate_at(vars(c(2, 3, 5, 6)), funs(sprintf("%0.3f", .))) %>%
+  mutate_at(vars(c(4, 7)), funs(sprintf("%0.0f", .))) %>%
+  xtable(caption = "Multiple Non-Cumulative Cutoff Procurement Estimates",
+         label   = "tab:rdmc",
+         align   = "llcccccc"
+  ) %>%
+  print.xtable(type              = "latex",
+               file              = "./article/tab_rdmc.tex",
+               table.placement   = "!htbp",
+               caption.placement = "top",
+               size              = "scriptsize",
+               hline.after       = c(rep(-1, 2), 9, 18, rep(27, 2)),
+               include.rownames  = FALSE
+  )
 
-
-
-
-
-
+#-------------------------------------------------------------------------------
+# RD Plot for significant cutoffs (Cutoff 1, Works, for Mismanagement I-III)
+#-------------------------------------------------------------------------------
 # Significant pooled results with municipal corruption as a covariate
-analysis.data %$%
-  rdmc(Y          = corruption.share,
-       X          = so.amount,
-       C          = so.cutoff.1,
-       pooled.opt = paste("covs = analysis.data$mun.corruption",
-                          "level = 90",
-                          "cluster = analysis.data$ibge.id",
-                          "all = TRUE", sep = ", "),
-       pvec       = c(2, 2)
-  )
-analysis.data %$%
-  rdmc(Y          = mismanagement.binary,
-       X          = so.amount,
-       C          = so.cutoff.1,
-       pooled.opt = paste("covs = analysis.data$mun.corruption",
-                          "level = 90",
-                          "cluster = analysis.data$ibge.id",
-                          "all = TRUE", sep = ", "),
-       pvec       = c(2, 2)
-  )
-analysis.data %$%
-  rdmc(Y          = mismanagement.share,
-       X          = so.amount,
-       C          = so.cutoff.1,
-       pooled.opt = paste("covs = analysis.data$mun.corruption",
-                          "level = 90",
-                          "cluster = analysis.data$ibge.id",
-                          "all = TRUE", sep = ", "),
-       pvec       = c(2, 2)
-  )
+works.cutoff.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
+works.cutoff.1 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2)
+works.cutoff.1 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2)
 
-analysis.data %$%
-  rdmc(Y          = mismanagement.amount,
-       X          = so.amount,
-       C          = so.cutoff.1,
-       pooled.opt = paste("covs = analysis.data$mun.corruption",
-                          "level = 90",
-                          "cluster = analysis.data$ibge.id",
-                          "all = TRUE", sep = ", "),
-       pvec       = c(2, 2)
-  )
+# Single purchases result on mismanagement
+purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
 
 # Remove unnecessary objects
 rm(list = objects(pattern = "bandwidth\\.table")
