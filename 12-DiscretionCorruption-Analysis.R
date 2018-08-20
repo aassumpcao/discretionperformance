@@ -21,9 +21,9 @@ rm(list = ls())
 # Packages
 ################################################################################
 # Minimum requirements to run script
+# library(haven)       # Version 1.1.2
 library(here)        # Version 0.1
 library(tidyverse)   # Version 1.2.1
-# library(haven)       # Version 1.1.2
 library(lubridate)   # Version 1.7.4
 library(psych)       # Version 1.8.4
 library(magrittr)    # Version 1.5
@@ -34,7 +34,7 @@ library(estimatr)    # Version 0.10.0
 library(rdrobust)    # Version 0.99.3
 library(rdmulti)     # Version 0.20
 library(rdpower)     # Version 0.2
-library(tikzDevice)
+library(extrafont)   # Version 0.17
 
 ################################################################################
 # Functions
@@ -583,8 +583,9 @@ for (x in seq(from = 1, to = 6)) {
 # We use the RD regressions above to construct our bandwidth table for covariate
 # balance test. Here we run the bandwidthTable() function defined at the start
 # of this script
-bandwidth.table <- bandwidthTable()
-bandwidth.table
+# bandwidth.table <- bandwidthTable()
+bandwidth.table <- readRDS("bandwidth.table.Rds")
+
 # # Save R object which is used again in appendix
 # writeRDS(bandwidth.table, file = "./bandwidth.table.Rds")
 
@@ -734,7 +735,7 @@ covs %>%
   )
 
 # Remove unnecessary objects
-rm(list = objects(pattern = "sample|covs|bandwidth|\\.balance"))
+rm(list = objects(pattern = "sample|covs|\\.balance"))
 
 #-------------------------------------------------------------------------------
 # Table: Multiple, Non-Cumulative Cutoff
@@ -764,13 +765,13 @@ for (i in seq(1:6)) {
 
       # Fill in table
       rdmc.table[a,      i] <- obj$B2
-      rdmc.table[a + 1,  i] <- obj$V5^(1/2)
+      rdmc.table[a + 1,  i] <- sqrt(obj$V5)
       rdmc.table[a + 2,  i] <- obj$Nh2
       rdmc.table[a + 9,  i] <- obj$B3
-      rdmc.table[a + 10, i] <- obj$V9^(1/2)
+      rdmc.table[a + 10, i] <- sqrt(obj$V9)
       rdmc.table[a + 11, i] <- obj$Nh3
       rdmc.table[a + 18, i] <- obj$B1
-      rdmc.table[a + 19, i] <- obj$V1^(1/2)
+      rdmc.table[a + 19, i] <- sqrt(obj$V1)
       rdmc.table[a + 20, i] <- obj$Nh1
     }
 
@@ -807,35 +808,158 @@ rdmc.table %>%
 # RD Plot for significant cutoffs (Cutoff 1, Works, for Mismanagement I-III)
 #-------------------------------------------------------------------------------
 # Significant pooled results with municipal corruption as a covariate
+# Subset sample first
+works.mm.1 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 15000)) %>%
+  filter(bandwidthRange(so.amount, 0,
+                        unlist(non.cumulative.mismanagement.4.cutoff.1)$H3))
+works.mm.2 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 15000)) %>%
+  filter(bandwidthRange(so.amount, 0,
+                        unlist(non.cumulative.mismanagement.5.cutoff.1)$H3))
+works.mm.3 <- analysis.data %>%
+  mutate(so.amount = case_when(so.type == 2 ~ so.amount - 15000)) %>%
+  filter(bandwidthRange(so.amount, 0,
+                        unlist(non.cumulative.mismanagement.6.cutoff.1)$H3))
+
+# Generate graphics from file
 # Outcome I
-tikz("./article/workscutoff11.tex", width = 5, height = 5, sanitize = TRUE)
-works.cutoff.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2,
+tikz("./article/workscutoff1.tex", width = 5, height = 5, sanitize = TRUE)
+works.mm.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2,
   title = "Mismanagement Outcome I", y.label = "", y.lim = c(0,1),
   cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = "Amount Centered at R$ 15,000 \n (n = 485)")
+  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.1),")"))
 dev.off()
 
 # Outcome II
-tikz("./article/workscutoff12.tex", width = 5, height = 5, sanitize = TRUE)
-works.cutoff.1 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2,
+tikz("./article/workscutoff2.tex", width = 5, height = 5, sanitize = TRUE)
+works.mm.2 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2,
   title = "Mismanagement Outcome II", y.label = "", y.lim = c(0, 1),
   cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = "Amount Centered at R$ 15,000 \n (n = 485)")
+  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.2),")"))
 dev.off()
 
 # Outcome III
-tikz("./article/workscutoff13.tex", width = 5, height = 5, sanitize = TRUE)
-works.cutoff.1 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2,
+tikz("./article/workscutoff3.tex", width = 5, height = 5, sanitize = TRUE)
+works.mm.3 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2,
   title = "Mismanagement Outcome III", y.label = "",
   cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = "Amount Centered at R$ 15,000 \n (n = 423)")
+  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.3),")"))
 dev.off()
+
+# Compute results for various bandwidths
+mm.1 <- tibble(point = rep(0, 9), ci_lower = NA, ci_upper = NA, n = NA)
+mm.2 <- tibble(point = rep(0, 9), ci_lower = NA, ci_upper = NA, n = NA)
+mm.3 <- tibble(point = rep(0, 9), ci_lower = NA, ci_upper = NA, n = NA)
+bandwidth <- seq(from = 40000, to = 5000, by = -5000)
+
+# Loop over bandwidths and spit out point estimates and confidence intervals
+for (i in seq(1:8)) {
+
+  # Use mismanagement outcomes from outcomes vector
+  for (x in seq(1:3)) {
+
+    # Run regressions
+    obj <- analysis.data %$% rdmc(
+      Y       = get(outcomes[x + 3]),
+      X       = so.amount,
+      C       = so.cutoff.1,
+      pvec    = c(2, 2),
+      hvec    = c(25000, bandwidth[i]),
+      bvec    = c(25000, bandwidth[i]),
+      pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE"
+    )
+
+    # Unlist and pull estimates
+    obj <- unlist(obj)
+
+    # Manually calculate 90% CIs from rdmc call (only does 95% CIs)
+    mean  <- obj$B3
+    error <- qnorm(.1) * sqrt(obj$V9)
+    left  <- mean - error
+    right <- mean + error
+
+    # Fill in data table
+    if      (x == 1) {mm.1[i + 1, ] <- c(obj$B3, left, right, obj$Nh3)}
+    else if (x == 2) {mm.2[i + 1, ] <- c(obj$B3, left, right, obj$Nh3)}
+    else             {mm.3[i + 1, ] <- c(obj$B3, left, right, obj$Nh3)}
+  }
+
+  # Remove unnecessary objects
+  rm(obj, x, i)
+}
+
+# Fill in point estimates and CI from rdmc table
+mm.1[1, ] <- c(rdmc.table[10,4],
+               rdmc.table[10,4] - qnorm(.1) * (rdmc.table[11,4]),
+               rdmc.table[10,4] + qnorm(.1) * (rdmc.table[11,4]),
+               nrow(works.mm.1))
+mm.2[1, ] <- c(rdmc.table[10,5],
+               rdmc.table[10,5] - qnorm(.1) * (rdmc.table[11,5]),
+               rdmc.table[10,5] + qnorm(.1) * (rdmc.table[11,5]),
+               nrow(works.mm.2))
+mm.3[1, ] <- mm.3[2, ]
+mm.3[2, ] <- c(rdmc.table[10,6],
+               rdmc.table[10,6] - qnorm(.1) * (rdmc.table[11,6]),
+               rdmc.table[10,6] + qnorm(.1) * (rdmc.table[11,6]),
+               nrow(works.mm.3))
+
+# Define vectors of x axis tick marks for CI plots
+mm1.bandwidth <- c(unlist(non.cumulative.mismanagement.4.cutoff.1)$H3,
+                   bandwidth) %>%
+                 lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
+                 unlist() %>%
+                 paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
+mm2.bandwidth <- c(unlist(non.cumulative.mismanagement.5.cutoff.1)$H3,
+                   bandwidth) %>%
+                 lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
+                 unlist() %>%
+                 paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
+mm3.bandwidth <- c(bandwidth[1],
+                   unlist(non.cumulative.mismanagement.6.cutoff.1)$H3,
+                   bandwidth[2:8]) %>%
+                 lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
+                 unlist() %>%
+                 paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
+
+# Loop over values and build each plot
+for (i in seq(1:3)) {
+
+  # Temporary object to get tibbles
+  x <- paste0("mm.", i)
+
+  # ggplot call to construct graphs
+  ggplot(get(x), aes(y = point, x = c(1:9))) +
+    geom_point(size = 4) +
+    geom_errorbar(aes(ymax = ci_upper, ymin = ci_lower)) +
+    theme(text = element_text(family = "LM Roman 10")) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
+    ylab("Point Estimates") + xlab("") +
+    scale_x_continuous(
+      breaks = c(1:9),
+      labels = get(paste0("mm", i, ".bandwidth"))
+    )
+  # ggsave to save them to file
+  ggsave(paste0("mismanagementplot", i, ".png"),
+         device = "png",
+         path   = "./article",
+         width  = 7,
+         height = 3
+  )
+  dev.off()
+
+  # Remove temporary objects
+  rm(x, i)
+}
+
+
 
 # # Single purchases result on mismanagement
 # purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
 
+
 # Remove unnecessary objects
-rm(list = objects(pattern = "bandwidth\\.table")
+rm(list = objects(pattern = "bandwidth\\.(table|means)")
 
 ################################################################################
 # RD Multiple, Cumulative Cutoff Analysis
