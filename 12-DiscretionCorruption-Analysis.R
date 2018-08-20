@@ -886,7 +886,7 @@ for (i in seq(1:8)) {
   }
 
   # Remove unnecessary objects
-  rm(obj, x, i)
+  rm(obj, x, i, mean, error, left, right)
 }
 
 # Fill in point estimates and CI from rdmc table
@@ -906,21 +906,24 @@ mm.3[2, ] <- c(rdmc.table[10,6],
 
 # Define vectors of x axis tick marks for CI plots
 mm1.bandwidth <- c(unlist(non.cumulative.mismanagement.4.cutoff.1)$H3,
-                   bandwidth) %>%
+                   bandwidth
+                 ) %>%
                  lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
                  unlist() %>%
                  paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
 mm2.bandwidth <- c(unlist(non.cumulative.mismanagement.5.cutoff.1)$H3,
-                   bandwidth) %>%
+                   bandwidth
+                 ) %>%
                  lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
                  unlist() %>%
-                 paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
+                 paste0(., " \n (n = ", unlist(mm.2[, 4]), ")")
 mm3.bandwidth <- c(bandwidth[1],
                    unlist(non.cumulative.mismanagement.6.cutoff.1)$H3,
-                   bandwidth[2:8]) %>%
+                   bandwidth[2:8]
+                 ) %>%
                  lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
                  unlist() %>%
-                 paste0(., " \n (n = ", unlist(mm.1[, 4]), ")")
+                 paste0(., " \n (n = ", unlist(mm.3[, 4]), ")")
 
 # Loop over values and build each plot
 for (i in seq(1:3)) {
@@ -928,17 +931,22 @@ for (i in seq(1:3)) {
   # Temporary object to get tibbles
   x <- paste0("mm.", i)
 
+  # Temporary object to change font type in ggplot
+  if (i != 3) {z <- c("bold", rep("plain", 8))}
+  else        {z <- c("plain", "bold", rep("plain", 7))}
+
   # ggplot call to construct graphs
   ggplot(get(x), aes(y = point, x = c(1:9))) +
     geom_point(size = 4) +
     geom_errorbar(aes(ymax = ci_upper, ymin = ci_lower)) +
-    theme(text = element_text(family = "LM Roman 10")) +
+    theme(text        = element_text(family = "LM Roman 10"),
+          axis.text.x = element_text(face = z)) +
     geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
     ylab("Point Estimates") + xlab("") +
     scale_x_continuous(
       breaks = c(1:9),
-      labels = get(paste0("mm", i, ".bandwidth"))
-    )
+      labels = get(paste0("mm", i, ".bandwidth")))
+
   # ggsave to save them to file
   ggsave(paste0("mismanagementplot", i, ".png"),
          device = "png",
@@ -949,48 +957,54 @@ for (i in seq(1:3)) {
   dev.off()
 
   # Remove temporary objects
-  rm(x, i)
+  rm(i, x, z)
 }
-
-
 
 # # Single purchases result on mismanagement
 # purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
 
-
 # Remove unnecessary objects
-rm(list = objects(pattern = "bandwidth\\.(table|means)")
+rm(list = objects(pattern = "bandwidth|(\\.table|\\.means)|mm\\.[1-3]|mun"))
+rm(list = objects(pattern = "non\\.cumulative|rdmc|cutoff"))
+
+# ##############################################################################
+# # RD Multiple, Cumulative Cutoff Analysis
+# ##############################################################################
+# # Now we run the cumulative analysis separating out purchases and works. We
+# # once again use Cataneo's rdmulti package but now the focus is on function
+# # rdms. We loop over each database and each outcome and spit out the
+# # coefficients of the cumulative regressions
+# for (x in seq(1:6)) {
+#   purchases <- purchases.data %$%
+#     rdms(Y          = get(outcomes[x]),
+#          X          = so.amount,
+#          C          = c(8000, 80000, 650000),
+#          pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
+#          pvec       = c(2, 2, 2)
+#     )
+#   works <- works.data %$%
+#     rdms(Y          = get(outcomes[x]),
+#          X          = so.amount,
+#          C          = c(15000, 150000, 1500000),
+#          pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
+#          pvec       = c(2, 2, 2)
+#     )
+
+#   # Assign new object names
+#   if (x <= 3) {
+#     assign(paste0("cumulative.corruption.", x, ".purchases"), purchases)
+#     assign(paste0("cumulative.corruption.", x, ".works"), works)
+#   } else {
+#     assign(paste0("cumulative.mismanagement.", x, ".purchases"), purchases)
+#     assign(paste0("cumulative.mismanagement.", x, ".works"), works)
+#   }
+#   rm(purchases, works)
+# }
+
+# #-----------------------------------------------------------------------------
+# All cumulative results are the same, so I omit these regressions
+# #-----------------------------------------------------------------------------
 
 ################################################################################
-# RD Multiple, Cumulative Cutoff Analysis
+# Falsification Tests
 ################################################################################
-# Now we run the cumulative analysis separating out purchases and works. We once
-# again use Cataneo's rdmulti package but now the focus is on function rdms. We
-# loop over each database and each outcome and spit out the coefficients of the
-# cumulative regressions
-for (x in seq(from = 1, to = 6)) {
-  purchases <- purchases.data %$%
-    rdms(Y          = get(outcomes[x]),
-         X          = so.amount,
-         C          = c(8000, 80000, 650000),
-         pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-         pvec       = c(2, 2, 2)
-    )
-  works <- works.data %$%
-    rdms(Y          = get(outcomes[x]),
-         X          = so.amount,
-         C          = c(15000, 150000, 1500000),
-         pooled.opt = "level = 90, cluster = analysis.data$ibge.id, all = TRUE",
-         pvec       = c(2, 2, 2)
-    )
-
-  # Assign new object names
-  if (x <= 3) {
-    assign(paste0("cumulative.corruption.", x, ".purchases"), purchases)
-    assign(paste0("cumulative.corruption.", x, ".works"), works)
-  } else {
-    assign(paste0("cumulative.mismanagement.", x, ".purchases"), purchases)
-    assign(paste0("cumulative.mismanagement.", x, ".works"), works)
-  }
-  rm(purchases, works)
-}

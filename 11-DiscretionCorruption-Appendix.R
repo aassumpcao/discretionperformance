@@ -22,7 +22,7 @@ rm(list = ls())
 ################################################################################
 # Packages
 ################################################################################
-library(here)
+library(here)        # Version 0.2
 library(tidyverse)   # Version 1.2.1
 library(haven)       # Version 1.1.1
 library(lubridate)   # Version 1.7.4
@@ -152,7 +152,8 @@ area3 <- nrow(
          )
 
 # Producing the graphical object
-pdf("./article/venn.pdf", family = "CM Roman")
+png("./article/venn.png")
+par(family = "LM Roman 10")
 venn.plot <-
   draw.pairwise.venn(
     area1      = area1,
@@ -336,6 +337,7 @@ works.manipulation3     <- works.cutoff.3     %$% DCdensity(so.amount, 0)
 # Plot 1
 png(filename = "./article/purchasesmanipulation1.png")
 purchases.cutoff.1 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Purchases Cutoff 1",
@@ -354,6 +356,7 @@ dev.off()
 # Plot 2
 png(filename = "./article/purchasesmanipulation2.png")
 purchases.cutoff.2 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Purchases Cutoff 2",
@@ -372,6 +375,7 @@ dev.off()
 # Plot 3
 png(filename = "./article/purchasesmanipulation3.png")
 purchases.cutoff.3 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Purchases Cutoff 3",
@@ -390,6 +394,7 @@ dev.off()
 # Plot 4
 png(filename = "./article/worksmanipulation1.png")
 works.cutoff.1 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Works Cutoff 1",
@@ -408,6 +413,7 @@ dev.off()
 # Plot 5
 png(filename = "./article/worksmanipulation2.png")
 works.cutoff.2 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Works Cutoff 2",
@@ -426,6 +432,7 @@ dev.off()
 # Plot 6
 png(filename = "./article/worksmanipulation3.png")
 works.cutoff.3 %$% DCdensity(so.amount, 0)
+par(family = "LM Roman 10")
 abline(v = 0)
 title(
   main = "Works Cutoff 3",
