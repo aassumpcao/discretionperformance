@@ -189,6 +189,7 @@ load("so.data.Rda")
 load("appendix.data.Rda")
 load("mun.data.Rda")
 load("mun.election.Rda")
+load("falsification.data.Rda")
 
 ################################################################################
 # Definition of variables included in tables
@@ -626,7 +627,8 @@ purchases.cutoff.1 <- analysis.data %>%
 # Subset sample for corruption cutoff 2
 purchases.cutoff.2 <- analysis.data %>%
   mutate(so.amount = case_when(so.type != 2 ~ so.amount - 80000)) %>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V2))
+  filter(bandwidthRange(so.amount, 0, bandwidth.means$V2)) %>%
+  filter(so.procurement != 0)
 
 # Subset sample for corruption cutoff 3
 #   Strong evidence of manipulation (McCrary(2008) test)
@@ -824,27 +826,36 @@ works.mm.3 <- analysis.data %>%
 
 # Generate graphics from file
 # Outcome I
-tikz("./article/workscutoff1.tex", width = 5, height = 5, sanitize = TRUE)
+png("./article/workscutoff1.png", width = 560, height = 560)
 works.mm.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2,
   title = "Mismanagement Outcome I", y.label = "", y.lim = c(0,1),
-  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.1),")"))
+  cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
+  family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
+  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 4]),
+                   " (n = ", nrow(works.mm.1), ")")
+)
 dev.off()
 
 # Outcome II
-tikz("./article/workscutoff2.tex", width = 5, height = 5, sanitize = TRUE)
+png("./article/workscutoff2.png", width = 560, height = 560)
 works.mm.2 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2,
   title = "Mismanagement Outcome II", y.label = "", y.lim = c(0, 1),
-  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.2),")"))
+  cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
+  family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
+  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 5]),
+                   " (n = ", nrow(works.mm.2), ")")
+)
 dev.off()
 
 # Outcome III
-tikz("./article/workscutoff3.tex", width = 5, height = 5, sanitize = TRUE)
+png("./article/workscutoff3.png", width = 560, height = 560)
 works.mm.3 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2,
   title = "Mismanagement Outcome III", y.label = "",
-  cex.axis = 1.1, cex.lab = 1.1, mgp = c(3, 0.5, 0),
-  x.label = paste0("Amount Centered at R$ 15,000\n (n = ",nrow(works.mm.3),")"))
+  cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
+  family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
+  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 6])+1,
+                   " (n = ", nrow(works.mm.3), ")")
+)
 dev.off()
 
 # Compute results for various bandwidths
@@ -964,8 +975,8 @@ for (i in seq(1:3)) {
 # purchases.cutoff.2 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2)
 
 # Remove unnecessary objects
-rm(list = objects(pattern = "bandwidth|(\\.table|\\.means)|mm\\.[1-3]|mun"))
-rm(list = objects(pattern = "non\\.cumulative|rdmc|cutoff"))
+rm(list = objects(pattern = "(bandwidth(\\.table|\\.means))|mm\\.[1-3]|mun"))
+rm(list = objects(pattern = "non\\.cumulative|rdmc|cutoff|mm[1-3]"))
 
 # ##############################################################################
 # # RD Multiple, Cumulative Cutoff Analysis
@@ -1008,3 +1019,146 @@ rm(list = objects(pattern = "non\\.cumulative|rdmc|cutoff"))
 ################################################################################
 # Falsification Tests
 ################################################################################
+# Wrangle falsification data
+# load("falsification.data.Rda")
+falsification.data %<>%
+  anti_join(so.data, by = c("so.id" =  "so.id")) %>%
+  left_join(appendix.data, by = c("so.id" = "so.id")) %>%
+  filter(so.works.bygranttext != 1 | so.works.bycode != 1) %>%
+  filter(!is.na(so.amount.x) & so.type == 0) %>%
+  rename(so.amount = so.amount.x) %>%
+  mutate(
+    so.fake.type   = case_when(so.amount <=  15000 ~ 0,
+                               so.amount >   15000 & so.amount <=  150000 ~ 1,
+                               so.amount >  150000 & so.amount <= 1500000 ~ 2,
+                               so.amount > 1500000 ~ 3),
+    mun.corruption = sum(corruption.count) / sum(infraction.count),
+    mun.corruption = mun.corruption - (corruption.count/sum(infraction.count)),
+    mun.corruption = ifelse(is.na(mun.corruption), 0, mun.corruption)
+  )
+
+# Compute results for fake cutoff
+fake.1 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.2 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.3 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.bandwidth <- seq(from = 40000, to = 5000, by = -5000)
+
+# Create loop for: pulling bandwidth, se, and CI plots. The first loop covers
+# all rows which will be used for CI plot
+for (x in seq(1:3)) {
+
+  # Run one regression per outcome
+  obj <- falsification.data %$%
+    rdrobust(y       = get(outcomes[x + 3]),
+             x       = so.amount,
+             c       = 15000,
+             p       = 1,
+             q       = 2,
+             level   = 90,
+             cluster = falsification.data$ibge.id,
+             all     = TRUE
+    )
+
+  # Unlist obj
+  obj <- unlist(obj)
+
+  # Manually calculate 90% CIs from rdmc call (only does 95% CIs)
+  mean  <- obj$Estimate2
+  error <- qnorm(.1) * obj$se3
+  l     <- mean + error
+  r     <- mean - error
+
+  # Fill in data table
+  if (x == 1) {
+    fake.1[1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  } else if (x == 2) {
+    fake.2[1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  } else {
+    fake.3[1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  }
+
+  # Remove unnecessary objects
+  rm(obj, mean, error, l, r)
+}
+
+# Loop over other bandwidths and spit out point estimates and CIs
+for (i in seq(1:8)) {
+
+  # Use mismanagement outcomes from outcomes vector
+  for (x in seq(1:3)) {
+
+    # Run regressions
+    obj <- falsification.data %$%
+      rdrobust(y       = get(outcomes[x + 3]),
+               x       = so.amount,
+               c       = 15000,
+               p       = 1,
+               q       = 2,
+               h       = fake.bandwidth[i],
+               b       = fake.bandwidth[i],
+               level   = 90,
+               cluster = falsification.data$ibge.id,
+               all     = TRUE
+      )
+
+    # Unlist and pull estimates
+    obj <- unlist(obj)
+
+    # Manually calculate 90% CIs from rdmc call (only does 95% CIs)
+    mean  <- obj$Estimate2
+    error <- qnorm(.05) * obj$se3
+    l     <- mean + error
+    r     <- mean - error
+
+    # Fill in data table
+    if (x == 1) {
+      fake.1[i + 1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    } else if (x == 2) {
+      fake.2[i + 1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    } else {
+      fake.3[i + 1, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    }
+  }
+
+  # Remove unnecessary objects
+  rm(obj, x, mean, error, l, r)
+}
+
+# Loop over values and build each plot
+for (i in seq(1:3)) {
+
+  # Temporary object to get tibbles
+  x <- paste0("fake.", i)
+
+  # Temporary object to change font type in ggplot
+  z <- c("bold", rep("plain", 8))
+  fake.label <- c(unlist(get(x)[, 5])) %>%
+              lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
+              unlist() %>%
+              paste0(., " \n (n = ", unlist(get(x)[, 4]), ")")
+
+  # ggplot call to construct graphs
+  ggplot(get(x), aes(y = point, x = c(1:9))) +
+    geom_point(size = 4) +
+    geom_errorbar(aes(ymax = ci_u, ymin = ci_l)) +
+    theme(text        = element_text(family = "LM Roman 10"),
+          axis.text.x = element_text(face = z)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
+    ylab("Point Estimates") + xlab("") +
+    scale_x_continuous(
+      breaks = c(1:9),
+      labels = fake.label
+    )
+
+  # ggsave to save them to file
+  ggsave(paste0("falsificationplot", i, ".png"),
+         device = "png",
+         path   = "./article",
+         width  = 7,
+         height = 3
+  )
+  dev.off()
+
+  # Remove temporary objects
+  rm(i, x, z, fake.label)
+}

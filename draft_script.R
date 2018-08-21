@@ -19,24 +19,61 @@ covs
 unlist(non.cumulative.mismanagement.4.cutoff.1)$H3
 
 bandwidth.table
+bandwidth.means
+Q
 
+works.cutoff.1 %$% table(so.procurement)
+works.cutoff.2 %$% table(so.procurement)
+works.cutoff.3 %$% table(so.procurement)
+purchases.cutoff.2 %$% table(so.procurement)
+fonts()
+?png
 mm.1
 mm.2
 mm.3
+names(purchases.cutoff.2)
+format(bandwidth.table[4, 4], digits = 5)
+as.integer(bandwidth.table[4, 4])
 
+as.integer(bandwidth.table[4, 6])+1
 
+bandwidth.table[4,4]
 
-as.vector(mm.1[, 4])
-mm.3 %>% arrange(row_number(2), row_number(1))
+rdms
 
-?row_number
+appendix.data %$% table(so.works.bygranttext)
 
-?row
+summary(!is.na(falsification.data$so.description))
 
-??ggplot2
+purchases.cutoff.1 %$% table(!is.na(so.description))
 
-c(mm.1[, 4])
+View(falsification.data$so.description)
+names(falsification.data)
+names(appendix.data)
+fake.bandwidth
+?join
+filter(falsification.data, so.type == 0) %$% table(so.procurement)
 
+falsification.data %$% table(so.type)
 
-mm.1
+names(falsification.data)
 
+falsification.data %$% View(so.amount)
+rm(obj)
+?rename
+x <- fake.3
+fake.label
+unlist(fake.3$b)
+
+names(appendix.data)
+names(irregularities.cgu)
+names(analysis.data)
+names(falsification.data)
+left_join(irregularities.cgu, so.data.tagged, by = c("so.id" = "soID"))
+
+?join
+
+names()
+fake.1
+fake.2
+fake.3

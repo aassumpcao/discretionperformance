@@ -1,15 +1,15 @@
-#------------------------------------------------------------------------------#
-# Estimating the Effect of Discretion on Corruption:
+################################################################################
+# Estimating the Effect of Discretion on Government Performance:
 # Evidence from Brazilian Municipalities
 #
 # Service Order Data wrangling script
 # Prepared by:
 # Andre Assumpcao
 # aassumpcao@unc.edu
-#------------------------------------------------------------------------------#
+################################################################################
 rm(list=ls())
 
-#------------------------------------------------------------------------------#
+################################################################################
 # README:
 #
 # This first script file wrangles data at the service order level. What we do
@@ -18,11 +18,11 @@ rm(list=ls())
 # lottery, textual description of data from two sources, and problems found by
 # auditors. It creates the main dataset for analysis in the paper.
 #
-#------------------------------------------------------------------------------#
+################################################################################
 
-#------------------------------------------------------------------------------#
-################################### Packages ###################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Packages
+################################################################################
 library(tidyverse)  # Version 1.2.1
 library(haven)      # Version 1.1.1
 library(lubridate)  # Version 1.7.4
@@ -31,9 +31,9 @@ library(psych)      # Version 1.8.4
 library(magrittr)   # Version 1.5
 library(stargazer)  # Version 5.2.1
 
-#------------------------------------------------------------------------------#
-################################ Data Wrangling ################################
-#------------------------------------------------------------------------------#
+################################################################################
+# Data Wrangling
+################################################################################
 # Load the following datasets
 load("base_cgu.Rda")               # Audit reports coded by CEPESP-FGV
 load("corruption_discretion.Rda")  # List of service orders from lCEPESP-FGV
@@ -41,10 +41,9 @@ load("irregularities_cgu.Rda")     # List of irregularities by service order
 load("cgu_convenios.Rda")          # Federal grants to Brazilian municipalities
 load("Sorteio8a31.Rda")            # CGU list of funds audited
 
-
-#--------------------#
-### Mutating Joins ###
-#--------------------#
+#-------------------------------------------------------------------------------
+# Mutating Joins
+#-------------------------------------------------------------------------------
 # CEPESP coded 14,521 CGU service orders in health and education
 # glimpse(corruption_discretion)
 
@@ -146,9 +145,9 @@ so.data %<>%
   dplyr::select(-locator, -contains("policy"))
 
 
-#------------------#
-### Columns work ###
-#------------------#
+#-------------------------------------------------------------------------------
+# Columns work
+#-------------------------------------------------------------------------------
 # 5. Drop useless columns (corruption)
 # names(so.data)
 so.data %<>% dplyr::select(-convenio, -amount, -`(blank)`, -ValorLiberado)
@@ -236,9 +235,9 @@ so.data %<>%
     mismanagement.count  = rowSums(.[,mismanagement.vector])
   )
 
-#------------------#
-#### Values work ###
-#------------------#
+#-------------------------------------------------------------------------------
+# Values work
+#-------------------------------------------------------------------------------
 # 8. Create subprogram description
 
 # 9. Run lubridate
@@ -311,9 +310,9 @@ so.data %<>%
 # 11. To log or not to log amount variable
 # names(so.data)
 
-#--------------------------#
-### Back to columns work ###
-#--------------------------#
+#-------------------------------------------------------------------------------
+# Back to columns work
+#-------------------------------------------------------------------------------
 # # 12. Define SO as public works or purchases and type based on Law 8,666/93
 # so.data.tagged <- read_dta("soData_tagged.dta")
 load("soData_tagged.Rda")
@@ -355,9 +354,13 @@ so.data <- so.data.tagged %>%
 # Remove unnecessary dataset
 rm(so.data.tagged)
 
-#------------------#
-##### Rows work ####
-#------------------#
+# Save falsification dataset
+falsification.data <- so.data
+save(falsification.data, file = "falsification.data.Rda")
+
+#-------------------------------------------------------------------------------
+# Rows work
+#-------------------------------------------------------------------------------
 # 14. Drop observations
 so.data %<>%
   filter(

@@ -279,6 +279,8 @@ Law 8,666/93 has two additional features that require the design extensively dis
 
 In addition, the discretion categories are cumulative within each procurement type. There are different versions of treatment for different ranges of procurement amount. Thus, we cannot rule out that assignment scores (i.e. the monetary amount in each procurement call) could be related to potential outcomes. What is reassuring, however, is that the solutions to multi-cutoff RD limitations proposed by \citet{CattaneoInterpretingRegressionDiscontinuity2016} can all be implemented here: we estimate treatment effects both for pooled and independent cutoff samples, both across (multiple non-cumulative cutoffs) and within (multiple cumulative cutoffs) procurement type. Our results remain unchanged in each specification.
 
+\newpage
+
 \section{Results} \label{sec:result}
 
 \input{tab_mainregression1}
@@ -292,32 +294,46 @@ In addition, the discretion categories are cumulative within each procurement ty
 \begin{table}[!htbp]
   \caption{\label{tab:workscutoff1} Discretion Effect on Mismanagement (Works Cutoff 1)}
   \centering
-  \begin{tabular}{c}
-  \resizebox{.33\textwidth}{!}{\input{workscutoff11}}
-  \resizebox{.33\textwidth}{!}{\input{workscutoff12}}
-  \resizebox{.33\textwidth}{!}{\input{workscutoff13}} \\
-  \multicolumn{1}{p{\textwidth}}{\scriptsize Note: The three figures in table \ref{tab:workscutoff1} report the minimum local causal effect of discretion (as a change in procurement rules from direct contracting to invitational bidding) on the three mismanagement outcomes. They plot the regression equations at the bandwidths specified in \ref{tab:cctbandwidth}, which are R\$43,876, R\$44,177, and R\$38,117 respectively for mismanagement outcomes I through III when the federal transfer was used to procure goods or services used in public works.}
+  \begin{tabular}{ccc}
+  \includegraphics[scale = .265]{workscutoff1.png} & \includegraphics[scale = .265]{workscutoff2.png} & \includegraphics[scale = .265]{workscutoff3.png} \\
+  \multicolumn{3}{p{\textwidth}}{\scriptsize Note: The three figures in table \ref{tab:workscutoff1} report the minimum local causal effect of discretion (as a change in procurement rules from direct contracting to invitational bidding) on the three mismanagement outcomes. They plot the regression equations at the bandwidths specified in \ref{tab:cctbandwidth}, which are R\$43,876, R\$44,177, and R\$38,117 respectively for mismanagement outcomes I through III when the federal transfer was used to procure goods or services used in public works.}
   \end{tabular}
 \end{table}
 
 \begin{figure}[!htbp]
-  \caption{\label{fig:bandwidths} Discretion Point Estimates Across Cutoff 1 Bandwidths (in R\$)}
+  \caption{\label{fig:bandwidths} Discretion Point Estimates Across Cutoff 1 (Works SOs)}
   \centering
   \small
   \begin{tabular}{c}
   \emph{Panel A: Mismanagement Binary} \\
-  \includegraphics[scale = .2]{mismanagementplot1} \\
+  \includegraphics[scale = .15]{mismanagementplot1} \\
   \emph{Panel B: Mismanagement Share} \\
-  \includegraphics[scale = .2]{mismanagementplot2} \\
+  \includegraphics[scale = .15]{mismanagementplot2} \\
   \emph{Panel C: Mismanagement Amount} \\
-  \includegraphics[scale = .2]{mismanagementplot3} \\
-  Notes:
+  \includegraphics[scale = .15]{mismanagementplot3} \\
+  \multicolumn{1}{p{.6\textwidth}}{\scriptsize Notes:}
   \end{tabular}
 \end{figure}
 
 \newpage
 
 \subsection{Falsification Tests} \label{subsec:discussion}
+
+\begin{figure}[!htbp]
+  \caption{Discretion Point Estimates Across Cutoff 1 (Non-Procurement SOs)}
+  \label{fig:falsification1}
+  \centering
+  \small
+  \begin{tabular}{c}
+  \emph{Panel A: Mismanagement Binary} \\
+  \includegraphics[scale = .15]{falsificationplot1} \\
+  \emph{Panel B: Mismanagement Share} \\
+  \includegraphics[scale = .15]{falsificationplot2} \\
+  \emph{Panel C: Mismanagement Amount} \\
+  \includegraphics[scale = .15]{falsificationplot3} \\
+  \multicolumn{1}{p{.6\textwidth}}{\scriptsize Notes:}
+  \end{tabular}
+\end{figure}
 
 \section{Conclusion} \label{sec:conclusion}
 

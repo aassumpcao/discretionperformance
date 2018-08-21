@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  20 AUG 2018 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  21 AUG 2018 18:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -836,35 +836,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--70
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
  [7] [8] [9] (./tab_descriptivestats1.tex) [10]
-[11] [12] [13] [14] [15] [16] (./tab_mainregression1.tex
+[11] [12] [13] [14] [15] [16] [17] (./tab_mainregression1.tex
 Overfull \hbox (29.49977pt too wide) in paragraph at lines 7--46
  [][] 
  []
 
 ) (./tab_bandwidth1.tex) (./tab_covariates1.tex) (./tab_rdmc1.tex)
-(./workscutoff11.tex) (./workscutoff12.tex) (./workscutoff13.tex)
-Overfull \hbox (14.58914pt too wide) in paragraph at lines 295--301
+<workscutoff1.png, id=449, 562.1pt x 562.1pt>
+File: workscutoff1.png Graphic file (type png)
+<use workscutoff1.png>
+Package pdftex.def Info: workscutoff1.png  used on input line 298.
+(pdftex.def)             Requested size: 148.95578pt x 148.95578pt.
+<workscutoff2.png, id=451, 562.1pt x 562.1pt>
+File: workscutoff2.png Graphic file (type png)
+<use workscutoff2.png>
+Package pdftex.def Info: workscutoff2.png  used on input line 298.
+(pdftex.def)             Requested size: 148.95578pt x 148.95578pt.
+<workscutoff3.png, id=452, 562.1pt x 562.1pt>
+File: workscutoff3.png Graphic file (type png)
+<use workscutoff3.png>
+Package pdftex.def Info: workscutoff3.png  used on input line 298.
+(pdftex.def)             Requested size: 148.95578pt x 148.95578pt.
+
+Overfull \hbox (13.11232pt too wide) in paragraph at lines 297--301
  [][] 
  []
 
-<mismanagementplot1.png, id=446, 2107.875pt x 903.375pt>
+<mismanagementplot1.png, id=455, 2107.875pt x 903.375pt>
 File: mismanagementplot1.png Graphic file (type png)
 <use mismanagementplot1.png>
 Package pdftex.def Info: mismanagementplot1.png  used on input line 309.
-(pdftex.def)             Requested size: 421.56754pt x 180.6718pt.
-<mismanagementplot2.png, id=448, 2107.875pt x 903.375pt>
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+<mismanagementplot2.png, id=456, 2107.875pt x 903.375pt>
 File: mismanagementplot2.png Graphic file (type png)
 <use mismanagementplot2.png>
 Package pdftex.def Info: mismanagementplot2.png  used on input line 311.
-(pdftex.def)             Requested size: 421.56754pt x 180.6718pt.
-<mismanagementplot3.png, id=449, 2107.875pt x 903.375pt>
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+<mismanagementplot3.png, id=457, 2107.875pt x 903.375pt>
 File: mismanagementplot3.png Graphic file (type png)
 <use mismanagementplot3.png>
 Package pdftex.def Info: mismanagementplot3.png  used on input line 313.
-(pdftex.def)             Requested size: 421.56754pt x 180.6718pt.
-[17] [18] [19] [20] [21 <./mismanagementplot1.png> <./mismanagementplot2.png> <
-./mismanagementplot3.png>] (./discretionperformance.bbl [22] [23]) [24]
-Underfull \hbox (badness 10000) in paragraph at lines 373--374
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+[18] [19] [20] [21 <./mismanagementplot1.png> <./mismanagementplot2.png> <./mis
+managementplot3.png>]
+<falsificationplot1.png, id=483, 2107.875pt x 903.375pt>
+File: falsificationplot1.png Graphic file (type png)
+<use falsificationplot1.png>
+Package pdftex.def Info: falsificationplot1.png  used on input line 329.
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+<falsificationplot2.png, id=484, 2107.875pt x 903.375pt>
+File: falsificationplot2.png Graphic file (type png)
+<use falsificationplot2.png>
+Package pdftex.def Info: falsificationplot2.png  used on input line 331.
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+<falsificationplot3.png, id=485, 2107.875pt x 903.375pt>
+File: falsificationplot3.png Graphic file (type png)
+<use falsificationplot3.png>
+Package pdftex.def Info: falsificationplot3.png  used on input line 333.
+(pdftex.def)             Requested size: 316.1676pt x 135.5004pt.
+ (./discretionperformance.bbl [22 <./workscutoff1.png> <./workscutoff2.png> <./
+workscutoff3.png>] [23 <./falsificationplot1.png> <./falsificationplot2.png> <.
+/falsificationplot3.png>] [24]) [25]
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 \OT1/cmr/m/n/8 ho-ria\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 adequa)+(.)*(f[^^S^^Pi]sic
 a\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 escolar\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 habitac
 \OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 sanit[^^Saa]ria)+'' ``es-got'' ``adu-tora\OMS/c
@@ -872,67 +905,67 @@ msy/m/n/8 j\OT1/cmr/m/n/8 dessaliniz\OMS/cmsy/m/n/8 j\OT1/cmr/m/n/8 reservat[^^
 Soo]''
  []
 
-[25
+[26
 
 
 ]
-<venn.png, id=506, 481.8pt x 481.8pt>
+<venn.png, id=523, 481.8pt x 481.8pt>
 File: venn.png Graphic file (type png)
 <use venn.png>
-Package pdftex.def Info: venn.png  used on input line 384.
+Package pdftex.def Info: venn.png  used on input line 400.
 (pdftex.def)             Requested size: 140.92793pt x 140.92409pt.
- (./appendix_tab2.tex) [26 <./venn.png>] (./appendix_tab3.tex) [27]
-(./appendix_tab4.tex) [28] [29] (./appendix_tab5.tex) [30] [31]
-<purchasesmanipulation1.png, id=577, 481.8pt x 481.8pt>
+ (./appendix_tab2.tex) [27 <./venn.png>] (./appendix_tab3.tex) [28]
+(./appendix_tab4.tex) [29] [30] (./appendix_tab5.tex) [31] [32]
+<purchasesmanipulation1.png, id=594, 481.8pt x 481.8pt>
 File: purchasesmanipulation1.png Graphic file (type png)
 <use purchasesmanipulation1.png>
-Package pdftex.def Info: purchasesmanipulation1.png  used on input line 532.
+Package pdftex.def Info: purchasesmanipulation1.png  used on input line 548.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation1.png, id=578, 481.8pt x 481.8pt>
+<worksmanipulation1.png, id=595, 481.8pt x 481.8pt>
 File: worksmanipulation1.png Graphic file (type png)
 <use worksmanipulation1.png>
-Package pdftex.def Info: worksmanipulation1.png  used on input line 532.
+Package pdftex.def Info: worksmanipulation1.png  used on input line 548.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation2.png, id=579, 481.8pt x 481.8pt>
+<purchasesmanipulation2.png, id=596, 481.8pt x 481.8pt>
 File: purchasesmanipulation2.png Graphic file (type png)
 <use purchasesmanipulation2.png>
-Package pdftex.def Info: purchasesmanipulation2.png  used on input line 533.
+Package pdftex.def Info: purchasesmanipulation2.png  used on input line 549.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation2.png, id=580, 481.8pt x 481.8pt>
+<worksmanipulation2.png, id=597, 481.8pt x 481.8pt>
 File: worksmanipulation2.png Graphic file (type png)
 <use worksmanipulation2.png>
-Package pdftex.def Info: worksmanipulation2.png  used on input line 533.
+Package pdftex.def Info: worksmanipulation2.png  used on input line 549.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<purchasesmanipulation3.png, id=581, 481.8pt x 481.8pt>
+<purchasesmanipulation3.png, id=598, 481.8pt x 481.8pt>
 File: purchasesmanipulation3.png Graphic file (type png)
 <use purchasesmanipulation3.png>
-Package pdftex.def Info: purchasesmanipulation3.png  used on input line 534.
+Package pdftex.def Info: purchasesmanipulation3.png  used on input line 550.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
-<worksmanipulation3.png, id=582, 481.8pt x 481.8pt>
+<worksmanipulation3.png, id=599, 481.8pt x 481.8pt>
 File: worksmanipulation3.png Graphic file (type png)
 <use worksmanipulation3.png>
-Package pdftex.def Info: worksmanipulation3.png  used on input line 534.
+Package pdftex.def Info: worksmanipulation3.png  used on input line 550.
 (pdftex.def)             Requested size: 197.53928pt x 197.53928pt.
- [32] [33 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchase
+ [33] [34 <./purchasesmanipulation1.png> <./worksmanipulation1.png> <./purchase
 smanipulation2.png> <./worksmanipulation2.png> <./purchasesmanipulation3.png> <
 ./worksmanipulation3.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 538.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 538.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
  (./discretionperformance.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 538.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 538.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
 Package rerunfilecheck Info: File `discretionperformance.out' has not changed.
 (rerunfilecheck)             Checksum: A32CA875335DC24FE49F31CE128F4688;3654.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 538.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
  ) 
 Here is how much of TeX's memory you used:
- 22581 strings out of 492646
- 396611 string characters out of 6129564
- 643758 words of memory out of 5000000
- 25923 multiletter control sequences out of 15000+600000
+ 22575 strings out of 492646
+ 396419 string characters out of 6129564
+ 481123 words of memory out of 5000000
+ 25918 multiletter control sequences out of 15000+600000
  17813 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,17n,57p,2312b,807s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,17n,54p,2312b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -954,10 +987,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2018/texmf
 dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2018/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on discretionperformance.pdf (34 pages, 818855 bytes).
+Output written on discretionperformance.pdf (35 pages, 1089297 bytes).
 PDF statistics:
- 696 PDF objects out of 1000 (max. 8388607)
- 612 compressed objects within 7 object streams
- 134 named destinations out of 1000 (max. 500000)
- 247 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 713 PDF objects out of 1000 (max. 8388607)
+ 616 compressed objects within 7 object streams
+ 136 named destinations out of 1000 (max. 500000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 
