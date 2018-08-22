@@ -1017,10 +1017,151 @@ rm(list = objects(pattern = "non\\.cumulative|rdmc|cutoff|mm[1-3]"))
 # #-----------------------------------------------------------------------------
 
 ################################################################################
-# Falsification Tests
+# Falsification Tests 1 (Purchases SOs as if they were Works)
 ################################################################################
-# Wrangle falsification data
-# load("falsification.data.Rda")
+# What we do over here is to use the works regressions on the purchases sample.
+# The effect at works cutoff for purchases regressions should be zero.
+
+# Compute results for fake cutoff
+fake.1 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.2 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.3 <- tibble(point = rep(0, 9), ci_l = NA, ci_u = NA, n = NA, b = NA)
+fake.bandwidth <- seq(from = 40000, to = 5000, by = -5000)
+
+# Create loop for: pulling bandwidth, se, and CI plots. The first loop covers
+# all rows which will be used for CI plot
+for (x in seq(1:3)) {
+
+  # Run one regression per outcome
+  obj <- purchases.data %$%
+    rdrobust(y       = get(outcomes[x + 3]),
+             x       = so.amount,
+             c       = 15000,
+             p       = 1,
+             q       = 2,
+             level   = 90,
+             cluster = purchases.data$ibge.id,
+             all     = TRUE
+    )
+
+  # Unlist obj
+  obj <- unlist(obj)
+
+  # Manually calculate 90% CIs from rdmc call (only does 95% CIs)
+  mean  <- obj$Estimate2
+  error <- qnorm(.1) * obj$se3
+  l     <- mean + error
+  r     <- mean - error
+
+  # Fill in data table
+  if (x == 1) {
+    fake.1[4, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  } else if (x == 2) {
+    fake.2[4, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  } else {
+    fake.3[4, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+  }
+
+  # Remove unnecessary objects
+  rm(obj, mean, error, l, r)
+}
+
+# Loop over other bandwidths and spit out point estimates and CIs
+for (i in seq(1:8)) {
+
+  # Use mismanagement outcomes from outcomes vector
+  for (x in seq(1:3)) {
+
+    # Run regressions
+    obj <- purchases.data %$%
+      rdrobust(y       = get(outcomes[x + 3]),
+               x       = so.amount,
+               c       = 15000,
+               p       = 1,
+               q       = 2,
+               h       = fake.bandwidth[i],
+               b       = fake.bandwidth[i],
+               level   = 90,
+               cluster = purchases.data$ibge.id,
+               all     = TRUE
+      )
+
+    # Unlist and pull estimates
+    obj <- unlist(obj)
+
+    # Manually calculate 90% CIs from rdmc call (only does 95% CIs)
+    mean  <- obj$Estimate2
+    error <- qnorm(.05) * obj$se3
+    l     <- mean + error
+    r     <- mean - error
+
+    # Fill in data table
+    if (i <= 3) {z <- i}
+    else        {z <- i + 1}
+
+    if (x == 1) {
+      fake.1[z, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    } else if (x == 2) {
+      fake.2[z, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    } else {
+      fake.3[z, ] <- c(obj$Estimate2, l, r, obj$Nb1 + obj$Nb2, obj$bws2)
+    }
+  }
+
+  # Remove unnecessary objects
+  rm(obj, x, mean, error, l, r)
+}
+
+# Loop over values and build each plot
+for (i in seq(1:3)) {
+
+  # Temporary object to get tibbles
+  x <- paste0("fake.", i)
+
+  # Temporary object to change font type in ggplot
+  z <- c(rep("plain", 3), "bold", rep("plain", 4))
+  fake.label <- c(unlist(get(x)[, 5])) %>%
+              lapply(format, trim = TRUE, digits = 5, big.mark = ",") %>%
+              unlist() %>%
+              paste0(., " \n (n = ", unlist(get(x)[, 4]), ")")
+
+  # ggplot call to construct graphs
+  ggplot(get(x), aes(y = point, x = c(1:9))) +
+    geom_point(size = 4) +
+    geom_errorbar(aes(ymax = ci_u, ymin = ci_l)) +
+    theme(text        = element_text(family = "LM Roman 10"),
+          axis.text.x = element_text(face = z)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
+    ylab("Point Estimates") + xlab("") +
+    scale_x_continuous(
+      breaks = c(1:9),
+      labels = fake.label
+    )
+
+  # ggsave to save them to file
+  ggsave(paste0("01falsificationplot", i, ".png"),
+         device = "png",
+         path   = "./article",
+         width  = 7,
+         height = 3
+  )
+  dev.off()
+
+  # Remove temporary objects
+  rm(i, x, z, fake.label)
+}
+
+################################################################################
+# Falsification Tests 2 (Non-Procurement SOs)
+################################################################################
+# The second falsification test is measuring the effect of works discretion on
+# non-procurement SOs. If they truly are causal, then here again there should
+# be no effect of discretion on mismanagement.
+
+# Wrangle falsification data so that we are left with a non-procurement sample
+# but for which we do have SO amount so we can calculate the effect on mismana-
+# gement.
+load("falsification.data.Rda")
 falsification.data %<>%
   anti_join(so.data, by = c("so.id" =  "so.id")) %>%
   left_join(appendix.data, by = c("so.id" = "so.id")) %>%
@@ -1151,7 +1292,7 @@ for (i in seq(1:3)) {
     )
 
   # ggsave to save them to file
-  ggsave(paste0("falsificationplot", i, ".png"),
+  ggsave(paste0("02falsificationplot", i, ".png"),
          device = "png",
          path   = "./article",
          width  = 7,
@@ -1162,3 +1303,6 @@ for (i in seq(1:3)) {
   # Remove temporary objects
   rm(i, x, z, fake.label)
 }
+
+# # Remove unnecessary objects
+# rm(falsification.data)

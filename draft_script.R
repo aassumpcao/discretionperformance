@@ -40,6 +40,32 @@ as.integer(bandwidth.table[4, 6])+1
 bandwidth.table[4,4]
 
 rdms
+so.covariates
+
+mm.1 <- 43876
+mm.2 <- 44177
+mm.3 <- 38117
+
+a <- lm(mismanagement.binary ~ factor(so.procurement),
+        data = filter(analysis.data,
+                      so.type == 2 & (so.amount >= 15000 + 43876)
+               )
+     )
+
+summary(a)
+summary(b)
+
+fake.1
+fake.2
+fake.3
+
+a <- filter(analysis.data, so.type != 2)
+b <- a %$%
+  rdrobust(y = mismanagement.binary, x = so.amount, c = 15000, p = 1, q = 2,
+    # h = fake.bandwidth[i], b = fake.bandwidth[i],
+    level = 90, cluster = a$ibge.id, all = TRUE
+  )
+
 
 appendix.data %$% table(so.works.bygranttext)
 
