@@ -1133,10 +1133,7 @@ for (i in seq(1:3)) {
           axis.text.x = element_text(face = z)) +
     geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
     ylab("Point Estimates") + xlab("") +
-    scale_x_continuous(
-      breaks = c(1:9),
-      labels = fake.label
-    )
+    scale_x_continuous(breaks = c(1:9), labels = fake.label)
 
   # ggsave to save them to file
   ggsave(paste0("01falsificationplot", i, ".png"),
@@ -1286,10 +1283,7 @@ for (i in seq(1:3)) {
           axis.text.x = element_text(face = z)) +
     geom_hline(yintercept = 0, linetype = "dashed", color = "gray33") +
     ylab("Point Estimates") + xlab("") +
-    scale_x_continuous(
-      breaks = c(1:9),
-      labels = fake.label
-    )
+    scale_x_continuous(breaks = c(1:9), labels = fake.label)
 
   # ggsave to save them to file
   ggsave(paste0("02falsificationplot", i, ".png"),
@@ -1305,4 +1299,40 @@ for (i in seq(1:3)) {
 }
 
 # # Remove unnecessary objects
-# rm(falsification.data)
+# rm(fake.1, fake.2, fake.3)
+
+################################################################################
+# Discretion Effect Discussion
+################################################################################
+# Why isn't there a corruption effect?
+
+discussion.right <- analysis.data %>%
+  group_by(so.type, so.procurement) %>%
+  summarize(avg.infractions = mean(infraction.count))
+
+discussion.left <- analysis.data %>%
+  mutate(so.year = year(audit.end)) %>%
+  select(-audit.end) %>%
+  group_by(so.year, so.type, so.procurement) %>%
+  summarize(total.infractions = mean(infraction.count)) %>%
+  filter(!is.na(so.year))
+
+discussion.data <- left_join(discussion.left, discussion.right,
+  by = c("so.type" = "so.type", "so.procurement" = "so.procurement"))
+
+discussion.data %>%
+  ggplot(aes(y = total.infractions, x = so.year)) +
+    geom_col() +
+    facet_grid(
+      so.type ~ so.procurement,
+      labeller = labeller(so.type = c(`1` = "Purchases", `2`= "Works")),
+      switch = "both"
+    ) +
+    geom_hline(aes(yintercept = avg.infractions), linetype   = "dashed") +
+    ylab("Procurement Types") + xlab("Procurement Categories") +
+    scale_x_continuous(breaks = c(2004:2010)) +
+    theme(text = element_text(family = "LM Roman 10", size = 12))
+
+# Plot graph
+
+

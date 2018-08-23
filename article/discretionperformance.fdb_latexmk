@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretionperformance"] 1534903478 "discretionperformance.aux" "discretionperformance.bbl" "discretionperformance" 1534903482
+["bibtex discretionperformance"] 1534903478 "discretionperformance.aux" "discretionperformance.bbl" "discretionperformance" 1534954046
   "/Users/aassumpcao/library.bib" 1533156850 407838 754561d1fa8b60b1b475623c55aeda51 ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   "discretionperformance.aux" 1534903481 16468 697c4b7d37d37dedae7d3b4cd959d6db ""
   (generated)
   "discretionperformance.blg"
   "discretionperformance.bbl"
-["pdflatex"] 1534903478 "discretionperformance.tex" "discretionperformance.pdf" "discretionperformance" 1534903482
+["pdflatex"] 1534903478 "discretionperformance.tex" "discretionperformance.pdf" "discretionperformance" 1534954046
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -202,7 +202,7 @@
   "discretionperformance.aux" 1534903481 16468 697c4b7d37d37dedae7d3b4cd959d6db ""
   "discretionperformance.bbl" 1534903478 7798 914d53c16a2824a0b88ee529e6b6d559 "bibtex discretionperformance"
   "discretionperformance.out" 1534903481 3654 a32ca875335dc24fe49f31ce128f4688 ""
-  "discretionperformance.tex" 1534903474 84304 7a174bdb351cfdad0625e96a2aca0485 ""
+  "discretionperformance.tex" 1534903623 84304 7a174bdb351cfdad0625e96a2aca0485 ""
   "mismanagementplot1.png" 1534901575 101452 9e362e5397621bdda6421c2339f0a584 ""
   "mismanagementplot2.png" 1534901576 96442 abd45f5f444e9e781d1fcb1ba7bacd08 ""
   "mismanagementplot3.png" 1534901576 94585 6cad05d8598193a5dec493938458a321 ""
@@ -224,7 +224,7 @@
   "worksmanipulation2.png" 1534793237 36149 da88f59090b359545091e709887c9421 ""
   "worksmanipulation3.png" 1534793237 29147 6291981445054e57439a226edef9dc8c ""
   (generated)
+  "discretionperformance.aux"
   "discretionperformance.out"
   "discretionperformance.pdf"
   "discretionperformance.log"
-  "discretionperformance.aux"

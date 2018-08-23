@@ -3,9 +3,69 @@ p.balance.1 %>% unlist() %>% as.tibble(row.names = c(so.statistics, mun.statisti
 
 names(covs)
 
+
+rm(a, b, discussion.table, discussion.database)
+
 class(covs$model.1)
 
+summarize
+??replace_na
+
+
+discussion.right <- analysis.data %>%
+  group_by(so.type, so.procurement) %>%
+  summarize(avg.infractions = mean(infraction.count))
+
+discussion.left <- analysis.data %>%
+  mutate(so.year = year(audit.end)) %>%
+  select(-audit.end) %>%
+  group_by(so.year, so.type, so.procurement) %>%
+  summarize(total.infractions = mean(infraction.count)) %>%
+  filter(!is.na(so.year))
+
+discussion.data <- left_join(discussion.left, discussion.right,
+                             by = c("so.type" = "so.type",
+                                    "so.procurement" = "so.procurement")
+                   )
+
+discussion.data %>%
+  ggplot(aes(y = total.infractions, x = so.year)) +
+    geom_col() +
+    facet_grid(so.type ~ so.procurement,
+               labeller = labeller(so.type = c(`1`= "Purchases", `2`= "Works")),
+               switch = "both") +
+    geom_hline(yintercept = discussion.right$avg.infractions,
+               linetype   = "dashed") +
+    ylab("Procurement Types") + xlab("Procurement Categories") +
+    scale_x_continuous(breaks = c(2004:2010)) +
+    theme(text = element_text(family = "LM Roman 10", size = 12))
+
+
+discussion.1
+View(discussion.1)
+
 covs
+
+analysis.data %$% table(infraction.count)
+
+names(analysis.data)
+
+??freq
+
+?table
+
+ggplot(analysis.data, aes(y = infraction.count, x = so.year)) +
+  geom_col() +
+  facet_grid(so.type ~ so.procurement)
+
+?n()
+?sum
+
+analysis.data %$% table(audit.end)
+
+?geom
+
+analysis.data %$% table()
 
 str(p.balance.1)
 str(c)
@@ -61,6 +121,7 @@ fake.3
 
 a <- filter(analysis.data, so.type != 2)
 b <- a %$%
+
   rdrobust(y = mismanagement.binary, x = so.amount, c = 15000, p = 1, q = 2,
     # h = fake.bandwidth[i], b = fake.bandwidth[i],
     level = 90, cluster = a$ibge.id, all = TRUE
