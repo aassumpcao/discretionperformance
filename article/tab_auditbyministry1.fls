@@ -2,8 +2,5 @@ PWD /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Doc
 INPUT /usr/local/texlive/2018/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT tab_rdmc1.tex
-OUTPUT tab_rdmc1.log
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT tab_auditbyministry1.tex
+OUTPUT tab_auditbyministry1.log

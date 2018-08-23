@@ -360,8 +360,8 @@ so.covariates <- paste("so.amount", "I(so.amount^2)", "mun.corruption",
 so.covariates.labels <- c("Amount (in R)", "Amount (in R, squared)",
                           "Municipal Corruption",
                           "Municipal Corruption (Squared)",
-                          "Procurement Type 1", "Procurement Type 2",
-                          "Procurement Type 3")
+                          "Proc. Category 1", "Proc. Category 2",
+                          "Proc. Category 3")
 
 # Define vector of municipality characteristics
 mun.covariates <- analysis.data %>%
@@ -785,9 +785,9 @@ for (i in seq(1:6)) {
 rdmc.table %>%
   rename_at(vars(c(1:3)), funs(paste0("Corruption ", as.roman(1:3)))) %>%
   rename_at(vars(c(4:6)), funs(paste0("Mismanagement ", as.roman(1:3)))) %>%
-  mutate(Variable = rep(c("Procurement Type I",   " ", " ",
-                          "Procurement Type II",  " ", " ",
-                          "Procurement Type III", " ", " "),
+  mutate(Variable = rep(c("Proc. Category 1",   " ", " ",
+                          "Proc. Category 2",  " ", " ",
+                          "Proc. Category 3", " ", " "),
                         3)
   ) %>%
   select(Variable, everything()) %>%
@@ -1298,18 +1298,24 @@ for (i in seq(1:3)) {
   rm(i, x, z, fake.label)
 }
 
-# # Remove unnecessary objects
-# rm(fake.1, fake.2, fake.3)
+# Remove unnecessary objects
+rm(fake.1, fake.2, fake.3)
 
 ################################################################################
 # Discretion Effect Discussion
 ################################################################################
-# Why isn't there a corruption effect?
-
+# 1. Why isn't there a corruption effect?
+# We put together a table of average infractions per SO per year. We communicate
+# the results using a facet grid further breaking effects down by so.type and
+# procurement category
+# First, we create the average number of infractions per so.type-procurement
+# category pair
 discussion.right <- analysis.data %>%
   group_by(so.type, so.procurement) %>%
   summarize(avg.infractions = mean(infraction.count))
 
+# We then compute yearly average infractions by adding up all infractions for
+# each type-category pair and dividing all up by the number of SOs in each year
 discussion.left <- analysis.data %>%
   mutate(so.year = year(audit.end)) %>%
   select(-audit.end) %>%
@@ -1317,22 +1323,37 @@ discussion.left <- analysis.data %>%
   summarize(total.infractions = mean(infraction.count)) %>%
   filter(!is.na(so.year))
 
+# Join the two datasets into one serving for aesthetics in R
 discussion.data <- left_join(discussion.left, discussion.right,
   by = c("so.type" = "so.type", "so.procurement" = "so.procurement"))
 
+# ggplot call to construct graphs
 discussion.data %>%
   ggplot(aes(y = total.infractions, x = so.year)) +
-    geom_col() +
+    geom_col(color = "grey41") +
     facet_grid(
       so.type ~ so.procurement,
-      labeller = labeller(so.type = c(`1` = "Purchases", `2`= "Works")),
+      labeller = labeller(so.type = c(`1` = "Purchases", `2`= "Works"),
+        so.procurement = c(`0`= "Direct Contracting", `1` = "Invitational",
+          `2` = "Price Comparison", `3` = "Competitive")),
       switch = "both"
     ) +
     geom_hline(aes(yintercept = avg.infractions), linetype   = "dashed") +
-    ylab("Procurement Types") + xlab("Procurement Categories") +
+    ylab("Average Infractions Count") + xlab("") +
     scale_x_continuous(breaks = c(2004:2010)) +
-    theme(text = element_text(family = "LM Roman 10", size = 12))
+    theme(text = element_text(family = "LM Roman 10"),
+          axis.text.x = element_text(angle = 90, hjust = 1))
 
-# Plot graph
+# ggsave to save them to file
+ggsave("01discussionplot.png",
+       device = "png",
+       path   = "./article",
+       width  = 6,
+       height = 4
+)
+dev.off()
 
+################################################################################
+# Welfare Effects
+################################################################################
 

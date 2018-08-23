@@ -152,22 +152,23 @@ area3 <- nrow(
          )
 
 # Producing the graphical object
-png("./article/venn.png")
+png("./article/venn.png", width = 560, height = 560)
 par(family = "LM Roman 10")
-venn.plot <-
-  draw.pairwise.venn(
+venn.plot <- draw.pairwise.venn(
     area1      = area1,
     area2      = area2,
     cross.area = area3,
     category   = c("Purchases \n Service Orders", "Works \n Service Orders"),
     cat.pos    = c(180, 180),
-    cat.cex    = c(2, 2),
+    cat.cex    = c(3, 3),
     cat.default.pos = c("outer"),
     cat.dist   = .05,
+    cat.fontfamily = "LM Roman 10",
     fontface   = 1,
-    cex        = c(3, 3, 3),
+    fontfamily = "LM Roman 10",
+    cex        = c(4, 4, 4),
     fill       = c("white", "grey")
-  )
+)
 
 # Producing the graphical device for LaTeX
 grid.draw(venn.plot)
@@ -271,8 +272,8 @@ no.works <- appendix.data[appendix.data$so.works.bySOtext != 1, ]
 
 # RE-WRITE TABLE 5
 
-appendix.data %$% table(so.procurement.bySOtext,so.purchases.bycode)
-appendix.data %$% table(so.procurement.bySOtext,so.works.bycode)
+appendix.data %$% table(so.procurement.bySOtext, so.purchases.bycode)
+appendix.data %$% table(so.procurement.bySOtext, so.works.bycode)
 
 ################################################################################
 # Appendix B
@@ -333,117 +334,41 @@ works.manipulation1     <- works.cutoff.1     %$% DCdensity(so.amount, 0)
 works.manipulation2     <- works.cutoff.2     %$% DCdensity(so.amount, 0)
 works.manipulation3     <- works.cutoff.3     %$% DCdensity(so.amount, 0)
 
-# Save cutoff plots
-# Plot 1
-png(filename = "./article/purchasesmanipulation1.png")
-purchases.cutoff.1 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Purchases Cutoff 1",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", purchases.manipulation1),
-    "; n = ",
-    nrow(purchases.cutoff.1),
-    ")",
-    collapse = ""
-  )
-)
-dev.off()
+# Lop over and produce all plots at once
+for (i in seq(1:6)) {
 
-# Plot 2
-png(filename = "./article/purchasesmanipulation2.png")
-purchases.cutoff.2 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Purchases Cutoff 2",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", purchases.manipulation2),
-    "; n = ",
-    nrow(purchases.cutoff.2),
-    ")",
-    collapse = ""
-  )
-)
-dev.off()
+  # Define temporary obj
+  if (i < 4) {
+    data  <- get(paste0("purchases.cutoff.", i))
+    file  <- paste0("./article/purchasesmanipulation", i, ".png")
+    title <- paste0("Purchases Cutoff ", i)
+    manip <- data %$% DCdensity(so.amount, 0)
+  } else {
+    data  <- get(paste0("works.cutoff.", i - 3))
+    file  <- paste0("./article/worksmanipulation", i - 3, ".png")
+    title <- paste0("Works Cutoff ", i - 3)
+    manip <- data %$% DCdensity(so.amount, 0)
+  }
 
-# Plot 3
-png(filename = "./article/purchasesmanipulation3.png")
-purchases.cutoff.3 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Purchases Cutoff 3",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", purchases.manipulation3),
-    "; n = ",
-    nrow(purchases.cutoff.3),
-    ")",
-    collapse = ""
-  )
-)
-dev.off()
+  # Call graphical device
+  png(filename = file, width = 560, height = 560)
 
-# Plot 4
-png(filename = "./article/worksmanipulation1.png")
-works.cutoff.1 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Works Cutoff 1",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", works.manipulation1),
-    "; n = ",
-    nrow(works.cutoff.1),
-    ")",
-    collapse = ""
-  )
-)
-dev.off()
+  # Call DCdensity plot
+  data %$% DCdensity(so.amount, 0)
 
-# Plot 5
-png(filename = "./article/worksmanipulation2.png")
-works.cutoff.2 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Works Cutoff 2",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", works.manipulation2),
-    "; n = ",
-    nrow(works.cutoff.2),
-    ")",
-    collapse = ""
+  # Set graphical parameters
+  par(family = "LM Roman 10")
+  abline(v = 0, lty = 1)
+  title(main = title,
+        xlab = paste0("p-value: ", sprintf("%0.3f", manip),
+                      "; n = ", nrow(data), collapse = ""),
+        family = "LM Roman 10", cex.main = 2, cex.lab = 2, cex.axis = 2,
+        mgp = c(4, 1, 0), mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83)
   )
-)
-dev.off()
 
-# Plot 6
-png(filename = "./article/worksmanipulation3.png")
-works.cutoff.3 %$% DCdensity(so.amount, 0)
-par(family = "LM Roman 10")
-abline(v = 0)
-title(
-  main = "Works Cutoff 3",
-  xlab = paste0(
-    "SO Amount \n ",
-    "(p-value: ",
-    sprintf("%0.3f", works.manipulation3),
-    "; n = ",
-    nrow(works.cutoff.3),
-    ")",
-    collapse = ""
-  )
-)
-dev.off()
+  # Clear graphical device
+  dev.off()
+
+  # Remove unnecessary objects
+  if (i == 6) {rm(data, file, title, manip)}
+}
