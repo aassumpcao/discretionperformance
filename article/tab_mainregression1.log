@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  14 AUG 2018 17:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  24 AUG 2018 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -13,7 +13,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.2 \begin{table}
-                 [!htbp] \centering
+                 [t!hbp] \centering
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -26,14 +26,14 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.2 \begin{table}[
-                  !htbp] \centering
+                  t!hbp] \centering
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no [ in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no ! in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no ] in font nullfont!
@@ -106,29 +106,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 2--6
- [] 
- []
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.7   \begin{tabular}
-                     {l@{\extracolsep{4pt}}cccc@{\extracolsep{4pt}}cccc}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 7.
+(Font)              <7> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 7.
+(Font)              <5> on input line 6.
 ! Undefined control sequence.
-l.11 ...umn{8}{c}{\textit{Dependent variable:}} \T
+l.10 ...umn{8}{c}{\textit{Dependent variable:}} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -137,7 +120,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.11 ...{8}{c}{\textit{Dependent variable:}} \T \B
+l.10 ...{8}{c}{\textit{Dependent variable:}} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -205,7 +188,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.13 ...{c}{Mismanagement Indicator I (Binary)} \T
+l.12 ...{c}{Mismanagement Indicator I (Binary)} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -214,7 +197,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.13 ...{Mismanagement Indicator I (Binary)} \T \B
+l.12 ...{Mismanagement Indicator I (Binary)} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -251,7 +234,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.15 ...Purchases} & \multicolumn{2}{c}{Works}  \T
+l.14 ...Purchases} & \multicolumn{2}{c}{Works}  \T
                                                    \B\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -260,7 +243,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.15 ...chases} & \multicolumn{2}{c}{Works}  \T \B
+l.14 ...chases} & \multicolumn{2}{c}{Works}  \T \B
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -293,7 +276,7 @@ Missing character: There is no ( in font nullfont!
 Missing character: There is no 8 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.17 ...mn{1}{c}{(7)} & \multicolumn{1}{c}{(8)} \T
+l.16 ...mn{1}{c}{(7)} & \multicolumn{1}{c}{(8)} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -302,7 +285,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.17 ...1}{c}{(7)} & \multicolumn{1}{c}{(8)} \T \B
+l.16 ...1}{c}{(7)} & \multicolumn{1}{c}{(8)} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -364,7 +347,7 @@ Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 ! Undefined control sequence.
-l.19 ...      & 0.000$^{***}$  & 0.000$^{***}$  \T
+l.18 ...      & 0.000$^{***}$  & 0.000$^{***}$  \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -373,7 +356,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.19 ...   & 0.000$^{***}$  & 0.000$^{***}$  \T \B
+l.18 ...   & 0.000$^{***}$  & 0.000$^{***}$  \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -438,7 +421,7 @@ Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.20 ...      & (0.000)        & (0.000)        \T
+l.19 ...      & (0.000)        & (0.000)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -447,7 +430,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.20 ...   & (0.000)        & (0.000)        \T \B
+l.19 ...   & (0.000)        & (0.000)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -513,7 +496,7 @@ Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 ! Undefined control sequence.
-l.21 ...      & -0.000$^{***}$ & -0.000$^{***}$ \T
+l.20 ...      & -0.000$^{***}$ & -0.000$^{***}$ \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -522,7 +505,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.21 ...   & -0.000$^{***}$ & -0.000$^{***}$ \T \B
+l.20 ...   & -0.000$^{***}$ & -0.000$^{***}$ \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -596,7 +579,7 @@ Missing character: There is no 0 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.22 ...      & (0.000)        & (0.000)        \T
+l.21 ...      & (0.000)        & (0.000)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -605,7 +588,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.22 ...   & (0.000)        & (0.000)        \T \B
+l.21 ...   & (0.000)        & (0.000)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -673,7 +656,7 @@ Missing character: There is no 4 in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no 8 in font nullfont!
 ! Undefined control sequence.
-l.23 ...**}$  & 0.479$^{***}$  & 0.428$^{**}$   \T
+l.22 ...**}$  & 0.479$^{***}$  & 0.428$^{**}$   \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -682,7 +665,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.23 ...$  & 0.479$^{***}$  & 0.428$^{**}$   \T \B
+l.22 ...$  & 0.479$^{***}$  & 0.428$^{**}$   \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -747,7 +730,7 @@ Missing character: There is no 8 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.24 ...      & (0.179)        & (0.180)        \T
+l.23 ...      & (0.179)        & (0.180)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -756,7 +739,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.24 ...   & (0.179)        & (0.180)        \T \B
+l.23 ...   & (0.179)        & (0.180)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -832,7 +815,7 @@ Missing character: There is no 5 in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no 2 in font nullfont!
 ! Undefined control sequence.
-l.25 ...***}$ & -1.694$^{***}$ & -1.542$^{***}$ \T
+l.24 ...***}$ & -1.694$^{***}$ & -1.542$^{***}$ \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -841,7 +824,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.25 ...}$ & -1.694$^{***}$ & -1.542$^{***}$ \T \B
+l.24 ...}$ & -1.694$^{***}$ & -1.542$^{***}$ \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -915,7 +898,7 @@ Missing character: There is no 1 in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.26 ...      & (0.333)        & (0.312)        \T
+l.25 ...      & (0.333)        & (0.312)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -924,7 +907,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.26 ...   & (0.333)        & (0.312)        \T \B
+l.25 ...   & (0.333)        & (0.312)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -936,17 +919,15 @@ Missing character: There is no P in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
@@ -991,7 +972,7 @@ Missing character: There is no 2 in font nullfont!
 Missing character: There is no 5 in font nullfont!
 Missing character: There is no 4 in font nullfont!
 ! Undefined control sequence.
-l.27 ...*}$   & 0.266$^{***}$  & 0.254$^{***}$  \T
+l.26 ...*}$   & 0.266$^{***}$  & 0.254$^{***}$  \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1000,7 +981,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.27 ...   & 0.266$^{***}$  & 0.254$^{***}$  \T \B
+l.26 ...   & 0.266$^{***}$  & 0.254$^{***}$  \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1065,7 +1046,7 @@ Missing character: There is no 3 in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.28 ...      & (0.036)        & (0.034)        \T
+l.27 ...      & (0.036)        & (0.034)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1074,7 +1055,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.28 ...   & (0.036)        & (0.034)        \T \B
+l.27 ...   & (0.036)        & (0.034)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1086,17 +1067,15 @@ Missing character: There is no P in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
@@ -1141,7 +1120,7 @@ Missing character: There is no 4 in font nullfont!
 Missing character: There is no 3 in font nullfont!
 Missing character: There is no 6 in font nullfont!
 ! Undefined control sequence.
-l.29 ...      & 0.449$^{***}$  & 0.436$^{***}$  \T
+l.28 ...      & 0.449$^{***}$  & 0.436$^{***}$  \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1150,7 +1129,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.29 ...   & 0.449$^{***}$  & 0.436$^{***}$  \T \B
+l.28 ...   & 0.449$^{***}$  & 0.436$^{***}$  \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1215,7 +1194,7 @@ Missing character: There is no 3 in font nullfont!
 Missing character: There is no 6 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.30 ...      & (0.037)        & (0.036)        \T
+l.29 ...      & (0.037)        & (0.036)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1224,7 +1203,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.30 ...   & (0.037)        & (0.036)        \T \B
+l.29 ...   & (0.037)        & (0.036)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1236,17 +1215,15 @@ Missing character: There is no P in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
 Missing character: There is no 3 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
@@ -1289,7 +1266,7 @@ Missing character: There is no 3 in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no 3 in font nullfont!
 ! Undefined control sequence.
-l.31 ...      & 0.325$^{***}$  & 0.343$^{***}$  \T
+l.30 ...      & 0.325$^{***}$  & 0.343$^{***}$  \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1298,7 +1275,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.31 ...   & 0.325$^{***}$  & 0.343$^{***}$  \T \B
+l.30 ...   & 0.325$^{***}$  & 0.343$^{***}$  \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1363,7 +1340,7 @@ Missing character: There is no 8 in font nullfont!
 Missing character: There is no 9 in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
-l.32 ...      & (0.091)        & (0.089)        \T
+l.31 ...      & (0.091)        & (0.089)        \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1372,7 +1349,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.32 ...   & (0.091)        & (0.089)        \T \B
+l.31 ...   & (0.091)        & (0.089)        \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1414,7 +1391,7 @@ Missing character: There is no Y in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.34 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
+l.33 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1423,7 +1400,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.34 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
+l.33 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1469,7 +1446,7 @@ Missing character: There is no Y in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.35 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
+l.34 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1478,7 +1455,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.35 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
+l.34 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1523,7 +1500,7 @@ Missing character: There is no Y in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.36 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
+l.35 ...lumn{1}{c}{-} & \multicolumn{1}{c}{Yes} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1532,7 +1509,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.36 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
+l.35 ...n{1}{c}{-} & \multicolumn{1}{c}{Yes} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1593,7 +1570,7 @@ Missing character: There is no 6 in font nullfont!
 Missing character: There is no 8 in font nullfont!
 Missing character: There is no 2 in font nullfont!
 ! Undefined control sequence.
-l.38 ...   & \multicolumn{1}{c}{2,682}          \T
+l.37 ...   & \multicolumn{1}{c}{2,682}          \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1602,7 +1579,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.38 ...& \multicolumn{1}{c}{2,682}          \T \B
+l.37 ...& \multicolumn{1}{c}{2,682}          \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1660,7 +1637,7 @@ Missing character: There is no 1 in font nullfont!
 Missing character: There is no 7 in font nullfont!
 Missing character: There is no 5 in font nullfont!
 ! Undefined control sequence.
-l.39 ...   & \multicolumn{1}{c}{0.175}          \T
+l.38 ...   & \multicolumn{1}{c}{0.175}          \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1669,7 +1646,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.39 ...& \multicolumn{1}{c}{0.175}          \T \B
+l.38 ...& \multicolumn{1}{c}{0.175}          \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1735,7 +1712,7 @@ Missing character: There is no 6 in font nullfont!
 Missing character: There is no 6 in font nullfont!
 Missing character: There is no 9 in font nullfont!
 ! Undefined control sequence.
-l.40 ...$} & \multicolumn{1}{c}{13.669$^{***}$} \T
+l.39 ...$} & \multicolumn{1}{c}{13.669$^{***}$} \T
                                                    \B \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1744,7 +1721,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ...& \multicolumn{1}{c}{13.669$^{***}$} \T \B
+l.39 ...& \multicolumn{1}{c}{13.669$^{***}$} \T \B
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1753,10 +1730,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\@sharp ->\footnotesize 
-                        {Notes: This table reports the relationship between ...
-l.44 ...$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}}
-                                                   \T\\
+\@sharp ->\scriptsize 
+                      {Notes: This table reports the relationship between th...
+l.43 ...$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}}
+                                                   \T \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2279,8 +2256,8 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...escriptivestatistics' on page \thepage 
                                                   \space undefined\on@line .
-l.44 ...$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}}
-                                                   \T\\
+l.43 ...$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}}
+                                                   \T \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2289,7 +2266,7 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Reference `tab:descriptivestatistics' on page  undefined on inpu
-t line 44.
+t line 43.
 
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -2462,28 +2439,28 @@ Missing character: There is no . in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 44--44
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 43--43
 []
  []
 
 
-Overfull \hbox (12.37503pt too wide) in paragraph at lines 44--44
+Overfull \hbox (12.37503pt too wide) in paragraph at lines 43--43
 []$$\OML/cmm/m/it/10 <$
  []
 
 
-Overfull \hbox (16.47226pt too wide) in paragraph at lines 44--44
+Overfull \hbox (16.47226pt too wide) in paragraph at lines 43--43
 []$$\OML/cmm/m/it/10 <$
  []
 
 
-Overfull \hbox (20.56949pt too wide) in paragraph at lines 44--44
+Overfull \hbox (20.56949pt too wide) in paragraph at lines 43--43
 []$$\OML/cmm/m/it/10 <$| 
  []
 
 ! Undefined control sequence.
-l.44 ...<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}} \T
-                                                  \\
+l.43 ...<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01}} \T
+                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2497,7 +2474,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.46 \end{table}
+l.45 \end{table}
                 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2511,11 +2488,11 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 15 strings out of 492646
- 295 string characters out of 6129564
- 68935 words of memory out of 5000000
- 3999 multiletter control sequences out of 15000+600000
+ 16 strings out of 492646
+ 305 string characters out of 6129564
+ 67037 words of memory out of 5000000
+ 4000 multiletter control sequences out of 15000+600000
  4294 words of font info for 16 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 19i,10n,17p,965b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 19i,10n,17p,964b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

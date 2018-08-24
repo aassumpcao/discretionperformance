@@ -12,8 +12,7 @@ rm(list = ls())
 ################################################################################
 # README:
 #
-# Second go at School Aid Project Analysis produce the analysis you should run
-# this script after all other three have been run.
+#
 #
 ################################################################################
 
@@ -1330,7 +1329,7 @@ discussion.data <- left_join(discussion.left, discussion.right,
 # ggplot call to construct graphs
 discussion.data %>%
   ggplot(aes(y = total.infractions, x = so.year)) +
-    geom_col(color = "grey41") +
+    geom_col(color = "grey33") +
     facet_grid(
       so.type ~ so.procurement,
       labeller = labeller(so.type = c(`1` = "Purchases", `2`= "Works"),
@@ -1353,7 +1352,96 @@ ggsave("01discussionplot.png",
 )
 dev.off()
 
+# Remove unnecessary objects
+rm(list = objects(pattern = "discussion"))
+
 ################################################################################
 # Welfare Effects
 ################################################################################
+# Here we conduct a back of the envelope calculation of the costs and benefits
+# of Law 8,666/93. COSTS: not preventing corruption and mismanagement; BENEFITS:
+# preventing management
+# First we pull bandwidths for all outcomes in purchases and works at cutoff 1
+bandwidth.table <- readRDS("bandwidth.table.Rds")
 
+# Subsetting purchases sample to corruption and mismanagement bandwidths for
+# outcome III (amount potentially lost to corruption)
+welfare.corruption.p <- purchases.data %>%
+  filter(bandwidthRange(so.amount, 8000, unlist(bandwidth.table[1, 3])))
+welfare.mismanagement.p <- purchases.data %>%
+  filter(bandwidthRange(so.amount, 8000, unlist(bandwidth.table[1, 6])))
+
+# Subsetting works sample to corruption and mismanagement bandwidths for
+# outcome III (amount potentially lost to corruption)
+welfare.corruption.w <- works.data %>%
+  filter(bandwidthRange(so.amount, 15000, unlist(bandwidth.table[4, 3])))
+welfare.mismanagement.w <- works.data %>%
+  filter(bandwidthRange(so.amount, 15000, unlist(bandwidth.table[4, 6])))
+
+# Pull average amount potentially lost to corruption and mismanagement
+avg.1 <- as.vector(summary(welfare.corruption.p$corruption.amount))
+avg.2 <- as.vector(summary(welfare.mismanagement.p$mismanagement.amount))
+avg.3 <- as.vector(summary(welfare.corruption.w$corruption.amount))
+avg.4 <- as.vector(summary(welfare.mismanagement.w$mismanagement.amount))
+
+# Create empty table
+welfare.table <- tibble(Cost = rep(NA, 15), Type = rep(NA, 15),
+  `Avg. Loss (in R$)` = rep(NA, 15), `# Obs.` = rep(NA, 15),
+  `Total (in R$)` = rep(NA, 15))
+
+# Fill in table with standard entries
+welfare.table[1:4, 1]   <- rep(c("Corruption", "Mismanagement"), 2)
+welfare.table[1:4, 2]   <- rep(c("Purchases", "Works"), each = 2)
+welfare.table[7, 1]     <- "Benefits"
+welfare.table[8, 1:2]   <- c("Works", "Mismanagement")
+welfare.table[5, 1]     <- "Total Cost"
+welfare.table[9, 1]     <- "Total Benefit"
+welfare.table[11, 1]    <- "Welfare Effect"
+welfare.table[12:15, 1] <- c(
+  "Cost (in R$) in the absence of discretion benefit",
+  "Cost Reduction (in %)",
+  "Works Cost (in R$) in the absence of discretion benefit",
+  "Works Cost Reduction (in %)")
+
+# Fill in with relevant COST statistics
+welfare.table[1, 3:5] <- c(avg.1[4], nrow(welfare.corruption.p),
+  avg.1[4]*nrow(welfare.corruption.p))
+welfare.table[2, 3:5] <- c(avg.2[4], nrow(welfare.mismanagement.p),
+  avg.2[4]*nrow(welfare.mismanagement.p))
+welfare.table[3, 3:5] <- c(avg.3[4], nrow(welfare.corruption.w),
+  avg.3[4]*nrow(welfare.corruption.w))
+welfare.table[4, 3:5] <- c(avg.4[4], nrow(welfare.mismanagement.w),
+  avg.4[4]*nrow(welfare.mismanagement.w))
+welfare.table[5, 5]   <- sum(unlist(lapply(welfare.table[1:4, 5], as.numeric)))
+
+# Fill in with relevant BENEFIT statistics (Mismanagement III, Cutoff)
+welfare.table[8, 3:5] <- c(-4611, nrow(welfare.mismanagement.w),
+  -4611*nrow(welfare.mismanagement.w))
+
+# Fill in with relevant welfare effect statistics
+welfare.table[12, 5] <- sum(unlist(lapply(welfare.table[1:4, 5], as.numeric)),
+                            -as.numeric(welfare.table[8, 5]))
+welfare.table[13, 5] <- abs(welfare.table[8, 5]) / welfare.table[12, 5]
+welfare.table[14, 5] <- sum(unlist(lapply(welfare.table[3:4, 5], as.numeric)),
+                            -as.numeric(welfare.table[8, 5]))
+welfare.table[15, 5] <- abs(welfare.table[8, 5]) / welfare.table[14, 5]
+
+# Format numerical entries in table
+welfare.table[,3]           <- as.integer(unlist(welfare.table[, 3]))
+welfare.table[c(1:12,14),5] <- as.integer(unlist(welfare.table[c(1:12, 14), 5]))
+welfare.table[c(13, 15), 5] <- 100*welfare.table[c(13, 15), 5]
+
+# Produce out table
+welfare.table %>%
+  xtable(caption = "Welfare Effects from Discretion at Cutoff 1",
+         label   = "tab:welfare",
+         align   = "llrrrr"
+  ) %>%
+  print.xtable(type              = "latex",
+               file              = "./article/tab_welfare.tex",
+               table.placement   = "!htbp",
+               caption.placement = "top",
+               size              = "scriptsize",
+               hline.after       = c(rep(-1, 2), 2, 6, 9, 10, 13, rep(15, 2)),
+               include.rownames  = FALSE
+  )

@@ -3,6 +3,8 @@ p.balance.1 %>% unlist() %>% as.tibble(row.names = c(so.statistics, mun.statisti
 
 names(covs)
 
+analysis.data %$% hist(mun.corruption)
+
 
 rm(a, b, discussion.table, discussion.database)
 
@@ -12,130 +14,90 @@ summarize
 ??replace_na
 
 
+# First we pull bandwidths for all outcomes in purchases and works at cutoff 1
+bandwidth.table <- readRDS("bandwidth.table.Rds")
 
-dev.off()
+class(bandwidth.list)
 
+# Subsetting purchases sample to corruption and mismanagement bandwidths for
+# outcome III (amount potentially lost to corruption)
+welfare.corruption.p <- purchases.data %>%
+  filter(bandwidthRange(so.amount, 8000, unlist(bandwidth.table[1, 3])))
+welfare.mismanagement.p <- purchases.data %>%
+  filter(bandwidthRange(so.amount, 8000, unlist(bandwidth.table[1, 6])))
 
-discussion.1
-View(discussion.1)
+# Subsetting works sample to corruption and mismanagement bandwidths for
+# outcome III (amount potentially lost to corruption)
+welfare.corruption.w <- works.data %>%
+  filter(bandwidthRange(so.amount, 15000, unlist(bandwidth.table[4, 3])))
+welfare.mismanagement.w <- works.data %>%
+  filter(bandwidthRange(so.amount, 15000, unlist(bandwidth.table[4, 6])))
 
-covs
+# Pull average amount potentially lost to corruption and mismanagement
+avg.1 <- as.vector(summary(welfare.corruption.p$corruption.amount))
+avg.2 <- as.vector(summary(welfare.mismanagement.p$mismanagement.amount))
+avg.3 <- as.vector(summary(welfare.corruption.w$corruption.amount))
+avg.4 <- as.vector(summary(welfare.mismanagement.w$mismanagement.amount))
 
-analysis.data %$% table(infraction.count)
+# Create empty table
+welfare.table <- tibble(Cost = rep(NA, 15), Type = rep(NA, 15),
+  `Avg. Lost (in R$)` = rep(NA, 15), `# Obs.` = rep(NA, 15),
+  `Total (in R$)` = rep(NA, 15))
 
-names(analysis.data)
+# Fill in table with standard entries
+welfare.table[1:4, 1]     <- rep(c("Corruption", "Mismanagement"), 2)
+welfare.table[1:4, 2]     <- rep(c("Purchases", "Works"), each = 2)
+welfare.table[7, 1]       <- "Benefits"
+welfare.table[8, 1:2]     <- c("Works", "Mismanagement")
+welfare.table[5, 1]       <- "Total Cost"
+welfare.table[9, 1]       <- "Total Benefit"
+welfare.table[11, 1]      <- "Welfare Effect"
+welfare.table[12:15, 1]   <- c("Cost (in R$) in the absence of discretion benefit",
+                               "Cost Reduction (in %)",
+                               "Works Cost (in R$) in the absence of discretion benefit",
+                               "Works Cost Reduction (in %)")
 
-??freq
+# Fill in with relevant COST statistics
+welfare.table[1, 3:5] <- c(avg.1[4], nrow(welfare.corruption.p),
+  avg.1[4]*nrow(welfare.corruption.p))
+welfare.table[2, 3:5] <- c(avg.2[4], nrow(welfare.mismanagement.p),
+  avg.2[4]*nrow(welfare.mismanagement.p))
+welfare.table[3, 3:5] <- c(avg.3[4], nrow(welfare.corruption.w),
+  avg.3[4]*nrow(welfare.corruption.w))
+welfare.table[4, 3:5] <- c(avg.4[4], nrow(welfare.mismanagement.w),
+  avg.4[4]*nrow(welfare.mismanagement.w))
+welfare.table[5, 5]   <- sum(unlist(lapply(welfare.table[1:4, 5], as.numeric)))
 
-?table
+# Fill in with relevant BENEFIT statistics (Mismanagement III, Cutoff)
+welfare.table[8, 3:5] <- c(-4611, nrow(welfare.mismanagement.w),
+  -4611*nrow(welfare.mismanagement.w))
 
-ggplot(analysis.data, aes(y = infraction.count, x = so.year)) +
-  geom_col() +
-  facet_grid(so.type ~ so.procurement)
+# Fill in with relevant welfare effect statistics
+welfare.table[12, 5]  <- sum(unlist(lapply(welfare.table[1:4, 5], as.numeric)),
+                             -as.numeric(welfare.table[8, 5]))
+welfare.table[13, 5]  <- abs(welfare.table[8, 5]) / welfare.table[12, 5]
+welfare.table[14, 5]  <- sum(unlist(lapply(welfare.table[3:4, 5], as.numeric)),
+                             -as.numeric(welfare.table[8, 5]))
+welfare.table[15, 5]  <- abs(welfare.table[8, 5]) / welfare.table[14, 5]
 
-?n()
-?sum
+# Format numerical entries in table
+welfare.table[,3]           <- as.integer(unlist(welfare.table[, 3]))
+welfare.table[c(1:12,14),5] <- as.integer(unlist(welfare.table[c(1:12, 14), 5]))
+welfare.table[c(13, 15), 5] <- 100*welfare.table[c(13, 15), 5]
 
-analysis.data %$% table(audit.end)
-
-?geom
-
-analysis.data %$% table()
-
-str(p.balance.1)
-str(c)
-
-nrow(purchases.cutoff.1["so.procurement" > 0,])
-?collapse
-class(purchases.cutoff.1$so.procurement)
-
-covs
-
-unlist(non.cumulative.mismanagement.4.cutoff.1)$H3
-
-bandwidth.table
-bandwidth.means
-Q
-
-works.cutoff.1 %$% table(so.procurement)
-works.cutoff.2 %$% table(so.procurement)
-works.cutoff.3 %$% table(so.procurement)
-purchases.cutoff.2 %$% table(so.procurement)
-fonts()
-?png
-mm.1
-mm.2
-mm.3
-names(purchases.cutoff.2)
-format(bandwidth.table[4, 4], digits = 5)
-as.integer(bandwidth.table[4, 4])
-
-as.integer(bandwidth.table[4, 6])+1
-
-bandwidth.table[4,4]
-
-rdms
-so.covariates
-
-mm.1 <- 43876
-mm.2 <- 44177
-mm.3 <- 38117
-
-a <- lm(mismanagement.binary ~ factor(so.procurement),
-        data = filter(analysis.data,
-                      so.type == 2 & (so.amount >= 15000 + 43876)
-               )
-     )
-
-summary(a)
-summary(b)
-
-fake.1
-fake.2
-fake.3
-
-a <- filter(analysis.data, so.type != 2)
-b <- a %$%
-
-  rdrobust(y = mismanagement.binary, x = so.amount, c = 15000, p = 1, q = 2,
-    # h = fake.bandwidth[i], b = fake.bandwidth[i],
-    level = 90, cluster = a$ibge.id, all = TRUE
+welfare.table %>%
+  xtable(caption = "Welfare Effects from Discretion at Cutoff 1",
+         label   = "tab:welfare",
+         align   = "llrrrr"
+  ) %>%
+  print.xtable(type              = "latex",
+               file              = "./article/tab_welfare.tex",
+               table.placement   = "!htbp",
+               caption.placement = "top",
+               size              = "scriptsize",
+               hline.after       = c(rep(-1, 2), 2, 6, 9, 10, 13, rep(15, 2)),
+               include.rownames  = FALSE
   )
 
 
-appendix.data %$% table(so.works.bygranttext)
-
-summary(!is.na(falsification.data$so.description))
-
-purchases.cutoff.1 %$% table(!is.na(so.description))
-
-View(falsification.data$so.description)
-names(falsification.data)
-names(appendix.data)
-fake.bandwidth
-?join
-filter(falsification.data, so.type == 0) %$% table(so.procurement)
-
-falsification.data %$% table(so.type)
-
-names(falsification.data)
-
-falsification.data %$% View(so.amount)
-rm(obj)
-?rename
-x <- fake.3
-fake.label
-unlist(fake.3$b)
-
-names(appendix.data)
-names(irregularities.cgu)
-names(analysis.data)
-names(falsification.data)
-left_join(irregularities.cgu, so.data.tagged, by = c("so.id" = "soID"))
-
-?join
-
-names()
-fake.1
-fake.2
-fake.3
+?xtable

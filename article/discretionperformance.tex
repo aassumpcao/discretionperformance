@@ -252,7 +252,7 @@ As discussed previously, a main challenge in this project is strictly matching e
 \begin{equation} \label{eq:late}
   \rho = \frac{E[y_{i}|l_{i}(x)=1]-E[y_{i}|l_{i}(x)=0]}{E[s_{i}(x)|l_{i}(x)=1]-E[s_{i}(x)|l_{i}(x)=0]} = \frac{E[y_{i}|l_{i}(x)=1]-E[y_{i}|l_{i}(x)=0]}{1-E[s_{i}(x)|l_{i}(x)=0]}
 \end{equation}
-Where $y$ is the outcome of interest, $l$ is the assumed procurement category, and $s$ is the actual procurement category for transfer $i$. Since we assume the second term to be zero in equation (\ref{eq:late}), knowing the actual procurement category $s$ can only turn zeros into ones, therefore increasing the magnitude of parameter $\rho$.} We are effectively estimating a \emph{fuzzy} RD as \emph{sharp}. As fuzzy designs are subject to manipulation of treatment category, meaning public officials would try to move down a category to avoid stricter procurement rules, we run the \citet{McCraryManipulationrunningvariable2008} tests for each discretion cutoff in Law 8,666/93. They are reported in appendix \ref{sec:appendixC}, where we see no signs of significant manipulation, thus validating the identification strategy adopted here.
+Where $y$ is the outcome of interest, $l$ is the assumed procurement category, and $s$ is the actual procurement category for transfer $i$. Since we assume the second term to be zero in equation (\ref{eq:late}), knowing the actual procurement category $s$ can only turn zeros into ones, therefore increasing the magnitude of parameter $\rho$.} We are effectively estimating a \emph{fuzzy} RD as \emph{sharp}. As fuzzy designs are subject to manipulation of treatment category, meaning public officials would try to move down a category to avoid stricter procurement rules, we run the \citet{McCraryManipulationrunningvariable2008} tests for each discretion cutoff in Law 8,666/93. They are reported in appendix \ref{sec:appendixC}, where we see no signs of significant manipulation for five of the six cutoffs, thus validating the identification strategy adopted here.
 
 \subsection{Estimating Equations} \label{subsec:equations}
 
@@ -280,13 +280,30 @@ Law 8,666/93 has two additional features that require the design extensively dis
 
 In addition, the discretion categories are cumulative within each procurement type. There are different versions of treatment for different ranges of procurement amount. Thus, we cannot rule out that assignment scores (i.e. the monetary amount in each procurement call) could be related to potential outcomes. What is reassuring, however, is that the solutions to multi-cutoff RD limitations proposed by \citet{CattaneoInterpretingRegressionDiscontinuity2016} can all be implemented here: we estimate treatment effects both for pooled and independent cutoff samples, both across (multiple non-cumulative cutoffs) and within (multiple cumulative cutoffs) procurement type. Our results remain unchanged in each specification.
 
-\newpage
-
 \section{Results} \label{sec:result}
 
+In section \ref{sec:theory}, we proposed that government performance in Brazil, measured by corruption and mismanagement indicators, is a function of procurement rules, the monetary amount of procurement calls and the municipal level of corruption. Thus, the first test in table \ref{tab:mainregression} verifies whether this formulation accurately represents local government performance in Brazil.
+
+The main outcomes in table \ref{tab:mainregression} are corruption and mismanagement indicator I. They report the likelihood that any single federal transfer, investigated by individual CGU service orders, will have at least one evidence of corruption (columns 1-4) or mismanagement (columns 5-8) of public resources. In this first iteration, we run regressions broken down by procurement type (purchases and works) and alternate the inclusion of municipal covariates, ministry, and CGU audit lottery fixed-effects (as described in section \ref{sec:methodology}) for robustness checks.
+
+Contrary to expected, the effect of procurement amount is not consistent nor larger (in cases where statistically significant). Across the first row, we notice that procurement call amount only has a positive and statistically significant (\emph{p}-value $<$ .01) correlation with corruption in public purchases and mismanagement of public works resources. The second-order effect, measuring the decreasing rate at which call amount correlates with, has the expected sign (negative) but is again very small and inconsistent across different regression specifications.
+\clearpage
 \input{tab_mainregression1}
 
+Although they do not describe causal relationships, the parameters in rows one and two in table \ref{tab:mainregression} suggest that procurement amount is not an important factor in official's decision whether to pocket appropriate resources or use them inefficiently. Indeed, the very fact that amounts determining procurement rules had not been adjusted between 1998 and the time for which we have transfer records (2004-2010) lends support to this finding (we also discuss this more comprehensively when presenting the results for the RD estimations).
+
+The municipal corruption parameters confirm it as an important determinant of government performance (as expected). An increase of 1 percentage point in municipal corruption is associated with a increase of 0.766 and 0.974 percentage points, respectively, in the likelihood of finding corruption in federal transfers used for goods/services and public works procurement processes (parameters in columns 2 and 4, where we additionally control for municipal, ministry and audit effects). The effect is smaller for program management issues at 0.440 and .428 percentage points for each procurement type. Except for model (8), which is statistically significant at 5\%, all other municipal corruption effects are significant at the 1\% level. In addition to confirming the sign of first derivatives of performance with respect to overall municipal corruption, we also confirm the direction of second derivatives; across all models, the corruption effect increases at decreasing rates, with magnitudes ranging from 2 percentage points (column 6) to 1.4 percentage points (column 1).
+
+The municipal corruption effect here has a similar nature to the effect documented by \citet{ChongDoesCorruptionInformation2015}, in which voters adjust their corruption punishment in response to whether the challenger candidate is herself dishonest, or \citet{FinanGovernmentAuditsReduce2018}, who document lower municipal corruption when mayors learn of audits in neighboring municipalities. These studies, along with ours, are suggesting that corruption outcomes are also conditional on whether peers, or neighbors, also engage in corruption.
+
+Mostly important, we are interested in the relationship between procurement categories and performance outcomes. Except for columns (5) and (6), procurement category one is positively and statistically correlated with corruption and mismanagement. Switching over to a set of less discretionary rules is associated with increasing corruption and mismanagement; the effect generally persists over in categories two and three (except for category three effect on corruption for the works subsample). Though the effect is contrary to the proposition in section \ref{sec:theory}, what we are capturing here is the most general relationship between these categories and the performance outcomes. Since these categories are directly linked to procurement amounts, we cannot uncover partial effects without additional treatment for collinearity.
+
+Besides testing the relationship between the Brazil-specific performance determinants, a final check before moving over to the RD estimates is whether officials are not manipulating procurement amounts to avoid less discretionary spending rules. If this is the case, then the assignment to treatment is not random across cutoffs and thus prevents causal inference using the local average treatment effect framework. The manipulation tests in Appendix \ref{sec:appendixC} lead us to drop cutoff 3 for the purchases subsample from the analysis since its densities are statistically different across the amount cutoff (\emph{p}-value $<$ .10).
+
 \input{tab_bandwidth1}
+
+
+
 
 \input{tab_covariates1}
 
@@ -368,6 +385,7 @@ In addition, the discretion categories are cumulative within each procurement ty
 
 \subsection{Cost-benefit Analysis} \label{subsec:cba}
 
+\input{tab_welfare1}
 
 \setlength\bibsep{0pt}
 \bibliographystyle{apalike}
@@ -566,14 +584,14 @@ Although no text analysis mechanism is perfect, the evidence presented here supp
 
 \section{Service Amount Manipulation}\label{sec:appendixC}
 
-The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any of the three discretion thresholds, which are uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on performance. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of the running variable for all six cutoffs in the Brazilian procurement legislation, which show no significant difference between service order density just below and above discretion cutoffs imposed by Law 8,666/93.
+The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any of the three discretion thresholds, which are uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on performance. We present below the \citet{McCraryManipulationrunningvariable2008} test for manipulation of the running variable for all six cutoffs in the Brazilian procurement legislation, which show no significant difference between service order density just below and above five of the six discretion cutoffs imposed by Law 8,666/93. The only discontinuity for which variables do not seem comparable is purchases cutoff 3, which we drop from the analysis in sections \ref{sec:methodology} and \ref{sec:result}.
 
-\begin{figure}[!htbp]
-  \caption{\label{fig:manipulationtests} Manipulation Tests at SO Amounts} \centering
+\begin{figure}[!htbp] \centering
+  \caption{\label{fig:manipulationtests} Manipulation Tests at SO Cutoff Amounts}
   \begin{tabular}{cc}
-  \includegraphics[scale=.35]{purchasesmanipulation1} & \includegraphics[scale=.35]{worksmanipulation1} \\
-  \includegraphics[scale=.35]{purchasesmanipulation2} & \includegraphics[scale=.35]{worksmanipulation2} \\
-  \includegraphics[scale=.35]{purchasesmanipulation3} & \includegraphics[scale=.35]{worksmanipulation3} \\
+  \includegraphics[scale=.24]{purchasesmanipulation1} & \includegraphics[scale=.24]{worksmanipulation1} \\
+  \includegraphics[scale=.24]{purchasesmanipulation2} & \includegraphics[scale=.24]{worksmanipulation2} \\
+  \includegraphics[scale=.24]{purchasesmanipulation3} & \includegraphics[scale=.24]{worksmanipulation3} \\
   \end{tabular}
 \end{figure}
 
