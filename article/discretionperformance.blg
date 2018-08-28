@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: discretionperformance.aux
 The style file: apalike.bst
 Database file #1: /Users/aassumpcao/library.bib
-You've used 30 entries,
+You've used 31 entries,
             1935 wiz_defined-function locations,
-            671 strings with 10252 characters,
-and the built_in function-call counts, 11245 in all, are:
-= -- 1093
-> -- 395
+            676 strings with 10512 characters,
+and the built_in function-call counts, 11612 in all, are:
+= -- 1126
+> -- 418
 < -- 20
-+ -- 136
-- -- 126
-* -- 954
-:= -- 1982
-add.period$ -- 90
-call.type$ -- 30
-change.case$ -- 212
-chr.to.int$ -- 30
-cite$ -- 30
-duplicate$ -- 415
-empty$ -- 832
-format.name$ -- 176
-if$ -- 2209
++ -- 144
+- -- 134
+* -- 985
+:= -- 2052
+add.period$ -- 93
+call.type$ -- 31
+change.case$ -- 221
+chr.to.int$ -- 31
+cite$ -- 31
+duplicate$ -- 428
+empty$ -- 852
+format.name$ -- 185
+if$ -- 2276
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 31
-newline$ -- 153
-num.names$ -- 90
-pop$ -- 148
+missing$ -- 32
+newline$ -- 158
+num.names$ -- 93
+pop$ -- 157
 preamble$ -- 1
-purify$ -- 213
+purify$ -- 222
 quote$ -- 0
-skip$ -- 320
+skip$ -- 330
 stack$ -- 0
-substring$ -- 880
-swap$ -- 30
+substring$ -- 892
+swap$ -- 31
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 178
+type$ -- 184
 warning$ -- 0
-while$ -- 84
+while$ -- 86
 width$ -- 0
-write$ -- 386
+write$ -- 398

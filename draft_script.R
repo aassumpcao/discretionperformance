@@ -12,9 +12,41 @@ rm(a, b, discussion.table, discussion.database)
 
 class(covs$model.1)
 
+purchases.cutoff.1 %$% table(so.procurement)
+
+bandwidth.table
+bandwidth.means
+
+bandwidth.min
+bandwidth.max
+bandwidth.avg
+
+covs
+data.table::transpose(bandwidth.table[1:6,c(1,4)])
+
+bandwidth.means <- map(as.list(bandwidth.table[1:6,]), data.table::transpose)
+
+as.list(bandwidth.table[1:6,])
+
+data.table::transpose(bandwidth.table[1:6,])
+
+as.character(sample.size)
+
+names(purchases.cutoff.1)
+
+analysis.data %$% table(so.procurement)
+
+covs
+
 summarize
 ??replace_na
+106+292
+(43876+44177+38117)/3
 
+w.balance.1
+names(purchases.cutoff.1)
+Q
+mun.statistics
 
 # First we pull bandwidths for all outcomes in purchases and works at cutoff 1
 bandwidth.table <- readRDS("bandwidth.table.Rds")
