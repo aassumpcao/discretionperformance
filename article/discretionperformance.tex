@@ -300,11 +300,11 @@ Mostly important, we are interested in the relationship between procurement cate
 
 Besides testing the relationship between the Brazil-specific performance determinants, a final check before moving over to the RD estimates is whether officials are not manipulating procurement amounts to avoid less discretionary spending rules. If this is the case, then the assignment to treatment is not random across cutoffs and thus prevents causal inference using the local average treatment effect framework. The manipulation tests in Appendix \ref{sec:appendixC} lead us to drop cutoff 3 for the purchases subsample from the analysis since its densities are statistically different across the amount cutoff (\emph{p}-value $<$ .10).
 
+Since our analysis spans over different procurement units (purchases and works), multiple cutoffs (three) and outcomes (three each for corruption and mismanagement), we calculate a total of 36 data-driven, optimal bandwidth sizes ($2 \times 3 \times 6 = 36$) for each unique combination type-category-outcome using the strategy developed by \citet{CalonicoOptimalDataDrivenRegression2015}. The bandwidths are reported in table \ref{tab:cctbandwidth}. Although these sample sizes are calculated independently and could generate samples of federal transfers that span over multiple cutoffs, the only place where we see this is works cutoff 3 and corruption outcome I; we chose not to drop it from the analysis just yet, but acknowledge it as a sign that smaller bandwidths around works cutoff 3 are likely not large enough to identify the effect of discretion on performance at that level. In addition, we do provide evidence for our discretion parameters with changing bandwidths after the initial \citet{CalonicoOptimalDataDrivenRegression2015} evidence for robustness checks.
+\clearpage
 \input{tab_bandwidth1}
 
-
-
-
+The main RD estimations are reported in table \ref{tab:rdmc}, where we are looking at one equation per cell, i.e. a total of $(1 \times 3) + (1 \times 2) \times 6 = 30$ regressions.\footnote{Since we dropped cutoff 3 for the purchases group, we are effectively dropping an entire 6-outcome row from table \ref{tab:cctbandwidth} when estimating our model.} In each cell, we are regressing the outcome on the table column against the procurement category variable as defined in table \ref{tab:procurementtypes}. Point estimates are the main statistics reported, followed by clustered (at the municipal level) robust standard errors in the first parentheses and sample sizes at each bandwidth in the second parentheses. These regressions do not include covariates nor fixed-effects but the results are robust to their inclusion.\footnote{We have include all covariates and fixed-effects in regressions omitted from the text and the points estimates remain unchanged.}
 \input{tab_covariates1}
 
 \input{tab_rdmc1}

@@ -3,6 +3,8 @@ p.balance.1 %>% unlist() %>% as.tibble(row.names = c(so.statistics, mun.statisti
 
 names(covs)
 
+?rdmc
+mun.covariates
 analysis.data %$% hist(mun.corruption)
 
 

@@ -614,20 +614,28 @@ bandwidth.table %>%
 ################################################################################
 # Covariate Balance
 ################################################################################
-# Define purchase and works bandwidths as the average across corruption and
-# mismanagement bandwidths from call to rmds() in main analysis script
-bandwidth.means <- map(data.table::transpose(bandwidth.table[1:6,]), mean)
+# Define purchase and works bandwidths for covariate balance test as the minimum
+# bandwidth across corruption and mismanagement outcome I from call to rmds().
+# The reason for minimum, instead of the average, bandwidth is that it is the
+# most restrictive test for covariate balance.
+bandwidth.test <- map(data.table::transpose(bandwidth.table[1:6, c(1,4)]), min)
+# bandwidth.test <- map(data.table::transpose(bandwidth.table[1:6,c(1,4)]),max)
+# bandwidth.test <- map(data.table::transpose(bandwidth.table[1:6,c(1,4)]),mean)
 
 # Subset sample for corruption cutoff 1
 purchases.cutoff.1 <- analysis.data %>%
   mutate(so.amount = case_when(so.type != 2 ~ so.amount - 8000)) %>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V1))
+  filter(bandwidthRange(so.amount, 0, bandwidth.test$V1)) %>%
+  group_by(ibge.id, so.procurement) %>%
+  summarize_at(vars(mun.statistics), mean)
 
 # Subset sample for corruption cutoff 2
 purchases.cutoff.2 <- analysis.data %>%
   mutate(so.amount = case_when(so.type != 2 ~ so.amount - 80000)) %>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V2)) %>%
-  filter(so.procurement != 0)
+  filter(bandwidthRange(so.amount, 0, bandwidth.test$V2)) %>%
+  filter(so.procurement != 0) %>%
+  group_by(ibge.id, so.procurement) %>%
+  summarize_at(vars(mun.statistics), mean)
 
 # Subset sample for corruption cutoff 3
 #   Strong evidence of manipulation (McCrary(2008) test)
@@ -635,64 +643,65 @@ purchases.cutoff.2 <- analysis.data %>%
 # Subset sample for mismanagement cutoff 1
 works.cutoff.1 <- analysis.data %>%
   mutate(so.amount = case_when(so.type == 2 ~ so.amount - 15000)) %>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V4))
+  filter(bandwidthRange(so.amount, 0, bandwidth.test$V4)) %>%
+  group_by(ibge.id, so.procurement) %>%
+  summarize_at(vars(mun.statistics), mean)
 
 # Subset sample for mismanagement cutoff 2
 works.cutoff.2 <- analysis.data %>%
   mutate(so.amount = case_when(so.type == 2 ~ so.amount - 150000)) %>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V5))
+  filter(bandwidthRange(so.amount, 0, bandwidth.test$V5)) %>%
+  group_by(ibge.id, so.procurement) %>%
+  summarize_at(vars(mun.statistics), mean)
 
 # Subset sample for mismanagement cutoff 3
 works.cutoff.3 <- analysis.data %>%
   mutate(so.amount = case_when(so.type == 2 ~ so.amount - 1500000))%>%
-  filter(bandwidthRange(so.amount, 0, bandwidth.means$V6))
+  filter(bandwidthRange(so.amount, 0, bandwidth.test$V6)) %>%
+  group_by(ibge.id, so.procurement) %>%
+  summarize_at(vars(mun.statistics), mean)
 
 # Perform multiple t-test and store everything back into each vector
 # Purchases 1
-p.balance.1 <- lapply(purchases.cutoff.1[,c(so.statistics, mun.statistics)],
-                      multiple_ttest,
+p.balance.1 <- lapply(purchases.cutoff.1[, mun.statistics], multiple_ttest,
                       df = purchases.cutoff.1) %>%
-              {lapply(c(so.statistics, mun.statistics),
+              {lapply(mun.statistics,
                       function(x){x <- c(.[[x]][["p.value"]]
                                          # .[[x]][["estimate"]][1],
                                          # .[[x]][["estimate"]][2]
-                                         )})}
+                                       )})}
 # Purchases 2
-p.balance.2 <- lapply(purchases.cutoff.2[,c(so.statistics, mun.statistics)],
-                      multiple_ttest,
+p.balance.2 <- lapply(purchases.cutoff.2[, mun.statistics], multiple_ttest,
                       df = purchases.cutoff.2) %>%
-              {lapply(c(so.statistics, mun.statistics),
+              {lapply(mun.statistics,
                       function(x){x <- c(.[[x]][["p.value"]]
                                          # .[[x]][["estimate"]][1],
                                          # .[[x]][["estimate"]][2]
-                                         )})}
+                                       )})}
 # Works 1
-w.balance.1 <- lapply(works.cutoff.1[,c(so.statistics, mun.statistics)],
-                      multiple_ttest,
+w.balance.1 <- lapply(works.cutoff.1[, mun.statistics], multiple_ttest,
                       df = works.cutoff.1) %>%
-              {lapply(c(so.statistics, mun.statistics),
+              {lapply(mun.statistics,
                       function(x){x <- c(.[[x]][["p.value"]]
                                          # .[[x]][["estimate"]][1],
                                          # .[[x]][["estimate"]][2]
-                                         )})}
+                                       )})}
 # Works 2
-w.balance.2 <- lapply(works.cutoff.2[,c(so.statistics, mun.statistics)],
-                      multiple_ttest,
+w.balance.2 <- lapply(works.cutoff.2[, mun.statistics], multiple_ttest,
                       df = works.cutoff.2) %>%
-              {lapply(c(so.statistics, mun.statistics),
+              {lapply(mun.statistics,
                       function(x){x <- c(.[[x]][["p.value"]]
                                          # .[[x]][["estimate"]][1],
                                          # .[[x]][["estimate"]][2]
-                                         )})}
+                                       )})}
 # Works 3
-w.balance.3 <- lapply(works.cutoff.3[,c(so.statistics, mun.statistics)],
-                      multiple_ttest,
+w.balance.3 <- lapply(works.cutoff.3[, mun.statistics], multiple_ttest,
                       df = works.cutoff.3) %>%
-              {lapply(c(so.statistics, mun.statistics),
+              {lapply(mun.statistics,
                       function(x){x <- c(.[[x]][["p.value"]]
                                          # .[[x]][["estimate"]][1],
                                          # .[[x]][["estimate"]][2]
-                                         )})}
+                                       )})}
 
 # Compute number of observations for last row in table
 model1.sample <- as.vector(purchases.cutoff.1 %$% table(so.procurement)) %>%
@@ -710,12 +719,12 @@ sample.size   <- c("Sample Size:", model1.sample, model2.sample, model3.sample,
 # Create table
 covs <- c(p.balance.1, p.balance.2, w.balance.1, w.balance.2, w.balance.3) %>%
         unlist() %>%
-        cbind(sort(rep(paste("model", 1:5), 21))) %>%
+        cbind(sort(rep(paste("model", 1:5), 13))) %>%
         as.tibble() %>%
         unstack(`.` ~ V1) %>%
         mutate_all(funs(as.double)) %>%
         mutate_all(funs(sprintf("%0.3f", .))) %>%
-        cbind(c(so.statistics.labels, mun.statistics.labels)) %>%
+        cbind(mun.statistics.labels) %>%
         select(6, c(1:5)) %>%
         rbind(sample.size)
 
@@ -731,7 +740,7 @@ covs %>%
                table.placement   = "!htbp",
                caption.placement = "top",
                size              = "scriptsize",
-               hline.after       = c(rep(-1, 2), 0, 8, 21, rep(22, 2)),
+               hline.after       = c(rep(-1, 2), 0, 13, rep(14, 2)),
                include.rownames  = FALSE
   )
 
