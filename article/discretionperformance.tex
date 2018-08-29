@@ -320,17 +320,20 @@ Policy implication, however, differ. The immediate consequence is weak support f
 
 We turn to columns 3-6 in table \ref{tab:rdmc}, where we report government performance as program management mistakes. The outcomes are parallel to those of corruption and summarize the likelihood any transfer will have evidence of management problems (outcome I), the share of total problems due to mismanagement (outcome II), and the amount of money potentially lost to poor resource management (outcome III). In the purchases group, the only significant effect is on category two, i.e. moving over from invitational to price comparison bidding, which reduces the likelihood of mismanagement by 10 percentage points.
 
-In addition, the most consistent and strongest effect is that of moving from direct contracting to invitational bidding when municipalities are procuring goods and services for public works. A shift in discretion causes a 41.6 percentage point reduction in the likelihood that there will be program implementation issues (outcome I), a 29.1 percentage point fall in the share of management-related problems (outcome II), and R\$4,611 reduction in the amount of resources that would have been lost due to poor program management (outcome III). These effects are robust to the inclusion of covariates and changing bandwidths (as discussed in section \ref{subsec:discussion}). Thus, at least at cutoff 1, we can confirm hypothesis 2 that stricter procurement rules reduce corruption when it comes to calls for goods and services used in public works projects.
+In addition, the most consistent and strongest effect is that of moving from direct contracting to invitational bidding when municipalities are procuring goods and services for public works. A shift in discretion causes a 41.6 percentage point reduction in the likelihood that there will be program implementation issues (outcome I), a 29.1 percentage point fall in the share of management-related problems (outcome II), and R\$4,611 reduction in the amount of resources that would have been lost due to poor program management (outcome III). These effects are robust to the inclusion of covariates and changing bandwidths (as discussed in section \ref{subsec:discussion}). Thus, at least at cutoff 1, we can confirm hypothesis 2 that stricter procurement rules reduce corruption when it comes to calls for goods and services used in public works projects. This indirect effect of discretion in public spending is an important determinant for citizens' support for the Brazilian procurement law. As discussed in section \ref{subsec:hypotheses}, citizens are more likely to support any corruption legislation if there are additional benefits that prevent inefficient allocations of public resources and increase or improve the provisions of public policies. We investigate this effect further in remainder of this section and paper.
 
+ In figure \ref{fig:workscutoff1}, we plot the local polynomial regressions for works cutoff 1 for all outcomes. These figures are the graphical representations of the regression equations for works cutoff 1 using the mismanagement outcomes as dependent variables.
 
-\begin{table}[!htbp]
-  \caption{\label{tab:workscutoff1} Discretion Effect on Mismanagement (Works Cutoff 1)}
+\begin{figure}[!htbp]
+  \caption{\label{fig:workscutoff1} Discretion Effect on Mismanagement (Works Cutoff 1)}
   \centering
   \begin{tabular}{ccc}
   \includegraphics[scale = .265]{workscutoff1.png} & \includegraphics[scale = .265]{workscutoff2.png} & \includegraphics[scale = .265]{workscutoff3.png} \\
-  \multicolumn{3}{p{\textwidth}}{\scriptsize Note: The three figures in table \ref{tab:workscutoff1} report the minimum local causal effect of discretion (as a change in procurement rules from direct contracting to invitational bidding) on the three mismanagement outcomes. They plot the regression equations at the bandwidths specified in \ref{tab:cctbandwidth}, which are R\$43,876, R\$44,177, and R\$38,117 respectively for mismanagement outcomes I through III when the federal transfer was used to procure goods or services used in public works.}
+  \multicolumn{3}{p{\textwidth}}{\scriptsize Note: The three figures in figure \ref{fig:workscutoff1} report the minimum local causal effect of discretion (as a change in procurement rules from direct contracting to invitational bidding) on the three mismanagement outcomes. They plot the regression equations at the bandwidths specified in table \ref{tab:cctbandwidth} for mismanagement outcomes I through III when the federal transfer was used to procure goods or services used in public works. We also include 90\% confidence intervals in horizontal bars for each RD bin.}
   \end{tabular}
-\end{table}
+\end{figure}
+
+Each graph uses the standard \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths, a two-order polynomial fit for local estimating equations, and clustered-robust standard errors. We center the assignment variable (transfer amount) around zero, so all \emph{x} values are differences (in R\$) from the first cutoff for works at R\$15,000. We see statistically significant breaks in outcome means close to the cutoff for all three variables. For outcomes I and II, mismanagement increases at decreasing rates for observations further out to right, as the amount procured increases. The graphs for these two variables are similar, but they are complementary measures of performance. While outcome I summarizes the likelihood that any transfer sees mismanagement problems, outcome II looks at the share of all issues that are attributable to mismanagement \emph{conditional on finding any mismanagement problem}. Finally, the last outcome summarizes the amount potentially lost to corruption by multiplying outcome II and the transfer amount. The relatively large magnitude of this parameter (R\$4,611 in a R\$15,000 cutoff) means that the procurement legislation is preventing a large amount from being inefficiently applied.
 
 \begin{figure}[!htbp]
   \caption{\label{fig:bandwidths} Discretion Point Estimates (Works SOs at Cutoff 1)}
@@ -338,18 +341,25 @@ In addition, the most consistent and strongest effect is that of moving from dir
   \small
   \begin{tabular}{c}
   \emph{Panel A: Mismanagement Binary} \\
-  \includegraphics[scale = .15]{mismanagementplot1} \\
+  \includegraphics[scale = .14]{mismanagementplot1} \\
   \emph{Panel B: Mismanagement Share} \\
-  \includegraphics[scale = .15]{mismanagementplot2} \\
+  \includegraphics[scale = .14]{mismanagementplot2} \\
   \emph{Panel C: Mismanagement Amount} \\
-  \includegraphics[scale = .15]{mismanagementplot3} \\
+  \includegraphics[scale = .14]{mismanagementplot3} \\
   \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
   \end{tabular}
 \end{figure}
 
-\newpage
+To further check the validity of our parameter estimates, we conduct a last test on the magnitude and significance of our discretion parameters for the works subsample at cutoff 1. In figure \ref{fig:bandwidths}, we use smaller bandwidths at which we calculate our lower-bounded LATE starting from the \citet{CalonicoOptimalDataDrivenRegression2015} all the way down until we reach R\$5,000 away from the cutoff on both sides. The point estimates are in the \emph{y}-axis while the \emph{x}-axis reports bandwidth and sample size. The point estimates are statistically different from zero for outcome I in seven out of nine bandwidths and six out of nine for outcomes II and III. The insignificant estimates at the smaller bandwidth are telling of the trade-off between significance and sample size in RD strategies. Were the samples larger, we would have seen the significant effect persist across all bandwidth sizes. Nevertheless, we propose two falsification tests in section \ref{subsec:discussion} which serve as additional evidence supporting the significant reduction of management problems when public officials have less freedom to allocate public resources (as measure by lower discretion in the procurement of goods and services for public works projects).
 
 \subsection{Falsification Tests} \label{subsec:discussion}
+
+In order to confirm the discretion effect reducing public works program management is not spurious nor due to random chance, we perform two additional tests on our sample of federal transfers.
+
+The first test we conduct is mistakenly imposing the public works cutoff 1 on  purchases group observations. As a reminder, there are two types of procurement in Brazil: what we call \emph{purchases}, which consist of any purchase of goods and services, and \emph{public works}, which consist of purchases of goods and services to be used solely on public works projects. Since every public work requires procurement of any sort, the works group is a subsample of the overarching procurement of any good or service. If there is any significant effect of discretion at a falsified cutoff, then there is reason to believe the effect we identified is either spurious or random, therefore meaning that procurement restrictions have no improving effect on program management.
+
+Similarly to figure \ref{fig:bandwidths}, we plot point estimates and 90\% confidence intervals for falsified cutoffs in figure \ref{fig:01falsification}. In these graphs, we are only using observations from the purchases subsample and running the exact same regressions as in sections \ref{sec:methodology} and \ref{sec:result} with two-order polynomial fits, clustered-robust standard errors, and the same varying bandwidths as in the works-only sample. Contrary to figure \ref{fig:bandwidths}, however, the optimal CCT bandwidth does not identify the largest possible sample, so we move from the same largest to smallest bandwidths as before.
+\clearpage
 
 \begin{figure}[!htbp]
   \caption{Discretion Point Estimates (Purchases SOs at Works Cutoff 1)}
@@ -358,14 +368,20 @@ In addition, the most consistent and strongest effect is that of moving from dir
   \small
   \begin{tabular}{c}
   \emph{Panel A: Mismanagement Binary} \\
-  \includegraphics[scale = .15]{01falsificationplot1} \\
+  \includegraphics[scale = .14]{01falsificationplot1} \\
   \emph{Panel B: Mismanagement Share} \\
-  \includegraphics[scale = .15]{01falsificationplot2} \\
+  \includegraphics[scale = .14]{01falsificationplot2} \\
   \emph{Panel C: Mismanagement Amount} \\
-  \includegraphics[scale = .15]{01falsificationplot3} \\
+  \includegraphics[scale = .14]{01falsificationplot3} \\
   \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using purchases SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
   \end{tabular}
 \end{figure}
+
+There are no significant results across all panels at 90\% confidence intervals. Even with larger samples, there is no effect of the falsified cutoff on the likelihood of finding mismanagement, nor on the share of irregularities due to management problems, nor the amount potentially lost to resource misallocation. This is an important result supporting the evidence that the effect of discretion on mismanagement of public works projects is, in fact, non-random. Moreover, the point estimates are either close to zero or positive, which is opposite to the expected result in hypothesis 2 and confirmed in table \ref{tab:rdmc}.
+
+An additional source of concern might be on the relationship between procurement legislation and program implementation. If procurement calls are carried out once for contracting the provision of goods and services, and their rules aim at preventing corruption, there is no direct link between imposing such rules and seeing better program implementation that occurs only after procurement has ended. We posited, however, that the work that goes into abiding by procurement rules also spread over better resource management practices, such as speedy procurement processes, that result in better program delivery. Quality and quantity requirements, delivery times, and the duration of contract for provision of goods and services are other factors included in procurement calls that can also improve public management. Therefore, there is a non-trivial benefit of restricting discretion on resource allocation.
+
+The second falsification test investigates this relationship. In figure \ref{fig:02falsification}, we once again run the exact same regressions from sections \ref{sec:methodology} and \ref{sec:result} at varying bandwidths for the sample of \emph{non-procurement} federal transfers. This is a sample composed of 4,925 investigations (SOs) conducted by CGU auditors that were not identified as procurement because they met at least one of these criteria: (i) they was no textual description on what their intented use was; (ii) no monetary amount reported by the auditor; (iii) the classification algorithm did not assign the investigation to any group.
 
 \begin{figure}[!htbp]
   \caption{Discretion Point Estimates (Non-Procurement SOs at Works Cutoff 1)}
@@ -374,11 +390,11 @@ In addition, the most consistent and strongest effect is that of moving from dir
   \small
   \begin{tabular}{c}
   \emph{Panel A: Mismanagement Binary} \\
-  \includegraphics[scale = .15]{02falsificationplot1} \\
+  \includegraphics[scale = .14]{02falsificationplot1} \\
   \emph{Panel B: Mismanagement Share} \\
-  \includegraphics[scale = .15]{02falsificationplot2} \\
+  \includegraphics[scale = .14]{02falsificationplot2} \\
   \emph{Panel C: Mismanagement Amount} \\
-  \includegraphics[scale = .15]{02falsificationplot3} \\
+  \includegraphics[scale = .14]{02falsificationplot3} \\
   \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using non-procurement SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
   \end{tabular}
 \end{figure}

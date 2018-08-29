@@ -1,11 +1,11 @@
 ###########################################################################
 ## RDROBUST R Package
 ## Do-file for Empirical Illustration
-## Authors: Sebastian Calonico, Matias D. Cattaneo, Max H. Farrell and Rocio Titiunik 
+## Authors: Sebastian Calonico, Matias D. Cattaneo, Max H. Farrell and Rocio Titiunik
 ###########################################################################
 ### Clear R environment
 rm(list=ls(all=TRUE))
-setwd("C:/Users/scalonico/Dropbox/2018/rdrobust/R")
+setwd(".")
 
 ### Install R library
 ### NOTE: depending on your system, you may need to do it as root
@@ -22,24 +22,24 @@ attach(rdrobust_senate)
 summary(rdrobust_senate)
 
 ### rdplot with 95% confidence intervals
-rdplot(y=vote, x=margin, binselect="es", ci=95, 
-         title="RD Plot: U.S. Senate Election Data", 
+rdplot(y=vote, x=margin, binselect="es", ci=90, shade = TRUE,
+         title="RD Plot: U.S. Senate Election Data",
          y.label="Vote Share in Election at time t+2",
          x.label="Vote Share in Election at time t")
 
 ### rdplot with MSE-optimal choice
-rdplot(y=vote, x=margin, binselect="es", 
-       title="RD Plot: U.S. Senate Election Data", 
+rdplot(y=vote, x=margin, binselect="es",
+       title="RD Plot: U.S. Senate Election Data",
        y.label="Vote Share in Election at time t+2",
        x.label="Vote Share in Election at time t")
 
 ### rdplot with QS partitioning and mimicking variance choice
-rdplot(y=vote, x=margin, binselect="qsmv", 
-       title="RD Plot: U.S. Senate Election Data", 
+rdplot(y=vote, x=margin, binselect="qsmv",
+       title="RD Plot: U.S. Senate Election Data",
        y.label="Vote Share in Election at time t+2",
        x.label="Vote Share in Election at time t")
 
-### rdrobust 
+### rdrobust
 summary(rdrobust(y=vote, x=margin))
 
 ### rdrobust with all estimates
@@ -52,7 +52,7 @@ summary(rdrobust(y=vote, x=margin, h=16.79369, b=27.43745))
 est <- rdrobust(y=vote, x=margin)
 rdplot(y=vote, x=margin, subset=-est$h_l<= margin & margin <= est$h_r,
        binselect="esmv", kernel="triangular", h=c(est$h_l, est$h_r), p=1,
-       title="RD Plot: U.S. Senate Election Data", 
+       title="RD Plot: U.S. Senate Election Data",
        y.label="Vote Share in Election at time t+2",
        x.label="Vote Share in Election at time t")
 
@@ -63,7 +63,7 @@ len1 <- est1$ci[3,2] - est1$ci[3,1]
 est2 <- rdrobust(y=vote, x=margin, covs=cbind(class,termshouse,termssenate), h=c(est$h_l,est$h_r), b=c(est$b_l, est$b_r))
 len2 <- est2$ci[3,2] - est2$ci[3,1]
 paste("CI length change: ", round((len2/len1-1)*100,2), "%")
-                                   
+
 
 ## rdrobust with covariates with data-driven optimal bandwidths
 est1 <- rdrobust(y=vote, x=margin)

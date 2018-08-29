@@ -37,6 +37,18 @@ names(purchases.cutoff.1)
 analysis.data %$% table(so.procurement)
 
 covs
+dev.off()
+
+str(graph.1)
+
+lines(graph.1[["genvars"]][,c("rdplot_ci_l", "rdplot_ci_r")], lty = "dashed", col = "red")
+geom_errorbar(aes(ymax = graph.1[["genvars"]][1:16, c("rdplot_ci_l", "rdplot_ci_r")],
+                  ymin = graph.1[["genvars"]][17:29, c("rdplot_ci_l", "rdplot_ci_r")]))
+
+
+
+graph.1[["genvars"]][1:16, c("rdplot_ci_l", "rdplot_ci_r")]
+
 
 summarize
 ??replace_na

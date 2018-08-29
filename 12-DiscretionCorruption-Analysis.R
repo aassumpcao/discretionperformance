@@ -839,8 +839,8 @@ works.mm.1 %$% rdplot(y = mismanagement.binary, x = so.amount, p = 2,
   title = "Mismanagement Outcome I", y.label = "", y.lim = c(0,1),
   cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
   family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
-  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 4]),
-                   " (n = ", nrow(works.mm.1), ")")
+  x.label = paste0("Bandwidth: R$ ", format(as.integer(bandwidth.table[4, 4]),
+    big.mark = ","), " (n = ", nrow(works.mm.1), ")"), ci = 90, nbins = c(9, 9)
 )
 dev.off()
 
@@ -850,8 +850,8 @@ works.mm.2 %$% rdplot(y = mismanagement.share,  x = so.amount, p = 2,
   title = "Mismanagement Outcome II", y.label = "", y.lim = c(0, 1),
   cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
   family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
-  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 5]),
-                   " (n = ", nrow(works.mm.2), ")")
+  x.label = paste0("Bandwidth: R$ ", format(as.integer(bandwidth.table[4, 5]),
+    big.mark = ","), " (n = ", nrow(works.mm.2), ")"), ci = 90, nbins = c(9, 9)
 )
 dev.off()
 
@@ -861,8 +861,8 @@ works.mm.3 %$% rdplot(y = mismanagement.amount, x = so.amount, p = 2,
   title = "Mismanagement Outcome III", y.label = "",
   cex.axis = 2.0, cex.lab = 2.0, cex.main = 2.0, mgp = c(3, 1, 0),
   family = "LM Roman 10", mar = c(5, 4.1, 4.1, 2.1), pin = c(5.83, 5.83),
-  x.label = paste0("Bandwidth: R$ ", as.integer(bandwidth.table[4, 6])+1,
-                   " (n = ", nrow(works.mm.3), ")")
+  x.label = paste0("Bandwidth: R$ ", format(as.integer(bandwidth.table[4, 6])+1,
+    big.mark = ","), " (n = ", nrow(works.mm.3), ")"), ci = 90, nbins = c(9, 9)
 )
 dev.off()
 
