@@ -1166,7 +1166,7 @@ for (i in seq(1:3)) {
 # Wrangle falsification data so that we are left with a non-procurement sample
 # but for which we do have SO amount so we can calculate the effect on mismana-
 # gement.
-load("falsification.data.Rda")
+# load("falsification.data.Rda")
 falsification.data %<>%
   anti_join(so.data, by = c("so.id" =  "so.id")) %>%
   left_join(appendix.data, by = c("so.id" = "so.id")) %>%
