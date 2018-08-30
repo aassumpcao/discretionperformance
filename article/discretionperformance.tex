@@ -340,17 +340,17 @@ Each graph uses the standard \citet{CalonicoOptimalDataDrivenRegression2015} ban
   \centering
   \small
   \begin{tabular}{c}
-  \emph{Panel A: Mismanagement Binary} \\
+  \emph{A: Mismanagement Binary} \\
   \includegraphics[scale = .14]{mismanagementplot1} \\
-  \emph{Panel B: Mismanagement Share} \\
+  \emph{B: Mismanagement Share} \\
   \includegraphics[scale = .14]{mismanagementplot2} \\
-  \emph{Panel C: Mismanagement Amount} \\
+  \emph{C: Mismanagement Amount} \\
   \includegraphics[scale = .14]{mismanagementplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
+  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
   \end{tabular}
 \end{figure}
 
-To further check the validity of our parameter estimates, we conduct a last test on the magnitude and significance of our discretion parameters for the works subsample at cutoff 1. In figure \ref{fig:bandwidths}, we use smaller bandwidths at which we calculate our lower-bounded LATE starting from the \citet{CalonicoOptimalDataDrivenRegression2015} all the way down until we reach R\$5,000 away from the cutoff on both sides. The point estimates are in the \emph{y}-axis while the \emph{x}-axis reports bandwidth and sample size. The point estimates are statistically different from zero for outcome I in seven out of nine bandwidths and six out of nine for outcomes II and III. The insignificant estimates at the smaller bandwidth are telling of the trade-off between significance and sample size in RD strategies. Were the samples larger, we would have seen the significant effect persist across all bandwidth sizes. Nevertheless, we propose two falsification tests in section \ref{subsec:discussion} which serve as additional evidence supporting the significant reduction of management problems when public officials have less freedom to allocate public resources (as measure by lower discretion in the procurement of goods and services for public works projects).
+To further check the validity of our parameter estimates, we conduct a last test on the magnitude and significance of our discretion parameters for the works subsample at cutoff 1. In figure \ref{fig:bandwidths}, we use smaller bandwidths at which we calculate our lower-bounded LATE starting from the \citet{CalonicoOptimalDataDrivenRegression2015} and moving down until we reach R\$5,000 away from the cutoff on both sides. The point estimates are in the \emph{y}-axis while the \emph{x}-axis reports bandwidth and sample size. The point estimates are statistically different from zero for outcome I in seven out of nine bandwidths and six out of nine for outcomes II and III. The insignificant estimates at the smaller bandwidth are telling of the trade-off between significance and sample size in RD strategies. Were the samples larger, we would have seen the significant effect persist across all bandwidth sizes as standard errors would likely converge to that of significant parameters. Nevertheless, we propose two falsification tests in section \ref{subsec:discussion} which serve as additional evidence supporting the significant reduction of management problems when public officials have less freedom to allocate public resources (as measure by lower discretion in the procurement of goods and services for public works projects).
 
 \subsection{Falsification Tests} \label{subsec:discussion}
 
@@ -367,21 +367,24 @@ Similarly to figure \ref{fig:bandwidths}, we plot point estimates and 90\% confi
   \centering
   \small
   \begin{tabular}{c}
-  \emph{Panel A: Mismanagement Binary} \\
+  \emph{A: Mismanagement Binary} \\
   \includegraphics[scale = .14]{01falsificationplot1} \\
-  \emph{Panel B: Mismanagement Share} \\
+  \emph{B: Mismanagement Share} \\
   \includegraphics[scale = .14]{01falsificationplot2} \\
-  \emph{Panel C: Mismanagement Amount} \\
+  \emph{C: Mismanagement Amount} \\
   \includegraphics[scale = .14]{01falsificationplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using purchases SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
+  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using purchases SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
   \end{tabular}
 \end{figure}
 
-There are no significant results across all panels at 90\% confidence intervals. Even with larger samples, there is no effect of the falsified cutoff on the likelihood of finding mismanagement, nor on the share of irregularities due to management problems, nor the amount potentially lost to resource misallocation. This is an important result supporting the evidence that the effect of discretion on mismanagement of public works projects is, in fact, non-random. Moreover, the point estimates are either close to zero or positive, which is opposite to the expected result in hypothesis 2 and confirmed in table \ref{tab:rdmc}.
+There are no significant results across all figures at 90\% confidence intervals. Even with larger samples, there is no effect of the falsified cutoff on the likelihood of finding mismanagement, nor on the share of irregularities due to management problems, nor the amount potentially lost to resource misallocation. This is an important result supporting the evidence that the effect of discretion on mismanagement of public works projects is, in fact, non-random. Moreover, the point estimates are either close to zero or positive, which is opposite to the expected result in hypothesis 2 and confirmed in table \ref{tab:rdmc}.
 
 An additional source of concern might be on the relationship between procurement legislation and program implementation. If procurement calls are carried out once for contracting the provision of goods and services, and their rules aim at preventing corruption, there is no direct link between imposing such rules and seeing better program implementation that occurs only after procurement has ended. We posited, however, that the work that goes into abiding by procurement rules also spread over better resource management practices, such as speedy procurement processes, that result in better program delivery. Quality and quantity requirements, delivery times, and the duration of contract for provision of goods and services are other factors included in procurement calls that can also improve public management. Therefore, there is a non-trivial benefit of restricting discretion on resource allocation.
 
-The second falsification test investigates this relationship. In figure \ref{fig:02falsification}, we once again run the exact same regressions from sections \ref{sec:methodology} and \ref{sec:result} at varying bandwidths for the sample of \emph{non-procurement} federal transfers. This is a sample composed of 4,925 investigations (SOs) conducted by CGU auditors that were not identified as procurement because they met at least one of these criteria: (i) they was no textual description on what their intented use was; (ii) no monetary amount reported by the auditor; (iii) the classification algorithm did not assign the investigation to any group.
+The second falsification test investigates this relationship. In figure \ref{fig:02falsification}, we once again run the exact same regressions from sections \ref{sec:methodology} and \ref{sec:result} at varying bandwidths for the sample of \emph{non-procurement} federal transfers. This is a sample composed of 4,925 investigations (SOs) conducted by CGU auditors that were not identified as procurement because they met at least one of these conditions: (i) there was no textual description on the use of resources; (ii) there was no monetary amount reported by the auditor; (iii) the classification algorithm did not assign the investigation to any group. To further narrow down on non-procurement transfers, we exclude from this sample any investigation that could be matched to public works projects by grant description or by having works-related infractions as reported in audit reports (the two classification checks in appendix \ref{sec:appendixA}). The final non-procurement sample is composed of 2,493 investigations over the use federal resources for which auditors report the total value of transfer and for which there is not a single evidence of use in public works projects.\footnote{Non-procurement federal transfers are used for payment of personnel and new hires, covering budget shortfalls, for extension of procurement contracts after calls under Law 8,666/93 have been concluded, etc.}
+
+A close look at figures \ref{fig:02falsification}.A through C reveals  no significant relationship between false cutoff 1 on mismanagement for the non-procurement sample (at the 90\% level). As we reduce the bandwidths around the false cutoff, all parameters remain indistinguishable from zero, though at smaller sample size we see much wider confidence intervals. Again with the case of public works true sample, more observations would help narrow down standard errors and potentially align parameter estimates along the results of larger bandwidths.
+\clearpage
 
 \begin{figure}[!htbp]
   \caption{Discretion Point Estimates (Non-Procurement SOs at Works Cutoff 1)}
@@ -389,33 +392,80 @@ The second falsification test investigates this relationship. In figure \ref{fig
   \centering
   \small
   \begin{tabular}{c}
-  \emph{Panel A: Mismanagement Binary} \\
+  \emph{A: Mismanagement Binary} \\
   \includegraphics[scale = .14]{02falsificationplot1} \\
-  \emph{Panel B: Mismanagement Share} \\
+  \emph{B: Mismanagement Share} \\
   \includegraphics[scale = .14]{02falsificationplot2} \\
-  \emph{Panel C: Mismanagement Amount} \\
+  \emph{C: Mismanagement Amount} \\
   \includegraphics[scale = .14]{02falsificationplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using non-procurement SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} bandwidths are in bold.}
+  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using non-procurement SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
   \end{tabular}
 \end{figure}
 
-\section{Conclusion} \label{sec:conclusion}
+\subsection{Interpretations of the Null Effect on Corruption} \label{subsec:nullcorruption}
 
-\subsection{Why no effect on other cutoffs?} \label{subsec:whynoeffect}
+In this section we return to our primary hypothesis and suggest possible interpretations for the null effect of discretion on corruption. It is naive to think that legislators knew nothing about corruption prevention and that Law 8,666/93 is entirely flawed. A more plausible explanation, however, is that corrupt behavior has changed over time while the procurement legislation has remained static. In this case, the law was appropriate under different corruption conditions than were present in our period of study (2004-2010).
+
+The first potential interpretation is that public officials might have grown accustomed to procuring goods and services under the legal requirements and have thus been able to carry on practicing corruption while avoiding its detection. If this is the case, then we should not see differential levels of municipal corruption across time. We plot anecdotal data supporting this conclusion in table \ref{fig:01discussion}.
 
 \begin{figure}[!htbp]
-  \caption{Average Infraction Count Per Year, Procurement Type, and Category}
+  \caption{Municipal Corruption Between 2004-2010}
   \label{fig:01discussion}
   \centering
   \small
   \begin{tabular}{c}
-  \includegraphics[scale = .2]{01discussionplot}
+  \includegraphics[scale = .14]{01discussionplot}
   \end{tabular}
 \end{figure}
 
-\subsection{Cost-benefit Analysis} \label{subsec:cba}
+Municipal corruption levels are fairly stable over time. The average corruption share ranges between .18 to .21 of total infractions. Obviously, there are other things going on simultaneously besides learning the workaround procurement rule, but the relative stability of municipal corruption could also be a feature of the ease with which officials can sidestep rules if they want to engage in corruption. Moreover, the burden for corruption falls more heavily on mayors \citep{FinanGovernmentAuditsReduce2018} than on their lower level staff.
+
+Another explanation to the null effect is the decreasing purchasing power of public resources in the presence of inflation. Since the cutoffs across categories remain constant over the period under analysis, inflation reduces the quantity of goods and services any single procurement call can contract, thus turning small procurement amounts (regulated by lower categories of Law 8,666/93) meaningless in terms of their complexity or the corruption opportunity they create. This means that compliance at lower categories of the procurement law might be easier due to the relative simplicity, lower quality, or smaller quantity of the items being procured. The propose checking this explanation by looking at the average number of infractions (both in corruption and management) across time, procurement type, and category. We present the results of this tabulation in \ref{fig:02discussion}, where we see the average number of infractions per investigation on the \emph{y}-axis, and the year of investigation on the \emph{x}-axis. We further split the results by type of procurement (public purchases or works) and category (direct contracting, invitational bidding, price comparison bidding, and competitive bidding). Thus, each quadrant summarizes the average number of infractions per year, procurement type, and category. The dashed black lines are the average number of infractions across type and category and removes the variation at the time dimension.
+
+\begin{figure}[!htbp]
+  \caption{Average Infraction Count Per Year, Procurement Type, and Category}
+  \label{fig:02discussion}
+  \centering
+  \small
+  \begin{tabular}{c}
+  \includegraphics[scale = .2]{02discussionplot}
+  \end{tabular}
+\end{figure}
+
+Across both types of procurement, we see the average number of infractions increase as we move up procurement categories (shown by the level of the dashed black lines read from left to right). Though not conclusive, this is suggestive of decreasing compliance with program specification and procurement rules. For the purchases group, the top four quadrants, we see relative stability of the average number of infractions which, read along figure \ref{fig:01discussion} on the share of corruption issues, indicates little variation in the number of management problems as well. For the works group, in the bottom four graphs, we see 2006 and 2010 as outline years for lower and higher averages, respectively. The jump in infractions between quadrants one and two, representing direct contracting and invitational bidding, are consistent with the management effect of discretion in section \ref{sec:result}: since there are no significant changes in corruption at this cutoff, most of the change in averages (from .9 to 1.6) must come from program management infractions.
+
+These are but two interpretations of the null effect on corruption and we do not aim at exhausting the alternative explanations for such unexpected effect. We suggest these puzzles as avenues for future research on the effect of discretion on performance.
+
+\subsection{Cost-Benefit Analysis} \label{subsec:cba}
+
+So far, we have focused on testing our hypotheses and uncovering potential confounding effects of discretion. We now move on to discuss the welfare effects of law 8,666/93, which should serve as a transparent metric to support or reject the procurement law.
+
+The only significant, beneficial effect is the reduction in mismanagement for the public works sample at the change in rules from direct contracting to invitational bidding. The costs, however, are all other corruption and mismanagement problems not prevented at the equivalent cutoffs. We conduct a back-of-the-envelope cost-benefit analysis (CBA) in table \ref{tab:welfare}.
 
 \input{tab_welfare1}
+
+In the top part of the table, we calculate the costs of law 8,666/93 as the total misplaced amount not prevented by invitational bidding contracting rules. These costs come from both procurement types, public purchases and works, and outcomes, corruption and mismanagement. In column three, average loss in R\$, we include the average amount misplaced due to either problem for all observations within the CCT bandwidth around cutoff 1. Since our parameters are lower-bounded LATE, they only constitute causal effects at the vicinity of the procurement rule discontinuity, thus the focus on these subsamples. We multiple each average cost by the number of observations and add them up to a total cost (A) over R\$30M (last row of top part).
+
+The total benefit, on the other hand, comes from the amount that would have been misplaced had law 8,666/93 not been in effect. On column three, in the middle part of the table, the average loss prevented is the LATE parameter at works cutoff 1 for mismanagement outcome III, which calculates the amount potentially lost by multiplying the share of mismanagement issues times the transfer amount. $(B)$ is the total misallocation prevented, approximately R\$2M.
+
+Finally, we report welfare effects at the bottom part of the table. We calculate both misallocation prevention in absolute (R\$) and relative (\%) terms. Total cost of misallocation would be approximately R\$32.5M and the works-only cost would be R\$7.7M (compared to R\$4.4M in the absence of the law). Moreover, the discretion change reduces total cost by 5.98\% and 26.69\%, respectively, for total cost and public works projects. Although this is a substantial reduction in misplaced funds, R\$30M still remain unaccounted for, and its misallocation could have been prevented had the procurement legislation been adapted over time. Citizens and legislators should compare this potential recovery to overall municipal budgets in order to figure out whether law 8,666/93 should be kept.
+
+
+\section{Conclusion} \label{sec:conclusion}
+
+In this paper, we looked at the effect of discretion in public spending on government performance. We operationalize this relationship by exploring the Brazilian procurement law 8,666/93, which determines rules that should be followed at all government level and branches when procuring goods and services. Our observations are investigations conducted by CGU's random audit program between 2004 and 2010, from which we can create objective measures of corruption and mismanagement of public resources. We infer procurement type using a text analysis algorithm developed by one of the authors, described in the appendix, to match each investigation to procurement types and categories established by Law 8,666/93. Besides contributing to the literature by exploring discretion as determinant of government performance, we also investigate whether performance is associated with the overall procurement amount and local municipal corruption.
+
+We cannot confirm that discretion reduces corruption. Using our preferred RD identification strategy, we find no significant effect of discretion on corruption, regardless of whether the procurement call was motivated by public works projects or any other provision of goods and services. This results has a direct, and important, policy implication regarding the support for the Brazil procurement law. In the sample framework outlined in section \ref{subsec:hypotheses}, legislators and citizens would both weakly support legislation that does not deliver on its promise of reducing corruption.
+
+Some explanations emerge for the non-significant effect on corruption. The strongest interpretation we suggest is that the inflation-unadjusted amounts determining procurement rules have become meaningless over time. Procurement compliance for items of lower amount might just be simpler than at higher contract values. In fact, figure \ref{fig:02discussion} shows that the average number of infractions is increasing both across time and procurement categority, suggesting that non-compliance infractions are less frequent as the purchasing-power of procurement calls decreases. Additionally, \citet{FinanGovernmentAuditsReduce2018} show that the likelihood of punishment for corruption is low and, if at all, fall more heavily on mayors than on lower-level officials. If this is the case, then officials have relatively more incentives for non-compliance and are likely to keep the same level of corruption regardless of rules imposing less discretion (anecdotal evidence in figure \ref{fig:01discussion}).
+
+The discretion effect on mismanagement is moderate at best. We find no effect for the general procurement group (\emph{purchases}) but find a consistent effect on reducing program management problems when moving from directly contracting with private suppliers to invitational bidding when the city government contracts goods and services for public works projects. The likelihood of finding any mismanagement problem decreases by 41.6 percentage points. Conditional on finding any issue, the share of program management infractions falls by 29.1 when implementing stricter rules and the amount potentially misplaced reduces by R\$4,611. Though our results are concentrated in one cutoff and for one type of procurement, they are important initial evidence disentangling the effect of discretion from broader measures such a political decentralization and devolution of funds. Since our estimates are lower-bounded LATE, there still remains a large field of research for identifying precise discretion effects across the entire distribution of public spending decisions.
+
+To check these results, we suggest two falsification tests: running the same regressions that yielded significant parameters on falsified datasets for which there should be no effect. We used the purchases and the non-procurement samples to confirm (i) that the effect is exclusive to public works procurement and (ii) that procurement is indeed relevant for government performance. There are no significant effects on mismanagement at the falsified cutoffs, regardless of the data we use.
+
+Lastly, we provide a rough estimate of the costs and benefits of the procurement legislation in Brazil for a transparent metric with which to decide whether discretion restrictions should be kept or not. Though the legislation reduces the total amount of missing funds by 5.98\%, there are still R\$30M missing -- equivalent to six times the yearly average funds transferred from the federal government to municipalities in the period under analysis. Discretion restrictions, all included, might not be the best way to improve government performance.
+
+\clearpage
 
 \setlength\bibsep{0pt}
 \bibliographystyle{apalike}

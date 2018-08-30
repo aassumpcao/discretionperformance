@@ -46,7 +46,7 @@ bandwidthRange <- function(x, cutpoint, limit){
   #   limit:    symmetric range on either side of cutoff value
 
   # Returns:
-  #   Logical vector used to subset dataset
+  #   Logical vector used to subset data
 
   # Body:
   #   Invisibly subset data
@@ -1312,7 +1312,40 @@ rm(fake.1, fake.2, fake.3)
 ################################################################################
 # Discretion Effect Discussion
 ################################################################################
-# 1. Why isn't there a corruption effect?
+# 1. What if agents have learned how to work around 8,666/93?
+# What is the average municipal corruption across time
+freepass.data <- analysis.data %>%
+  mutate(so.year = year(audit.end)) %>%
+  group_by(ibge.id, so.year) %>%
+  mutate(avg.corruption = ifelse(!is.na(corruption.count / infraction.count),
+                                 corruption.count / infraction.count, 0)
+  ) %>%
+  ungroup() %>%
+  group_by(so.year) %>%
+  summarize_at(vars(avg.corruption), mean) %>%
+  slice()
+
+# ggplot call to construct graph
+freepass.data %>%
+  ggplot(aes(y = avg.corruption, x = so.year)) +
+    geom_col(color = "grey33") +
+    ylab("Average Corruption Level per Municipality") + xlab("Year") +
+    scale_x_continuous(breaks = c(2004:2010)) +
+    theme(text = element_text(family = "LM Roman 10", size = 12),
+          axis.title.y = element_text(margin = margin(r = 10)),
+          axis.title.x = element_text(margin = margin(t = 10))
+    )
+
+# ggsave to save them to file
+ggsave("01discussionplot.png",
+       device = "png",
+       path   = "./article",
+       width  = 6,
+       height = 4
+)
+dev.off()
+
+# 2. What if procurement at lower levels has become meaningless?
 # We put together a table of average infractions per SO per year. We communicate
 # the results using a facet grid further breaking effects down by so.type and
 # procurement category
@@ -1353,7 +1386,7 @@ discussion.data %>%
           axis.text.x = element_text(angle = 90, hjust = 1))
 
 # ggsave to save them to file
-ggsave("01discussionplot.png",
+ggsave("02discussionplot.png",
        device = "png",
        path   = "./article",
        width  = 6,

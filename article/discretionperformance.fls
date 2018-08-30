@@ -372,6 +372,9 @@ INPUT ./02falsificationplot3.png
 INPUT 01discussionplot.png
 INPUT ./01discussionplot.png
 INPUT ./01discussionplot.png
+INPUT 02discussionplot.png
+INPUT ./02discussionplot.png
+INPUT ./02discussionplot.png
 INPUT tab_welfare1.tex
 INPUT tab_welfare1.tex
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsl8.tfm
