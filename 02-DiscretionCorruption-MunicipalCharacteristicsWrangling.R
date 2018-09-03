@@ -229,8 +229,6 @@ mun.data %<>%
   full_join(., healthcouncil) %>%
   full_join(., judiciary)
 
-
-
 # TSE results data
 # 2000, 2004, 2008 Municipal Elections
 elections2000 <- read_excel(
@@ -240,6 +238,7 @@ elections2004 <- read_excel(
 elections2008 <- read_excel(
   "Resultados_Eleitorais_2008_vf.xlsx", sheet = "ElecComp2008")
 
+# Join across
 mun.election <-
   full_join(elections2000, elections2004, by = c("cod_mun" = "cod_mun")) %>%
   full_join(., elections2008, by = c("cod_mun" = "cod_mun")) %>%
@@ -251,7 +250,10 @@ mun.election <-
   ) %>%
   mutate(
     mun.election   = str_remove(mun.election, "ElecComp"),
-    mun.votemargin = mun.votemargin / 100
+    mun.votemargin = mun.votemargin / 100,
+    mun.votemargin = ifelse(mun.votemargin < 0 & ibge.id == 421790,
+                            abs(mun.votemargin),
+                            mun.votemargin)
   )
 
 # Reelection data
@@ -281,14 +283,10 @@ mun.election %<>%
   full_join(., mun.reelection,
     by = c("ibge.id" = "ibge.id", "mun.election" = "mun.election")
   ) %>%
-  mutate(
-    mun.election = as.Date(
-      ifelse(
-        mun.election == 2000,
-        ymd("2000-10-01"),
-        ifelse(mun.election == 2004, ymd("2004-10-03"), ymd("2008-10-05"))
-      )
-    )
+  mutate(mun.election = case_when(mun.election == 2000 ~ ymd("2000-10-01"),
+                                  mun.election == 2004 ~ ymd("2004-10-03"),
+                                  mun.election == 2008 ~ ymd("2008-10-05")
+                        )
   )
 
 # Remove useless data

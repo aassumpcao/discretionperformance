@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex discretionperformance"] 1535744725 "discretionperformance.aux" "discretionperformance.bbl" "discretionperformance" 1535747571
+["bibtex discretionperformance"] 1536008757 "discretionperformance.aux" "discretionperformance.bbl" "discretionperformance" 1536008762
   "/Users/aassumpcao/library.bib" 1535478343 409086 ec65b4f44c2d487a9f5dce69fef27fef ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/base/apalike.bst" 1480098433 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "discretionperformance.aux" 1535747570 18252 00c800b33babcfbd1f34c66f513c34c2 ""
+  "discretionperformance.aux" 1536008762 18354 0d450a99155554b0daeb530ced57576a ""
   (generated)
-  "discretionperformance.bbl"
   "discretionperformance.blg"
-["pdflatex"] 1535747566 "discretionperformance.tex" "discretionperformance.pdf" "discretionperformance" 1535747571
+  "discretionperformance.bbl"
+["pdflatex"] 1536008758 "discretionperformance.tex" "discretionperformance.pdf" "discretionperformance" 1536008762
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -220,10 +220,10 @@
   "appendix_tab4.tex" 1535055503 1056 4162fb09284627f1255b037e0206422e ""
   "appendix_tab5.tex" 1535056137 1033 58471dd8ec741d6db69611007c0ae227 ""
   "corruptioncodes.tex" 1534258954 1456 de1e3efb4f8a5fd7bc4aec87e99b9815 ""
-  "discretionperformance.aux" 1535747570 18252 00c800b33babcfbd1f34c66f513c34c2 ""
-  "discretionperformance.bbl" 1535744725 8068 ac287764a70cb22b17bcc07c138ba22b "bibtex discretionperformance"
-  "discretionperformance.out" 1535747570 3970 20b618779dd21cb0a0d3a456e9fb721a ""
-  "discretionperformance.tex" 1535747566 120890 c3ee12a908de9e07c1619efca0c97b2b ""
+  "discretionperformance.aux" 1536008762 18354 0d450a99155554b0daeb530ced57576a ""
+  "discretionperformance.bbl" 1536008758 8068 ac287764a70cb22b17bcc07c138ba22b "bibtex discretionperformance"
+  "discretionperformance.out" 1536008762 3970 20b618779dd21cb0a0d3a456e9fb721a ""
+  "discretionperformance.tex" 1536008752 124765 bf3d96682a53524129b6d937b8a7410c ""
   "mismanagementplot1.png" 1535631419 101452 9e362e5397621bdda6421c2339f0a584 ""
   "mismanagementplot2.png" 1535631419 96442 abd45f5f444e9e781d1fcb1ba7bacd08 ""
   "mismanagementplot3.png" 1535631420 94585 6cad05d8598193a5dec493938458a321 ""
@@ -234,7 +234,7 @@
   "tab_auditbyministry1.tex" 1535054545 497 09d60fa994e0acb24753c57103726fc6 ""
   "tab_bandwidth1.tex" 1535388603 1935 865ca785d52540e48e0e02355bff4a1c ""
   "tab_covariates1.tex" 1535478561 2915 3f20867e7e59eb494640a9e7a2044b4a ""
-  "tab_descriptivestats1.tex" 1535051803 4066 132ed5725c11ef58c772972bdf40b73f ""
+  "tab_descriptivestats1.tex" 1536004741 4066 88142530a403f342dbaa2cb1d3ff7130 ""
   "tab_mainregression1.tex" 1535144148 6121 fe103442a6c1daa8c2adf57e39dd8172 ""
   "tab_rdmc1.tex" 1535484477 5316 6c3450cbf7420e857dcee8fa3da7ebac ""
   "tab_welfare1.tex" 1535660799 1805 564b6c6d8eb1d0dd90f1e8d743f45593 ""

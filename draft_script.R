@@ -49,6 +49,10 @@ fake.1
 fake.2
 fake.3
 
+filter(mun.election, ibge.id == 421790)
+
+names(mun.election)
+names(mun.reelection)
 graph.1[["genvars"]][1:16, c("rdplot_ci_l", "rdplot_ci_r")]
 
 names(discussion.data)
