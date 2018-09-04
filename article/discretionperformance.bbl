@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\bibitem[Angrist and Pischke, 2008]{AngristMostlyharmlesseconometrics2008}
+Angrist, J.~D. and Pischke, J.-S. (2008).
+\newblock {\em Mostly Harmless Econometrics: {{An}} Empiricist's Companion}.
+\newblock {Princeton university press}.
+
 \bibitem[Assumpcao, 2018]{AssumpcaotextfindDataDrivenText2018}
 Assumpcao, A. (2018).
 \newblock Textfind: {{A Data}}-{{Driven Text Analysis Tool}} for {{Stata}}.
@@ -132,7 +137,7 @@ Litschig, S. and Zamboni, Y. (2015).
 \newblock Judicial {{Presence}} and {{Rent Extraction}}.
 \newblock {\em Barcelona GSE Working Paper Series Working Paper 796}.
 
-\bibitem[McCrary, 2008]{McCraryManipulationrunningvariable2008}
+\bibitem[McCrary, 2008]{McCraryManipulationRunningVariable2008}
 McCrary, J. (2008).
 \newblock Manipulation of the {{Running Variable}} in the {{Regression
   Discontinuity Design}}: {{A Density Test}}.
