@@ -32,7 +32,7 @@ Constituents thus have an interest not only on **what** goods and services gover
 
 --
 
-- Should the government ask for three proposals for a school project or just one?
+- Should the government ask for three budget proposals for a school project or just one?
 
 ---
 
@@ -48,7 +48,7 @@ Constituents thus have an interest not only on **what** goods and services gover
 
 ## Context
 
-Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to cover health and education expenditures for which we construct or collect data on:
+Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities, between 2004-2010, to cover health and education expenditures for which we construct or collect data on:
 
 --
   
@@ -96,7 +96,7 @@ Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to co
 
 --
 
-Looking at federal transfers around whose values fall in the vicinities of the discontinuities in procurement rules allows for the identification of the **causal effect** of discretion on government performance.
+Looking at federal transfers whose values fall in the vicinities of the discontinuities in procurement rules allows for the identification of the **causal effect** of discretion on government performance.
 
 ---
 
@@ -132,7 +132,17 @@ In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 param
 
 ---
 
-# Strategy is robust!
+# Mismanagement Binary
+
+![mismanagementbinary](mismanagementplot1.png)
+
+--
+
+**Interpretation:** reducing the discretion with which public agents hire private contractors for public works projects reduces the probability that these will be subject to mismanagement by **41.9 percentage points**.
+
+---
+
+# Results are robust!
 
 1. We run covariate balance tests across cutoffs and include covariates in regressions.
 
@@ -146,11 +156,23 @@ In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 param
 
 ---
 
-# Falsification Tests
+# Falsification Tests 1
 
-<!-- .center[![]()] -->
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
 
-<!-- .center[![]()] -->
+## Mismanagement Binary
+
+![falsificationbinary](01falsificationplot1.png)
+
+---
+
+# Falsification Tests 2
+
+Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+
+## Mismanagement Binary
+
+![falsificationbinary](02falsificationplot1.png)
 
 ---
 
@@ -161,3 +183,128 @@ In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 param
 class: center, middle, inverse
 
 # Supplemental Material
+
+---
+
+# Summary Statistics
+
+![panelA](panelA.png)
+
+---
+
+# Summary Statistics
+
+![panelB](panelB.png)
+
+---
+
+# Covariate Balance Tests
+
+.center[
+![covariates](covariates.png)
+]
+
+---
+
+# Bandwidth Tests
+
+.center[
+![bandwidth](bandwidth.png)
+]
+
+---
+
+.left[
+## Olken and Pande (2012):
+
+![model](model.png)
+
+]
+.pull-left[
+## Corruption
+
+![corruption](corruptionmodel.png)
+
+]
+.pull-right[
+## Mismanagement
+
+![mismanagement](mismanagementmodel.png)
+
+]
+.left[
+## RD
+
+![equation](equation.png)
+
+]
+
+---
+
+# Mismanagement Share
+
+![mismanagementshare](mismanagementplot2.png)
+
+**Interpretation:** reducing the discretion with which public agents hire private contractors for public works projects reduces the share of mismanagement problems found by auditors by **29.1 percentage points**.
+
+---
+
+# Mismanagement Amount
+
+![mismanagementamount](mismanagementplot3.png)
+
+**Interpretation:** reducing the discretion with which public agents hire private contractors for public works projects reduces the amount lost to mismanagement by **R$4,611** (**$1,155** using the current exchange rate).
+
+---
+
+# Falsification Tests 1
+
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
+
+## Mismanagement Share
+
+![falsificationbinary](01falsificationplot2.png)
+
+---
+
+# Falsification Tests 1
+
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
+
+## Mismanagement Amount
+
+![falsificationbinary](01falsificationplot3.png)
+
+---
+
+# Falsification Tests 2
+
+Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+
+## Mismanagement Share
+
+![falsificationbinary](02falsificationplot2.png)
+
+---
+
+# Falsification Tests 2
+
+Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+
+## Mismanagement Amount
+
+![falsificationbinary](02falsificationplot3.png)
+
+---
+
+# Cost-Benefit Analysis
+
+.center[
+![cba](cba.png)
+]
+
+---
+
+class: inverse, middle, center
+
+# The End
