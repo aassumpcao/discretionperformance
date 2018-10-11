@@ -6,6 +6,8 @@ date: "IHS Fall Research Colloquium <br> Oct, 13th 2018"
 output:
   xaringan::moon_reader:
     lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    # css: [default, 'default.css', default-fonts]
     nature:
       highlightStyle: github
       countIncrementalSlides: false
@@ -47,51 +49,89 @@ background-size: cover
 --
 
 .center[
-*Does the imposition of stricter, harder procurement rules for government expenditure reduce corruption and misallocation of public resources?*
+*Does the imposition of harder, stricter procurement rules for government expenditure reduce corruption and misallocation of public resources?*
 ]
 
 --
 
 ## Context
 
-9,593 federal transfers to 1,139 Brazilian municipalities to cover health and education expenditures for which I construct or collect data on:
+Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to cover health and education expenditures for which I construct or collect data on:
 
 --
   
-- Corruption and mismanagement indicators (**outcomes**);
+- Corruption and mismanagement (**outcomes**);
   
 --
   
-- Procurement discretion measures (**treatments**);
+- Procurement discretion (**treatments**);
   
 --
   
 - Municipal characteristics (**controls**).
-  
-
-
 
 ---
+
+background-image: url('./road.jpg')
+background-position: center
+background-size: cover
+
+# Hypotheses
+
+--
+
+1. The imposition of harder, stricter procurement rules for public spending **reduces** corruption.
+
+1. The imposition of harder, stricter procurement rules for public spending **reduces** the misallocation of public resources.
+
+--
 
 # Findings
 
+--
+
+1. Stricter procurement rules have **no effect** on corruption. 
+
+--
+
+1. Stricter procurement rules have only a **limited effect** on mismanagement.
+
 ---
+
+background-image: url('./road.jpg')
+background-position: center
+background-size: cover
 
 # Empirical Strategy
 
+**Regression discontinuity design (RD)** where the application of procurement rules follows a strict monetary schedule established by Law 8,666/93.
+
 ---
+
+background-image: url('./road.jpg')
+background-position: center
+background-size: cover
 
 # Results
 
 ---
 
+background-image: url('./road.jpg')
+background-position: center
+background-size: cover
+
 # Checking Results
 
 ---
+
+background-image: url('./road.jpg')
+background-position: center
+background-size: cover
 
 # Conclusion
 
 ---
 
-# Supplemental Material
+class: center, middle, inverse
 
+# Supplemental Material
