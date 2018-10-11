@@ -1,7 +1,7 @@
 ---
 title: "Estimating the Effect of Discretion in Public Spending on Government Performance: Evidence from Brazilian Municipalities"
 subtitle: ""
-author: "Andre Assumpcao <br> UNC-Chapel Hill"
+author: "Andre Assumpcao, Ciro Biderman, and George Avelino <br> UNC-Chapel Hill, FGV-EAESP, FGV-EAESP"
 date: "IHS Fall Research Colloquium <br> Oct, 13th 2018"
 output:
   xaringan::moon_reader:
@@ -14,17 +14,13 @@ output:
     # seal: false
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
-
 # Motivation
 
-Developing countries spend **US$820bn** per year on goods and services supplied by the private sector. Governments purchase medical supplies, school material, and construction services used to implement public policies;
+Developing countries spend **US$820bn** per year on goods and services supplied by the private sector. Governments purchase medical supplies, school material, and construction services used to implement public policies.
 
 --
 
-Constituents thus have an interest not only on **what** goods and services governments are purchasing but also **how** governments are acquiring such items;
+Constituents thus have an interest not only on **what** goods and services governments are purchasing but also **how** governments are acquiring such items.
 
 --
 
@@ -40,10 +36,6 @@ Constituents thus have an interest not only on **what** goods and services gover
 
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
-
 # Research Question
 
 --
@@ -56,7 +48,7 @@ background-size: cover
 
 ## Context
 
-Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to cover health and education expenditures for which I construct or collect data on:
+Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to cover health and education expenditures for which we construct or collect data on:
 
 --
   
@@ -71,10 +63,6 @@ Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities to co
 - Municipal characteristics (**controls**).
 
 ---
-
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
 
 # Hypotheses
 
@@ -98,35 +86,73 @@ background-size: cover
 
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
-
 # Empirical Strategy
 
-**Regression discontinuity design (RD)** where the application of procurement rules follows a strict monetary schedule established by Law 8,666/93.
+**Regression discontinuity (RD)** where the application of procurement rules follows a strict monetary schedule established by Law 8,666/93.
+
+--
+
+.center[![Law 8,666/93](./procurement_schedule.png)]
+
+--
+
+Looking at federal transfers around whose values fall in the vicinities of the discontinuities in procurement rules allows for the identification of the **causal effect** of discretion on government performance.
 
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
+.left-column[
+# Outcomes
+]
 
-# Results
+.right-column[
+The Office of the Comptroller-General (CGU) ran a random audit program of Brazilian municipalities expenditures between 2003 and 2015, which we use to code corruption and misallocation indicators serving as outcome variables in this project (Ferraz and Finan, 2008; 2011).
+
+<br>
+
+- **Binary:** whether the transfer contains evidence of corruption or mismanagement;
+
+- **Share:** how many of each transfer's records are corruption or mismanagement-related;
+
+- **Amount:** how much money was potentially lost to corruption or mismanagement.
+
+<br>
+
+In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 parameter estimates.
+]
 
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
+.left-column[
+# Results 
+]
 
-# Checking Results
+.rigth-column[
+![Table](table.png)
+]
 
 ---
 
-background-image: url('./road.jpg')
-background-position: center
-background-size: cover
+# Strategy is robust!
+
+1. We run covariate balance tests across cutoffs and include covariates in regressions.
+
+1. We use robust standard errors, clustered at the municipal level, and health, education, and auditing fixed effects.
+
+1. We run the McCrary (2008) test for manipulation of the running variable and throw away the last cutoff in the goods/services procurement type.
+
+1. Optimal bandwidth selection comes from Calonico, Cattaneo, and Titiunik (2015), but we also run local (quadratic) regressions at smaller bandwidths.
+
+1. There are two falsification tests showing that our significant mismanagement effects are not spurious...
+
+---
+
+# Falsification Tests
+
+<!-- .center[![]()] -->
+
+<!-- .center[![]()] -->
+
+---
 
 # Conclusion
 
