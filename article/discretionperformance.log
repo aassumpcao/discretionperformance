@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  4 SEP 2018 17:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.7)  4 DEC 2018 13:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -938,17 +938,17 @@ Overfull \hbox (14.08308pt too wide) in paragraph at lines 6--44
 (./tab_rdmc1.tex) [25
 
 ]
-<workscutoff1.png, id=542, 562.1pt x 562.1pt>
+<workscutoff1.png, id=461, 562.1pt x 562.1pt>
 File: workscutoff1.png Graphic file (type png)
 <use workscutoff1.png>
 Package pdftex.def Info: workscutoff1.png  used on input line 343.
 (pdftex.def)             Requested size: 148.95578pt x 148.95578pt.
-<workscutoff2.png, id=544, 562.1pt x 562.1pt>
+<workscutoff2.png, id=463, 562.1pt x 562.1pt>
 File: workscutoff2.png Graphic file (type png)
 <use workscutoff2.png>
 Package pdftex.def Info: workscutoff2.png  used on input line 343.
 (pdftex.def)             Requested size: 148.95578pt x 148.95578pt.
-<workscutoff3.png, id=545, 562.1pt x 562.1pt>
+<workscutoff3.png, id=464, 562.1pt x 562.1pt>
 File: workscutoff3.png Graphic file (type png)
 <use workscutoff3.png>
 Package pdftex.def Info: workscutoff3.png  used on input line 343.
@@ -959,17 +959,17 @@ Overfull \hbox (13.11232pt too wide) in paragraph at lines 342--346
  []
 
 [26 <./workscutoff1.png> <./workscutoff2.png> <./workscutoff3.png>]
-<mismanagementplot1.png, id=558, 2107.875pt x 903.375pt>
+<mismanagementplot1.png, id=478, 2107.875pt x 903.375pt>
 File: mismanagementplot1.png Graphic file (type png)
 <use mismanagementplot1.png>
 Package pdftex.def Info: mismanagementplot1.png  used on input line 356.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<mismanagementplot2.png, id=559, 2107.875pt x 903.375pt>
+<mismanagementplot2.png, id=479, 2107.875pt x 903.375pt>
 File: mismanagementplot2.png Graphic file (type png)
 <use mismanagementplot2.png>
 Package pdftex.def Info: mismanagementplot2.png  used on input line 358.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<mismanagementplot3.png, id=560, 2107.875pt x 903.375pt>
+<mismanagementplot3.png, id=480, 2107.875pt x 903.375pt>
 File: mismanagementplot3.png Graphic file (type png)
 <use mismanagementplot3.png>
 Package pdftex.def Info: mismanagementplot3.png  used on input line 360.
@@ -977,17 +977,17 @@ Package pdftex.def Info: mismanagementplot3.png  used on input line 360.
  [27 <./mismanagementplot1.png> <./mismanagementplot2.png> <./mismanagementplot
 3.png>]
 [28]
-<01falsificationplot1.png, id=585, 2107.875pt x 903.375pt>
+<01falsificationplot1.png, id=505, 2107.875pt x 903.375pt>
 File: 01falsificationplot1.png Graphic file (type png)
 <use 01falsificationplot1.png>
 Package pdftex.def Info: 01falsificationplot1.png  used on input line 383.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<01falsificationplot2.png, id=586, 2107.875pt x 903.375pt>
+<01falsificationplot2.png, id=506, 2107.875pt x 903.375pt>
 File: 01falsificationplot2.png Graphic file (type png)
 <use 01falsificationplot2.png>
 Package pdftex.def Info: 01falsificationplot2.png  used on input line 385.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<01falsificationplot3.png, id=587, 2107.875pt x 903.375pt>
+<01falsificationplot3.png, id=507, 2107.875pt x 903.375pt>
 File: 01falsificationplot3.png Graphic file (type png)
 <use 01falsificationplot3.png>
 Package pdftex.def Info: 01falsificationplot3.png  used on input line 387.
@@ -996,17 +996,17 @@ Package pdftex.def Info: 01falsificationplot3.png  used on input line 387.
 
  <./01falsificationplot1.png> <./01falsificationplot2.png> <./01falsificationpl
 ot3.png>] [30]
-<02falsificationplot1.png, id=612, 2107.875pt x 903.375pt>
+<02falsificationplot1.png, id=533, 2107.875pt x 903.375pt>
 File: 02falsificationplot1.png Graphic file (type png)
 <use 02falsificationplot1.png>
 Package pdftex.def Info: 02falsificationplot1.png  used on input line 408.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<02falsificationplot2.png, id=613, 2107.875pt x 903.375pt>
+<02falsificationplot2.png, id=534, 2107.875pt x 903.375pt>
 File: 02falsificationplot2.png Graphic file (type png)
 <use 02falsificationplot2.png>
 Package pdftex.def Info: 02falsificationplot2.png  used on input line 410.
 (pdftex.def)             Requested size: 295.1005pt x 126.47163pt.
-<02falsificationplot3.png, id=614, 2107.875pt x 903.375pt>
+<02falsificationplot3.png, id=535, 2107.875pt x 903.375pt>
 File: 02falsificationplot3.png Graphic file (type png)
 <use 02falsificationplot3.png>
 Package pdftex.def Info: 02falsificationplot3.png  used on input line 412.
@@ -1015,13 +1015,13 @@ Package pdftex.def Info: 02falsificationplot3.png  used on input line 412.
 
  <./02falsificationplot1.png> <./02falsificationplot2.png> <./02falsificationpl
 ot3.png>]
-<01discussionplot.png, id=626, 1806.75pt x 1204.5pt>
+<01discussionplot.png, id=548, 1806.75pt x 1204.5pt>
 File: 01discussionplot.png Graphic file (type png)
 <use 01discussionplot.png>
 Package pdftex.def Info: 01discussionplot.png  used on input line 429.
 (pdftex.def)             Requested size: 252.94327pt x 168.62885pt.
  [32 <./01discussionplot.png>]
-<02discussionplot.png, id=638, 1806.75pt x 1204.5pt>
+<02discussionplot.png, id=560, 1806.75pt x 1204.5pt>
 File: 02discussionplot.png Graphic file (type png)
 <use 02discussionplot.png>
 Package pdftex.def Info: 02discussionplot.png  used on input line 443.
@@ -1042,39 +1042,39 @@ Soo]''
 
 
 ]
-<venn.png, id=686, 562.1pt x 562.1pt>
+<venn.png, id=610, 562.1pt x 562.1pt>
 File: venn.png Graphic file (type png)
 <use venn.png>
 Package pdftex.def Info: venn.png  used on input line 540.
 (pdftex.def)             Requested size: 140.92793pt x 140.92776pt.
  (./appendix_tab2.tex) [40 <./venn.png>] (./appendix_tab3.tex) [41]
 (./appendix_tab4.tex) [42] [43] (./appendix_tab5.tex) [44] [45]
-<purchasesmanipulation1.png, id=766, 562.1pt x 562.1pt>
+<purchasesmanipulation1.png, id=693, 562.1pt x 562.1pt>
 File: purchasesmanipulation1.png Graphic file (type png)
 <use purchasesmanipulation1.png>
 Package pdftex.def Info: purchasesmanipulation1.png  used on input line 684.
 (pdftex.def)             Requested size: 134.90675pt x 134.90675pt.
-<worksmanipulation1.png, id=767, 562.1pt x 562.1pt>
+<worksmanipulation1.png, id=694, 562.1pt x 562.1pt>
 File: worksmanipulation1.png Graphic file (type png)
 <use worksmanipulation1.png>
 Package pdftex.def Info: worksmanipulation1.png  used on input line 684.
 (pdftex.def)             Requested size: 134.90675pt x 134.90675pt.
-<purchasesmanipulation2.png, id=768, 562.1pt x 562.1pt>
+<purchasesmanipulation2.png, id=695, 562.1pt x 562.1pt>
 File: purchasesmanipulation2.png Graphic file (type png)
 <use purchasesmanipulation2.png>
 Package pdftex.def Info: purchasesmanipulation2.png  used on input line 685.
 (pdftex.def)             Requested size: 134.90675pt x 134.90675pt.
-<worksmanipulation2.png, id=769, 562.1pt x 562.1pt>
+<worksmanipulation2.png, id=696, 562.1pt x 562.1pt>
 File: worksmanipulation2.png Graphic file (type png)
 <use worksmanipulation2.png>
 Package pdftex.def Info: worksmanipulation2.png  used on input line 685.
 (pdftex.def)             Requested size: 134.90675pt x 134.90675pt.
-<purchasesmanipulation3.png, id=770, 562.1pt x 562.1pt>
+<purchasesmanipulation3.png, id=697, 562.1pt x 562.1pt>
 File: purchasesmanipulation3.png Graphic file (type png)
 <use purchasesmanipulation3.png>
 Package pdftex.def Info: purchasesmanipulation3.png  used on input line 686.
 (pdftex.def)             Requested size: 134.90675pt x 134.90675pt.
-<worksmanipulation3.png, id=771, 562.1pt x 562.1pt>
+<worksmanipulation3.png, id=698, 562.1pt x 562.1pt>
 File: worksmanipulation3.png Graphic file (type png)
 <use worksmanipulation3.png>
 Package pdftex.def Info: worksmanipulation3.png  used on input line 686.
@@ -1087,15 +1087,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 690.
  (./discretionperformance.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 690.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 690.
-Package rerunfilecheck Info: File `discretionperformance.out' has not changed.
-(rerunfilecheck)             Checksum: 20B618779DD21CB0A0D3A456E9FB721A;3970.
+
+
+Package rerunfilecheck Warning: File `discretionperformance.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `discretionperformance.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  20B618779DD21CB0A0D3A456E9FB721A;3970.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 690.
  ) 
 Here is how much of TeX's memory you used:
- 23582 strings out of 492646
- 409281 string characters out of 6129564
+ 23557 strings out of 492646
+ 408937 string characters out of 6129564
  493617 words of memory out of 5000000
- 26836 multiletter control sequences out of 15000+600000
+ 26811 multiletter control sequences out of 15000+600000
  18524 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,17n,54p,1970b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1122,10 +1129,10 @@ dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2018/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on discretionperformance.pdf (47 pages, 1611765 bytes).
+Output written on discretionperformance.pdf (47 pages, 1609786 bytes).
 PDF statistics:
- 893 PDF objects out of 1000 (max. 8388607)
- 771 compressed objects within 8 object streams
+ 819 PDF objects out of 1000 (max. 8388607)
+ 698 compressed objects within 7 object streams
  162 named destinations out of 1000 (max. 500000)
- 310 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -96,7 +96,7 @@ Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities, betw
 
 --
 
-.center[![Law 8,666/93](./procurement_schedule.png)]
+.center[![Law 8,666/93](./images/procurement_schedule.png)]
 
 --
 
@@ -121,7 +121,7 @@ The Office of the Comptroller-General (CGU) ran a random audit program of Brazil
 
 &lt;br&gt;
 
-In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 parameter estimates.
+In total, my preferred estimation yields 6 (outcomes) *x* [2 (purchases cutoffs) + 3 (works cutoffs) + 3 (pooled cutoffs)] = 48 parameter estimates.
 ]
 
 ---
@@ -131,14 +131,14 @@ In total, my preferred estimation yields 6 (outcomes) *x* 5 (cutoffs) = 30 param
 ]
 
 .rigth-column[
-![Table](table.png)
+![Table](./images/table.png)
 ]
 
 ---
 
 # Mismanagement Binary
 
-![mismanagementbinary](mismanagementplot1.png)
+![mismanagementbinary](./images/mismanagementplot1.png)
 
 --
 
@@ -166,21 +166,35 @@ Is this result spurious? Using **fake purchases** cutoffs for works transfers, t
 
 ## Mismanagement Binary
 
-![falsificationbinary](01falsificationplot1.png)
+![falsificationbinary](./images/01falsificationplot1.png)
 
 ---
 
 # Falsification Tests 2
 
-Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+Isn't this just a random discontinuity due to chance? Using **non-procurement** transfers, the answer is also **no**.
 
 ## Mismanagement Binary
 
-![falsificationbinary](02falsificationplot1.png)
+![falsificationbinary](./images/02falsificationplot1.png)
 
 ---
 
 # Conclusion
+
+We test, but find no evidence, that discretion in public spending reduces corruption.
+
+--
+
+A simple, back-of-the-envelope, calculation of the costs and benefits of the procurement law in Brazil points to a small **5.98% prevention of resource misallocation**.
+
+--
+
+We speak to the literature of political decentralization, but instead of looking at shared responsibility across government levels, we focus at effect of sharing more (or less) responsibility with street-level bureaucrats.
+
+--
+
+Not discussed in this presentation... but we developed a method of text analysis to read in each transfer and assign it to procurement types (in appendix).
 
 ---
 
@@ -192,20 +206,20 @@ class: center, middle, inverse
 
 # Summary Statistics
 
-![panelA](panelA.png)
+![panelA](./images/panelA.png)
 
 ---
 
 # Summary Statistics
 
-![panelB](panelB.png)
+![panelB](./images/panelB.png)
 
 ---
 
 # Covariate Balance Tests
 
 .center[
-![covariates](covariates.png)
+![covariates](./images/covariates.png)
 ]
 
 ---
@@ -213,7 +227,7 @@ class: center, middle, inverse
 # Bandwidth Tests
 
 .center[
-![bandwidth](bandwidth.png)
+![bandwidth](./images/bandwidth.png)
 ]
 
 ---
@@ -221,25 +235,25 @@ class: center, middle, inverse
 .left[
 ## Olken and Pande (2012):
 
-![model](model.png)
+![model](./images/model.png)
 
 ]
 .pull-left[
 ## Corruption
 
-![corruption](corruptionmodel.png)
+![corruption](./images/corruptionmodel.png)
 
 ]
 .pull-right[
 ## Mismanagement
 
-![mismanagement](mismanagementmodel.png)
+![mismanagement](./images/mismanagementmodel.png)
 
 ]
 .left[
 ## RD
 
-![equation](equation.png)
+![equation](./images/equation.png)
 
 ]
 
@@ -247,7 +261,7 @@ class: center, middle, inverse
 
 # Mismanagement Share
 
-![mismanagementshare](mismanagementplot2.png)
+![mismanagementshare](./images/mismanagementplot2.png)
 
 **Interpretation:** reducing the discretion with which public agents hire private contractors for public works projects reduces the share of mismanagement problems found by auditors by **29.1 percentage points**.
 
@@ -255,7 +269,7 @@ class: center, middle, inverse
 
 # Mismanagement Amount
 
-![mismanagementamount](mismanagementplot3.png)
+![mismanagementamount](./images/mismanagementplot3.png)
 
 **Interpretation:** reducing the discretion with which public agents hire private contractors for public works projects reduces the amount lost to mismanagement by **R$4,611** (**$1,155** using the current exchange rate).
 
@@ -267,7 +281,7 @@ Is this result spurious? Using **fake purchases** cutoffs for works transfers, t
 
 ## Mismanagement Share
 
-![falsificationbinary](01falsificationplot2.png)
+![falsificationbinary](./images/01falsificationplot2.png)
 
 ---
 
@@ -277,7 +291,7 @@ Is this result spurious? Using **fake purchases** cutoffs for works transfers, t
 
 ## Mismanagement Amount
 
-![falsificationbinary](01falsificationplot3.png)
+![falsificationbinary](./images/01falsificationplot3.png)
 
 ---
 
@@ -287,7 +301,7 @@ Aren't we mixing up purchases and works transfers and picking up a confounding e
 
 ## Mismanagement Share
 
-![falsificationbinary](02falsificationplot2.png)
+![falsificationbinary](./images/02falsificationplot2.png)
 
 ---
 
@@ -297,15 +311,21 @@ Aren't we mixing up purchases and works transfers and picking up a confounding e
 
 ## Mismanagement Amount
 
-![falsificationbinary](02falsificationplot3.png)
+![falsificationbinary](./images/02falsificationplot3.png)
 
 ---
 
 # Cost-Benefit Analysis
 
 .center[
-![cba](cba.png)
+![cba](./images/cba.png)
 ]
+
+---
+
+class: inverse, middle, center
+
+# The End
     </textarea>
 <script src="libs/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

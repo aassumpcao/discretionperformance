@@ -1,4 +1,4 @@
-PWD /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2012 Discretion and corruption/discretioncorruption/article
+PWD /Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Research/2018 Discretion and corruption/discretioncorruption/article
 INPUT /usr/local/texlive/2018/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -254,10 +254,10 @@ INPUT discretionperformance.out
 INPUT discretionperformance.out
 INPUT discretionperformance.out
 INPUT discretionperformance.out
-OUTPUT discretionperformance.pdf
 INPUT ./discretionperformance.out
 INPUT ./discretionperformance.out
 OUTPUT discretionperformance.out
+OUTPUT discretionperformance.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
