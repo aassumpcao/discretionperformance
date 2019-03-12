@@ -1,0 +1,199 @@
+---
+title       : "Estimating the Effect of Discretion in Public Spending on Government Performance"
+subtitle    : "Evidence from Brazilian Municipalities"
+author      :
+  - Andre Assumpcao
+  - Ciro Biderman
+  - George Avelino
+fontsize    : 10pt
+institute   : 
+  - UNC-Chapel Hill, FGV-EAESP, FGV-EAESP
+date        : Mar 16th, 2018
+fancy_lists : true
+output      :
+  beamer_presentation:
+    theme   : "Malmoe"
+    keep_tex: true
+header-includes:
+  - \usepackage {hyperref}
+  - \hypersetup {colorlinks = true, linkcolor = white, urlcolor = blue}
+# bibliography: "/Users/aassumpcao/OneDrive - University of North Carolina at Chapel Hill/Documents/Library/library.bib"
+---
+
+# Motivation
+
+Developing countries spend **US$820bn** per year on goods and services supplied by the private sector. Governments purchase medical supplies, school material, and construction services used to implement public policies.
+
+Constituents thus have an interest not only on **what** goods and services governments are purchasing but also **how** governments are acquiring such items.
+
+- When will the town build better roads? 
+
+- Should the government ask for three budget proposals for a school project or just one?
+
+- How many insulin injections should be purchased given their expiry date and the number of people who need them?
+
+# Research Question
+
+*Does the imposition of harder, stricter procurement rules for government expenditure reduce corruption and misallocation of public resources?*
+
+**Context**
+
+Random sample of 9,593 federal transfers to 1,139 Brazilian municipalities, between 2004-2010, to cover health and education expenditures for which we construct or collect data on:
+  
+- Corruption and mismanagement (**outcomes**)
+    
+- Procurement discretion (**treatments**)
+  
+- Municipal characteristics (**controls**)
+
+# Hypotheses
+
+1. The imposition of harder, stricter procurement rules for public spending **reduces** corruption.
+
+1. The imposition of harder, stricter procurement rules for public spending **reduces** the misallocation of public resources.
+
+**Findings**
+
+1. Stricter procurement rules have **no effect** on corruption.
+
+1. Stricter procurement rules have only a **limited effect** on mismanagement.
+
+# Empirical Strategy
+
+
+**Regression discontinuity (RD)** design where the application of procurement rules follows a strict monetary schedule established by Law 8,666/93.
+
+![Law 8,666/93](./images/procurement_schedule.png)
+
+By looking at federal transfers whose values fall in the vicinities of the discontinuities in procurement rules, we identify the **causal effect** of discretion on government performance.
+
+# Outcomes
+
+The Office of the Comptroller-General (CGU) ran a random audit program of Brazilian municipalities expenditures between 2003 and 2015, which we use to code corruption and misallocation indicators serving as outcome variables in this project (Ferraz and Finan, 2008; 2011).
+
+- **Binary:** whether the transfer contains evidence of corruption or mismanagement;
+
+- **Share:** how many of each transfer's records are corruption or mismanagement-related;
+
+- **Amount:** how much money was potentially lost to corruption or mismanagement.
+
+In total, my preferred estimation yields 6 (outcomes) *x* [2 (purchases cutoffs) + 3 (works cutoffs) + 3 (pooled cutoffs)] = 48 parameter estimates.
+
+# Results 
+
+![RD parameter estimates](./images/table.png){width=70%}
+
+# Mismanagement Binary
+
+![Outcome 1](./images/mismanagementplot1.png)
+
+**Interpretation:** imposing stricter rules on bureaucrats when hiring private contractors in public works projects reduces the probability of finding mismanagement problems in these projects by **41.9 percentage points**.
+
+# Mismanagement Share
+
+![Outcome 2](./images/mismanagementplot2.png)
+
+**Interpretation:** imposing stricter rules on bureaucrats when hiring private contractors in public works projects reduces the share of mismanagement problems found by auditors by **29.1 percentage points**.
+
+# Mismanagement Amount
+
+![Outcome 3](./images/mismanagementplot3.png)
+
+**Interpretation:** imposing stricter rules on bureaucrats when hiring private contractors in public works projects reduces the amount lost to mismanagement by **R$4,611** (**$1,155** using the current exchange rate).
+
+# Results are robust!
+
+> 1. We run covariate balance tests across cutoffs and include covariates in regressions.
+
+> 2. We use robust standard errors, clustered at the municipal level, and health, education, and auditing fixed effects.
+
+> 3. We run the McCrary (2008) test for manipulation of the running variable and throw away the last cutoff in the goods/services procurement type.
+
+> 4. Optimal bandwidth selection comes from Calonico, Cattaneo, and Titiunik (2015), but we also run our local (quadratic) regressions at smaller bandwidths.
+
+> 5. There are two falsification tests showing that our significant mismanagement effects are not spurious...
+
+# Falsification Tests 1
+
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
+
+![Mismanagement Binary Placebo 1](./images/01falsificationplot1.png)
+
+# Falsification Tests 2
+
+Isn't this just a random discontinuity due to chance? Using **non-procurement** transfers, the answer is also **no**.
+
+![Mismanagement Binary Placebo 2](./images/02falsificationplot1.png)
+
+# Scientific Contribution
+
+1. **No evidence that lower discretion** in public spending reduces corruption.
+
+2. **Limited welfare effect:**  A back-of-the-envelope calculation shows limited restricting procurement: Law 8,666/93 prevents only 5.98% of resource misallocation.
+
+3. **Top-down legislation is ineffective:** legislation to limit discretion becomes meaningless with inflation and when rules are too hard to follow.
+
+4. Not discussed in this presentation... but we also developed text analysis algorithm to read in each transfer and assign it to procurement types (in appendix).
+
+# Supplemental Material
+
+# Summary Statistics
+
+![Panel A: Variables at the Service Order Level](./images/panelA.png)
+
+# Summary Statistics
+
+![Panel B: Variables at the Municipal Level](./images/panelB.png)
+
+# Covariate Balance Tests
+
+![Covariate Balance](./images/covariates.png){width=75%}
+
+# Bandwidth Tests
+
+![Bandwidth Tests](./images/bandwidth.png)
+
+# Falsification Tests 1
+
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
+
+**Mismanagement Share**
+
+![Mismanagement Share Placebo 1](./images/01falsificationplot2.png)
+
+# Falsification Tests 1
+
+Is this result spurious? Using **fake purchases** cutoffs for works transfers, the answer is **no**.
+
+**Mismanagement Amount**
+
+![Mismanagement Amount Placebo 1](./images/01falsificationplot3.png)
+
+# Falsification Tests 2
+
+Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+
+**Mismanagement Share**
+
+![Mismanagement Share Placebo 2](./images/02falsificationplot2.png)
+
+# Falsification Tests 2
+
+Aren't we mixing up purchases and works transfers and picking up a confounding effect? Using **non-procurement** transfers, the answer is also **no**.
+
+**Mismanagement Amount**
+
+![Mismanagement Amount Placebo 2](./images/02falsificationplot3.png)
+
+# Cost-Benefit Analysis
+
+![Back-of-the-envelope Calculation](./images/cba.png)
+
+<<<<<<< ours
+# The End
+
+Andre Assumpcao \
+Ph.D. Candidate \
+Department of Public Policy \
+The University of North Carolina at Chapel Hill \
+[aassumpcao.github.io](https://aassumpcao.github.io)
