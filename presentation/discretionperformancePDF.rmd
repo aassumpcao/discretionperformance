@@ -24,8 +24,6 @@ header-includes:
 
 Developing countries spend **US$820bn**\footnotemark \space per year on goods and services supplied by the private sector. Governments purchase medical supplies, school material, and construction services used to implement public policies.
 
-\hyperlink{PARTICIPANTS}{\beamergotobutton{Participants}} 
-
 \bigskip
 
 Constituents thus have an interest not only on **what** goods and services governments are purchasing but also **how** governments are procuring such items.
