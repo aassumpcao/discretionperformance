@@ -1,0 +1,14 @@
+@article{10.2307/2946696,
+ ISSN = {00335533, 15314650},
+ URL = {http://www.jstor.org/stable/2946696},
+ abstract = {This paper analyzes a newly assembled data set consisting of subjective indices of corruption, the amount of red tape, the efficiency of the judicial system, and various categories of political stability for a cross section of countries. Corruption is found to lower investment, thereby lowering economic growth. The results are robust to controlling for endogeneity by using an index of ethnolinguistic fractionalization as an instrument.},
+ author = {Paolo Mauro},
+ journal = {The Quarterly Journal of Economics},
+ number = {3},
+ pages = {681-712},
+ publisher = {Oxford University Press},
+ title = {Corruption and Growth},
+ volume = {110},
+ year = {1995}
+}
+

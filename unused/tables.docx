@@ -1,0 +1,16 @@
+\documentclass[]{article}\pagestyle{empty}\begin{document}
+\begin{center}
+\smallskip\begin{large}Table 2: Regressions\end{large}\\
+\smallskip
+\begin{tabular}{lc}
+\hline \noalign{\smallskip} & Purchases corruption\\
+ & (1)\\
+\noalign{\smallskip}\hline \noalign{\smallskip}Purchase type 2 & 0.23\\
+ & \begin{footnotesize}[0.05]***\end{footnotesize}\\
+\noalign{\smallskip}$R^2$ & 0.05\\
+$N$ & 3,509\\
+\noalign{\smallskip}\hline\end{tabular}\\
+\smallskip\begin{footnotesize}\ * $p<0$.1; ** $p<0$.05; *** $p<0$.01\end{footnotesize}\\
+\smallskip
+\end{center}
+\end{document}

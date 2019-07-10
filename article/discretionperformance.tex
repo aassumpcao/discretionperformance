@@ -1,30 +1,33 @@
 \documentclass[11pt]{article}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{centernot}
-\usepackage{amsfonts}
-\usepackage{eurosym}
-\usepackage{geometry}
-\usepackage{ulem}
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{rotating}
-\usepackage{caption}
-\usepackage{color}
-\usepackage{setspace}
-\usepackage{sectsty}
-\usepackage{comment}
-\usepackage{footmisc}
 \usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
 \usepackage{caption}
+\usepackage{caption}
+\usepackage{centernot}
+\usepackage{color}
+\usepackage{comment}
+\usepackage{dcolumn}
+\usepackage{diagbox}
+\usepackage{eurosym}
+\usepackage{footmisc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{multicol}
 \usepackage{natbib}
 \usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{sectsty}
+\usepackage{setspace}
+\usepackage{standalone}
 \usepackage{subfigure}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{diagbox}
-\usepackage{dcolumn}
-\usepackage{makecell}
+\usepackage{tikz}
+\usepackage{titling}
+\usepackage{ulem}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{unicode = true}
 
@@ -114,11 +117,7 @@ Similarly to these studies, we also use CGU audit reports to construct corruptio
 
 These reports are available online for wider use, which we use to build our performance measures. We coded 1,139 municipal reports between 2004-2010 covering 14,518 health or education service orders, out of which 9,593 have investigated the use of federal resources for procuring goods, services, or public works supplies in Brazilian municipalities. The coding method is similar to that of \citet{FerrazExposingCorruptPoliticians2008b}, where we assign each report to two research assistants and ask them to read and interpret each finding within each service order using a guide with codes for 35 possible infractions.\footnote{There are three codes for \emph{clean}, non-infraction findings. The first justification for these codes are cases in which, despite the infraction being resolved with further clarification via analysis or documentation, the auditors still have to document their initial finding. The other justification are cases in which the city administration has not observed policy guidelines because of mistakes made by third-parties. For instance, banks managing program funds are not authorized to checking account fees, but some banks do (by mistake, clearly) and auditors have to include these payments as noncompliance of program requirements.} To avoid any individual bias in the interpretation of service orders, a senior research assistant resolved all coding conflicts resulting from the double-blind classification and met with coders every other week to update classification guidelines.
 
-\input{tab_auditbyministry1}
-
 There are 11 corruption and 24 program management-related infractions (appendix \ref{tab:corruptioncodes}).\footnote{Despite the larger number of corruption infractions, they map onto the same problems included in the indicators in \citet{FerrazExposingCorruptPoliticians2008b,FerrazElectoralAccountabilityCorruption2011a}.} We use these infractions to create three measures of government performance: (i) whether the transfer has at least one corruption or mismanagement violation (\emph{binary} indicator); (ii) the share of corruption or mismanagement infractions over all infractions (\emph{share} indicator); (iii) the amount potentially lost to corruption or wasted as a result of mismanagement (\emph{amount} indicator), which is the product of the share of infractions in (ii) times the total amount of the transfer. Multiple outcomes also help disentangle the differential effects on performance. The binary outcomes represent the extensive margin effect, as any single infraction marks a transfer as subject to performance issues, while the share outcome is an intensive margin measure as it translates the extent to which any transfer is filled with one of the performance problems.
-
-\input{corruptioncodes}
 
 An additional source of bias in the performance indicators proposed in this study would come from the fact that CGU only includes service orders in online reports in which there were corruption or mismanagement findings after the auditing took place. \citet{FerrazExposingCorruptPoliticians2008b} rightfully use only these service orders because they are looking at the effect of the publicly \emph{disclosed} information on election outcomes. If there were no infractions, then there is no corruption information to disclose. However, since we are interested in the effect of discretion on performance that might well go unnoticed to the general public, ignoring clean service orders would inflate our performance indicators by restricting the sample to transfers which had problems -- instead of the entire universe of transfers investigated at any single municipality. To avoid this form of bias, and in the same way as \citet{FerrazElectoralAccountabilityCorruption2011a}, we use the entire sample of service orders investigated at every municipality, provided by CGU, including transfers for which no problem was reported. Thus, we have all education and health transfer investigations for all 1,139 municipalities in our sample, even those that do not show up in online reports.
 
@@ -131,8 +130,6 @@ Corruption prevention inspired Law 8,666/93. The federal government wanted to re
 There are four procurement categories relevant to this study in the law:\footnote{The is another category for government awards, generally in arts and sciences, which is not applicable to our object of study.} (0) direct contracting (1) invitational bidding; (2) price comparison bidding; (3) competitive bidding. These categories are decreasing in the discretion officials enjoy to spend public resources. In category zero, the government and its agencies are exempt from opening a procurement call and can purchase goods and services directly from suppliers. In category one, officials invite at least three suppliers to participate in the procurement call and, if any of three decides not to participate, the administration has to resend the invite out until it finds three vendors willing to participate in the call. For category two, only companies who had pre-registered with the government as suppliers can participate in the call, which should remain open for at least 15 working days. Participation in procurement calls under category three are open to any domestic or international supplier and the calls should remain open for a minimum of 30 days before the bid submission deadline.
 
 Within the scope of Law 8,666/93, the application of rules is a function of procurement object and contract value: there are two types of objects (any good or service, which we call \emph{purchases}, and goods or services used in public works projects, which we call \emph{works}) and three increasing monetary thresholds for each type. Table \ref{tab:procurementtypes} summarizes these categories. The discretion categories are constant across columns (i.e.~the same regardless of type) but decrease discontinuously at each monetary cutoff in Law 8,666/93. For example, in municipality Nova Olinda, CE, auditors investigated a transfer for the construction of 72 restrooms worth a total of R\$76,792.23, which qualifies this transfer as public works type and invitational bidding category.
-
-\input{procurementtypes}
 
 Besides suggesting that discretion is decreasing by looking at the requirements for each procurement category, three other factors substantiate our claim. First, agents who are found guilty of procurement fraud have to pay a fine ranging from 2\% to 5\% of total contract value. This provision results in higher penalties for corruption at higher categories (albeit at a decreasing rate), likely making agents less willing to engage in corruption. Second, CGU auditors specifically report instances where a single larger procurement call was split into smaller value calls to avoid higher procurement categories. In fact, we have a dedicated code to these cases (code \#30 in table \ref{tab:corruptioncodes}) and they occur in 5.5\% of the investigations in our sample. Finally, Article 23 \S 4 of Law 8,666/93 allows the adoption of rules from higher categories in procurement calls of lower amounts (but not the other way around). For instance, a government call for the purchase of R\$65,000 worth of textbooks should use \emph{invitational bidding} rules (category one) but officials could apply \emph{price comparison bidding} (category two) or \emph{competitive bidding} (category three) if they so wish; the only possible explanation is that higher categories impose fairer, more transparent, harder ways to contract with private businesses. In sections \ref{subsec:data} and \ref{subsec:methodology}, we also use Art.~23, \S 4 to limit problems from not directly observing procurement contracts.
 
@@ -157,8 +154,6 @@ There are two other important variables at the service order level, the monetary
 We use the municipal level variables as covariates to control for observable municipal characteristics. Data come from the Brazilian Office of Statistics (IBGE) and the Electoral Court (TSE). All socioeconomic data comes from the 2010 IBGE Brazil Census and the electoral data come from the election immediately before the municipality received the audit team (either 2000, 2004, or 2008). From IBGE, we pull data on the share of urban population, the female share, the illiteracy rate, income inequality as measured by the GINI index, the human development index, and poverty rate. These are the literature-standards for municipal controls. In addition, we include variables used from similar studies in which CGU audits serve as the basis for corruption outcomes, such as presence of the AM radio in municipality (binary), the establishment of health and education bottom-up monitoring councils (binary), whether the municipality is seat of a local office of the Judiciary Branch (binary), and the vote margin (as share of valid votes) and mayor reelection rates (binary). Table \ref{tab:descriptivestatistics} displays the descriptive statistics for the first group of variables at the service order level in Panel A and the variables at the municipal level in Panel B.
 
 The service level statistics are not directly comparable to that of \citet{FerrazExposingCorruptPoliticians2008b,FerrazElectoralAccountabilityCorruption2011a} and \citet{ZamboniAuditRiskRent2018} for two reasons: first, we analyze corruption at the servicer order (i.e.~federal transfer) level, instead of aggregating them up to the municipal level; second, we are looking at larger universe of 1,139 municipalities versus 373 in \citet{FerrazExposingCorruptPoliticians2008b}, 476 in \citet{FerrazElectoralAccountabilityCorruption2011a}, and 120 in \citet{ZamboniAuditRiskRent2018}. Though the mean transfer value is roughly R\$450,000, the 75\textsuperscript{th} percentile is close to R\$205,000 (or approximately \$107,000 in 2010 dollars, the last year in our sample). About 40\% have at least one corruption infraction and 75\% have one or more program management infractions. Seventy-five percent of all transfers have amounts potentially lost to corruption and mismanagement respectively at R\$29,427 and R\$122,000 (or lower).
-
-\input{tab_descriptivestats1}
 
 Panel B, however, displays municipal characteristics consistent with similar studies. The average population is 64\% urban, 50\% female, and 16.4\% illiterate. GDP per capita is on par with the Brazilian average at R\$11,890 but income is not evenly distributed as the average GINI coefficient stands at 0.512. The Human Development Index is low (0.654) relative to Brazil's overall HDI 0.724, which is a result of CGU's sampling strategy of excluding larger (higher HDI) municipalities from the random lottery. The average poverty rate is 25\%. Twenty-three percent of municipalities have a local ratio station, and over 78.1\% have created either the education or health monitoring councils, a requirement for participation in some social programs. About half of the municipalities in our sample also host a local office for Judiciary branch. Winning vote margin and reelection rates are 16.8\% and 29.3\%. The characteristics in Panel B are used in the estimating equations for robustness checks and for controlling observable municipal characteristics, therefore we do not engage in further the discussion of their relationship with government performance. Besides, the identification strategy we employ addresses observational differences across sample units.
 
@@ -302,7 +297,7 @@ Contrary to expected, the effect of procurement amount is not consistent nor lar
 
 Although they do not describe causal relationships, the parameters in rows one and two in table \ref{tab:mainregression} also suggest that procurement amount is not an important factor in official's decision whether to pocket appropriate resources or use them inefficiently. Indeed, the very fact that amounts determining procurement rules had not been adjusted between 1998 and the time for which we have transfer records (2004-2010) lends support to this finding (we also discuss this more comprehensively when presenting the results for the RD estimations).
 
-The municipal corruption parameters confirm it as an important determinant of government performance (as expected). An increase of 1 percentage point in municipal corruption is associated with a increase of 0.766 and 0.974 percentage points,\footnote{The municipal corruption variable is scaled from 0 to 1 in .01 increments, hence a change of one unit represents a 100 percentage point change in municipal corruption. That is why we need to divide the parameter magnitudes by 100 for the percentage point effect on performance indicators.} respectively, in the likelihood of finding corruption in federal transfers used for procuring goods/services and public works procurement processes (parameters in columns 2 and 4, where we additionally control for municipal, ministry and audit effects). The effect is smaller for program management issues at 0.440 and .428 percentage points for each procurement type. Except for model (8), which is statistically significant at 5\%, all other municipal corruption effects are significant at the 1\% level. In addition to confirming the sign of first derivatives of performance with respect to overall municipal corruption, we also confirm the direction of second derivatives; across all models, municipal corruption effects increase at decreasing rates, with magnitudes ranging from 2 percentage points (column 6) to 1.4 percentage points (column 1).
+The municipal corruption parameters confirm it as an important determinant of government performance (as expected). An increase of 1 percentage point in municipal corruption is associated with a increase of 0.766 and 0.974 percentage points,\footnote{The municipal corruption variable is scaled from 0 to 1 in .01 increments, hence a change of one unit represents a 100 percentage point change in municipal corruption. That is why we need to divide the parameter magnitudes by 100 for the percentage point effect on performance indicators.} respectively, in the likelihood of finding corruption in federal transfers used for procuring goods/services and public works procurement processes (parameters in columns 2 and 4, where we additionally control for municipal, ministry and audit effects). The effect is smaller for program management issues at 0.440 and .428 percentage points for each procurement type. Except for model (8), which is statistically significant at 5\%, all other municipal corruption effects are significant at the 1\% level. In addition to confirming the sign of first derivatives of performance with respect to overall municipal corruption, we also confirm the direction of second derivatives; across all models, municipal corruption effects increase at decreasing rates, with magnitudes ranging from 2 percentage points (column 6) to 1.4 percentage points (column 2).
 
 The municipal corruption effect here has a similar nature to the effect documented by \citet{ChongDoesCorruptionInformation2015}, in which voters adjust their corruption punishment in response to whether the challenger candidate is herself dishonest, or \citet{AvisGovernmentAuditsReduce2018}, who document lower municipal corruption when mayors learn of audits in neighboring municipalities. These studies, along with ours, are suggesting that corruption outcomes are also conditional on whether peers, or neighbors, also engage in corruption.
 
@@ -432,7 +427,7 @@ The first potential interpretation is that public officials might have grown acc
 
 Municipal corruption levels are fairly stable over time. The average corruption share ranges between .18 to .21 of total infractions. Obviously, there are other things going on simultaneously besides learning how to work around procurement rules, but the relative stability of municipal corruption could also be a feature of the ease with which officials can sidestep rules if they want to engage in corruption. Moreover, the burden for corruption falls more heavily on mayors \citep{AvisGovernmentAuditsReduce2018} than on their lower level staff, also indicating another incentive for why officials would keep their corruption levels stable over time.
 
-Another explanation of the null effect is the decreasing purchasing power of public resources in the presence of inflation. Since the cutoff values across categories remain constant over the period under analysis, inflation reduces the quantity of goods and services any single procurement call can contract, thus turning small procurement amounts (regulated by lower categories of Law 8,666/93) meaningless in terms of their complexity or the corruption opportunity they create -- or even the nominal value taken out as corruption. This means that compliance at lower categories of the procurement law might be easier due to the relative simplicity, lower quality, or smaller quantity of the items being procured. We propose checking this explanation by looking at the average number of infractions (both in corruption and management) across time, procurement type, and category. We present these results in table \ref{fig:02discussion}, where we see the average number of infractions per investigation on the \emph{y}-axis, and the year of investigation on the \emph{x}-axis. We further split the results by type of procurement (public purchases or works) and category (direct contracting, invitational bidding, price comparison bidding, and competitive bidding). Thus, each quadrant summarizes the average number of infractions per year, procurement type, and category. The dashed black lines are the average number of infractions across type and category and removes the time variation.
+Another explanation of the null effect is the decreasing purchasing power of public resources in the presence of inflation. Since the cutoff values across categories remain constant over the period under analysis, inflation reduces the quantity of goods and services any single procurement call can contract, thus turning small procurement amounts (regulated by lower categories of Law 8,666/93) meaningless in terms of their complexity or the corruption opportunity they create -- or even the nominal value taken out as corruption. This means that compliance at lower categories of the procurement law might be easier due to the relative simplicity, lower quality, or smaller quantity of the items being procured. We propose checking this explanation by looking at the average number of infractions (both in corruption and management) across time, procurement type, and category. We present these results in figure \ref{fig:02discussion}, where we see the average number of infractions per investigation on the \emph{y}-axis, and the year of investigation on the \emph{x}-axis. We further split the results by type of procurement (public purchases or works) and category (direct contracting, invitational bidding, price comparison bidding, and competitive bidding). Thus, each quadrant summarizes the average number of infractions per year, procurement type, and category. The dashed black lines are the average number of infractions across type and category and removes the time variation.
 
 \begin{figure}[!htbp]
   \caption{Average Infraction Count Per Year, Procurement Type, and Category}
@@ -477,31 +472,22 @@ To check these results, we carried out two falsification tests: running the same
 
 Lastly, we provide a rough estimate of the costs and benefits of the procurement legislation in Brazil for a transparent metric with which to decide whether discretion restrictions should be kept or not. Though the legislation reduces the total amount of missing funds by 5.98\%, there are still R\$30M missing -- equivalent to six times the yearly average of funds transferred from the federal government to municipalities in the period under analysis. Discretion restrictions, though effective at reducing mismanagement, are not unconditionally positive for government performance.
 
-\clearpage
+\pagebreak
 
 \setlength\bibsep{0pt}
 \bibliographystyle{apalike}
 \bibliography{/Users/aassumpcao/library.bib}
 
-\clearpage
+\pagebreak
 
-% \singlespacing
+\section*{Tables and Figures} \label{sec:tables}
 
-% \section*{Tables} \label{sec:tab}
-
-% \clearpage
-
-% \section*{Figures} \label{sec:fig}
-
-%\begin{figure}[hp]
-%  \centering
-%  \includegraphics[width=.6\textwidth]{../fig/placeholder.pdf}
-%  \caption{Placeholder}
-%  \label{fig:placeholder}
-%\end{figure}
-
-
-\clearpage
+\begin{table}[h]
+\centering
+\caption[table1]{Descriptive Statistics}\label{tab:descriptivestatistics}
+\vspace{-10pt}
+\input{../tables/summarystats.tex}
+\end{table}
 
 \appendix
 

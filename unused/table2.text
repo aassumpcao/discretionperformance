@@ -1,0 +1,17 @@
+Table 2: Unrestricted parametric regressions: dependent variable corruption index				
+		(1)	(2)	(3)
+VARIABLES	LABELS	OLS	Logit	Probit
+				
+xpcentered	Amount centered at c=2	0.000	0.000	0.000
+		[0.000]	[0.000]	[0.000]
+lp2	Procurement type 2	-0.790	-5.602	-3.159
+		[1.158]	[7.672]	[4.326]
+xp2	Amount centered x Procurement type 2	-0.000	-0.000	-0.000
+		[0.000]	[0.000]	[0.000]
+Constant	Constant	1.481	6.379	3.665
+		[1.168]	[7.703]	[4.346]
+				
+Observations		3,509	3,509	3,509
+R-squared		0.051		
+Robust standard errors in brackets				
+*** p<0.01, ** p<0.05, * p<0.10				

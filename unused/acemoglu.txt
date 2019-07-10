@@ -1,0 +1,14 @@
+@article{10.2307/117287,
+ ISSN = {00028282},
+ URL = {http://www.jstor.org/stable/117287},
+ abstract = {Because government intervention transfers resources from one party to another, it creates room for corruption. As corruption often undermines the purpose of the intervention, governments will try to prevent it. They may create rents for bureaucrats, induce a misallocation of resources, and increase the size of the bureaucracy. Since preventing all corruption is excessively costly, second-best intervention may involve a certain fraction of bureaucrats accepting bribes. When corruption is harder to prevent, there may be both more bureaucrats and higher public-sector wages. Also, the optimal degree of government intervention may be nonmonotonic in the level of income.},
+ author = {Daron Acemoglu, Thierry Verdier},
+ journal = {The American Economic Review},
+ number = {1},
+ pages = {194-211},
+ publisher = {American Economic Association},
+ title = {The Choice between Market Failures and Corruption},
+ volume = {90},
+ year = {2000}
+}
+

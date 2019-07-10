@@ -1,0 +1,17 @@
+Table 4: Non-parametric regressions around purchases cutoff 2			
+	(1)	(2)	(3)
+VARIABLES	OLS	Logit	Probit
+			
+Amount centered at c=2	-0.000	-0.000	-0.000
+	[0.000]	[0.000]	[0.000]
+Procurement type 2	0.125**	0.519**	0.323**
+	[0.059]	[0.246]	[0.153]
+Amount centered x Procurement type 2	-0.000	-0.000	-0.000
+	[0.000]	[0.000]	[0.000]
+Constant	0.357***	-0.586***	-0.365***
+	[0.040]	[0.173]	[0.107]
+			
+Observations	1,019	1,019	1,019
+R-squared	0.007		
+Robust standard errors in brackets			
+*** p<0.01, ** p<0.05, * p<0.10			
