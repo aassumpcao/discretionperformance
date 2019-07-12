@@ -286,16 +286,15 @@ In addition, the discretion categories are cumulative within each procurement ty
 
 \section{Results} \label{sec:result}
 
-In section \ref{sec:theory}, we proposed that government performance in Brazil, measured by corruption and mismanagement indicators, is a function of procurement rules, the monetary amount of procurement calls and the municipal level of corruption. Thus, the first test in table \ref{tab:mainregression} verifies whether this formulation accurately represents local government performance in Brazil.
+In section \ref{sec:theory}, we proposed that government performance in Brazil, measured by corruption and mismanagement indicators, is a function of procurement rules, the monetary amount of procurement calls and the municipal level of corruption. Thus, the first test in figure \ref{fig:corruptiondeterminants} verifies whether this formulation accurately represents local government performance in Brazil.
 
-\input{tab_mainregression1}
 \clearpage
 
-The main outcomes in table \ref{tab:mainregression} are corruption and mismanagement indicator I. They report the likelihood that any single federal transfer, investigated by individual CGU service orders, will have at least one evidence of corruption (columns 1-4) or mismanagement (columns 5-8) of public resources. In this first table, we run regressions broken down by procurement type (purchases and works) and alternate the inclusion of municipal covariates, ministry, and CGU audit lottery fixed-effects (as described in section \ref{sec:methodology}) for robustness checks.
+The main outcomes in figure \ref{fig:corruptiondeterminants} are corruption and mismanagement indicator I. They report the likelihood that any single federal transfer, investigated by individual CGU service orders, will have at least one evidence of corruption (columns 1-4) or mismanagement (columns 5-8) of public resources. In this first table, we run regressions broken down by procurement type (purchases and works) and alternate the inclusion of municipal covariates, ministry, and CGU audit lottery fixed-effects (as described in section \ref{sec:methodology}) for robustness checks.
 
 Contrary to expected, the effect of procurement amount is not consistent nor large (in cases where statistically significant). Across the first row, we notice that procurement call amount only has a positive and statistically significant (\emph{p}-value $<$ .01) correlation with corruption in public purchases and mismanagement of public works resources. The second-order effect, measuring the decreasing rate at which call amount correlates with, has the expected sign (negative) but is again very small and inconsistent across different regression specifications.
 
-Although they do not describe causal relationships, the parameters in rows one and two in table \ref{tab:mainregression} also suggest that procurement amount is not an important factor in official's decision whether to pocket appropriate resources or use them inefficiently. Indeed, the very fact that amounts determining procurement rules had not been adjusted between 1998 and the time for which we have transfer records (2004-2010) lends support to this finding (we also discuss this more comprehensively when presenting the results for the RD estimations).
+Although they do not describe causal relationships, the parameters in rows one and two in figure \ref{fig:corruptiondeterminants} also suggest that procurement amount is not an important factor in official's decision whether to pocket appropriate resources or use them inefficiently. Indeed, the very fact that amounts determining procurement rules had not been adjusted between 1998 and the time for which we have transfer records (2004-2010) lends support to this finding (we also discuss this more comprehensively when presenting the results for the RD estimations).
 
 The municipal corruption parameters confirm it as an important determinant of government performance (as expected). An increase of 1 percentage point in municipal corruption is associated with a increase of 0.766 and 0.974 percentage points,\footnote{The municipal corruption variable is scaled from 0 to 1 in .01 increments, hence a change of one unit represents a 100 percentage point change in municipal corruption. That is why we need to divide the parameter magnitudes by 100 for the percentage point effect on performance indicators.} respectively, in the likelihood of finding corruption in federal transfers used for procuring goods/services and public works procurement processes (parameters in columns 2 and 4, where we additionally control for municipal, ministry and audit effects). The effect is smaller for program management issues at 0.440 and .428 percentage points for each procurement type. Except for model (8), which is statistically significant at 5\%, all other municipal corruption effects are significant at the 1\% level. In addition to confirming the sign of first derivatives of performance with respect to overall municipal corruption, we also confirm the direction of second derivatives; across all models, municipal corruption effects increase at decreasing rates, with magnitudes ranging from 2 percentage points (column 6) to 1.4 percentage points (column 2).
 
@@ -488,6 +487,36 @@ Lastly, we provide a rough estimate of the costs and benefits of the procurement
 \vspace{-10pt}
 \input{../tables/summarystats.tex}
 \end{table}
+
+\begin{table}[h]
+\centering
+\caption[table2]{Corruption Infraction Codes}\label{tab:corruptioncodes}
+\vspace{-10pt}
+\input{../tables/corruptioncodes.tex}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[table3]{Number of Municipal Audits by Ministry}\label{tab:auditbyministry}
+\vspace{-10pt}
+\input{../tables/auditbyministry.tex}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[table4]{Procurement Categories}\label{tab:procurementtypes}
+\vspace{-10pt}
+\input{../tables/procurementtypes.tex}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\caption[figure1]{Corruption Determinants (Estimate and 95\% CIs)}\label{fig:corruptiondeterminants}
+\vspace{-10pt}
+\includegraphics[scale = .70]{../plots/corr-determinats.pdf}
+\end{figure}
+
+\clearpage
 
 \appendix
 
