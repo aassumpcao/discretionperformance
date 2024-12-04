@@ -1,0 +1,21 @@
+\documentclass[border = 1pt]{standalone}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{rotating}
+\begin{document}
+\scriptsize
+% \setlength{\tabcolsep}{-2pt}
+\begin{tabular}{c@{\extracolsep{10pt}}r|rrr}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& & \multicolumn{3}{c}{Education} \\
+& & No  & Yes  & Total \\
+\hline
+& & & & \\[-1.8ex]
+\multirow[c]{3}{*}{\begin{sideways}Health\end{sideways}} & No    & 0  & 65   & 65   \\
+& Yes   & 34 & 1040 & 1074 \\
+& Total & 34 & 1105 & 1139 \\
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\end{tabular}
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[border = 1pt$]{standalone}
+\usepackage{multirow}
+\usepackage{makecell}
+\begin{document}
+\scriptsize
+\setlength{\tabcolsep}{-2pt}
+\begin{tabular}{@{\extracolsep{6pt}}clrrrrrr}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& & \multicolumn{3}{c}{Corruption Outcomes} &  \multicolumn{3}{c}{Management Outcomes} \\[1.0ex]
+\cline{3-5} \cline{6-8} \\[-1.8ex]
+& & Indicator I & Indicator II & Indicator III & Indicator I & Indicator II & Indicator III \\[1.0ex]
+\hline \\[-1.8ex]
+          & Cutoff 1 & 26,564    & 26,327  & 22,671  & 27,393  & 26,554  & 22,364  \\[1.0ex]
+Purchases & Cutoff 2 & 45,854    & 35,566  & 34,547  & 43,431  & 39,460  & 38,455  \\[1.0ex]
+          & Cutoff 3 & 323,425   & 281,940 & 289,857 & 205,542 & 213,622 & 226,386 \\[1.0ex]
+\hline \\[-1.8ex]
+          & Cutoff 1 & 29,960    & 33,076  & 28,276  & 43,876  & 44,177  & 38,117  \\[1.0ex]
+Works     & Cutoff 2 & 74,779    & 65,067  & 67,447  & 60,251  & 55,164  & 56,915  \\[1.0ex]
+          & Cutoff 3 & 1,001,774 & 862,717 & 825,342 & 340,947 & 739,532 & 956,064 \\[1.0ex]
+\hline \\[-1.8ex]
+          & Cutoff 1 & 23,987    & 24,116  & 18,606  & 18,852  & 19,546  & 17,728  \\[1.0ex]
+Pooled    & Cutoff 2 & 51,276    & 39,937  & 39,263  & 33,164  & 32,725  & 60,868  \\[1.0ex]
+          & Cutoff 3 & 287,165   & 304,498 & 323,916 & 356,322 & 362,109 & 245,302 \\[-.8ex]
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\multicolumn{8}{p{.73\textwidth}}{\scriptsize Notes: These are the \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018} optimal, data-driven bandwidth sizes, regardless of whether the multiple cutoffs are cumulative or not. We use the average across purchases and works bandwidths for RD manipulation and covariate balance tests.} \\
+\end{tabular}
+\end{document}
+ % \citet{CattaneoInterpretingRegressionDiscontinuity2016,CattaneoAnalysisRegressionDiscontinuity2018}

@@ -1,0 +1,36 @@
+\documentclass[border = 1pt$]{standalone}
+\usepackage{multirow}
+\usepackage{makecell}
+\begin{document}
+\scriptsize
+\setlength{\tabcolsep}{-2pt}
+\begin{tabular}{@{\extracolsep{6pt}}lccccc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& \multicolumn{2}{c}{Purchases} & \multicolumn{3}{c}{Works} \\
+\cline{2-3} \cline{4-6} \\[-1.8ex]
+\emph{Municipal Variables:} & Cutoff 1 & Cutoff 2 & Cutoff 1 & Cutoff 2 & Cutoff 3 \\
+\hline \\[-1.8ex]
+Urban Population (Share)      & 0.756         & 0.775         & 0.297         & 0.702       & 0.617 \\[1.0ex]
+Female (Share)                & 0.281         & \hspace{4pt}0.078$^{*}$   & \hspace{11pt}0.005$^{***}$ & 0.857       & 0.157 \\[1.0ex]
+Illiteracy Rate               & 0.159         & 0.169         & 0.220         & 0.140       & 0.949 \\[1.0ex]
+GDP                           & 0.284         & 0.140         & 0.995         & 0.721       & 0.502 \\[1.0ex]
+Gini Index                    & 0.153         & 0.163         & \hspace{4pt}0.071$^{*}$   & 0.712       & 0.457 \\[1.0ex]
+Human Development Indicator   & 0.105         & 0.205         & 0.227         & 0.107       & 0.826 \\[1.0ex]
+Poverty Rate                  & \hspace{4pt}0.079$^{*}$   & 0.109         & 0.454         & \hspace{4pt}0.097$^{*}$ & 0.679 \\[1.0ex]
+Presence of AM Radio          & 0.799         & 0.359         & \hspace{11pt}0.002$^{***}$ & 0.315       & 0.388 \\[1.0ex]
+Education Council Established & 0.430         & 0.301         & \hspace{4pt}0.056$^{*}$   & 0.275       & 0.523 \\[1.0ex]
+Health Council Established    & 0.844         & 0.274         & 0.648         & 0.469       & 0.160 \\[1.0ex]
+Seat of Judiciary Branch      & \hspace{11pt}0.002$^{***}$ & \hspace{11pt}0.004$^{***}$ & 0.158         & 0.516       & 0.400 \\[1.0ex]
+Vote Margin                   & 0.815         & 0.918         & 0.728         & 0.242       & 0.900 \\[1.0ex]
+Mayor Reelection Rate         & 0.785         & 0.332         & 0.726         & 0.745       & 0.250 \\[1.0ex]
+\hline \\[-1.8ex]
+Sample Size (Below; Above)    & (363; 835) & (877; 555) & (70; 177) & (406; 238) & (33; 15) \\
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\multicolumn{6}{p{.68\textwidth}}{Notes: We used the \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths calculated in table \ref{tab:bandwidths}. In total, there are 36 unique bandwidths from the combinations across procurement type, outcome, and cutoff. We narrow down to one single bandwidth per procurement type and cutoff by focusing only on the most important outcome, performance indicator I, such as we had done in table \ref{fig:corruptiondeterminants}. We compute the bandwidth for both the corruption and the mismanagement version of indicator I and use the smaller bandwidth across the two for robustness purposes, as we want like to narrow down on the samples across cutoffs as much as possible.$^{*}$p$<$.1; $^{**}$p$<$.05; $^{***}$p$<$.01.}
+\end{tabular}
+\end{document}
+% \citet{CalonicoOptimalDataDrivenRegression2015}
+% \ref{tab:bandwidth}
+% \ref{tab:mainregression}

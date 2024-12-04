@@ -1,0 +1,32 @@
+\documentclass[border = 1pt]{standalone}
+\usepackage{multirow}
+\usepackage{makecell}
+\begin{document}
+\scriptsize
+\setlength{\tabcolsep}{-2pt}
+\begin{tabular}{@{\extracolsep{6pt}}lrrrr}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\emph{Cost}                                    & Type      & Avg. Loss (in R\$) & \# Obs. & Total (in R\$) \\[1.0ex]
+\hline \\[-1.8ex]
+Corruption                                     & Purchases & 2,491              & 1,934   & 4,818,570  \\[1.0ex]
+Mismanagement                                  & Purchases & 10,659             & 1,924   & 20,508,793 \\[1.0ex]
+Corruption                                     & Works     & 2,871              & 314     & 901,789    \\[1.0ex]
+Mismanagement                                  & Works     & 10,529             & 423     & 4,454,134  \\[1.0ex]
+\hline \\[-1.8ex]
+\multicolumn{4}{r}{\emph{Total Cost $(A)$}}    & 30,683,288 \\[1.0ex]
+\emph{Benefits}                                &  &  &  &  \\[1.0ex]
+\hline \\[-1.8ex]
+Works                                          & Mismanagement & -4,611 & 423 & -1,950,453 \\[1.0ex]
+\hline \\[-1.8ex]
+\multicolumn{4}{r}{\emph{Total Benefit $(B)$}} & -1,950,453 \\[1.0ex]
+\emph{Welfare Effects}                          &  &  &  &  \\[1.0ex]
+\hline \\[-1.8ex]
+$A-B$                        & \multicolumn{3}{r}{\emph{Total Cost (in R\$) in the absence of Benefit}} & 32,633,741 \\[1.0ex]
+$100 \times B/(A-B)$         & \multicolumn{3}{r}{\emph{\% Cost Reduction}}                             & 5.98   \\[1.0ex]
+$A_{works} - B$              & \multicolumn{3}{r}{\emph{Works Cost (in R\$) in the absence of Benefit}} & 7,306,377  \\[1.0ex]
+$100 \times B/(A_{works}-B)$ & \multicolumn{3}{r}{\emph{\% Works Cost Reduction}}                       & 26.69      \\[1.0ex]
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\end{tabular}
+\end{document}
