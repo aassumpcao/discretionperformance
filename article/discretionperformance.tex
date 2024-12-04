@@ -313,45 +313,15 @@ To lend additional support to our analysis, we conduct a means comparison test f
 
 The interpretation of table \ref{tab:covariates} is straightforward. Significant differences across rows of covariates would mean that our local samples were observable different. The identification strategy would not point to causal inference of the effect of discretion on government performance. However, this is not what we see in table \ref{tab:covariates} as no covariate mean is significantly different across more than two cutoffs. In fact, precisely because municipalities can differ in these observable dimensions is why we collect municipal data in the first place and use to strengthen our RD estimations \citep{CalonicoRegressionDiscontinuityDesigns2018}. The only more concerning result is the systematic difference in those transfers just below and above cutoffs 1 and 2 for the purchases group in the judiciary seat variable (row eleven, columns one and two). The procurement calls just below each cutoff are different from the ones just above in that they generally occur at municipalities that do not have local offices of the Brazilian Judiciary (.34 and .43 averages for cutoff 1; .51 and .59 for cutoff 2). However, since the assignment of state and federal judicial offices follows population and service provision criteria, we do not believe they are correlated with local government performance level (or, for that matter, officials' ability to manipulate procurement rules out of stricter categories).
 
-The main RD estimations are reported in table \ref{tab:rdmc}, where we are looking at one equation per cell, i.e.~a total of $(1 \times 2)$ purchases cutoffs + $(1 \times 3)$ works cutoffs $\times 6$ outcomes $= 30$ regressions.\footnote{Since we dropped cutoff 3 for the purchases group, we are effectively dropping an entire 6-outcome row from table \ref{tab:bandwidthss} when estimating our model.} In each cell, we are regressing the outcome on the column against the procurement category variable on each row (and as defined in table \ref{tab:procurementtypes}). Point estimates are the main statistics reported, followed by clustered (at the municipal level) robust standard errors in the first parentheses and sample sizes at each bandwidth in brackets. For clarity, we only report regressions that do not include covariates nor fixed-effects but the results are robust to their inclusion.\footnote{We have include all covariates and fixed-effects in regressions omitted from the text and the points estimates remain unchanged.}
+The main RD estimations are reported in table \ref{tab:rdmc}, where we are looking at one equation per cell, i.e.~a total of $(1 \times 2)$ purchases cutoffs + $(1 \times 3)$ works cutoffs $\times 6$ outcomes $= 30$ regressions.\footnote{Since we dropped cutoff 3 for the purchases group, we are effectively dropping an entire 6-outcome row from table \ref{tab:bandwidths} when estimating our model.} In each cell, we are regressing the outcome on the column against the procurement category variable on each row (and as defined in table \ref{tab:procurementtypes}). Point estimates are the main statistics reported, followed by clustered (at the municipal level) robust standard errors in the first parentheses and sample sizes at each bandwidth in brackets. For clarity, we only report regressions that do not include covariates nor fixed-effects but the results are robust to their inclusion.\footnote{We have include all covariates and fixed-effects in regressions omitted from the text and the points estimates remain unchanged.}
 
 The first important takeaway from table \ref{tab:rdmc} is no significant effect of discretion on the likelihood of finding corruption in procurement calls (corruption outcome I). No parameter in column 1 is statistically significant, regardless of sample type (purchases, public works, or pooled sample) and procurement category. This is the most important result as it is diametrically opposed to the raison d'être of Law 8,666/93, which was passed to reduce corruption. As for outcome II (corruption share of total infractions), we only see a significant effect in the pooled estimates for cutoff 1, where moving from direct contracting to invitational bidding would reduce corruption by 5.4 percentage points. This is effectively a reduction in the intensity margin of corruption (number of times agents engage in wrongdoing per transfer) but not on the extensive margin (number of times they engage in corruption when they have a chance nor the amount they appropriate as measured by outcome III). Thus, we fail to confirm hypothesis 1 that stricter procurement rules reduce corruption.
 
 Policy implication, however, differ. The immediate consequence is weak support for procurement legislation from both legislators and citizen, if at all. Since Law 8,666/93 does little to prevent corruption, there is no reason to keep it in place as it is an excessive burden for government agencies to procure goods and services which are inputs to their policy production function. The indirect effect, however, requires the analysis of the effect on program management (hypothesis 2).
-\clearpage
-\input{tab_rdmc1}
 
 We then turn to columns 3-6 in table \ref{tab:rdmc}, where we report government performance as program management mistakes. The outcomes are parallel to those of corruption and summarize the likelihood any transfer will have evidence of management problems (outcome I), the share of total problems due to mismanagement (outcome II), and the amount of money potentially lost to poor resource management (outcome III). In the purchases group, the only significant effect is on mismanagement outcome I for category two, i.e.~moving over from invitational to price comparison bidding, which reduces the likelihood of mismanagement by 10 percentage points.
 
 In addition, the most consistent and strongest effect is that of moving from direct contracting to invitational bidding when municipalities are procuring goods and services for public works. A shift in discretion causes a 41.6 percentage point reduction in the likelihood that there will be program implementation issues (outcome I), a 29.1 percentage point fall in the share of management-related problems (outcome II), and R\$4,611 reduction in the amount of resources that would have been lost due to poor program management (outcome III). These effects are robust to the inclusion of covariates and changing bandwidths (as discussed in section \ref{subsec:discussion}). Thus, at least at cutoff 1, we can confirm hypothesis 2 that stricter procurement rules reduce corruption when it comes to calls for goods and services used in public works projects. This indirect effect of discretion in public spending is an important determinant for citizens' support for the Brazilian procurement law. As discussed in section \ref{subsec:hypotheses}, citizens are more likely to support any corruption legislation if there are additional benefits that prevent inefficient allocations of public resources and increase or improve the provisions of public policies. We investigate this effect further in remainder of this section and paper.
-
- In figure \ref{fig:workscutoff1}, we plot the local polynomial regressions for works cutoff 1 for all outcomes. These figures are the graphical representations of the regression equations for works cutoff 1 using the mismanagement outcomes as dependent variables (row three, columns 4-6).
-
-\begin{figure}[!htbp]
-  \caption{\label{fig:workscutoff1} Discretion Effect on Mismanagement (Works Cutoff 1)}
-  \centering
-  \begin{tabular}{ccc}
-  \includegraphics[scale = .265]{workscutoff1.png} & \includegraphics[scale = .265]{workscutoff2.png} & \includegraphics[scale = .265]{workscutoff3.png} \\
-  \multicolumn{3}{p{\textwidth}}{\scriptsize Note: The three figures in figure \ref{fig:workscutoff1} report the minimum local causal effect of discretion (as a change in procurement rules from direct contracting to invitational bidding) on the three mismanagement outcomes. They plot the regression equations at the bandwidths specified in table \ref{tab:cctbandwidth} for mismanagement outcomes I through III when the federal transfer was used to procure goods or services used in public works. We also include 90\% confidence intervals in horizontal bars for each RD bin.}
-  \end{tabular}
-\end{figure}
-
-Each graph uses the standard \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths, a two-order polynomial fit for local estimating equations, and clustered-robust standard errors. We center the assignment variable (transfer amount) around zero, so all \emph{x} values are differences (in R\$) from the first cutoff for works at R\$15,000. We see statistically significant breaks in outcome means close to the cutoff for all three variables. For outcomes I and II, mismanagement increases at decreasing rates for observations further out to right, as the amount procured increases. The graphs for these two variables are similar, but they are complementary measures of performance. While outcome I summarizes the likelihood that any transfer sees mismanagement problems (extensive margin), outcome II looks at the share of all issues that are attributable to mismanagement \emph{conditional on finding any mismanagement problem} (intensive margin). Finally, the last outcome summarizes the amount potentially lost to corruption by multiplying outcome II and the transfer amount. The relatively large magnitude of this parameter (R\$4,611 in a R\$15,000 cutoff) means that the procurement legislation is preventing a large amount of funds from being inefficiently applied.
-
-\begin{figure}[!htbp]
-  \caption{\label{fig:bandwidths} Discretion Point Estimates (Works SOs at Cutoff 1)}
-  \centering
-  \small
-  \begin{tabular}{c}
-  \emph{A: Mismanagement Binary} \\
-  \includegraphics[scale = .14]{mismanagementplot1} \\
-  \emph{B: Mismanagement Share} \\
-  \includegraphics[scale = .14]{mismanagementplot2} \\
-  \emph{C: Mismanagement Amount} \\
-  \includegraphics[scale = .14]{mismanagementplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
-  \end{tabular}
-\end{figure}
 
 To further check the validity of our parameter estimates, we conduct a last test on the magnitude and significance of our discretion parameters for the works subsample at cutoff 1. In figure \ref{fig:bandwidths}, we use smaller bandwidths at which we calculate our lower-bounded LATE starting from the \citet{CalonicoOptimalDataDrivenRegression2015} and moving down until we reach R\$5,000 away from the cutoff on both sides. The point estimates are in the \emph{y}-axis while the \emph{x}-axis reports bandwidth and sample size. The point estimates are statistically different from zero for outcome I in seven out of nine bandwidths and six out of nine for outcomes II and III. The insignificant estimates at the smaller bandwidth are telling of the trade-off between significance and sample size in RD strategies. Were the samples larger, we would have seen the significant effect persist across all bandwidth sizes as standard errors would likely converge to that of significant parameters. Nevertheless, we propose two falsification tests in section \ref{subsec:discussion} which serve as additional evidence supporting the significant reduction of management problems.
 
@@ -362,23 +332,7 @@ In order to confirm that the discretion effect reducing public works program man
 The first test we conduct is erroneously imposing the public works cutoff 1 on  purchases group observations. As a reminder, there are two types of procurement in Brazil: what we call \emph{purchases}, which consist of any purchase of goods and services, and \emph{public works}, which consist of purchases of goods and services to be used solely on public works projects. Since every public work requires procurement of any sort, the works group is a subsample of the overarching procurement of any good or service. If there is any significant effect of discretion at a falsified cutoff, then there is reason to believe that the effect we identified is either spurious or random, therefore meaning that procurement restrictions have no positive effect on program management.
 
 Similarly to figure \ref{fig:bandwidths}, we plot point estimates and 90\% confidence intervals for falsified cutoffs in figure \ref{fig:01falsification}. In these graphs, we are only using observations from the purchases subsample and running the exact same regressions as in sections \ref{sec:methodology} and \ref{sec:result} with two-order polynomial fits, clustered-robust standard errors, and the same varying bandwidths as in the works-only sample.
-\clearpage
 
-\begin{figure}[!htbp]
-  \caption{Discretion Point Estimates (Purchases SOs at Works Cutoff 1)}
-  \label{fig:01falsification}
-  \centering
-  \small
-  \begin{tabular}{c}
-  \emph{A: Mismanagement Binary} \\
-  \includegraphics[scale = .14]{01falsificationplot1} \\
-  \emph{B: Mismanagement Share} \\
-  \includegraphics[scale = .14]{01falsificationplot2} \\
-  \emph{C: Mismanagement Amount} \\
-  \includegraphics[scale = .14]{01falsificationplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using purchases SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
-  \end{tabular}
-\end{figure}
 
 There are no significant results across all figures at 90\% confidence intervals. Even with larger samples, there is no effect of the falsified cutoff on the likelihood of finding mismanagement, nor on the share of irregularities due to management problems, nor the amount potentially lost to resource misallocation. This is an important result supporting that the effect of discretion on mismanagement of public works projects is, in fact, true. Moreover, the point estimates are either close to zero or positive, which is opposite to the expected result in hypothesis 2 and confirmed in table \ref{tab:rdmc}.
 
@@ -389,51 +343,17 @@ In figure \ref{fig:02falsification}, we once again run the exact same regression
 A close look at figures \ref{fig:02falsification}.A through C reveals  no significant relationship between false cutoff 1 on mismanagement for the non-procurement sample (at the 90\% level). As we reduce the bandwidths around the false cutoff, all parameters remain indistinguishable from zero, though at smaller sample sizes we see much wider confidence intervals. Again with the case of public works true sample, more observations would help narrow down standard errors and potentially align parameter estimates along the results of larger bandwidths. Therefore, we can safely conclude that procurement requirements in fact help solve management issues that might not have been related to procurement in the first place. Standardizing procurement practices, delivering public goods and services faster, and following policy-mandated guidelines have a direct effect of improvement government performance.
 \clearpage
 
-\begin{figure}[!htbp]
-  \caption{Discretion Point Estimates (Non-Procurement SOs at Works Cutoff 1)}
-  \label{fig:02falsification}
-  \centering
-  \small
-  \begin{tabular}{c}
-  \emph{A: Mismanagement Binary} \\
-  \includegraphics[scale = .14]{02falsificationplot1} \\
-  \emph{B: Mismanagement Share} \\
-  \includegraphics[scale = .14]{02falsificationplot2} \\
-  \emph{C: Mismanagement Amount} \\
-  \includegraphics[scale = .14]{02falsificationplot3} \\
-  \multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using non-procurement SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
-  \end{tabular}
-\end{figure}
-
 \subsection{Interpretations of the Null Effect on Corruption} \label{subsec:nullcorruption}
 
 In this section we return to our primary hypothesis and suggest possible interpretations for the null effect of discretion on corruption. It is naive to think that legislators knew nothing about corruption prevention and that Law 8,666/93 is entirely flawed. A more plausible explanation, however, is that corrupt behavior has changed over time while the procurement legislation has remained static. In this case, the law was appropriate under different corruption conditions than were not present in our period of study (2004-2010) but perhaps might have been present before, between 1993-2003.
 
 The first potential interpretation is that public officials might have grown accustomed to procuring goods and services under the legal requirements and have thus been able to carry on engaging in corruption while avoiding its detection. If this is the case, then we should not see differential levels of municipal corruption across time. We plot anecdotal data supporting this conclusion in table \ref{fig:01discussion}.
 
-\begin{figure}[!htbp]
-  \caption{Municipal Corruption Between 2004-2010}
-  \label{fig:01discussion}
-  \centering
-  \small
-  \begin{tabular}{c}
-  \includegraphics[scale = .14]{01discussionplot}
-  \end{tabular}
-\end{figure}
 
 Municipal corruption levels are fairly stable over time. The average corruption share ranges between .18 to .21 of total infractions. Obviously, there are other things going on simultaneously besides learning how to work around procurement rules, but the relative stability of municipal corruption could also be a feature of the ease with which officials can sidestep rules if they want to engage in corruption. Moreover, the burden for corruption falls more heavily on mayors \citep{AvisGovernmentAuditsReduce2018} than on their lower level staff, also indicating another incentive for why officials would keep their corruption levels stable over time.
 
 Another explanation of the null effect is the decreasing purchasing power of public resources in the presence of inflation. Since the cutoff values across categories remain constant over the period under analysis, inflation reduces the quantity of goods and services any single procurement call can contract, thus turning small procurement amounts (regulated by lower categories of Law 8,666/93) meaningless in terms of their complexity or the corruption opportunity they create -- or even the nominal value taken out as corruption. This means that compliance at lower categories of the procurement law might be easier due to the relative simplicity, lower quality, or smaller quantity of the items being procured. We propose checking this explanation by looking at the average number of infractions (both in corruption and management) across time, procurement type, and category. We present these results in figure \ref{fig:02discussion}, where we see the average number of infractions per investigation on the \emph{y}-axis, and the year of investigation on the \emph{x}-axis. We further split the results by type of procurement (public purchases or works) and category (direct contracting, invitational bidding, price comparison bidding, and competitive bidding). Thus, each quadrant summarizes the average number of infractions per year, procurement type, and category. The dashed black lines are the average number of infractions across type and category and removes the time variation.
 
-\begin{figure}[!htbp]
-  \caption{Average Infraction Count Per Year, Procurement Type, and Category}
-  \label{fig:02discussion}
-  \centering
-  \small
-  \begin{tabular}{c}
-  \includegraphics[scale = .2]{02discussionplot}
-  \end{tabular}
-\end{figure}
 
 Across both types of procurement, we see the average number of infractions increase as we move up procurement categories (shown by the level of the dashed black lines read from left to right). Though not conclusive, this is suggestive of decreasing compliance when procurement increases in value and complexity. For the purchases group, the top four quadrants, we see relative stability of the average number of infractions within each procurement category, which, read along figure \ref{fig:01discussion} on the stability of the corruption share over all issues, indicates little variation in the number of management problems as well. For the works group, in the bottom four graphs, we see 2006 and 2010 as outline years for lower and higher averages, respectively, but the upward trend in infractions is also consistent across procurement categories.
 
@@ -445,14 +365,11 @@ So far, we have focused on testing our hypotheses and uncovering potential confo
 
 The only significant, beneficial effect is the reduction in mismanagement for the public works sample at the change in rules from direct contracting to invitational bidding. The costs, however, are all other corruption and mismanagement problems not prevented at the equivalent cutoffs. We conduct a back-of-the-envelope cost-benefit analysis (CBA) in table \ref{tab:welfare}.
 
-\input{tab_welfare1}
-
 In the top part of the table, we calculate the costs of Law 8,666/93 as the total misplaced amount not prevented by invitational bidding contracting rules. These costs come from both procurement types, public purchases and works, and outcomes, corruption and mismanagement. In column three, average loss in R\$, we include the average amount misplaced due to either problem for all observations within the CCT bandwidth around cutoff 1. Since our parameters are lower-bounded LATE, they only constitute causal effects at the vicinity of the discretion rule discontinuity, thus the focus on these subsamples. We multiple each average cost by the number of observations and add them up to a total cost (A) of over R\$30M (last row of top part).
 
 The total benefit, on the other hand, comes from the amount that would have been misplaced had Law 8,666/93 not been in effect. On column three, in the middle part of the table, the average loss prevented is the LATE parameter at works cutoff 1 for mismanagement outcome III, which calculates the amount potentially lost by multiplying the share of mismanagement issues times the transfer amount. $(B)$ is the total misallocation prevented, approximately R\$2M.
 
 Finally, we report welfare effects at the bottom part of the table. We calculate both misallocation prevention in absolute (R\$) and relative (\%) terms. Total cost of misallocation would be approximately R\$32.5M and the works-only cost would be R\$7.7M (compared to R\$4.4M in the absence of the law). Moreover, the discretion policy reduces misallocation by 5.98\% and 26.69\%, respectively, for total expenditures and expenditures in public works projects. Although this is a substantial reduction in misplaced funds, R\$30M still remain unaccounted for, and its misallocation could have been prevented had the procurement legislation been adapted over time. Citizens and legislators should compare this potential recovery to overall municipal budgets in order to support Law 8,666/93 or not.
-
 
 \section{Conclusion} \label{sec:conclusion}
 
@@ -478,7 +395,7 @@ Lastly, we provide a rough estimate of the costs and benefits of the procurement
 
 \section*{Tables and Figures} \label{sec:tables}
 
-\begin{table}[ht]
+\begin{table}[!ht]
 \centering
 \caption[table1]{Descriptive Statistics}\label{tab:descriptivestatistics}
 \vspace{-10pt}
@@ -528,6 +445,86 @@ Lastly, we provide a rough estimate of the costs and benefits of the procurement
 \input{../tables/covariates.tex}
 \end{table}
 
+\begin{table}[ht]
+\centering
+\caption{Multiple Non-Cumulative Cutoff Procurement Estimates}\label{tab:rdmc}
+\vspace{-10pt}
+\input{../tables/rdmc.tex}
+\end{table}
+
+\begin{figure}[ht]
+\caption{Discretion Point Estimates (Works SOs at Cutoff 1)}\label{fig:bandwidths}
+\centering
+\small
+\begin{tabular}{c}
+\emph{A: Mismanagement Binary} \\
+\includegraphics[scale = .70]{../plots/mismanagementplot1.pdf} \\
+\emph{B: Mismanagement Share} \\
+\includegraphics[scale = .70]{../plots/mismanagementplot2.pdf} \\
+\emph{C: Mismanagement Amount} \\
+\includegraphics[scale = .70]{../plots/mismanagementplot3.pdf} \\
+\multicolumn{1}{p{.80\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
+\end{tabular}
+\end{figure}
+
+\begin{figure}[!htbp]
+\caption{Discretion Point Estimates (Purchases SOs at Works Cutoff 1)}
+\label{fig:01falsification}
+\centering
+\small
+\begin{tabular}{c}
+\emph{A: Mismanagement Binary} \\
+\includegraphics[scale = .70]{../plots/01falsificationplot1.pdf} \\
+\emph{B: Mismanagement Share} \\
+\includegraphics[scale = .70]{../plots/01falsificationplot2.pdf} \\
+\emph{C: Mismanagement Amount} \\
+\includegraphics[scale = .70]{../plots/01falsificationplot3.pdf} \\
+\multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using purchases SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
+\end{tabular}
+\end{figure}
+
+\begin{figure}[!htbp]
+\caption{Discretion Point Estimates (Non-Procurement SOs at Works Cutoff 1)}
+\label{fig:02falsification}
+\centering
+\small
+\begin{tabular}{c}
+\emph{A: Mismanagement Binary} \\
+\includegraphics[scale = .70]{../plots/02falsificationplot1.pdf} \\
+\emph{B: Mismanagement Share} \\
+\includegraphics[scale = .70]{../plots/02falsificationplot2.pdf} \\
+\emph{C: Mismanagement Amount} \\
+\includegraphics[scale = .70]{../plots/02falsificationplot3.pdf} \\
+\multicolumn{1}{p{.67\textwidth}}{\scriptsize Notes: These three graphs report the discretion point estimates and their 90\% confidence intervals for different bandwidths across works cutoff 1 \emph{using non-procurement SO as falsification data}. The number of observations used in each local quadratic polynomial regressions is in parentheses across the horizontal axis. Confidence intervals overlapping the dashed lines show statistically insignificant parameters. \citet{CalonicoOptimalDataDrivenRegression2015} bandwidths are in bold.}
+\end{tabular}
+\end{figure}
+
+\begin{figure}[!htbp]
+\caption{Municipal Corruption Between 2004-2010}
+\label{fig:01discussion}
+\centering
+\small
+\begin{tabular}{c}
+\includegraphics[scale = .70]{../plots/01discussionplot.pdf}
+\end{tabular}
+\end{figure}
+
+\begin{figure}[!htbp]
+\caption{Average Infraction Count Per Year, Procurement Type, and Category}
+\label{fig:02discussion}
+\centering
+\small
+\begin{tabular}{c}
+\includegraphics[scale = 1]{../plots/02discussionplot.pdf}
+\end{tabular}
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\caption{Welfare Effects from Discretion at Cutoff 1}\label{tab:welfare}
+\vspace{-10pt}
+\input{../tables/welfare.tex}
+\end{table}
 
 \clearpage
 
@@ -542,22 +539,22 @@ The system uses each service order's description to identify if it is procuremen
 An example is useful for understanding our classification process. Unigram ``aquisição'' (\emph{acquisition} in English) is stemmed to ``aquisi'' to form a search pattern for the \emph{purchases}-type procurement; unigrams ``adequação'' and ``habitacional'' (roughly translated as \emph{housing adequacy}) are stemmed and combined to form ``adequa(.)*habitac'' search pattern for \emph{works}-type procurement. The use of bigrams and regular expressions, such as in the pattern above, picks up variations in main keywords as well as coding mistakes due to, for instance, multiple whitespace between the two unigrams or due to coding Portuguese special characters (``adequação'' vs. ``adequacao'').
 
 \begin{table}[!htbp]
-  \caption{\label{tab:searchterms} Procurement Search Terms (in regular expression format)}
-  \centering
-  \scriptsize
-  \begin{tabular}{l p{.85\textwidth}}
-  \hline
+\caption{\label{tab:searchterms} Procurement Search Terms (in regular expression format)}
+\centering
+\scriptsize
+\begin{tabular}{l p{.85\textwidth}}
+\hline
 
-  \hline
-  Type & Search Terms \T \B \\
-  \hline
-  Purchases & ``aquisi'' ``execu'' ``equipame'' ``ve{[}íi{]}culo'' ``despesa'' ``aplica{[}çc{]}'' ``medicamento(.)*peaf'' ``compra'' ``recurso(.)*financ'' ``unidade(.)*m{[}óo{]}ve(.)*sa{[}úu{]}de'' ``pnate'' ``transporte(.)*escola'' ``desenv(.)*ensino'' ``kit'' ``siafi'' ``implementa{[}çc{]}'' ``adquir'' ``pme(.)*2004'' ``aparelhamento'' \T \B \\
-  \hline
-  Works & ``co(ns\textbar{}sn)tru'' ``obra'' ``implant'' ``infra(.)*estrut'' ``amplia'' ``abasteci(.)*d(.)*{[}áa{]}gua'' ``reforma'' ``(melhoria\textbar{}adequa)+(.)*(f{[}íi{]}sica\textbar{}escolar\textbar{}habitac\textbar{}sanit{[}áa{]}ria)+'' ``esgot'' ``adutora\textbar{}dessaliniz\textbar{}reservat{[}óo{]}'' ``sanit{[}áa{]}ri{[}ao{]}'' ``poço'' ``aperfei{[}çc{]}oa'' ``saneamento'' ``res{[}íi{]}duo(.)*s{[}óo{]}lido'' ``conclus{[}ãa{]}o'' \T \B \\
-  \hline
+\hline
+Type & Search Terms \T \B \\
+\hline
+Purchases & ``aquisi'' ``execu'' ``equipame'' ``ve{[}íi{]}culo'' ``despesa'' ``aplica{[}çc{]}'' ``medicamento(.)*peaf'' ``compra'' ``recurso(.)*financ'' ``unidade(.)*m{[}óo{]}ve(.)*sa{[}úu{]}de'' ``pnate'' ``transporte(.)*escola'' ``desenv(.)*ensino'' ``kit'' ``siafi'' ``implementa{[}çc{]}'' ``adquir'' ``pme(.)*2004'' ``aparelhamento'' \T \B \\
+\hline
+Works & ``co(ns\textbar{}sn)tru'' ``obra'' ``implant'' ``infra(.)*estrut'' ``amplia'' ``abasteci(.)*d(.)*{[}áa{]}gua'' ``reforma'' ``(melhoria\textbar{}adequa)+(.)*(f{[}íi{]}sica\textbar{}escolar\textbar{}habitac\textbar{}sanit{[}áa{]}ria)+'' ``esgot'' ``adutora\textbar{}dessaliniz\textbar{}reservat{[}óo{]}'' ``sanit{[}áa{]}ri{[}ao{]}'' ``poço'' ``aperfei{[}çc{]}oa'' ``saneamento'' ``res{[}íi{]}duo(.)*s{[}óo{]}lido'' ``conclus{[}ãa{]}o'' \T \B \\
+\hline
 
-  \hline
-  \end{tabular}
+\hline
+\end{tabular}
 \end{table}
 
 The final list contains 19 \emph{n}-grams for identification of purchases and 17 \emph{n}-grams for works.\footnote{One of these keywords in the works search pattern is an ``exclusion keyword,'' which removes service orders that contain the ``exclusion keyword'' in their description from the sample identified by the other 16 \emph{n}-grams.} When any of these words is found, we include the service order into the purchases or the works group. Since all public works projects procure goods and services but not all public purchases are public works-related, whenever the search patterns matches service orders to both groups, we include the service order only in the works group but not in the purchases group. In other words, public works procurements are a subset of all public procurements in Brazilian municipalities. Out of an universe of 14,518 observations, the search patterns here identify a total of 9,593 procurement-related service orders.
@@ -565,7 +562,7 @@ The final list contains 19 \emph{n}-grams for identification of purchases and 17
 \begin{figure}[!htbp]
 \caption{\label{fig:venn} Sets of Procurement Service Orders}
 \centering
-\includegraphics[width=0.3\linewidth]{venn}
+\includegraphics[width = 0.3\linewidth]{../plots/venn.pdf}
 \end{figure}
 
 As \citet{GrimmerTextDataPromise2013a} rightly point out, no text analysis algorithm is perfect and only relying on keyword matches could potentially lead to misclassification of service orders. An example might help illustrate this. Let us suppose that one description reads ``expenditures made in accordance with primary education program.'' Using unigram ``expenditure'' would yield a match for this service order to the purchases group, but in fact auditors might be looking at bonus payments for high-performing teachers. These resources could also be directed for school construction. In the first case, the service order should not be have been included in any group because it does not carry any procurement component. In the second case, it should have also been marked as public works.
@@ -575,12 +572,12 @@ We address these classification problems in three ways: (i) using means comparis
 \subsection{Means Tests}\label{subsec:quality1}
 
 The first test on match quality is the means comparison test presented in \citet{AssumpcaotextfindDataDrivenText2018}, whose reasoning is simple. Increasing the number of procurement-related terms in the search pattern is not necessarily good practice as we increase the chance of misclassifying service orders as procurement when in fact they are not; words can take on different meanings depending on their contexts, so the more search terms we use the more likely type I error is. Ideally, we would want to use as few \emph{n}-grams as possible while still identifying all procurement matches. In order to do this, what \citet{AssumpcaotextfindDataDrivenText2018} suggests is testing match quality by incrementally comparing sample means identified by \emph{n} + 1 vs.~\emph{n} keywords. This method translates into a check on whether the sample identified by one additional keyword is significantly better than the previous sample with one fewer term. The program developed by \citet{AssumpcaotextfindDataDrivenText2018} runs such check and the results are reported in the table below:
-\input{appendix_tab2}
+\input{../tables/appendix2}
 
 The search terms are sorted in descending order by the number of service orders they identify (column 1). Column 6 displays \emph{p}-values for means tests across samples, where each mean is the sum of observations found by \emph{any} of the search items before, and inclusive of, any particular row over the total number of observations.\footnote{This is also known as an alternative search where all search conditions are connected by an ``or'' statement.} For example, the \emph{p}-value in row 3 tells us that including search word ``equipame'' to the pattern ``aquisi'' or ``execu'' identifies a significantly different, and in this case, larger sample at the 1\% level.
 
 The works sample is a third of the size of the purchases group and two of its search items do not significantly identify a new sample (``saneamento'' and ``conclus{[}ãa{]}o''). Despite having positive individual finds reported in column 1, table \ref{tab:worksresults}, the means test in column 6 suggests that these finds are not new service orders in addition to what had already been identified by the the previous search terms.\footnote{The search without these terms (available upon request) yields 2,679 service orders, just three short of the total in table \ref{tab:worksresults}. Nevertheless, we keep the two items in the search algorithm for additional tests discussed in section \ref{subsec:quality2}.}
-\input{appendix_tab3}
+\input{../tables/appendix3}
 
 Means tests are important to map out the relationship between search items, both within and across groups, but they do not tell us anything about the relationship between search items and their latent procurement groups. In other words, the search terms might be picking up groups that are internally consistent but that do not map onto the procurement types in Law 8,666/93. In sections \ref{subsec:quality2} and \ref{subsec:quality3}, we test if these search patterns really reflect the procurement legislation in Brazil.
 
@@ -607,7 +604,7 @@ of these grants in Brazilian municipalities, we have two
 different textual descriptions of resource use: CGU's, from their audit
 report, and the federal government's, available online at the
 Transparency Portal.\footnote{\url{http://www.portaltransparencia.gov.br/}}
-\input{appendix_tab4}
+\input{../tables/appendix4}
 
 There is a total of 3,868 service orders\footnote{The reason why the total testable sample for the purchases group is 1,815 units is that we have to exclude potential works observations, in the same way discussed in the introduction of appendix \ref{sec:appendixA}. Hence, we have to subtract the 2,053 possible works units from the total 3,868 and run the check only in the remaining 1,815 observations.} for which we have descriptions both from CGU and from the federal government. In table \ref{tab:textualdescription}, we report the results of the search algorithm both in the service order (row-wise) and the transfer (column-wise) descriptions. We evaluate the performance of the search algorithm by checking whether it assigns the same service order to the same procurement group \emph{regardless of the description in which it searches for the key terms}. In other words, the smaller the number of times that the algorithm assigns any service order to a different group when it switches to another textual description, the better. The diagonal (\emph{Yes-No; No-Yes}) should be populated by only a small number of transfers compared to the overall sample.
 
@@ -618,7 +615,7 @@ This is a particularly important point for the classification method proposed he
 Though section \ref{subsec:quality2} supports the external validity of our algorithm by showing that the service order classification is consistent across textual descriptions, we run the last robustness check here using the actual procurement violations reported by CGU.
 
 The findings reported by auditors are coded into 35 infractions of the use of public resources, nine of which violations of procurement rules and one violation of public works rules. Thus, we know with certainty that service orders for which there are any of the nine violations (ten if public works) are in fact procurement-related and should be classified either as purchases, works, or both. As opposed to section \ref{subsec:quality2}, this resembles a false negative (type II error) test on yet another subset of observations for which certain infractions were reported.\footnote{The reason why this is a type II error test, instead of type I, resides on the way these test samples are defined. In section \ref{subsec:quality2}, both sample assignments (by matching procurement keywords in the service order or grant description) can be the ``correct'' procurement sample against which the match on the alternative description might yield false positives. In this section, we know with certainty that the sample identified by procurement infractions is in fact the correctly identified sample, since there cannot exist a procurement violation where no procurement has occurred. It makes the unidentified observations false negatives because they should have been classified as procurement-related service orders but were not. This sample is clearly underidentified, as there are many procurement-related transfers that simply followed Law 8,666/93 and thus carry no infraction, but still this subset of all CGU investigations provides us with a good counterfactual against which to test our classification mechanism.}
-\input{appendix_tab5}
+\input{../tables/appendix5}
 
 The total number of service orders\footnote{Although the universe is composed of 14,518 observations, we had to exclude the remaining 2,119 observations for which no textual description exists, hence the 12,399 universe in table \ref{tab:textbycode}.} with at least one procurement infraction is 3,775 (4,146 if we include the public works infraction), which is the sum of column 2 in table \ref{tab:textbycode}, panels A and B. The false negative rate is 8.5\% and 9.9\%, respectively, for purchases-only and works procurements. This means that 319 and 344 service orders should have been classified as procurement by our textual search algorithm but were not.
 
@@ -707,11 +704,14 @@ Although no text analysis mechanism is perfect, the evidence presented here supp
 The identification strategy in this paper relies on the assumption that municipal officials do not (completely) manipulate public expenditure amounts in order to avoid stricter procurement rules. In other words, the public procurement processes carried out just below and above any of the three discretion thresholds, which are uniquely determined by procurement amount, are equal except for the rules set out in Law 8,666/93 -- thus they are good counterfactuals for testing the effect of expenditure discretion on performance. We present below the \citet{McCraryManipulationRunningVariable2008} test for manipulation of the running variable for all six cutoffs in the Brazilian procurement legislation, which show no significant difference between service order density just below and above five of the six discretion cutoffs imposed by Law 8,666/93. The only discontinuity for which variables do not seem comparable is purchases cutoff 3, which we drop from the analysis in sections \ref{sec:methodology} and \ref{sec:result}.
 
 \begin{figure}[!htbp] \centering
-  \caption{\label{fig:manipulationtests} Manipulation Tests at SO Cutoff Amounts}
+  \caption{Manipulation Tests at SO Cutoff Amounts}\label{fig:manipulationtests}
   \begin{tabular}{cc}
-  \includegraphics[scale=.24]{purchasesmanipulation1} & \includegraphics[scale=.24]{worksmanipulation1} \\
-  \includegraphics[scale=.24]{purchasesmanipulation2} & \includegraphics[scale=.24]{worksmanipulation2} \\
-  \includegraphics[scale=.24]{purchasesmanipulation3} & \includegraphics[scale=.24]{worksmanipulation3} \\
+  \includegraphics[scale = .45]{../plots/purchasesmanipulation1.pdf} &
+  \includegraphics[scale = .45]{../plots/worksmanipulation1.pdf} \\
+  \includegraphics[scale = .45]{../plots/purchasesmanipulation2.pdf} &
+  \includegraphics[scale = .45]{../plots/worksmanipulation2.pdf} \\
+  \includegraphics[scale = .45]{../plots/purchasesmanipulation3.pdf} &
+  \includegraphics[scale = .45]{../plots/worksmanipulation3.pdf} \\
   \end{tabular}
 \end{figure}
 
